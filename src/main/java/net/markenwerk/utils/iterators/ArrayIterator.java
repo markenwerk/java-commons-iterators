@@ -24,6 +24,13 @@ package net.markenwerk.utils.iterators;
 import java.util.Iterator;
 
 /**
+ * An {@link ArrayIterator} is a {@link Iterator} that iterates over a given
+ * array of payload values.
+ * 
+ * <p>
+ * Calling {@link ArrayIterator#remove()} sets the array to {@literal null} at
+ * the index that corresponds to the last value returned by
+ * {@link ArrayIterator#next()}.
  * 
  * @param <Payload>
  *            The payload type.
@@ -36,6 +43,13 @@ public final class ArrayIterator<Payload> implements Iterator<Payload> {
 
 	private int index = -1;
 
+	/**
+	 * Creates a new {@linkplain ArrayIterator} that iterates over the given
+	 * payload array.
+	 * 
+	 * @param values
+	 *            The payload array to iterate over.
+	 */
 	@SuppressWarnings("unchecked")
 	public ArrayIterator(Payload[] values) {
 		if (null == values) {
