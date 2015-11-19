@@ -94,6 +94,32 @@ public class CombinedIteratorTests {
 	 * Iterate over multiple iterator.
 	 */
 	@Test
+	public void combined_iteratorsIterable() {
+
+		Object[] values = new Object[] { new Object(), new Object() };
+
+		List<Iterator<Object>> iteratorsList = new LinkedList<Iterator<Object>>();
+		iteratorsList.add(new ArrayIterator<Object>(values));
+		iteratorsList.add(new ArrayIterator<Object>(values));
+		Iterator<Object> iterator = new CombinedIterator<Object>(iteratorsList);
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(values[0], iterator.next());
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(values[1], iterator.next());
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(values[0], iterator.next());
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(values[1], iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
+	
+	/**
+	 * Iterate over multiple iterator.
+	 */
+	@Test
 	public void combined_iteratorsIterator() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
