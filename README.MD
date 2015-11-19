@@ -1,11 +1,11 @@
-# A collection of common iterators for Java
+# Some common iterators for Java
 
 [![Build Status](https://travis-ci.org/markenwerk/java-commons-iterators.svg?branch=master)](https://travis-ci.org/markenwerk/java-commons-iterators)
 [![Coverage Status](https://coveralls.io/repos/markenwerk/java-commons-iterators/badge.svg?branch=master&service=github)](https://coveralls.io/github/markenwerk/java-commons-iterators?branch=master)
 [![Dependency Status](https://www.versioneye.com/user/projects/56323f1636d0ab0016001bc4/badge.svg)](https://www.versioneye.com/user/projects/56323f1636d0ab0016001bc4)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/java-commons-iterators/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/java-commons-iterators)
 
-This is a collection of common and helpful [`Iterator`][Iterator] implementations.
+This is a collection of some commonly useful [`Iterator`][Iterator] implementations.
 
 ## Overview
 

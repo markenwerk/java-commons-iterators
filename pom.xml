@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 
 	<name>${project.groupId}:${project.artifactId}</name>
-	<description>A collection of common iterators for Java</description>
+	<description>Some common iterators for Java</description>
 	<url>https://github.com/markenwerk/java-utils-data-fetcher</url>
 	<inceptionYear>2015</inceptionYear>
 
