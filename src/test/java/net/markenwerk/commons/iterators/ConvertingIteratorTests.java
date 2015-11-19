@@ -48,7 +48,6 @@ public class ConvertingIteratorTests {
 	}
 
 	private final Converter<Object, Wrapper> WRAPPING_CONVERTER = new Converter<Object, Wrapper>() {
-
 		@Override
 		public Wrapper convert(Object from) throws ConverterException {
 			return null == from ? null : new Wrapper(from);

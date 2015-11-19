@@ -40,7 +40,6 @@ public class FilteringIteratorTests {
 	private final Object UNSATISFYING_OBJECT = new Object();
 
 	private final Predicate<Object> UNSATISFYING_OBJECT_PREDICATE = new Predicate<Object>() {
-
 		@Override
 		public boolean test(Object object) throws PredicateException {
 			return null == object || UNSATISFYING_OBJECT != object;
