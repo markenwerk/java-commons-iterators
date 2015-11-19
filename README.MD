@@ -142,7 +142,7 @@ Iterator<Foo> = new ArrayIterator(foos);
 [DoubleArrayIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.0.0/index.html?net/markenwerk/commons/iterators/DoubleArrayIterator.html
 [EmptyIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.0.0/index.html?net/markenwerk/commons/iterators/EmptyIterator.html
 [FilteringIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.0.0/index.html?net/markenwerk/commons/iterators/FilteringIterator.html
-[FloatIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.0.0/index.html?net/markenwerk/commons/iterators/FloatIterator.html
+[FloatArrayIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.0.0/index.html?net/markenwerk/commons/iterators/FloatArrayIterator.html
 [IntegerArrayIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.0.0/index.html?net/markenwerk/commons/iterators/IntegerArrayIterator.html
 [LongArrayIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.0.0/index.html?net/markenwerk/commons/iterators/LongArrayIterator.html
 [NullFreeIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.0.0/index.html?net/markenwerk/commons/iterators/NullFreeIterator.html
