@@ -25,7 +25,7 @@ Consult the [usage description](#usage) and [Javadoc](http://markenwerk.github.i
 
 ### Filtering and Converting
 
-This library provides the generic [`FilteringIterator`][FilteringIterator] that takes an existing [`Iterator`][Iterator] and a [`Predicate`][Predicate] and filters out all values yielded by the given [`Iterator`][Iterator] that don't satisfy the given [Predicate][`Predicate`].
+This library provides the generic [`FilteringIterator`][FilteringIterator] that takes an existing [`Iterator`][Iterator] and a [`Predicate`][Predicate] and filters out all values yielded by the given [`Iterator`][Iterator] that don't satisfy the given [`Predicate`][Predicate].
 
 ```java
 Iterator<Foo> iterator = ...
@@ -53,7 +53,7 @@ Iterator<Bar> convertingIterator = new ConvertingIterator<Foo, Bar>(iterator, ne
 });
 ```
 
-### Combining multiple Iterators
+### Combining multiple [`Iterators`][Iterator]
 
 This library provides the generic [`CombinedIterator`][CombinedIterator] that takes multiple existing [`Iterators`][Iterator] and combines them into a single [`Iterator`][Iterator] that yields all values of all given [`Iterators`][Iterator].
 
