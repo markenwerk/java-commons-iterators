@@ -36,7 +36,7 @@ import java.util.Iterator;
  */
 public class CombinedIterator<Payload> implements Iterator<Payload> {
 
-	private final Iterator<Iterator<? extends Payload>> iterators;
+	private final Iterator<? extends Iterator<? extends Payload>> iterators;
 
 	private Iterator<? extends Payload> currentIterator;
 
@@ -64,7 +64,7 @@ public class CombinedIterator<Payload> implements Iterator<Payload> {
 	 *            The {@link Iterator Iterators} to combine into a single
 	 *            {@link Iterator}.
 	 */
-	public CombinedIterator(Iterator<Iterator<? extends Payload>> iterators) {
+	public CombinedIterator(Iterator<? extends Iterator<? extends Payload>> iterators) {
 		this.iterators = iterators;
 	}
 
@@ -88,12 +88,14 @@ public class CombinedIterator<Payload> implements Iterator<Payload> {
 
 	private void prepareNext() {
 		if (!nextPrepared) {
-			while ((null == currentIterator || !currentIterator.hasNext()) && iterators.hasNext()) {
+			hasNext = false;
+			if (null != currentIterator && currentIterator.hasNext()) {
+				hasNext = true;
+			} else if (iterators.hasNext()) {
 				currentIterator = iterators.next();
+				hasNext = currentIterator.hasNext();
 			}
-			hasNext = null != currentIterator && currentIterator.hasNext();
 			nextPrepared = true;
 		}
 	}
-
 }
