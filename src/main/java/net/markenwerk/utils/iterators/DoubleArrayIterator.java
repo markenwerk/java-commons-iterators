@@ -45,15 +45,16 @@ public final class DoubleArrayIterator implements Iterator<Double> {
 	 * Creates a new {@linkplain DoubleArrayIterator} that iterates over the
 	 * given {@code double[]}.
 	 * 
+	 * <p>
+	 * If the given {@code double[]} is {@literal null}, the new
+	 * {@link DoubleArrayIterator} will behave, as if an empty {@code double[]}
+	 * has been given.
+	 * 
 	 * @param values
 	 *            The {@code double[]} to iterate over.
 	 */
 	public DoubleArrayIterator(double[] values) {
-		if (null == values) {
-			this.values = new double[0];
-		} else {
-			this.values = values;
-		}
+		this.values = null == values ? new double[0] : values;
 	}
 
 	public boolean hasNext() {

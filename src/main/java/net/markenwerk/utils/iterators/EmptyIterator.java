@@ -24,7 +24,15 @@ package net.markenwerk.utils.iterators;
 import java.util.Iterator;
 
 /**
+ * An {@link EmptyIterator} is an {@link Iterator} that doesn't yield any
+ * values.
  * 
+ * <p>
+ * Calling {@link EmptyIterator#hasNext()} always returns {@literal false} and
+ * calling {@link EmptyIterator#next()} always returns {@literal null}.
+ * 
+ * @param <Payload>
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */

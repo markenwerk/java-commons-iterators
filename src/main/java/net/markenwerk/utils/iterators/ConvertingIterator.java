@@ -26,7 +26,14 @@ import java.util.Iterator;
 import net.markenwerk.commons.interfaces.Converter;
 
 /**
+ * A {@link ConvertingIterator} is an {@link Iterator} that can be wrapped
+ * around a given {@link Iterator} and converts all values with a given
+ * {@link Converter}.
  * 
+ * @param <From>
+ *            The type to convert values from.
+ * @param <To>
+ *            The type to convert values to.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -42,8 +49,20 @@ public class ConvertingIterator<From, To> implements Iterator<To> {
 
 	private To next;
 
+	/**
+	 * Creates a new {@link ConvertingIterator} from the given {@link Iterator}
+	 * and the given {@link Converter}.
+	 * 
+	 * @param iterator
+	 *            The {@link Iterator}, around which the new
+	 *            {@link NullFreeIterator} will be wrapped.
+	 * @param converter
+	 *            The {@link Converter} to {@link Converter#convert(Object)
+	 *            convert} every value yielded by the given {@link Iterator}
+	 *            with.
+	 */
 	public ConvertingIterator(Iterator<From> iterator, Converter<From, To> converter) {
-		this.iterator = null == iterator ? new EmptyIterator<From>() : iterator;
+		this.iterator = iterator;
 		this.converter = converter;
 	}
 
@@ -62,7 +81,7 @@ public class ConvertingIterator<From, To> implements Iterator<To> {
 
 	@Override
 	public void remove() {
-		throw new UnsupportedOperationException();
+		iterator.remove();
 	}
 
 	private void prepareNext() {

@@ -44,19 +44,20 @@ public final class ArrayIterator<Payload> implements Iterator<Payload> {
 	private int index = -1;
 
 	/**
-	 * Creates a new {@linkplain ArrayIterator} that iterates over the given
-	 * payload array.
+	 * Creates a new {@link ArrayIterator} that iterates over the given payload
+	 * array.
+	 * 
+	 * <p>
+	 * If the given payload array is {@literal null}, the new
+	 * {@link ArrayIterator} will behave, as if an empty payload array has been
+	 * given.
 	 * 
 	 * @param values
 	 *            The payload array to iterate over.
 	 */
 	@SuppressWarnings("unchecked")
 	public ArrayIterator(Payload[] values) {
-		if (null == values) {
-			this.values = (Payload[]) new Object[0];
-		} else {
-			this.values = values;
-		}
+		this.values = null == values ? (Payload[]) new Object[0] : values;
 	}
 
 	public boolean hasNext() {

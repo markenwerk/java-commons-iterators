@@ -45,15 +45,16 @@ public final class ShortArrayIterator implements Iterator<Short> {
 	 * Creates a new {@linkplain ShortArrayIterator} that iterates over the
 	 * given {@code short[]}.
 	 * 
+	 * <p>
+	 * If the given {@code short[]} is {@literal null}, the new
+	 * {@link ShortArrayIterator} will behave, as if an empty {@code short[]}
+	 * has been given.
+	 * 
 	 * @param values
 	 *            The {@code short[]} to iterate over.
 	 */
 	public ShortArrayIterator(short[] values) {
-		if (null == values) {
-			this.values = new short[0];
-		} else {
-			this.values = values;
-		}
+		this.values = null == values ? new short[0] : values;
 	}
 
 	public boolean hasNext() {

@@ -24,23 +24,47 @@ package net.markenwerk.utils.iterators;
 import java.util.Iterator;
 
 /**
+ * A {@link CombinedIterator} is an {@link Iterator} that wraps arround some
+ * given {@link Iterator Iterators} and combines them into a single
+ * {@link Iterator} by iterating over all given {@link Iterator Iterators} in
+ * the order they were given.
  * 
+ * @param <Payload>
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
 public class CombinedIterator<Payload> implements Iterator<Payload> {
 
-	private final Iterator<? extends Payload>[] iterators;
+	private final Iterator<Iterator<? extends Payload>> iterators;
 
 	private Iterator<? extends Payload> currentIterator;
-
-	private int nextIterator;
 
 	private boolean nextPrepared;
 
 	private boolean hasNext;
 
+	/**
+	 * Creates a new {@link CombinedIterator} from the given {@link Iterator
+	 * Iterators}.
+	 * 
+	 * @param iterators
+	 *            The {@link Iterator Iterators} to combine into a single
+	 *            {@link Iterator}.
+	 */
 	public CombinedIterator(Iterator<? extends Payload>... iterators) {
+		this(new ArrayIterator<Iterator<? extends Payload>>(iterators));
+	}
+
+	/**
+	 * Creates a new {@link CombinedIterator} from the given {@link Iterator
+	 * Iterators}.
+	 * 
+	 * @param iterators
+	 *            The {@link Iterator Iterators} to combine into a single
+	 *            {@link Iterator}.
+	 */
+	public CombinedIterator(Iterator<Iterator<? extends Payload>> iterators) {
 		this.iterators = iterators;
 	}
 
@@ -48,17 +72,6 @@ public class CombinedIterator<Payload> implements Iterator<Payload> {
 	public boolean hasNext() {
 		prepareNext();
 		return hasNext;
-	}
-
-	private void prepareNext() {
-		if (!nextPrepared) {
-			while ((null == currentIterator || !currentIterator.hasNext()) && nextIterator < iterators.length) {
-				currentIterator = iterators[nextIterator++];
-			}
-			hasNext = null != currentIterator && currentIterator.hasNext();
-			nextPrepared = true;
-		}
-
 	}
 
 	@Override
@@ -70,7 +83,17 @@ public class CombinedIterator<Payload> implements Iterator<Payload> {
 
 	@Override
 	public void remove() {
-		throw new UnsupportedOperationException();
+		currentIterator.remove();
+	}
+
+	private void prepareNext() {
+		if (!nextPrepared) {
+			while ((null == currentIterator || !currentIterator.hasNext()) && iterators.hasNext()) {
+				currentIterator = iterators.next();
+			}
+			hasNext = null != currentIterator && currentIterator.hasNext();
+			nextPrepared = true;
+		}
 	}
 
 }

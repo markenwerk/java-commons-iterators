@@ -46,15 +46,16 @@ public final class LongArrayIterator implements Iterator<Long> {
 	 * Creates a new {@linkplain LongArrayIterator} that iterates over the given
 	 * {@code long[]}.
 	 * 
+	 * <p>
+	 * If the given {@code long[]} is {@literal null}, the new
+	 * {@link LongArrayIterator} will behave, as if an empty {@code long[]} has
+	 * been given.
+	 * 
 	 * @param values
 	 *            The {@code long[]} to iterate over.
 	 */
 	public LongArrayIterator(long[] values) {
-		if (null == values) {
-			this.values = new long[0];
-		} else {
-			this.values = values;
-		}
+		this.values = null == values ? new long[0] : values;
 	}
 
 	public boolean hasNext() {

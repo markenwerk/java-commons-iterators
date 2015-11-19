@@ -45,15 +45,16 @@ public final class BooleanArrayIterator implements Iterator<Boolean> {
 	 * Creates a new {@linkplain BooleanArrayIterator} that iterates over the
 	 * given {@code boolean[]}.
 	 * 
+	 * <p>
+	 * If the given {@code boolean[]} is {@literal null}, the new
+	 * {@link BooleanArrayIterator} will behave, as if an empty {@code boolean[]} has
+	 * been given.
+	 * 
 	 * @param values
 	 *            The {@code boolean[]} to iterate over.
 	 */
 	public BooleanArrayIterator(boolean[] values) {
-		if (null == values) {
-			this.values = new boolean[0];
-		} else {
-			this.values = values;
-		}
+		this.values = null == values ? new boolean[0] : values;
 	}
 
 	public boolean hasNext() {

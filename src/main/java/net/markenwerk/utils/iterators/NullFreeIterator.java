@@ -24,7 +24,16 @@ package net.markenwerk.utils.iterators;
 import java.util.Iterator;
 
 /**
+ * A {@link NullFreeIterator} is an {@link Iterator} that can be wrapped around
+ * a given {@link Iterator} and filters out {@literal null} values.
  * 
+ * <p>
+ * Calling {@link NullFreeIterator#next()} will never return {@link null} and
+ * calling {@link NullFreeIterator#hasNext()} will never return {@literal true},
+ * unless a value that is not {@literal null} is available.
+ * 
+ * @param <Payload>
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -36,12 +45,15 @@ public final class NullFreeIterator<Payload> implements Iterator<Payload> {
 
 	private Payload next;
 
+	/**
+	 * Creates a new {@link NullFreeIterator} from the given {@link Iterator}.
+	 * 
+	 * @param iterator
+	 *            The {@link Iterator}, around which the new
+	 *            {@link NullFreeIterator} will be wrapped.
+	 */
 	public NullFreeIterator(Iterator<Payload> iterator) {
-		if (null == iterator) {
-			this.iterator = new EmptyIterator<Payload>();
-		} else {
-			this.iterator = iterator;
-		}
+		this.iterator = iterator;
 	}
 
 	public boolean hasNext() {

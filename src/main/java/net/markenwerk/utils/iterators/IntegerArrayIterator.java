@@ -45,15 +45,16 @@ public final class IntegerArrayIterator implements Iterator<Integer> {
 	 * Creates a new {@linkplain IntegerArrayIterator} that iterates over the
 	 * given {@code int[]}.
 	 * 
+	 * <p>
+	 * If the given {@code int[]} is {@literal null}, the new
+	 * {@link IntegerArrayIterator} will behave, as if an empty {@code int[]}
+	 * has been given.
+	 * 
 	 * @param values
 	 *            The {@code int[]} to iterate over.
 	 */
 	public IntegerArrayIterator(int[] values) {
-		if (null == values) {
-			this.values = new int[0];
-		} else {
-			this.values = values;
-		}
+		this.values = null == values ? new int[0] : values;
 	}
 
 	public boolean hasNext() {

@@ -24,7 +24,21 @@ package net.markenwerk.utils.iterators;
 import java.util.Iterator;
 
 /**
+ * A {@link NullSaveIterator} is an {@link Iterator} that can be wrapped around
+ * a given {@link Iterator} and always behaves correctly, even if the given
+ * {@link Iterator} is {@literal null} (by behaving like an
+ * {@link EmptyIterator}).
  * 
+ * <p>
+ * Calling any of the methods declared by {@link Iterator} will be relayed to
+ * the given {@link Iterator}, if present.
+ * 
+ * <p>
+ * For convenience, it is possible to constuct a {@link NullSaveIterator} from
+ * an {@link Iterable} even if the given {@link Iterable} is {@literal null}.
+ * 
+ * @param <Payload>
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -32,20 +46,27 @@ public final class NullSaveIterator<Payload> implements Iterator<Payload> {
 
 	private final Iterator<Payload> iterator;
 
-	public NullSaveIterator(Iterator<Payload> iterator) {
-		if (null == iterator) {
-			this.iterator = new EmptyIterator<Payload>();
-		} else {
-			this.iterator = iterator;
-		}
+	/**
+	 * Creates a new {@link NullSaveIterator} from the given {@link Iterable}.
+	 * 
+	 * @param iterable
+	 *            The {@link Iterable} to obtain an {@link Iterator} from,
+	 *            around which the new {@link NullSaveIterator} will be wrapped,
+	 *            or {@literal null}.
+	 */
+	public NullSaveIterator(Iterable<Payload> iterable) {
+		this.iterator = null == iterable ? new EmptyIterator<Payload>() : iterable.iterator();
 	}
 
-	public NullSaveIterator(Iterable<Payload> iterable) {
-		if (null == iterable) {
-			this.iterator = new EmptyIterator<Payload>();
-		} else {
-			this.iterator = iterable.iterator();
-		}
+	/**
+	 * Creates a new {@link NullSaveIterator} from the given {@link Iterator}.
+	 * 
+	 * @param iterator
+	 *            The {@link Iterator}, around which the new
+	 *            {@link NullSaveIterator} will be wrapped, or {@literal null}.
+	 */
+	public NullSaveIterator(Iterator<Payload> iterator) {
+		this.iterator = null == iterator ? new EmptyIterator<Payload>() : iterator;
 	}
 
 	public boolean hasNext() {

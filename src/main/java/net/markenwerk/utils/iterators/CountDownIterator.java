@@ -24,6 +24,8 @@ package net.markenwerk.utils.iterators;
 import java.util.Iterator;
 
 /**
+ * A {@link CountDownIterator} is an {@link Iterator} that yields all integer
+ * value between a given upper value and a given lower bound.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
@@ -32,21 +34,34 @@ public final class CountDownIterator implements Iterator<Integer> {
 
 	private final int target;
 
-	private int current;
+	private int next;
 
-	public CountDownIterator(int from, int to) {
-		current = from;
-		target = to;
+	/**
+	 * Creates a new {@link CountDownIterator} from the given upper and lower
+	 * bound.
+	 * 
+	 * <p>
+	 * If {@code upper == lower}, only one value will be yielded. If
+	 * {@code uper < lower}, no value will be yielded.
+	 * 
+	 * @param upper
+	 *            The upper bound and first value to be yielded.
+	 * @param lower
+	 *            The lower bound and last value to be yielded.
+	 */
+	public CountDownIterator(int upper, int lower) {
+		next = upper;
+		target = lower;
 	}
 
 	@Override
 	public boolean hasNext() {
-		return current >= target;
+		return next >= target;
 	}
 
 	@Override
 	public Integer next() {
-		return current--;
+		return next--;
 	}
 
 	@Override

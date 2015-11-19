@@ -26,7 +26,18 @@ import java.util.Iterator;
 import net.markenwerk.commons.interfaces.Predicate;
 
 /**
+ * A {@link FilteringIterator} is an {@link Iterator} that can be wrapped around
+ * a given {@link Iterator} and filters out values according to a given
+ * {@link Predicate}.
  * 
+ * <p>
+ * Calling {@link FilteringIterator#next()} will never return a value that
+ * doesn't satisfy the given {@link Predicate} and calling
+ * {@link FilteringIterator#hasNext()} will never return {@literal true}, unless
+ * a value that satisfies the given {@link Predicate} is available.
+ * 
+ * @param <Payload>
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -42,8 +53,19 @@ public class FilteringIterator<Payload> implements Iterator<Payload> {
 
 	private Payload next;
 
+	/**
+	 * Creates a new {@link FilteringIterator} from the given {@link Iterator}
+	 * and the given {@link Predicate}.
+	 * 
+	 * @param iterator
+	 *            The {@link Iterator}, around which the new
+	 *            {@link NullFreeIterator} will be wrapped.
+	 * @param predicate
+	 *            The {@link Predicate} to {@link Predicate#test(Object) test} every
+	 *            value yielded by the given {@link Iterator} with.
+	 */
 	public FilteringIterator(Iterator<Payload> iterator, Predicate<Payload> predicate) {
-		this.iterator = null == iterator ? new EmptyIterator<Payload>() : iterator;
+		this.iterator = iterator;
 		this.predicate = predicate;
 	}
 
@@ -62,7 +84,7 @@ public class FilteringIterator<Payload> implements Iterator<Payload> {
 
 	@Override
 	public void remove() {
-		throw new UnsupportedOperationException();
+		iterator.remove();
 	}
 
 	private void prepareNext() {

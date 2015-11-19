@@ -49,11 +49,7 @@ public final class FloatArrayIterator implements Iterator<Float> {
 	 *            The {@code float[]} to iterate over.
 	 */
 	public FloatArrayIterator(float[] values) {
-		if (null == values) {
-			this.values = new float[0];
-		} else {
-			this.values = values;
-		}
+		this.values = null == values ? new float[0] : values;
 	}
 
 	public boolean hasNext() {

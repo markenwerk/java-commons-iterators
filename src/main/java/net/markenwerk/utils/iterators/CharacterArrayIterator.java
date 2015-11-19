@@ -28,8 +28,8 @@ import java.util.Iterator;
  * given {@code char[]}.
  * 
  * <p>
- * Calling {@link CharacterArrayIterator#remove()} sets the array to {@literal 0} at
- * the index that corresponds to the last value returned by
+ * Calling {@link CharacterArrayIterator#remove()} sets the array to
+ * {@literal 0} at the index that corresponds to the last value returned by
  * {@link CharacterArrayIterator#next()}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
@@ -45,15 +45,16 @@ public final class CharacterArrayIterator implements Iterator<Character> {
 	 * Creates a new {@linkplain CharacterArrayIterator} that iterates over the
 	 * given {@code char[]}.
 	 * 
+	 * <p>
+	 * If the given {@code char[]} is {@literal null}, the new
+	 * {@link CharacterArrayIterator} will behave, as if an empty {@code char[]}
+	 * has been given.
+	 * 
 	 * @param values
 	 *            The {@code char[]} to iterate over.
 	 */
 	public CharacterArrayIterator(char[] values) {
-		if (null == values) {
-			this.values = new char[0];
-		} else {
-			this.values = values;
-		}
+		this.values = null == values ? new char[0] : values;
 	}
 
 	public boolean hasNext() {

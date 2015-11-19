@@ -45,15 +45,16 @@ public final class ByteArrayIterator implements Iterator<Byte> {
 	 * Creates a new {@linkplain ByteArrayIterator} that iterates over the given
 	 * {@code byte[]}.
 	 * 
+	 * <p>
+	 * If the given {@code byte[]} is {@literal null}, the new
+	 * {@link ByteArrayIterator} will behave, as if an empty {@code byte[]} has
+	 * been given.
+	 * 
 	 * @param values
 	 *            The {@code byte[]} to iterate over.
 	 */
 	public ByteArrayIterator(byte[] values) {
-		if (null == values) {
-			this.values = new byte[0];
-		} else {
-			this.values = values;
-		}
+		this.values = null == values ? new byte[0] : values;
 	}
 
 	public boolean hasNext() {
