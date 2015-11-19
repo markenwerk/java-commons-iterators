@@ -50,8 +50,19 @@ public class ShortArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
+	/**
+	 * Iterate over a {@code null} array.
+	 */
+	@Test
+	public void array_iterateNullArray() {
+
+		Iterator<Short> iterator = new ShortArrayIterator(null);
+
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+
 	/**
 	 * Remove a value in a {@code short[]}.
 	 */

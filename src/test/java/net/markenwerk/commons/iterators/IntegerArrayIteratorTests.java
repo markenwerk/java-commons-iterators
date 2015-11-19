@@ -53,6 +53,18 @@ public class IntegerArrayIteratorTests {
 	
 	
 	/**
+	 * Iterate over a {@code null} array.
+	 */
+	@Test
+	public void array_iterateNullArray() {
+
+		Iterator<Integer> iterator = new IntegerArrayIterator(null);
+
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
+	/**
 	 * Remove a value in a {@code int[]}.
 	 */
 	@Test

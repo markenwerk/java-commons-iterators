@@ -52,6 +52,18 @@ public class FloatArrayIteratorTests {
 	}
 
 	/**
+	 * Iterate over a {@code null} array.
+	 */
+	@Test
+	public void array_iterateNullArray() {
+
+		Iterator<Float> iterator = new FloatArrayIterator(null);
+
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
+	/**
 	 * Remove a value in a {@code float[]}.
 	 */
 	@Test

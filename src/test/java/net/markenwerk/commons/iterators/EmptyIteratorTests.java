@@ -43,6 +43,7 @@ public class EmptyIteratorTests {
 		Iterator<Object> iterator = new EmptyIterator<Object>();
 
 		Assert.assertFalse(iterator.hasNext());
+		Assert.assertNull(iterator.next());
 
 	}
 

@@ -51,6 +51,18 @@ public class ByteArrayIteratorTests {
 
 	}
 	
+	/**
+	 * Iterate over a {@code null} array.
+	 */
+	@Test
+	public void array_iterateNullArray() {
+
+		Iterator<Byte> iterator = new ByteArrayIterator(null);
+
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
 	
 	/**
 	 * Remove a value in a {@code byte[]}.

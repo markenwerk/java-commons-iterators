@@ -76,4 +76,15 @@ public class CountUpIteratorTests {
 
 	}
 
+	/**
+	 * Remove a value from a {@link CountUpIterator}.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void countUp_remove() {
+
+		Iterator<Integer> iterator = new CountUpIterator(1, 2);
+		iterator.remove();
+
+	}
+
 }

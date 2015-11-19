@@ -50,8 +50,19 @@ public class LongArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
+	/**
+	 * Iterate over a {@code null} array.
+	 */
+	@Test
+	public void array_iterateNullArray() {
+
+		Iterator<Long> iterator = new LongArrayIterator(null);
+
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+
 	/**
 	 * Remove a value in a {@code long[]}.
 	 */

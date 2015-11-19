@@ -51,6 +51,18 @@ public class BooleanArrayIteratorTests {
 
 	}
 	
+	/**
+	 * Iterate over a {@code null} array.
+	 */
+	@Test
+	public void array_iterateNullArray() {
+
+		Iterator<Boolean> iterator = new BooleanArrayIterator(null);
+
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
 	
 	/**
 	 * Remove a value in a {@code boolean[]}.

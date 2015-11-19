@@ -51,6 +51,18 @@ public class CharacterArrayIteratorTests {
 
 	}
 	
+	/**
+	 * Iterate over a {@code null} array.
+	 */
+	@Test
+	public void array_iterateNullArray() {
+
+		Iterator<Character> iterator = new CharacterArrayIterator(null);
+
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
 	
 	/**
 	 * Remove a value in a {@code char[]}.

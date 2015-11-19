@@ -40,7 +40,7 @@ public class ArrayIteratorTests {
 	@Test
 	public void array_iterate() {
 
-		Object[] values = new Object[] {new Object(), new Object() };
+		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<Object> iterator = new ArrayIterator<Object>(values);
 
 		Assert.assertTrue(iterator.hasNext());
@@ -50,15 +50,26 @@ public class ArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
+	/**
+	 * Iterate over a {@code null} array.
+	 */
+	@Test
+	public void array_iterateNullArray() {
+
+		Iterator<Object> iterator = new ArrayIterator<Object>(null);
+
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+
 	/**
 	 * Remove a value in a {@code short[]}.
 	 */
 	@Test
 	public void shortArray_remove() {
 
-		Object[] values = new Object[] {new Object() };
+		Object[] values = new Object[] { new Object() };
 		Iterator<Object> iterator = new ArrayIterator<Object>(values);
 
 		Assert.assertTrue(iterator.hasNext());
