@@ -19,58 +19,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.utils.iterators;
+package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
 
 /**
- * An {@link ArrayIterator} is a {@link Iterator} that iterates over a given
- * array of payload values.
+ * An {@link EmptyIterator} is an {@link Iterator} that doesn't yield any
+ * values.
  * 
  * <p>
- * Calling {@link ArrayIterator#remove()} sets the array to {@literal null} at
- * the index that corresponds to the last value returned by
- * {@link ArrayIterator#next()}.
+ * Calling {@link EmptyIterator#hasNext()} always returns {@literal false} and
+ * calling {@link EmptyIterator#next()} always returns {@literal null}.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class ArrayIterator<Payload> implements Iterator<Payload> {
-
-	private final Payload[] values;
-
-	private int index = -1;
-
-	/**
-	 * Creates a new {@link ArrayIterator} that iterates over the given payload
-	 * array.
-	 * 
-	 * <p>
-	 * If the given payload array is {@literal null}, the new
-	 * {@link ArrayIterator} will behave, as if an empty payload array has been
-	 * given.
-	 * 
-	 * @param values
-	 *            The payload array to iterate over.
-	 */
-	@SuppressWarnings("unchecked")
-	public ArrayIterator(Payload[] values) {
-		this.values = null == values ? (Payload[]) new Object[0] : values;
-	}
+public final class EmptyIterator<Payload> implements Iterator<Payload> {
 
 	public boolean hasNext() {
-		return values.length != index + 1;
+		return false;
 	}
 
 	public Payload next() {
-		index++;
-		return values[index];
+		return null;
 	}
 
 	public void remove() {
-		values[index] = null;
 	}
 
 }

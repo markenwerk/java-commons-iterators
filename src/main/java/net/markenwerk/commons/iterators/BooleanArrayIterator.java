@@ -19,55 +19,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.utils.iterators;
+package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
 
 /**
- * A {@link ByteArrayIterator} is an {@link Iterator} that iterates over a given
- * {@code byte[]}.
+ * A {@link BooleanArrayIterator} is a {@link Iterator} that iterates over a
+ * given {@code boolean[]}.
  * 
  * <p>
- * Calling {@link ByteArrayIterator#remove()} sets the array to {@literal 0} at
- * the index that corresponds to the last value returned by
- * {@link ByteArrayIterator#next()}.
+ * Calling {@link BooleanArrayIterator#remove()} sets the array to
+ * {@literal false} at the index that corresponds to the last value returned by
+ * {@link BooleanArrayIterator#next()}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class ByteArrayIterator implements Iterator<Byte> {
+public final class BooleanArrayIterator implements Iterator<Boolean> {
 
-	private final byte[] values;
+	private final boolean[] values;
 
 	private int index = -1;
 
 	/**
-	 * Creates a new {@linkplain ByteArrayIterator} that iterates over the given
-	 * {@code byte[]}.
+	 * Creates a new {@linkplain BooleanArrayIterator} that iterates over the
+	 * given {@code boolean[]}.
 	 * 
 	 * <p>
-	 * If the given {@code byte[]} is {@literal null}, the new
-	 * {@link ByteArrayIterator} will behave, as if an empty {@code byte[]} has
+	 * If the given {@code boolean[]} is {@literal null}, the new
+	 * {@link BooleanArrayIterator} will behave, as if an empty {@code boolean[]} has
 	 * been given.
 	 * 
 	 * @param values
-	 *            The {@code byte[]} to iterate over.
+	 *            The {@code boolean[]} to iterate over.
 	 */
-	public ByteArrayIterator(byte[] values) {
-		this.values = null == values ? new byte[0] : values;
+	public BooleanArrayIterator(boolean[] values) {
+		this.values = null == values ? new boolean[0] : values;
 	}
 
 	public boolean hasNext() {
 		return values.length != index + 1;
 	}
 
-	public Byte next() {
+	public Boolean next() {
 		index++;
 		return values[index];
 	}
 
 	public void remove() {
-		values[index] = 0;
+		values[index] = false;
 	}
 
 }

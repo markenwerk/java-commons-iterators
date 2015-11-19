@@ -19,55 +19,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.utils.iterators;
+package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
 
 /**
- * A {@link BooleanArrayIterator} is a {@link Iterator} that iterates over a
- * given {@code boolean[]}.
+ * A {@link FloatArrayIterator} is an {@link Iterator} that iterates over a
+ * given {@code float[]}.
  * 
  * <p>
- * Calling {@link BooleanArrayIterator#remove()} sets the array to
- * {@literal false} at the index that corresponds to the last value returned by
- * {@link BooleanArrayIterator#next()}.
+ * Calling {@link FloatArrayIterator#remove()} sets the array to {@literal 0} at
+ * the index that corresponds to the last value returned by
+ * {@link FloatArrayIterator#next()}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class BooleanArrayIterator implements Iterator<Boolean> {
+public final class FloatArrayIterator implements Iterator<Float> {
 
-	private final boolean[] values;
+	private final float[] values;
 
 	private int index = -1;
 
 	/**
-	 * Creates a new {@linkplain BooleanArrayIterator} that iterates over the
-	 * given {@code boolean[]}.
-	 * 
-	 * <p>
-	 * If the given {@code boolean[]} is {@literal null}, the new
-	 * {@link BooleanArrayIterator} will behave, as if an empty {@code boolean[]} has
-	 * been given.
+	 * Creates a new {@linkplain FloatArrayIterator} that iterates over the
+	 * given {@code float[]}.
 	 * 
 	 * @param values
-	 *            The {@code boolean[]} to iterate over.
+	 *            The {@code float[]} to iterate over.
 	 */
-	public BooleanArrayIterator(boolean[] values) {
-		this.values = null == values ? new boolean[0] : values;
+	public FloatArrayIterator(float[] values) {
+		this.values = null == values ? new float[0] : values;
 	}
 
 	public boolean hasNext() {
 		return values.length != index + 1;
 	}
 
-	public Boolean next() {
+	public Float next() {
 		index++;
 		return values[index];
 	}
 
 	public void remove() {
-		values[index] = false;
+		values[index] = 0;
 	}
 
 }

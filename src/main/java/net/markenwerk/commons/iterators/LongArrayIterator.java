@@ -19,34 +19,56 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.utils.iterators;
+package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
 
 /**
- * An {@link EmptyIterator} is an {@link Iterator} that doesn't yield any
- * values.
- * 
+ * A {@link LongArrayIterator} is an {@link Iterator} that iterates over a given
+ * {@code long[]}.
+ *
  * <p>
- * Calling {@link EmptyIterator#hasNext()} always returns {@literal false} and
- * calling {@link EmptyIterator#next()} always returns {@literal null}.
+ * Calling {@link LongArrayIterator#remove()} sets the array to {@literal 0} at
+ * the index that corresponds to the last value returned by
+ * {@link LongArrayIterator#next()}.
+ * <p>
  * 
- * @param <Payload>
- *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class EmptyIterator<Payload> implements Iterator<Payload> {
+public final class LongArrayIterator implements Iterator<Long> {
 
-	public boolean hasNext() {
-		return false;
+	private final long[] values;
+
+	private int index = -1;
+
+	/**
+	 * Creates a new {@linkplain LongArrayIterator} that iterates over the given
+	 * {@code long[]}.
+	 * 
+	 * <p>
+	 * If the given {@code long[]} is {@literal null}, the new
+	 * {@link LongArrayIterator} will behave, as if an empty {@code long[]} has
+	 * been given.
+	 * 
+	 * @param values
+	 *            The {@code long[]} to iterate over.
+	 */
+	public LongArrayIterator(long[] values) {
+		this.values = null == values ? new long[0] : values;
 	}
 
-	public Payload next() {
-		return null;
+	public boolean hasNext() {
+		return values.length != index + 1;
+	}
+
+	public Long next() {
+		index++;
+		return values[index];
 	}
 
 	public void remove() {
+		values[index] = 0;
 	}
 
 }

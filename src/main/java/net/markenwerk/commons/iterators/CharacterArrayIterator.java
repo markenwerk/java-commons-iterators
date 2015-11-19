@@ -19,49 +19,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.utils.iterators;
+package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
 
 /**
- * A {@link ShortArrayIterator} is an {@link Iterator} that iterates over a
- * given {@code short[]}.
+ * A {@link CharacterArrayIterator} is an {@link Iterator} that iterates over a
+ * given {@code char[]}.
  * 
  * <p>
- * Calling {@link ShortArrayIterator#remove()} sets the array to {@literal 0} at
- * the index that corresponds to the last value returned by
- * {@link ShortArrayIterator#next()}.
+ * Calling {@link CharacterArrayIterator#remove()} sets the array to
+ * {@literal 0} at the index that corresponds to the last value returned by
+ * {@link CharacterArrayIterator#next()}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class ShortArrayIterator implements Iterator<Short> {
+public final class CharacterArrayIterator implements Iterator<Character> {
 
-	private final short[] values;
+	private final char[] values;
 
 	private int index = -1;
 
 	/**
-	 * Creates a new {@linkplain ShortArrayIterator} that iterates over the
-	 * given {@code short[]}.
+	 * Creates a new {@linkplain CharacterArrayIterator} that iterates over the
+	 * given {@code char[]}.
 	 * 
 	 * <p>
-	 * If the given {@code short[]} is {@literal null}, the new
-	 * {@link ShortArrayIterator} will behave, as if an empty {@code short[]}
+	 * If the given {@code char[]} is {@literal null}, the new
+	 * {@link CharacterArrayIterator} will behave, as if an empty {@code char[]}
 	 * has been given.
 	 * 
 	 * @param values
-	 *            The {@code short[]} to iterate over.
+	 *            The {@code char[]} to iterate over.
 	 */
-	public ShortArrayIterator(short[] values) {
-		this.values = null == values ? new short[0] : values;
+	public CharacterArrayIterator(char[] values) {
+		this.values = null == values ? new char[0] : values;
 	}
 
 	public boolean hasNext() {
 		return values.length != index + 1;
 	}
 
-	public Short next() {
+	public Character next() {
 		index++;
 		return values[index];
 	}

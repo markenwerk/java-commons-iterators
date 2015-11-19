@@ -19,50 +19,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.utils.iterators;
+package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
 
 /**
- * A {@link LongArrayIterator} is an {@link Iterator} that iterates over a given
- * {@code long[]}.
- *
+ * A {@link ShortArrayIterator} is an {@link Iterator} that iterates over a
+ * given {@code short[]}.
+ * 
  * <p>
- * Calling {@link LongArrayIterator#remove()} sets the array to {@literal 0} at
+ * Calling {@link ShortArrayIterator#remove()} sets the array to {@literal 0} at
  * the index that corresponds to the last value returned by
- * {@link LongArrayIterator#next()}.
- * <p>
+ * {@link ShortArrayIterator#next()}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class LongArrayIterator implements Iterator<Long> {
+public final class ShortArrayIterator implements Iterator<Short> {
 
-	private final long[] values;
+	private final short[] values;
 
 	private int index = -1;
 
 	/**
-	 * Creates a new {@linkplain LongArrayIterator} that iterates over the given
-	 * {@code long[]}.
+	 * Creates a new {@linkplain ShortArrayIterator} that iterates over the
+	 * given {@code short[]}.
 	 * 
 	 * <p>
-	 * If the given {@code long[]} is {@literal null}, the new
-	 * {@link LongArrayIterator} will behave, as if an empty {@code long[]} has
-	 * been given.
+	 * If the given {@code short[]} is {@literal null}, the new
+	 * {@link ShortArrayIterator} will behave, as if an empty {@code short[]}
+	 * has been given.
 	 * 
 	 * @param values
-	 *            The {@code long[]} to iterate over.
+	 *            The {@code short[]} to iterate over.
 	 */
-	public LongArrayIterator(long[] values) {
-		this.values = null == values ? new long[0] : values;
+	public ShortArrayIterator(short[] values) {
+		this.values = null == values ? new short[0] : values;
 	}
 
 	public boolean hasNext() {
 		return values.length != index + 1;
 	}
 
-	public Long next() {
+	public Short next() {
 		index++;
 		return values[index];
 	}

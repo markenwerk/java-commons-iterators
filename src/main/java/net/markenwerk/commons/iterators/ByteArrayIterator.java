@@ -19,54 +19,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.utils.iterators;
+package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
 
 /**
- * A {@link CountUpIterator} is an {@link Iterator} that yields all integer
- * value between a given lower value and a given upper bound.
+ * A {@link ByteArrayIterator} is an {@link Iterator} that iterates over a given
+ * {@code byte[]}.
+ * 
+ * <p>
+ * Calling {@link ByteArrayIterator#remove()} sets the array to {@literal 0} at
+ * the index that corresponds to the last value returned by
+ * {@link ByteArrayIterator#next()}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class CountUpIterator implements Iterator<Integer> {
+public final class ByteArrayIterator implements Iterator<Byte> {
 
-	private final int target;
+	private final byte[] values;
 
-	private int next;
+	private int index = -1;
 
 	/**
-	 * Creates a new {@link CountUpIterator} from the given lower and upper
-	 * bound.
+	 * Creates a new {@linkplain ByteArrayIterator} that iterates over the given
+	 * {@code byte[]}.
 	 * 
 	 * <p>
-	 * If {@code lower == upper}, only one value will be yielded. If
-	 * {@code lower > upper}, no value will be yielded.
+	 * If the given {@code byte[]} is {@literal null}, the new
+	 * {@link ByteArrayIterator} will behave, as if an empty {@code byte[]} has
+	 * been given.
 	 * 
-	 * @param lower
-	 *            The lower bound and first value to be yielded.
-	 * @param upper
-	 *            The upper bound and last value to be yielded.
+	 * @param values
+	 *            The {@code byte[]} to iterate over.
 	 */
-	public CountUpIterator(int lower, int upper) {
-		next = lower;
-		target = upper;
+	public ByteArrayIterator(byte[] values) {
+		this.values = null == values ? new byte[0] : values;
 	}
 
-	@Override
 	public boolean hasNext() {
-		return next <= target;
+		return values.length != index + 1;
 	}
 
-	@Override
-	public Integer next() {
-		return next++;
+	public Byte next() {
+		index++;
+		return values[index];
 	}
 
-	@Override
 	public void remove() {
-		throw new UnsupportedOperationException();
+		values[index] = 0;
 	}
 
 }

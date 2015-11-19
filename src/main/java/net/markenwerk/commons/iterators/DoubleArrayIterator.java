@@ -19,49 +19,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.utils.iterators;
+package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
 
 /**
- * An {@link IntegerArrayIterator} is an {@link Iterator} that iterates over a
- * given {@code int[]}.
+ * A {@link DoubleArrayIterator} is an {@link Iterator} that iterates over a
+ * given {@code double[]}.
  * 
  * <p>
- * Calling {@link IntegerArrayIterator#remove()} sets the array to {@literal 0}
+ * Calling {@link DoubleArrayIterator#remove()} sets the array to {@literal 0}
  * at the index that corresponds to the last value returned by
- * {@link IntegerArrayIterator#next()}.
+ * {@link DoubleArrayIterator#next()}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class IntegerArrayIterator implements Iterator<Integer> {
+public final class DoubleArrayIterator implements Iterator<Double> {
 
-	private final int[] values;
+	private final double[] values;
 
 	private int index = -1;
 
 	/**
-	 * Creates a new {@linkplain IntegerArrayIterator} that iterates over the
-	 * given {@code int[]}.
+	 * Creates a new {@linkplain DoubleArrayIterator} that iterates over the
+	 * given {@code double[]}.
 	 * 
 	 * <p>
-	 * If the given {@code int[]} is {@literal null}, the new
-	 * {@link IntegerArrayIterator} will behave, as if an empty {@code int[]}
+	 * If the given {@code double[]} is {@literal null}, the new
+	 * {@link DoubleArrayIterator} will behave, as if an empty {@code double[]}
 	 * has been given.
 	 * 
 	 * @param values
-	 *            The {@code int[]} to iterate over.
+	 *            The {@code double[]} to iterate over.
 	 */
-	public IntegerArrayIterator(int[] values) {
-		this.values = null == values ? new int[0] : values;
+	public DoubleArrayIterator(double[] values) {
+		this.values = null == values ? new double[0] : values;
 	}
 
 	public boolean hasNext() {
 		return values.length != index + 1;
 	}
 
-	public Integer next() {
+	public Double next() {
 		index++;
 		return values[index];
 	}

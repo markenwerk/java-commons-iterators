@@ -19,55 +19,54 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.utils.iterators;
+package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
 
 /**
- * A {@link CharacterArrayIterator} is an {@link Iterator} that iterates over a
- * given {@code char[]}.
- * 
- * <p>
- * Calling {@link CharacterArrayIterator#remove()} sets the array to
- * {@literal 0} at the index that corresponds to the last value returned by
- * {@link CharacterArrayIterator#next()}.
+ * A {@link CountDownIterator} is an {@link Iterator} that yields all integer
+ * value between a given upper value and a given lower bound.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class CharacterArrayIterator implements Iterator<Character> {
+public final class CountDownIterator implements Iterator<Integer> {
 
-	private final char[] values;
+	private final int target;
 
-	private int index = -1;
+	private int next;
 
 	/**
-	 * Creates a new {@linkplain CharacterArrayIterator} that iterates over the
-	 * given {@code char[]}.
+	 * Creates a new {@link CountDownIterator} from the given upper and lower
+	 * bound.
 	 * 
 	 * <p>
-	 * If the given {@code char[]} is {@literal null}, the new
-	 * {@link CharacterArrayIterator} will behave, as if an empty {@code char[]}
-	 * has been given.
+	 * If {@code upper == lower}, only one value will be yielded. If
+	 * {@code uper < lower}, no value will be yielded.
 	 * 
-	 * @param values
-	 *            The {@code char[]} to iterate over.
+	 * @param upper
+	 *            The upper bound and first value to be yielded.
+	 * @param lower
+	 *            The lower bound and last value to be yielded.
 	 */
-	public CharacterArrayIterator(char[] values) {
-		this.values = null == values ? new char[0] : values;
+	public CountDownIterator(int upper, int lower) {
+		next = upper;
+		target = lower;
 	}
 
+	@Override
 	public boolean hasNext() {
-		return values.length != index + 1;
+		return next >= target;
 	}
 
-	public Character next() {
-		index++;
-		return values[index];
+	@Override
+	public Integer next() {
+		return next--;
 	}
 
+	@Override
 	public void remove() {
-		values[index] = 0;
+		throw new UnsupportedOperationException();
 	}
 
 }

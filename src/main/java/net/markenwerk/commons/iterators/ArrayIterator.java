@@ -19,50 +19,58 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.utils.iterators;
+package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
 
 /**
- * A {@link FloatArrayIterator} is an {@link Iterator} that iterates over a
- * given {@code float[]}.
+ * An {@link ArrayIterator} is a {@link Iterator} that iterates over a given
+ * array of payload values.
  * 
  * <p>
- * Calling {@link FloatArrayIterator#remove()} sets the array to {@literal 0} at
+ * Calling {@link ArrayIterator#remove()} sets the array to {@literal null} at
  * the index that corresponds to the last value returned by
- * {@link FloatArrayIterator#next()}.
+ * {@link ArrayIterator#next()}.
  * 
+ * @param <Payload>
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class FloatArrayIterator implements Iterator<Float> {
+public final class ArrayIterator<Payload> implements Iterator<Payload> {
 
-	private final float[] values;
+	private final Payload[] values;
 
 	private int index = -1;
 
 	/**
-	 * Creates a new {@linkplain FloatArrayIterator} that iterates over the
-	 * given {@code float[]}.
+	 * Creates a new {@link ArrayIterator} that iterates over the given payload
+	 * array.
+	 * 
+	 * <p>
+	 * If the given payload array is {@literal null}, the new
+	 * {@link ArrayIterator} will behave, as if an empty payload array has been
+	 * given.
 	 * 
 	 * @param values
-	 *            The {@code float[]} to iterate over.
+	 *            The payload array to iterate over.
 	 */
-	public FloatArrayIterator(float[] values) {
-		this.values = null == values ? new float[0] : values;
+	@SuppressWarnings("unchecked")
+	public ArrayIterator(Payload[] values) {
+		this.values = null == values ? (Payload[]) new Object[0] : values;
 	}
 
 	public boolean hasNext() {
 		return values.length != index + 1;
 	}
 
-	public Float next() {
+	public Payload next() {
 		index++;
 		return values[index];
 	}
 
 	public void remove() {
-		values[index] = 0;
+		values[index] = null;
 	}
 
 }

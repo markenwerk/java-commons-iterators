@@ -19,54 +19,70 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.utils.iterators;
+package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
 
+import net.markenwerk.commons.interfaces.Predicate;
+
 /**
- * A {@link NullFreeIterator} is an {@link Iterator} that can be wrapped around
- * a given {@link Iterator} and filters out {@literal null} values.
+ * A {@link FilteringIterator} is an {@link Iterator} that can be wrapped around
+ * a given {@link Iterator} and filters out values according to a given
+ * {@link Predicate}.
  * 
  * <p>
- * Calling {@link NullFreeIterator#next()} will never return {@link null} and
- * calling {@link NullFreeIterator#hasNext()} will never return {@literal true},
- * unless a value that is not {@literal null} is available.
+ * Calling {@link FilteringIterator#next()} will never return a value that
+ * doesn't satisfy the given {@link Predicate} and calling
+ * {@link FilteringIterator#hasNext()} will never return {@literal true}, unless
+ * a value that satisfies the given {@link Predicate} is available.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class NullFreeIterator<Payload> implements Iterator<Payload> {
+public class FilteringIterator<Payload> implements Iterator<Payload> {
 
 	private final Iterator<Payload> iterator;
 
+	private final Predicate<Payload> predicate;
+
 	private boolean nextPrepared;
+
+	private boolean nextDetected;
 
 	private Payload next;
 
 	/**
-	 * Creates a new {@link NullFreeIterator} from the given {@link Iterator}.
+	 * Creates a new {@link FilteringIterator} from the given {@link Iterator}
+	 * and the given {@link Predicate}.
 	 * 
 	 * @param iterator
 	 *            The {@link Iterator}, around which the new
 	 *            {@link NullFreeIterator} will be wrapped.
+	 * @param predicate
+	 *            The {@link Predicate} to {@link Predicate#test(Object) test} every
+	 *            value yielded by the given {@link Iterator} with.
 	 */
-	public NullFreeIterator(Iterator<Payload> iterator) {
+	public FilteringIterator(Iterator<Payload> iterator, Predicate<Payload> predicate) {
 		this.iterator = iterator;
+		this.predicate = predicate;
 	}
 
+	@Override
 	public boolean hasNext() {
 		prepareNext();
-		return null != next;
+		return nextDetected;
 	}
 
+	@Override
 	public Payload next() {
 		prepareNext();
 		nextPrepared = false;
 		return next;
 	}
 
+	@Override
 	public void remove() {
 		iterator.remove();
 	}
@@ -74,8 +90,13 @@ public final class NullFreeIterator<Payload> implements Iterator<Payload> {
 	private void prepareNext() {
 		if (!nextPrepared) {
 			next = null;
-			while (null == next && iterator.hasNext()) {
-				next = iterator.next();
+			nextDetected = false;
+			while (!nextDetected && iterator.hasNext()) {
+				Payload nextPayload = iterator.next();
+				if (predicate.test(nextPayload)) {
+					next = nextPayload;
+					nextDetected = true;
+				}
 			}
 			nextPrepared = true;
 		}

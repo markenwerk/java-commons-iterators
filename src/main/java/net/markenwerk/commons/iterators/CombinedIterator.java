@@ -19,85 +19,79 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.utils.iterators;
+package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
 
-import net.markenwerk.commons.interfaces.Predicate;
-
 /**
- * A {@link FilteringIterator} is an {@link Iterator} that can be wrapped around
- * a given {@link Iterator} and filters out values according to a given
- * {@link Predicate}.
- * 
- * <p>
- * Calling {@link FilteringIterator#next()} will never return a value that
- * doesn't satisfy the given {@link Predicate} and calling
- * {@link FilteringIterator#hasNext()} will never return {@literal true}, unless
- * a value that satisfies the given {@link Predicate} is available.
+ * A {@link CombinedIterator} is an {@link Iterator} that wraps arround some
+ * given {@link Iterator Iterators} and combines them into a single
+ * {@link Iterator} by iterating over all given {@link Iterator Iterators} in
+ * the order they were given.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class FilteringIterator<Payload> implements Iterator<Payload> {
+public class CombinedIterator<Payload> implements Iterator<Payload> {
 
-	private final Iterator<Payload> iterator;
+	private final Iterator<Iterator<? extends Payload>> iterators;
 
-	private final Predicate<Payload> predicate;
+	private Iterator<? extends Payload> currentIterator;
 
 	private boolean nextPrepared;
 
-	private boolean nextDetected;
-
-	private Payload next;
+	private boolean hasNext;
 
 	/**
-	 * Creates a new {@link FilteringIterator} from the given {@link Iterator}
-	 * and the given {@link Predicate}.
+	 * Creates a new {@link CombinedIterator} from the given {@link Iterator
+	 * Iterators}.
 	 * 
-	 * @param iterator
-	 *            The {@link Iterator}, around which the new
-	 *            {@link NullFreeIterator} will be wrapped.
-	 * @param predicate
-	 *            The {@link Predicate} to {@link Predicate#test(Object) test} every
-	 *            value yielded by the given {@link Iterator} with.
+	 * @param iterators
+	 *            The {@link Iterator Iterators} to combine into a single
+	 *            {@link Iterator}.
 	 */
-	public FilteringIterator(Iterator<Payload> iterator, Predicate<Payload> predicate) {
-		this.iterator = iterator;
-		this.predicate = predicate;
+	public CombinedIterator(Iterator<? extends Payload>... iterators) {
+		this(new ArrayIterator<Iterator<? extends Payload>>(iterators));
+	}
+
+	/**
+	 * Creates a new {@link CombinedIterator} from the given {@link Iterator
+	 * Iterators}.
+	 * 
+	 * @param iterators
+	 *            The {@link Iterator Iterators} to combine into a single
+	 *            {@link Iterator}.
+	 */
+	public CombinedIterator(Iterator<Iterator<? extends Payload>> iterators) {
+		this.iterators = iterators;
 	}
 
 	@Override
 	public boolean hasNext() {
 		prepareNext();
-		return nextDetected;
+		return hasNext;
 	}
 
 	@Override
 	public Payload next() {
 		prepareNext();
 		nextPrepared = false;
-		return next;
+		return currentIterator.next();
 	}
 
 	@Override
 	public void remove() {
-		iterator.remove();
+		currentIterator.remove();
 	}
 
 	private void prepareNext() {
 		if (!nextPrepared) {
-			next = null;
-			nextDetected = false;
-			while (!nextDetected && iterator.hasNext()) {
-				Payload nextPayload = iterator.next();
-				if (predicate.test(nextPayload)) {
-					next = nextPayload;
-					nextDetected = true;
-				}
+			while ((null == currentIterator || !currentIterator.hasNext()) && iterators.hasNext()) {
+				currentIterator = iterators.next();
 			}
+			hasNext = null != currentIterator && currentIterator.hasNext();
 			nextPrepared = true;
 		}
 	}

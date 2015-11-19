@@ -19,55 +19,54 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.utils.iterators;
+package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
 
 /**
- * A {@link DoubleArrayIterator} is an {@link Iterator} that iterates over a
- * given {@code double[]}.
- * 
- * <p>
- * Calling {@link DoubleArrayIterator#remove()} sets the array to {@literal 0}
- * at the index that corresponds to the last value returned by
- * {@link DoubleArrayIterator#next()}.
+ * A {@link CountUpIterator} is an {@link Iterator} that yields all integer
+ * value between a given lower value and a given upper bound.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class DoubleArrayIterator implements Iterator<Double> {
+public final class CountUpIterator implements Iterator<Integer> {
 
-	private final double[] values;
+	private final int target;
 
-	private int index = -1;
+	private int next;
 
 	/**
-	 * Creates a new {@linkplain DoubleArrayIterator} that iterates over the
-	 * given {@code double[]}.
+	 * Creates a new {@link CountUpIterator} from the given lower and upper
+	 * bound.
 	 * 
 	 * <p>
-	 * If the given {@code double[]} is {@literal null}, the new
-	 * {@link DoubleArrayIterator} will behave, as if an empty {@code double[]}
-	 * has been given.
+	 * If {@code lower == upper}, only one value will be yielded. If
+	 * {@code lower > upper}, no value will be yielded.
 	 * 
-	 * @param values
-	 *            The {@code double[]} to iterate over.
+	 * @param lower
+	 *            The lower bound and first value to be yielded.
+	 * @param upper
+	 *            The upper bound and last value to be yielded.
 	 */
-	public DoubleArrayIterator(double[] values) {
-		this.values = null == values ? new double[0] : values;
+	public CountUpIterator(int lower, int upper) {
+		next = lower;
+		target = upper;
 	}
 
+	@Override
 	public boolean hasNext() {
-		return values.length != index + 1;
+		return next <= target;
 	}
 
-	public Double next() {
-		index++;
-		return values[index];
+	@Override
+	public Integer next() {
+		return next++;
 	}
 
+	@Override
 	public void remove() {
-		values[index] = 0;
+		throw new UnsupportedOperationException();
 	}
 
 }
