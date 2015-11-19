@@ -28,7 +28,7 @@ import java.util.Iterator;
  * a given {@link Iterator} and filters out {@literal null} values.
  * 
  * <p>
- * Calling {@link NullFreeIterator#next()} will never return {@link null} and
+ * Calling {@link NullFreeIterator#next()} will never return {@literal null} and
  * calling {@link NullFreeIterator#hasNext()} will never return {@literal true},
  * unless a value that is not {@literal null} is available.
  * 
