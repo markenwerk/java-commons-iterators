@@ -68,7 +68,7 @@ Iterator<Foo> combinedIterator = new CombinedIterator<Foo>(iterator1, iterator2)
 It can be constructed from an [`Iterable`][Iterable] of [`Iterators`][Iterator] (i.e. a [`List`][List]).
 
 ```java
-List<Foo>[] iterators = ...
+List<Iterator<Foo>>[] iterators = ...
 Iterator<Foo> combinedIterator = new CombinedIterator<Foo>(iterators);
 ```
 
