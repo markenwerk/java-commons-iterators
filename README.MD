@@ -96,7 +96,7 @@ Iterator<Foo> iterator = ...
 iterator = new NullSaveIterator(iterator);
 ```
 
-For situations where some [`Iterator`][Iterator] is obtained, it might be useful to wrap the obtained [`Iterator`][Iterator] in a [`NullFreeIterator`][NullFreeIterator]. A [`NullFreeIterator`][NullFreeIterator] filters out all `null` values yielded by the obtained [`Iterator`][Iterator] and doesn't yiels any `null` value itself.
+For situations where some [`Iterator`][Iterator] is obtained, it might be useful to wrap the obtained [`Iterator`][Iterator] in a [`NullFreeIterator`][NullFreeIterator]. A [`NullFreeIterator`][NullFreeIterator] filters out all `null` values yielded by the obtained [`Iterator`][Iterator].
 
 ```java
 Iterator<Foo> iterator = ...
