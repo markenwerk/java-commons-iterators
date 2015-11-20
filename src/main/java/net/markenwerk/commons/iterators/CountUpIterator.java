@@ -44,14 +44,14 @@ public final class CountUpIterator implements Iterator<Integer> {
 	 * If {@code lower == upper}, only one value will be yielded. If
 	 * {@code lower > upper}, no value will be yielded.
 	 * 
-	 * @param lower
+	 * @param fromLower
 	 *            The lower bound and first value to be yielded.
-	 * @param upper
+	 * @param toUpper
 	 *            The upper bound and last value to be yielded.
 	 */
-	public CountUpIterator(int lower, int upper) {
-		next = lower;
-		target = upper;
+	public CountUpIterator(int fromLower, int toUpper) {
+		next = fromLower;
+		target = toUpper;
 	}
 
 	@Override
