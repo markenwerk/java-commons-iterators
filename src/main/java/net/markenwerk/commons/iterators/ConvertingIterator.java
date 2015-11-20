@@ -39,7 +39,7 @@ import net.markenwerk.commons.interfaces.Converter;
  */
 public class ConvertingIterator<From, To> implements Iterator<To> {
 
-	private final Iterator<From> iterator;
+	private final Iterator<? extends From> iterator;
 
 	private final Converter<From, To> converter;
 
@@ -61,7 +61,7 @@ public class ConvertingIterator<From, To> implements Iterator<To> {
 	 *            convert} every value yielded by the given {@link Iterator}
 	 *            with.
 	 */
-	public ConvertingIterator(Iterator<From> iterator, Converter<From, To> converter) {
+	public ConvertingIterator(Iterator<? extends From> iterator, Converter<From, To> converter) {
 		this.iterator = iterator;
 		this.converter = converter;
 	}
