@@ -72,7 +72,7 @@ public class CombinedIteratorTests {
 	 */
 	@Test
 	@SuppressWarnings("unchecked")
-	public void combined_multipleIterators() {
+	public void combined_iteratorsArray() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<Object> iterator = new CombinedIterator<Object>(new ArrayIterator<Object>(values),
