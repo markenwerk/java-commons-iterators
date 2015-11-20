@@ -99,25 +99,25 @@ public class NullSaveIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
 	/**
 	 * Remove an object from the underlying {@link Iterator}.
 	 */
 	@Test
 	public void nullSave_remove() {
 
+		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new NullSaveIterator<Object>(new ArrayIterator<Object>(values));
+		Iterator<Object> iterator = new NullSaveIterator<Object>(new ArrayIterator<Object>(values, replacement));
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
 		Assert.assertFalse(iterator.hasNext());
-		
+
 		iterator.remove();
-		
-		Assert.assertNull(values[0]);
-		
+
+		Assert.assertSame(replacement, values[0]);
+
 	}
 
 }

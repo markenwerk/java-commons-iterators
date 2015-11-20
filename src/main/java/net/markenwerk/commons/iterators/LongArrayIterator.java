@@ -40,6 +40,8 @@ public final class LongArrayIterator implements Iterator<Long> {
 
 	private final long[] values;
 
+	private final Long replacement;
+
 	private int index = -1;
 
 	/**
@@ -55,7 +57,30 @@ public final class LongArrayIterator implements Iterator<Long> {
 	 *            The {@code long[]} to iterate over.
 	 */
 	public LongArrayIterator(long[] values) {
+		this(values, null);
+	}
+
+	/**
+	 * Creates a new {@linkplain LongArrayIterator} that iterates over the given
+	 * {@code long[]}.
+	 * 
+	 * <p>
+	 * If the given {@code long[]} is {@literal null}, the new
+	 * {@link LongArrayIterator} will behave, as if an empty {@code long[]} has
+	 * been given.
+	 * 
+	 * @param values
+	 *            The {@code long[]} to iterate over.
+	 * @param replacement
+	 *            The value to replace removed values with.
+	 */
+	public LongArrayIterator(long[] values, long replacement) {
+		this(values, Long.valueOf(replacement));
+	}
+
+	private LongArrayIterator(long[] values, Long replacement) {
 		this.values = null == values ? new long[0] : values;
+		this.replacement = replacement;
 	}
 
 	public boolean hasNext() {
@@ -68,7 +93,11 @@ public final class LongArrayIterator implements Iterator<Long> {
 	}
 
 	public void remove() {
-		values[index] = 0;
+		if (null != replacement) {
+			values[index] = replacement;
+		} else {
+			throw new UnsupportedOperationException("Cannot remove from an array.");
+		}
 	}
 
 }

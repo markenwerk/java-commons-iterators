@@ -39,6 +39,8 @@ public final class DoubleArrayIterator implements Iterator<Double> {
 
 	private final double[] values;
 
+	private final Double replacement;
+
 	private int index = -1;
 
 	/**
@@ -54,7 +56,30 @@ public final class DoubleArrayIterator implements Iterator<Double> {
 	 *            The {@code double[]} to iterate over.
 	 */
 	public DoubleArrayIterator(double[] values) {
+		this(values, null);
+	}
+
+	/**
+	 * Creates a new {@linkplain DoubleArrayIterator} that iterates over the
+	 * given {@code double[]}.
+	 * 
+	 * <p>
+	 * If the given {@code double[]} is {@literal null}, the new
+	 * {@link DoubleArrayIterator} will behave, as if an empty {@code double[]}
+	 * has been given.
+	 * 
+	 * @param values
+	 *            The {@code double[]} to iterate over.
+	 * @param replacement
+	 *            The value to replace removed values with.
+	 */
+	public DoubleArrayIterator(double[] values, double replacement) {
+		this(values, Double.valueOf(replacement));
+	}
+
+	private DoubleArrayIterator(double[] values, Double replacement) {
 		this.values = null == values ? new double[0] : values;
+		this.replacement = replacement;
 	}
 
 	public boolean hasNext() {
@@ -67,7 +92,11 @@ public final class DoubleArrayIterator implements Iterator<Double> {
 	}
 
 	public void remove() {
-		values[index] = 0;
+		if (null != replacement) {
+			values[index] = replacement;
+		} else {
+			throw new UnsupportedOperationException("Cannot remove from an array.");
+		}
 	}
 
 }

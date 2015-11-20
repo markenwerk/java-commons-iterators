@@ -39,6 +39,8 @@ public final class ByteArrayIterator implements Iterator<Byte> {
 
 	private final byte[] values;
 
+	private final Byte replacement;
+
 	private int index = -1;
 
 	/**
@@ -54,7 +56,30 @@ public final class ByteArrayIterator implements Iterator<Byte> {
 	 *            The {@code byte[]} to iterate over.
 	 */
 	public ByteArrayIterator(byte[] values) {
+		this(values, null);
+	}
+
+	/**
+	 * Creates a new {@linkplain ByteArrayIterator} that iterates over the given
+	 * {@code byte[]}.
+	 * 
+	 * <p>
+	 * If the given {@code byte[]} is {@literal null}, the new
+	 * {@link ByteArrayIterator} will behave, as if an empty {@code byte[]} has
+	 * been given.
+	 * 
+	 * @param values
+	 *            The {@code byte[]} to iterate over.
+	 * @param replacement
+	 *            The value to replace removed values with.
+	 */
+	public ByteArrayIterator(byte[] values, byte replacement) {
+		this(values, Byte.valueOf(replacement));
+	}
+
+	private ByteArrayIterator(byte[] values, Byte replacement) {
 		this.values = null == values ? new byte[0] : values;
+		this.replacement = replacement;
 	}
 
 	public boolean hasNext() {
@@ -67,7 +92,11 @@ public final class ByteArrayIterator implements Iterator<Byte> {
 	}
 
 	public void remove() {
-		values[index] = 0;
+		if (null != replacement) {
+			values[index] = replacement;
+		} else {
+			throw new UnsupportedOperationException("Cannot remove from an array.");
+		}
 	}
 
 }

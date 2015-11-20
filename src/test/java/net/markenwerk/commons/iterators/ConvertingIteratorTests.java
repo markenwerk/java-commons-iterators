@@ -79,9 +79,10 @@ public class ConvertingIteratorTests {
 	@Test
 	public void converting_remove() {
 
+		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };
-		Iterator<Wrapper> iterator = new ConvertingIterator<Object, Wrapper>(new ArrayIterator<Object>(values),
-				WRAPPING_CONVERTER);
+		Iterator<Wrapper> iterator = new ConvertingIterator<Object, Wrapper>(new ArrayIterator<Object>(values,
+				replacement), WRAPPING_CONVERTER);
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next().wrapped);
@@ -89,7 +90,7 @@ public class ConvertingIteratorTests {
 
 		iterator.remove();
 
-		Assert.assertNull(values[0]);
+		Assert.assertSame(replacement, values[0]);
 
 	}
 

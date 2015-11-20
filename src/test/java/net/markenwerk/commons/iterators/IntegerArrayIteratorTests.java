@@ -50,36 +50,53 @@ public class IntegerArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
 	/**
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void array_iterateNullArray() {
+	public void integerArray_iterateNullArray() {
 
 		Iterator<Integer> iterator = new IntegerArrayIterator(null);
 
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
+
 	/**
-	 * Remove a value in a {@code int[]}.
+	 * Remove a value in a {@code integer[]}.
 	 */
 	@Test
-	public void intArray_remove() {
+	public void integerArray_removeWithFallback() {
+
+		int replacement = 0;
+		int[] values = new int[] { 1 };
+		Iterator<Integer> iterator = new IntegerArrayIterator(values, replacement);
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Integer.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+		iterator.remove();
+
+		Assert.assertEquals(replacement, values[0]);
+
+	}
+
+	/**
+	 * Remove a value in a {@code integer[]}.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void integerArray_removeWithoutFallback() {
 
 		int[] values = new int[] { 1 };
 		Iterator<Integer> iterator = new IntegerArrayIterator(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(values[0]), iterator.next());
+		Assert.assertEquals(Integer.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();
-
-		Assert.assertEquals(0, values[0]);
 
 	}
 

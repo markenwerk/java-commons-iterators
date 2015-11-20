@@ -55,7 +55,7 @@ public class ByteArrayIteratorTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void array_iterateNullArray() {
+	public void byteArray_iterateNullArray() {
 
 		Iterator<Byte> iterator = new ByteArrayIterator(null);
 
@@ -68,18 +68,36 @@ public class ByteArrayIteratorTests {
 	 * Remove a value in a {@code byte[]}.
 	 */
 	@Test
-	public void byteArray_remove() {
+	public void byteArray_removeWithFallback() {
+
+		byte replacement = 0;
+		byte[] values = new byte[] { 1 };
+		Iterator<Byte> iterator = new ByteArrayIterator(values, replacement);
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Byte.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+		iterator.remove();
+
+		Assert.assertEquals(replacement, values[0]);
+
+	}
+
+	/**
+	 * Remove a value in a {@code byte[]}.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void byteArray_removeWithoutFallback() {
 
 		byte[] values = new byte[] { 1 };
 		Iterator<Byte> iterator = new ByteArrayIterator(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Byte(values[0]), iterator.next());
+		Assert.assertEquals(Byte.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();
-
-		Assert.assertEquals(0, values[0]);
 
 	}
 

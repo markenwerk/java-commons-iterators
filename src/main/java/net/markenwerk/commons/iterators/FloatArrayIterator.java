@@ -39,6 +39,8 @@ public final class FloatArrayIterator implements Iterator<Float> {
 
 	private final float[] values;
 
+	private final Float replacement;
+
 	private int index = -1;
 
 	/**
@@ -49,7 +51,25 @@ public final class FloatArrayIterator implements Iterator<Float> {
 	 *            The {@code float[]} to iterate over.
 	 */
 	public FloatArrayIterator(float[] values) {
+		this(values, null);
+	}
+
+	/**
+	 * Creates a new {@linkplain FloatArrayIterator} that iterates over the
+	 * given {@code float[]}.
+	 * 
+	 * @param values
+	 *            The {@code float[]} to iterate over.
+	 * @param replacement
+	 *            The value to replace removed values with.
+	 */
+	public FloatArrayIterator(float[] values, float replacement) {
+		this(values, Float.valueOf(replacement));
+	}
+
+	private FloatArrayIterator(float[] values, Float replacement) {
 		this.values = null == values ? new float[0] : values;
+		this.replacement = replacement;
 	}
 
 	public boolean hasNext() {
@@ -62,7 +82,11 @@ public final class FloatArrayIterator implements Iterator<Float> {
 	}
 
 	public void remove() {
-		values[index] = 0;
+		if (null != replacement) {
+			values[index] = replacement;
+		} else {
+			throw new UnsupportedOperationException("Cannot remove from an array.");
+		}
 	}
 
 }

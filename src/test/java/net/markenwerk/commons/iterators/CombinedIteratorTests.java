@@ -114,8 +114,7 @@ public class CombinedIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
 	/**
 	 * Iterate over multiple iterator.
 	 */
@@ -148,8 +147,9 @@ public class CombinedIteratorTests {
 	@SuppressWarnings("unchecked")
 	public void combined_remove() {
 
+		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new CombinedIterator<Object>(new ArrayIterator<Object>(values));
+		Iterator<Object> iterator = new CombinedIterator<Object>(new ArrayIterator<Object>(values, replacement));
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
@@ -157,7 +157,7 @@ public class CombinedIteratorTests {
 
 		iterator.remove();
 
-		Assert.assertNull(values[0]);
+		Assert.assertSame(replacement, values[0]);
 
 	}
 

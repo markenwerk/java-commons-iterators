@@ -55,7 +55,7 @@ public class LongArrayIteratorTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void array_iterateNullArray() {
+	public void longArray_iterateNullArray() {
 
 		Iterator<Long> iterator = new LongArrayIterator(null);
 
@@ -67,18 +67,36 @@ public class LongArrayIteratorTests {
 	 * Remove a value in a {@code long[]}.
 	 */
 	@Test
-	public void longArray_remove() {
+	public void longArray_removeWithFallback() {
+
+		long replacement = 0;
+		long[] values = new long[] { 1 };
+		Iterator<Long> iterator = new LongArrayIterator(values, replacement);
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Long.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+		iterator.remove();
+
+		Assert.assertEquals(replacement, values[0]);
+
+	}
+
+	/**
+	 * Remove a value in a {@code long[]}.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void longArray_removeWithoutFallback() {
 
 		long[] values = new long[] { 1 };
 		Iterator<Long> iterator = new LongArrayIterator(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Long(values[0]), iterator.next());
+		Assert.assertEquals(Long.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();
-
-		Assert.assertEquals(0, values[0]);
 
 	}
 

@@ -55,7 +55,7 @@ public class DoubleArrayIteratorTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void array_iterateNullArray() {
+	public void doubleArray_iterateNullArray() {
 
 		Iterator<Double> iterator = new DoubleArrayIterator(null);
 
@@ -67,18 +67,36 @@ public class DoubleArrayIteratorTests {
 	 * Remove a value in a {@code double[]}.
 	 */
 	@Test
-	public void doubleArray_remove() {
+	public void doubleArray_removeWithFallback() {
+
+		double replacement = 2;
+		double[] values = new double[] { 1 };
+		Iterator<Double> iterator = new DoubleArrayIterator(values, replacement);
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Double.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+		iterator.remove();
+
+		Assert.assertEquals(replacement, values[0], 0);
+
+	}
+
+	/**
+	 * Remove a value in a {@code double[]}.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void doubleArray_removeWithoutFallback() {
 
 		double[] values = new double[] { 1 };
 		Iterator<Double> iterator = new DoubleArrayIterator(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Double(values[0]), iterator.next());
+		Assert.assertEquals(Double.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();
-
-		Assert.assertEquals(0, values[0], 0);
 
 	}
 

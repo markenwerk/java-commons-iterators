@@ -55,7 +55,7 @@ public class CharacterArrayIteratorTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void array_iterateNullArray() {
+	public void characterArray_iterateNullArray() {
 
 		Iterator<Character> iterator = new CharacterArrayIterator(null);
 
@@ -68,18 +68,36 @@ public class CharacterArrayIteratorTests {
 	 * Remove a value in a {@code char[]}.
 	 */
 	@Test
-	public void charArray_remove() {
+	public void charArray_removeWithFallback() {
+
+		char replacement = 0;
+		char[] values = new char[] { 1 };
+		Iterator<Character> iterator = new CharacterArrayIterator(values, replacement);
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Character.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+		iterator.remove();
+
+		Assert.assertEquals(replacement, values[0]);
+
+	}
+
+	/**
+	 * Remove a value in a {@code char[]}.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void charArray_removeWithoutFallback() {
 
 		char[] values = new char[] { 1 };
 		Iterator<Character> iterator = new CharacterArrayIterator(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Character(values[0]), iterator.next());
+		Assert.assertEquals(Character.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();
-
-		Assert.assertEquals(0, values[0]);
 
 	}
 

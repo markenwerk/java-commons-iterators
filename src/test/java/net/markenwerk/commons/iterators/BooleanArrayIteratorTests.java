@@ -50,36 +50,53 @@ public class BooleanArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
+
 	/**
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void array_iterateNullArray() {
+	public void booleanArray_iterateNullArray() {
 
 		Iterator<Boolean> iterator = new BooleanArrayIterator(null);
 
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
 	/**
 	 * Remove a value in a {@code boolean[]}.
 	 */
 	@Test
-	public void booleanArray_remove() {
+	public void booleanArray_removeWithFallback() {
+
+		boolean replacement = false;
+		boolean[] values = new boolean[] { true };
+		Iterator<Boolean> iterator = new BooleanArrayIterator(values, replacement);
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Boolean.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+		iterator.remove();
+
+		Assert.assertEquals(replacement, values[0]);
+
+	}
+
+	/**
+	 * Remove a value in a {@code boolean[]}.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void booleanArray_removeWithoutFallback() {
 
 		boolean[] values = new boolean[] { true };
 		Iterator<Boolean> iterator = new BooleanArrayIterator(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Boolean(values[0]), iterator.next());
+		Assert.assertEquals(Boolean.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();
-
-		Assert.assertEquals(false, values[0]);
 
 	}
 

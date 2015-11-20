@@ -55,7 +55,7 @@ public class ShortArrayIteratorTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void array_iterateNullArray() {
+	public void shortArray_iterateNullArray() {
 
 		Iterator<Short> iterator = new ShortArrayIterator(null);
 
@@ -67,18 +67,36 @@ public class ShortArrayIteratorTests {
 	 * Remove a value in a {@code short[]}.
 	 */
 	@Test
-	public void shortArray_remove() {
+	public void shortArray_removeWithFallback() {
+
+		short replacement = 0;
+		short[] values = new short[] { 1 };
+		Iterator<Short> iterator = new ShortArrayIterator(values, replacement);
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Short.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+		iterator.remove();
+
+		Assert.assertEquals(replacement, values[0]);
+
+	}
+
+	/**
+	 * Remove a value in a {@code short[]}.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void shortArray_removeWithoutFallback() {
 
 		short[] values = new short[] { 1 };
 		Iterator<Short> iterator = new ShortArrayIterator(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Short(values[0]), iterator.next());
+		Assert.assertEquals(Short.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();
-
-		Assert.assertEquals(0, values[0]);
 
 	}
 

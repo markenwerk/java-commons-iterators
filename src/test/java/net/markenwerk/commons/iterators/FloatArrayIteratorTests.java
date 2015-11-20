@@ -55,7 +55,7 @@ public class FloatArrayIteratorTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void array_iterateNullArray() {
+	public void floatArray_iterateNullArray() {
 
 		Iterator<Float> iterator = new FloatArrayIterator(null);
 
@@ -67,18 +67,36 @@ public class FloatArrayIteratorTests {
 	 * Remove a value in a {@code float[]}.
 	 */
 	@Test
-	public void floatArray_remove() {
+	public void floatArray_removeWithFallback() {
+
+		float replacement = 0;
+		float[] values = new float[] { 1 };
+		Iterator<Float> iterator = new FloatArrayIterator(values, replacement);
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Float.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+		iterator.remove();
+
+		Assert.assertEquals(replacement, values[0], 0);
+
+	}
+
+	/**
+	 * Remove a value in a {@code float[]}.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void floatArray_removeWithoutFallback() {
 
 		float[] values = new float[] { 1 };
 		Iterator<Float> iterator = new FloatArrayIterator(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Float(values[0]), iterator.next());
+		Assert.assertEquals(Float.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();
-
-		Assert.assertEquals(0, values[0], 0);
 
 	}
 

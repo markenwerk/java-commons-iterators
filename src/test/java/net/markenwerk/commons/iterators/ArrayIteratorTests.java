@@ -67,18 +67,36 @@ public class ArrayIteratorTests {
 	 * Remove a value in a {@code short[]}.
 	 */
 	@Test
-	public void shortArray_remove() {
+	public void array_removeWithFallback() {
+
+		Object replacement = new Object();
+		Object[] values = new Object[] { new Object() };
+		Iterator<Object> iterator = new ArrayIterator<Object>(values, replacement);
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(values[0], iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+		iterator.remove();
+
+		Assert.assertEquals(replacement, values[0]);
+
+	}
+
+	/**
+	 * Remove a value in a {@code short[]}.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void array_removeWithoutFallback() {
 
 		Object[] values = new Object[] { new Object() };
 		Iterator<Object> iterator = new ArrayIterator<Object>(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(values[0], iterator.next());
+		Assert.assertSame(values[0], iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();
-
-		Assert.assertNull(values[0]);
 
 	}
 

@@ -90,8 +90,9 @@ public class NullFreeIteratorTests {
 	@Test
 	public void nullFree_remove() {
 
+		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new NullFreeIterator<Object>(new ArrayIterator<Object>(values));
+		Iterator<Object> iterator = new NullFreeIterator<Object>(new ArrayIterator<Object>(values, replacement));
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
@@ -99,7 +100,7 @@ public class NullFreeIteratorTests {
 
 		iterator.remove();
 
-		Assert.assertNull(values[0]);
+		Assert.assertSame(replacement, values[0]);
 
 	}
 

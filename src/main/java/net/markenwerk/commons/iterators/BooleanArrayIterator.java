@@ -39,6 +39,8 @@ public final class BooleanArrayIterator implements Iterator<Boolean> {
 
 	private final boolean[] values;
 
+	private final Boolean replacement;
+
 	private int index = -1;
 
 	/**
@@ -47,14 +49,37 @@ public final class BooleanArrayIterator implements Iterator<Boolean> {
 	 * 
 	 * <p>
 	 * If the given {@code boolean[]} is {@literal null}, the new
-	 * {@link BooleanArrayIterator} will behave, as if an empty {@code boolean[]} has
-	 * been given.
+	 * {@link BooleanArrayIterator} will behave, as if an empty
+	 * {@code boolean[]} has been given.
 	 * 
 	 * @param values
 	 *            The {@code boolean[]} to iterate over.
 	 */
 	public BooleanArrayIterator(boolean[] values) {
+		this(values, null);
+	}
+
+	/**
+	 * Creates a new {@linkplain BooleanArrayIterator} that iterates over the
+	 * given {@code boolean[]}.
+	 * 
+	 * <p>
+	 * If the given {@code boolean[]} is {@literal null}, the new
+	 * {@link BooleanArrayIterator} will behave, as if an empty
+	 * {@code boolean[]} has been given.
+	 * 
+	 * @param values
+	 *            The {@code boolean[]} to iterate over.
+	 * @param replacement
+	 *            The value to replace removed values with.
+	 */
+	public BooleanArrayIterator(boolean[] values, boolean replacement) {
+		this(values, Boolean.valueOf(replacement));
+	}
+
+	private BooleanArrayIterator(boolean[] values, Boolean replacement) {
 		this.values = null == values ? new boolean[0] : values;
+		this.replacement = replacement;
 	}
 
 	public boolean hasNext() {
@@ -67,7 +92,11 @@ public final class BooleanArrayIterator implements Iterator<Boolean> {
 	}
 
 	public void remove() {
-		values[index] = false;
+		if (null != replacement) {
+			values[index] = replacement;
+		} else {
+			throw new UnsupportedOperationException("Cannot remove from an array.");
+		}
 	}
 
 }

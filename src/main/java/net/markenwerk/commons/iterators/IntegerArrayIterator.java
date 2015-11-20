@@ -39,6 +39,8 @@ public final class IntegerArrayIterator implements Iterator<Integer> {
 
 	private final int[] values;
 
+	private final Integer replacement;
+
 	private int index = -1;
 
 	/**
@@ -54,7 +56,30 @@ public final class IntegerArrayIterator implements Iterator<Integer> {
 	 *            The {@code int[]} to iterate over.
 	 */
 	public IntegerArrayIterator(int[] values) {
+		this(values, null);
+	}
+
+	/**
+	 * Creates a new {@linkplain IntegerArrayIterator} that iterates over the
+	 * given {@code int[]}.
+	 * 
+	 * <p>
+	 * If the given {@code int[]} is {@literal null}, the new
+	 * {@link IntegerArrayIterator} will behave, as if an empty {@code int[]}
+	 * has been given.
+	 * 
+	 * @param values
+	 *            The {@code int[]} to iterate over.
+	 * @param replacement
+	 *            The value to replace removed values with.
+	 */
+	public IntegerArrayIterator(int[] values, int replacement) {
+		this(values, Integer.valueOf(replacement));
+	}
+
+	private IntegerArrayIterator(int[] values, Integer replacement) {
 		this.values = null == values ? new int[0] : values;
+		this.replacement = replacement;
 	}
 
 	public boolean hasNext() {
@@ -67,7 +92,11 @@ public final class IntegerArrayIterator implements Iterator<Integer> {
 	}
 
 	public void remove() {
-		values[index] = 0;
+		if (null != replacement) {
+			values[index] = replacement;
+		} else {
+			throw new UnsupportedOperationException("Cannot remove from an array.");
+		}
 	}
 
 }

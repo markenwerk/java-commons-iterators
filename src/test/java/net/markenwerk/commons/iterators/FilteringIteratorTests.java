@@ -98,8 +98,7 @@ public class FilteringIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
 	/**
 	 * Filter out a unsatisfying value in the middle of the underlying
 	 * {@link Iterator}.
@@ -116,7 +115,6 @@ public class FilteringIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
 
 	/**
 	 * Remove an object from the underlying {@link Iterator}.
@@ -124,8 +122,9 @@ public class FilteringIteratorTests {
 	@Test
 	public void filtering_remove() {
 
+		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new FilteringIterator<Object>(new ArrayIterator<Object>(values),
+		Iterator<Object> iterator = new FilteringIterator<Object>(new ArrayIterator<Object>(values, replacement),
 				UNSATISFYING_OBJECT_PREDICATE);
 
 		Assert.assertTrue(iterator.hasNext());
@@ -134,7 +133,7 @@ public class FilteringIteratorTests {
 
 		iterator.remove();
 
-		Assert.assertNull(values[0]);
+		Assert.assertSame(replacement, values[0]);
 
 	}
 

@@ -39,6 +39,8 @@ public final class CharacterArrayIterator implements Iterator<Character> {
 
 	private final char[] values;
 
+	private final Character replacement;
+
 	private int index = -1;
 
 	/**
@@ -54,7 +56,30 @@ public final class CharacterArrayIterator implements Iterator<Character> {
 	 *            The {@code char[]} to iterate over.
 	 */
 	public CharacterArrayIterator(char[] values) {
+		this(values, null);
+	}
+
+	/**
+	 * Creates a new {@linkplain CharacterArrayIterator} that iterates over the
+	 * given {@code char[]}.
+	 * 
+	 * <p>
+	 * If the given {@code char[]} is {@literal null}, the new
+	 * {@link CharacterArrayIterator} will behave, as if an empty {@code char[]}
+	 * has been given.
+	 * 
+	 * @param values
+	 *            The {@code char[]} to iterate over.
+	 * @param replacement
+	 *            The value to replace removed values with.
+	 */
+	public CharacterArrayIterator(char[] values, char replacement) {
+		this(values, Character.valueOf(replacement));
+	}
+
+	private CharacterArrayIterator(char[] values, Character replacement) {
 		this.values = null == values ? new char[0] : values;
+		this.replacement = replacement;
 	}
 
 	public boolean hasNext() {
@@ -67,7 +92,11 @@ public final class CharacterArrayIterator implements Iterator<Character> {
 	}
 
 	public void remove() {
-		values[index] = 0;
+		if (null != replacement) {
+			values[index] = replacement;
+		} else {
+			throw new UnsupportedOperationException("Cannot remove from an array.");
+		}
 	}
 
 }
