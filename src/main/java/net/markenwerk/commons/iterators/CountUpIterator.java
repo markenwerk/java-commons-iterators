@@ -66,7 +66,7 @@ public final class CountUpIterator implements Iterator<Integer> {
 
 	@Override
 	public void remove() {
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException("Cannot remove from a counter.");
 	}
 
 }
