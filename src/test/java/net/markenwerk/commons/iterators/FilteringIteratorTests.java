@@ -98,6 +98,25 @@ public class FilteringIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
+	
+	
+	/**
+	 * Filter out a unsatisfying value in the middle of the underlying
+	 * {@link Iterator}.
+	 */
+	@Test
+	public void filtering_invertedPredicate() {
+
+		Object[] values = new Object[] { new Object(), UNSATISFYING_OBJECT, new Object() };
+		Iterator<Object> iterator = new FilteringIterator<Object>(new ArrayIterator<Object>(values),
+				UNSATISFYING_OBJECT_PREDICATE, true);
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(UNSATISFYING_OBJECT, iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
 
 	/**
 	 * Remove an object from the underlying {@link Iterator}.

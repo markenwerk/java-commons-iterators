@@ -47,6 +47,8 @@ public class FilteringIterator<Payload> implements Iterator<Payload> {
 
 	private final Predicate<Payload> predicate;
 
+	private final boolean satisfyingTestResult;
+
 	private boolean nextPrepared;
 
 	private boolean nextDetected;
@@ -61,12 +63,31 @@ public class FilteringIterator<Payload> implements Iterator<Payload> {
 	 *            The {@link Iterator}, around which the new
 	 *            {@link NullFreeIterator} will be wrapped.
 	 * @param predicate
-	 *            The {@link Predicate} to {@link Predicate#test(Object) test} every
-	 *            value yielded by the given {@link Iterator} with.
+	 *            The {@link Predicate} to {@link Predicate#test(Object) test}
+	 *            every value yielded by the given {@link Iterator} with.
 	 */
 	public FilteringIterator(Iterator<Payload> iterator, Predicate<Payload> predicate) {
+		this(iterator, predicate, false);
+	}
+
+	/**
+	 * Creates a new {@link FilteringIterator} from the given {@link Iterator}
+	 * and the given {@link Predicate}.
+	 * 
+	 * @param iterator
+	 *            The {@link Iterator}, around which the new
+	 *            {@link NullFreeIterator} will be wrapped.
+	 * @param predicate
+	 *            The {@link Predicate} to {@link Predicate#test(Object) test}
+	 *            every value yielded by the given {@link Iterator} with.
+	 * @param invertPredicate
+	 *            Whether to invert the test result and yielt values that don't
+	 *            satisfy the given {@link Predicate}.
+	 */
+	public FilteringIterator(Iterator<Payload> iterator, Predicate<Payload> predicate, boolean invertPredicate) {
 		this.iterator = iterator;
 		this.predicate = predicate;
+		satisfyingTestResult = !invertPredicate;
 	}
 
 	@Override
@@ -93,7 +114,7 @@ public class FilteringIterator<Payload> implements Iterator<Payload> {
 			nextDetected = false;
 			while (!nextDetected && iterator.hasNext()) {
 				Payload nextPayload = iterator.next();
-				if (predicate.test(nextPayload)) {
+				if (satisfyingTestResult == predicate.test(nextPayload)) {
 					next = nextPayload;
 					nextDetected = true;
 				}
