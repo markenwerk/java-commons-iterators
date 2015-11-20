@@ -57,12 +57,12 @@ public class CombinedIterator<Payload> implements Iterator<Payload> {
 	}
 
 	/**
-	 * Creates a new {@link CombinedIterator} from the given qlin
-	 * {@link Iterable} of link Iterator Iterators}.
+	 * Creates a new {@link CombinedIterator} from the given {@link Iterable} of
+	 * link Iterator Iterators}.
 	 * 
 	 * @param iterable
-	 *            The {@link Iterable} of {@link Iterator Iterators} to combine
-	 *            into a single {@link Iterator}.
+	 *            The {@link Iterator Iterators} to combine into a single
+	 *            {@link Iterator}.
 	 */
 	public CombinedIterator(Iterable<? extends Iterator<? extends Payload>> iterable) {
 		this(iterable.iterator());
