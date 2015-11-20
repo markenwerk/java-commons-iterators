@@ -34,9 +34,9 @@
 	</developers>
 
 	<scm>
-		<connection>scm:git:git@github.com:markenwerk/java-commons-interfaces.git</connection>
-		<developerConnection>scm:git:git@github.com:markenwerk/java-commons-interfaces.git</developerConnection>
-		<url>https://github.com/markenwerk/java-commons-interfaces</url>
+		<connection>scm:git:git@github.com:markenwerk/java-commons-iterators.git</connection>
+		<developerConnection>scm:git:git@github.com:markenwerk/java-commons-iterators.git</developerConnection>
+		<url>https://github.com/markenwerk/java-commons-iterators</url>
 	</scm>
 
 	<properties>
