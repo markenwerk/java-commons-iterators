@@ -25,7 +25,7 @@ import java.util.Iterator;
 
 /**
  * An {@link ArrayIterator} is a {@link Iterator} that iterates over a given
- * array of payload values.
+ * payload array.
  * 
  * <p>
  * Calling {@link ArrayIterator#remove()} sets the array to {@literal null} at
