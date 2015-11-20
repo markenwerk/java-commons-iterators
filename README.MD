@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/markenwerk/java-commons-iterators.svg?branch=master)](https://travis-ci.org/markenwerk/java-commons-iterators)
 [![Coverage Status](https://coveralls.io/repos/markenwerk/java-commons-iterators/badge.svg?branch=master&service=github)](https://coveralls.io/github/markenwerk/java-commons-iterators?branch=master)
 [![Dependency Status](https://www.versioneye.com/user/projects/56323f1636d0ab0016001bc4/badge.svg)](https://www.versioneye.com/user/projects/56323f1636d0ab0016001bc4)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/java-commons-iterators/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/java-commons-iterators)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/commons-iterators/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/commons-iterators)
 
 This is a collection of some commonly useful [`Iterator`][Iterator] implementations.
 
@@ -25,7 +25,7 @@ Consult the [usage description](#usage) and [Javadoc](http://markenwerk.github.i
 
 ### Filtering and Converting
 
-This library provides the generic [`FilteringIterator`][FilteringIterator] that takes an existing [`Iterator`][Iterator] and a [`Predicate`][Predicate] and filters out all values yielded by the given [`Iterator`][Iterator] that don't satisfy the given [Predicate][`Predicate`].
+This library provides the generic [`FilteringIterator`][FilteringIterator] that takes an existing [`Iterator`][Iterator] and a [`Predicate`][Predicate] and filters out all values yielded by the given [`Iterator`][Iterator] that don't satisfy the given [`Predicate`][Predicate].
 
 ```java
 Iterator<Foo> iterator = ...
@@ -53,7 +53,7 @@ Iterator<Bar> convertingIterator = new ConvertingIterator<Foo, Bar>(iterator, ne
 });
 ```
 
-### Combining multiple Iterators
+### Combining multiple [`Iterators`][Iterator]
 
 This library provides the generic [`CombinedIterator`][CombinedIterator] that takes multiple existing [`Iterators`][Iterator] and combines them into a single [`Iterator`][Iterator] that yields all values of all given [`Iterators`][Iterator].
 
