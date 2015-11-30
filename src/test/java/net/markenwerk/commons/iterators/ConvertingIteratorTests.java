@@ -27,7 +27,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import net.markenwerk.commons.interfaces.Converter;
-import net.markenwerk.commons.interfaces.exceptions.ConverterException;
 
 /**
  * JUnit test for {@link FilteringIterator}.
@@ -49,7 +48,7 @@ public class ConvertingIteratorTests {
 
 	private final Converter<Object, Wrapper> WRAPPING_CONVERTER = new Converter<Object, Wrapper>() {
 		@Override
-		public Wrapper convert(Object from) throws ConverterException {
+		public Wrapper convert(Object from) {
 			return null == from ? null : new Wrapper(from);
 		}
 	};
