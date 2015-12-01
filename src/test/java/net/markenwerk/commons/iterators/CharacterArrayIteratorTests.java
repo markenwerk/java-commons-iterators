@@ -44,9 +44,9 @@ public class CharacterArrayIteratorTests {
 		Iterator<Character> iterator = new CharacterArrayIterator(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Character(values[0]), iterator.next());
+		Assert.assertEquals(Character.valueOf(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Character(values[1]), iterator.next());
+		Assert.assertEquals(Character.valueOf(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}

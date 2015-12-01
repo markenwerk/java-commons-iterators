@@ -44,9 +44,9 @@ public class LongArrayIteratorTests {
 		Iterator<Long> iterator = new LongArrayIterator(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Long(values[0]), iterator.next());
+		Assert.assertEquals(Long.valueOf(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Long(values[1]), iterator.next());
+		Assert.assertEquals(Long.valueOf(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}

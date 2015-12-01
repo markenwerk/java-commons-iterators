@@ -44,9 +44,9 @@ public class FloatArrayIteratorTests {
 		Iterator<Float> iterator = new FloatArrayIterator(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Float(values[0]), iterator.next());
+		Assert.assertEquals(Float.valueOf(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Float(values[1]), iterator.next());
+		Assert.assertEquals(Float.valueOf(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}

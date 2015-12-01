@@ -44,9 +44,9 @@ public class DoubleArrayIteratorTests {
 		Iterator<Double> iterator = new DoubleArrayIterator(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Double(values[0]), iterator.next());
+		Assert.assertEquals(Double.valueOf(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Double(values[1]), iterator.next());
+		Assert.assertEquals(Double.valueOf(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}

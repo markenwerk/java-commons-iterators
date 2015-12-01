@@ -44,9 +44,9 @@ public class ByteArrayIteratorTests {
 		Iterator<Byte> iterator = new ByteArrayIterator(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Byte(values[0]), iterator.next());
+		Assert.assertEquals(Byte.valueOf(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Byte(values[1]), iterator.next());
+		Assert.assertEquals(Byte.valueOf(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}

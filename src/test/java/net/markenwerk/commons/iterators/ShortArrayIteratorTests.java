@@ -44,9 +44,9 @@ public class ShortArrayIteratorTests {
 		Iterator<Short> iterator = new ShortArrayIterator(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Short(values[0]), iterator.next());
+		Assert.assertEquals(Short.valueOf(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Short(values[1]), iterator.next());
+		Assert.assertEquals(Short.valueOf(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}

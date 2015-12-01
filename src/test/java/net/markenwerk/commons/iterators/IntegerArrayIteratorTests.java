@@ -44,9 +44,9 @@ public class IntegerArrayIteratorTests {
 		Iterator<Integer> iterator = new IntegerArrayIterator(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(values[0]), iterator.next());
+		Assert.assertEquals(Integer.valueOf(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(values[1]), iterator.next());
+		Assert.assertEquals(Integer.valueOf(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}

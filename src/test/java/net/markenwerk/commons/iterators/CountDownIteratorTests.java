@@ -55,7 +55,7 @@ public class CountDownIteratorTests {
 		Iterator<Integer> iterator = new CountDownIterator(0, 0);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(0), iterator.next());
+		Assert.assertEquals(Integer.valueOf(0), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}
@@ -69,9 +69,9 @@ public class CountDownIteratorTests {
 		Iterator<Integer> iterator = new CountDownIterator(2, 1);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(2), iterator.next());
+		Assert.assertEquals(Integer.valueOf(2), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(1), iterator.next());
+		Assert.assertEquals(Integer.valueOf(1), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}

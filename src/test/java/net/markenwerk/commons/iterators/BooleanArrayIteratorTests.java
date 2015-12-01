@@ -44,9 +44,9 @@ public class BooleanArrayIteratorTests {
 		Iterator<Boolean> iterator = new BooleanArrayIterator(values);
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Boolean(values[0]), iterator.next());
+		Assert.assertEquals(Boolean.valueOf(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Boolean(values[1]), iterator.next());
+		Assert.assertEquals(Boolean.valueOf(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}
