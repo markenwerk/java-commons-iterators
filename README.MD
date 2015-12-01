@@ -131,26 +131,26 @@ Iterator<Foo> = new ArrayIterator(foos);
 ```
 
 
-[ArrayIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/ArrayIterator.html
-[BooleanArrayIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/BooleanArrayIterator.html
-[ByteArrayIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/ByteArrayIterator.html
-[CharacterArrayIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/CharacterArrayIterator.html
-[CombinedIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/CombinedIterator.html
-[ConvertingIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/ConvertingIterator.html
-[CountDownIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/CountDownIterator.html
-[CountUpIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/CountUpIterator.html
-[DoubleArrayIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/DoubleArrayIterator.html
-[EmptyIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/EmptyIterator.html
-[FilteringIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/FilteringIterator.html
-[FloatArrayIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/FloatArrayIterator.html
-[IntegerArrayIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/IntegerArrayIterator.html
-[LongArrayIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/LongArrayIterator.html
-[NullFreeIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/NullFreeIterator.html
-[NullSaveIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/NullSaveIterator.html
-[ShortArrayIterator]: http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.1/index.html?net/markenwerk/commons/iterators/ShortArrayIterator.html
+[ArrayIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/ArrayIterator.html
+[BooleanArrayIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/BooleanArrayIterator.html
+[ByteArrayIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/ByteArrayIterator.html
+[CharacterArrayIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/CharacterArrayIterator.html
+[CombinedIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/CombinedIterator.html
+[ConvertingIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/ConvertingIterator.html
+[CountDownIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/CountDownIterator.html
+[CountUpIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/CountUpIterator.html
+[DoubleArrayIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/DoubleArrayIterator.html
+[EmptyIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/EmptyIterator.html
+[FilteringIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/FilteringIterator.html
+[FloatArrayIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/FloatArrayIterator.html
+[IntegerArrayIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/IntegerArrayIterator.html
+[LongArrayIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/LongArrayIterator.html
+[NullFreeIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/NullFreeIterator.html
+[NullSaveIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/NullSaveIterator.html
+[ShortArrayIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.1/index.html?net/markenwerk/commons/iterators/ShortArrayIterator.html
 
-[Converter]: http://markenwerk.github.io/java-commons-interfaces/javadoc/1.1.1/index.html?net/markenwerk/commons/interfaces/Converter.html
-[Predicate]: http://markenwerk.github.io/java-commons-interfaces/javadoc/1.1.1/index.html?net/markenwerk/commons/interfaces/Predicate.html
+[Converter]: http://static.javadoc.io/net.markenwerk/commons-interfaces/2.0.0/index.html?net/markenwerk/commons/interfaces/Converter.html
+[Predicate]: http://static.javadoc.io/net.markenwerk/commons-interfaces/2.0.0/index.html?net/markenwerk/commons/interfaces/Predicate.html
 
 [Iterable]: http://docs.oracle.com/javase/6/docs/api/index.html?java/lang/Iterable.html
 [Iterator]: http://docs.oracle.com/javase/6/docs/api/index.html?java/util/Iterator.html
