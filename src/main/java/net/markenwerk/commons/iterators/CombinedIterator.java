@@ -103,11 +103,14 @@ public class CombinedIterator<Payload> implements Iterator<Payload> {
 			hasNext = false;
 			if (null != currentIterator && currentIterator.hasNext()) {
 				hasNext = true;
-			} else if (iterators.hasNext()) {
-				currentIterator = iterators.next();
-				hasNext = currentIterator.hasNext();
+			} else {
+				while (!hasNext && iterators.hasNext()) {
+					currentIterator = iterators.next();
+					hasNext = currentIterator.hasNext();
+				}
 			}
 			nextPrepared = true;
 		}
 	}
+
 }
