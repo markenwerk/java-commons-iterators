@@ -9,7 +9,7 @@ This is a collection of some commonly useful [`Iterator`][Iterator] implementati
 
 ## Overview
 
-This library is hosted in the [Maven Central Repositoy](http://search.maven.org/#artifactdetails|net.markenwerk|java-commons-iterators|1.1.4|jar). You can use it with the following coordinates:
+This library is hosted in the [Maven Central Repository](http://search.maven.org/#artifactdetails|net.markenwerk|java-commons-iterators|1.1.4|jar). You can use it with the following coordinates:
 
 ```xml
 <dependency>
@@ -29,6 +29,8 @@ This library provides the generic [`FilteringIterator`][FilteringIterator] that 
 
 ```java
 Iterator<Foo> iterator = ...
+
+// yields every foo from from iterator that matches the condition
 Iterator<Foo> filteringIterator = new FilteringIterator<Foo>(iterator, new Predicate<Foo>(){
 
 	@Override
@@ -43,6 +45,8 @@ This library provides the generic [`ConvertingIterator`][ConvertingIterator] tha
 
 ```java
 Iterator<Foo> iterator = ...
+
+// yields a bar for every foo from from iterator
 Iterator<Bar> convertingIterator = new ConvertingIterator<Foo, Bar>(iterator, new Converter<Foo, Bar>(){
 
 	@Override
@@ -62,50 +66,64 @@ It can be constructed from an array or an arbitrary amount of known [`Iterators`
 ```java
 Iterator<Foo> iterator1 = ...
 Iterator<Foo> iterator2 = ...
-Iterator<Foo> combinedIterator = new CombinedIterator<Foo>(iterator1, iterator2);
+
+// yields every foo from every iterator1 and iterator2
+Iterator<Foo> combinedIterator = new CombinedIterator<Foo>(iterator1, iterator2); 
 ```
 
 It can be constructed from an [`Iterable`][Iterable] of [`Iterators`][Iterator] (i.e. a [`List`][List]).
 
 ```java
 List<Iterator<Foo>>[] iterators = ...
-Iterator<Foo> combinedIterator = new CombinedIterator<Foo>(iterators);
-```
 
-### Counting
-
-This library provides the [`CountDownIterator`][CountDownIterator] and [`CountUpIterator`][CountUpIterator] that take two integer values as bounds and yield every integer value between the given bounds, going downwards or upwards respectively.
-
-```java
-Iterator<Integer> = new CountDownIterator(10, 0); // yields 10, 9, ..., 1, 0
-Iterator<Integer> = new CountUpIterator(0, 10); // yields 0, 1, ..., 9, 10
+// yields every foo from every iterator from iterators
+Iterator<Foo> combinedIterator = new CombinedIterator<Foo>(iterators); 
 ```
 
 ### Handling of `null` values
 
-For situations where it is necessary to provide an [`Iterator`][Iterator], but no meaningful [`Iterator`][Iterator] is available, it might be useful to create an [`EmptyIterator`][EmptyIterator]. An [`EmptyIterator`][EmptyIterator] doesn't yield any values, buf fulfils the [`Iterator`][Iterator] contract.
+For situations where it is necessary to provide an [`Iterator`][Iterator], but no meaningful [`Iterator`][Iterator] is available, it might be useful to create an [`EmptyIterator`][EmptyIterator]. An [`EmptyIterator`][EmptyIterator] doesn't yield any values, but fulfills the [`Iterator`][Iterator] contract.
 
 ```java
+// yields nothing
 Iterator<Foo> = new EmptyIterator<Foo>();
 ```
 
-For situations where some [`Iterator`][Iterator] is obtained and passed along, it might be useful to wrap the obtained [`Iterator`][Iterator] in a [`NullSaveIterator`][NullSaveIterator]. A [`NullSaveIterator`][NullSaveIterator] always fulfils the [`Iterator`][Iterator] contract, even if it is constructed from a `null` [`Iterator`][Iterator].
+For situations where some [`Iterator`][Iterator] is obtained and passed along, it might be useful to wrap the obtained [`Iterator`][Iterator] in a [`NullSaveIterator`][NullSaveIterator]. A [`NullSaveIterator`][NullSaveIterator] always fulfills the [`Iterator`][Iterator] contract, even if it is constructed from a `null` [`Iterator`][Iterator].
 
 ```java
 Iterator<Foo> iterator = ...
-iterator = new NullSaveIterator(iterator);
+
+// yields every foo from iterator of nothing, if iterator is null
+iterator = new NullSaveIterator(iterator); 
 ```
 
 For situations where some [`Iterator`][Iterator] is obtained, it might be useful to wrap the obtained [`Iterator`][Iterator] in a [`NullFreeIterator`][NullFreeIterator]. A [`NullFreeIterator`][NullFreeIterator] filters out all `null` values yielded by the obtained [`Iterator`][Iterator].
 
 ```java
 Iterator<Foo> iterator = ...
+
+// yields every non-null foo from iterator
 iterator = new NullFreeIterator(iterator);
 ```
 
-### Iterating over primitive Arrays
+### Iterating over single values
 
-This library provides the following [`Iterators`][Iterator] that takes an existing primitive array and yields all elements of the given array:
+This library provides the [`ObjectIterator`][ObjectIterator] and [`OptionalIterator`][OptionalIterator] that take and yield an existing object. An [`ObjectIterator`] always yields the given object, whereas an [`OptionalIterator`] only yields the given object, if it isn't `null`. 
+
+```java
+Foo foo = ...
+
+// yields foo, even if foo is null
+Iterator<Foo> = new ObjectIterator(foo); 
+
+// yields foo or nothing, if foo is null
+Iterator<Foo> = new OptionalIterator(foo); 
+```
+
+### Iterating over primitive arrays
+
+This library provides the following [`Iterators`][Iterator] that take existing primitive arrays and yield all elements of the given array:
 
 - [`BooleanArrayIterator`][BooleanArrayIterator]
 - [`ByteArrayIterator`][ByteArrayIterator]
@@ -118,16 +136,32 @@ This library provides the following [`Iterators`][Iterator] that takes an existi
 
 ```java
 boolean[] booleans = ...
+
+// yields every boolean from booleans
 Iterator<Boolean> = new BooleanArrayIterator(booleans);
 ```
 
-### Iterating over non-primitive Arrays
+### Iterating over non-primitive arrays
 
 This library provides the generic [`ArrayIterator`][ArrayIterator] that takes an existing array and yields all elements of the given array:
 
 ```java
 Foo[] foos = ...
-Iterator<Foo> = new ArrayIterator(foos);
+
+// yields every foo from foos
+Iterator<Foo> = new ArrayIterator(foos); 
+```
+
+### Counting
+
+This library provides the [`CountDownIterator`][CountDownIterator] and [`CountUpIterator`][CountUpIterator] that take two integer values as bounds and yield every integer value between the given bounds, moving downwards or upwards respectively.
+
+```java
+// yields 10, 9, ..., 1, 0
+Iterator<Integer> = new CountDownIterator(10, 0);
+
+// yields 0, 1, ..., 9, 10 
+Iterator<Integer> = new CountUpIterator(0, 10); 
 ```
 
 
@@ -147,6 +181,8 @@ Iterator<Foo> = new ArrayIterator(foos);
 [LongArrayIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.4/index.html?net/markenwerk/commons/iterators/LongArrayIterator.html
 [NullFreeIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.4/index.html?net/markenwerk/commons/iterators/NullFreeIterator.html
 [NullSaveIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.4/index.html?net/markenwerk/commons/iterators/NullSaveIterator.html
+[ObjectIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.4/index.html?net/markenwerk/commons/iterators/ObjectIterator.html
+[OptionalIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.4/index.html?net/markenwerk/commons/iterators/OptionalIterator.html
 [ShortArrayIterator]: http://static.javadoc.io/net.markenwerk/commons-iterators/1.1.4/index.html?net/markenwerk/commons/iterators/ShortArrayIterator.html
 
 [Converter]: http://static.javadoc.io/net.markenwerk/commons-interfaces/2.0.0/index.html?net/markenwerk/commons/interfaces/Converter.html
