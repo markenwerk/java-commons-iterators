@@ -28,7 +28,7 @@ This library is hosted in the [Maven Central Repository](http://search.maven.org
 </dependency>
 ````
 
-Consult the [usage description](#usage) and [Javadoc](http://markenwerk.github.io/java-commons-iterators/javadoc/1.1.5/index.html) for further information.
+Consult the [usage description](#usage) and [Javadoc](https://markenwerk.github.io/java-commons-iterators/index.html) for further information.
 
 ## Usage
 
