@@ -41,7 +41,7 @@ import net.markenwerk.commons.interfaces.Predicate;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class FilteringIterator<Payload> implements Iterator<Payload> {
+public final class FilteringIterator<Payload> implements Iterator<Payload> {
 
 	private final Iterator<? extends Payload> iterator;
 
@@ -81,7 +81,7 @@ public class FilteringIterator<Payload> implements Iterator<Payload> {
 	 *            The {@link Predicate} to {@link Predicate#test(Object) test}
 	 *            every value yielded by the given {@link Iterator} with.
 	 * @param invertPredicate
-	 *            Whether to invert the test result and yielt values that don't
+	 *            Whether to invert the test result and yield values that don't
 	 *            satisfy the given {@link Predicate}.
 	 */
 	public FilteringIterator(Iterator<? extends Payload> iterator, Predicate<Payload> predicate, boolean invertPredicate) {

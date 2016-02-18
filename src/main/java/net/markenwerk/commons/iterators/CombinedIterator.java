@@ -34,7 +34,7 @@ import java.util.Iterator;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class CombinedIterator<Payload> implements Iterator<Payload> {
+public final class CombinedIterator<Payload> implements Iterator<Payload> {
 
 	private final Iterator<? extends Iterator<? extends Payload>> iterators;
 

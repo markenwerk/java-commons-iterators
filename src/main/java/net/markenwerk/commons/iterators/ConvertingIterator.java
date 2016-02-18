@@ -37,7 +37,7 @@ import net.markenwerk.commons.interfaces.Converter;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class ConvertingIterator<From, To> implements Iterator<To> {
+public final class ConvertingIterator<From, To> implements Iterator<To> {
 
 	private final Iterator<? extends From> iterator;
 
