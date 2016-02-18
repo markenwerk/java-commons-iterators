@@ -27,12 +27,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * JUnit test for {@link InfixIterator}.
+ * JUnit test for {@link InfixingIterator}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
  */
-public class InfixIteratorTests {
+public class InfixingIteratorTests {
 
 	/**
 	 * Iterate over an empty iterator.
@@ -41,7 +40,7 @@ public class InfixIteratorTests {
 	public void lookAhead_iterateEmpty() {
 
 		Object infix = new Object();
-		Iterator<Object> iterator = new InfixIterator<Object>(new EmptyIterator<Object>(), infix);
+		Iterator<Object> iterator = new InfixingIterator<Object>(new EmptyIterator<Object>(), infix);
 
 		Assert.assertFalse(iterator.hasNext());
 
@@ -55,7 +54,7 @@ public class InfixIteratorTests {
 
 		Object infix = new Object();
 		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new InfixIterator<Object>(new ArrayIterator<Object>(values), infix);
+		Iterator<Object> iterator = new InfixingIterator<Object>(new ArrayIterator<Object>(values), infix);
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
@@ -71,7 +70,7 @@ public class InfixIteratorTests {
 
 		Object infix = new Object();
 		Object[] values = new Object[] { new Object(), new Object() };
-		Iterator<Object> iterator = new InfixIterator<Object>(new ArrayIterator<Object>(values), infix);
+		Iterator<Object> iterator = new InfixingIterator<Object>(new ArrayIterator<Object>(values), infix);
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
@@ -91,7 +90,7 @@ public class InfixIteratorTests {
 
 		Object infix = new Object();
 		Object[] values = new Object[] { new Object(), new Object(), new Object() };
-		Iterator<Object> iterator = new InfixIterator<Object>(new ArrayIterator<Object>(values), infix);
+		Iterator<Object> iterator = new InfixingIterator<Object>(new ArrayIterator<Object>(values), infix);
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());

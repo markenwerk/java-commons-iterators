@@ -30,7 +30,6 @@ import org.junit.Test;
  * JUnit test for {@link NullSaveIterator}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
  */
 public class NullSaveIteratorTests {
 

@@ -30,7 +30,6 @@ import org.junit.Test;
  * JUnit test for {@link LookAheadIterator}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
  */
 public class LookAheadIteratorTests {
 
@@ -40,7 +39,7 @@ public class LookAheadIteratorTests {
 	@Test
 	public void lookAhead_iterateEmpty() {
 
-		Iterator<Ahead<Object>> iterator = new LookAheadIterator<Object>(new EmptyIterator<Object>());
+		Iterator<LookAhead<Object>> iterator = new LookAheadIterator<Object>(new EmptyIterator<Object>());
 
 		Assert.assertFalse(iterator.hasNext());
 
@@ -53,12 +52,13 @@ public class LookAheadIteratorTests {
 	public void object_iterateOne() {
 
 		Object[] values = new Object[] { new Object() };
-		Iterator<Ahead<Object>> iterator = new LookAheadIterator<Object>(new ArrayIterator<Object>(values));
+		Iterator<LookAhead<Object>> iterator = new LookAheadIterator<Object>(new ArrayIterator<Object>(values));
 
 		Assert.assertTrue(iterator.hasNext());
 
-		Ahead<Object> first = iterator.next();
+		LookAhead<Object> first = iterator.next();
 		Assert.assertSame(values[0], first.get());
+		Assert.assertTrue(first.isLast());
 		Assert.assertFalse(first.hasNext());
 		Assert.assertFalse(iterator.hasNext());
 
@@ -71,17 +71,19 @@ public class LookAheadIteratorTests {
 	public void object_iterateTwo() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
-		Iterator<Ahead<Object>> iterator = new LookAheadIterator<Object>(new ArrayIterator<Object>(values));
+		Iterator<LookAhead<Object>> iterator = new LookAheadIterator<Object>(new ArrayIterator<Object>(values));
 
 		Assert.assertTrue(iterator.hasNext());
 
-		Ahead<Object> first = iterator.next();
+		LookAhead<Object> first = iterator.next();
 		Assert.assertSame(values[0], first.get());
+		Assert.assertFalse(first.isLast());
 		Assert.assertTrue(first.hasNext());
 		Assert.assertTrue(iterator.hasNext());
 
-		Ahead<Object> second = iterator.next();
+		LookAhead<Object> second = iterator.next();
 		Assert.assertSame(values[1], second.get());
+		Assert.assertTrue(second.isLast());
 		Assert.assertFalse(second.hasNext());
 		Assert.assertFalse(iterator.hasNext());
 
@@ -94,22 +96,25 @@ public class LookAheadIteratorTests {
 	public void object_iterateThree() {
 
 		Object[] values = new Object[] { new Object(), new Object(), new Object() };
-		Iterator<Ahead<Object>> iterator = new LookAheadIterator<Object>(new ArrayIterator<Object>(values));
+		Iterator<LookAhead<Object>> iterator = new LookAheadIterator<Object>(new ArrayIterator<Object>(values));
 
 		Assert.assertTrue(iterator.hasNext());
 
-		Ahead<Object> first = iterator.next();
+		LookAhead<Object> first = iterator.next();
 		Assert.assertSame(values[0], first.get());
+		Assert.assertFalse(first.isLast());
 		Assert.assertTrue(first.hasNext());
 		Assert.assertTrue(iterator.hasNext());
 
-		Ahead<Object> second = iterator.next();
+		LookAhead<Object> second = iterator.next();
 		Assert.assertSame(values[1], second.get());
+		Assert.assertFalse(second.isLast());
 		Assert.assertTrue(second.hasNext());
 		Assert.assertTrue(iterator.hasNext());
 
-		Ahead<Object> third = iterator.next();
+		LookAhead<Object> third = iterator.next();
 		Assert.assertSame(values[2], third.get());
+		Assert.assertTrue(third.isLast());
 		Assert.assertFalse(third.hasNext());
 		Assert.assertFalse(iterator.hasNext());
 

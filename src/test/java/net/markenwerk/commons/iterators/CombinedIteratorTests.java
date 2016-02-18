@@ -32,7 +32,6 @@ import org.junit.Test;
  * JUnit test for {@link FilteringIterator}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
  */
 public class CombinedIteratorTests {
 

@@ -7,6 +7,15 @@
 
 This is a collection of some commonly useful [`Iterator`][Iterator] implementations.
 
+- [Filtering and Converting](#filtering-and-converting)
+- [Combining multiple `Iterators`](#combining-multiple-iterators)
+- [Interspersing infix value](#interspersing-infix-value)
+- [Handling of null values](#handling-of-null-values)
+- [Iterating over single values](#iterating-over-single-values)
+- [Iterating over primitive arrays](#iterating-over-non-primitive-arrays)
+- [Iterating over non-primitive arrays](#iterating-over-primitive-arrays)
+- [Counting up and down](#counting-up-and-down)
+
 ## Overview
 
 This library is hosted in the [Maven Central Repository](http://search.maven.org/#artifactdetails|net.markenwerk|java-commons-iterators|1.1.5|jar). You can use it with the following coordinates:
@@ -57,7 +66,7 @@ Iterator<Bar> convertingIterator = new ConvertingIterator<Foo, Bar>(iterator, ne
 });
 ```
 
-### Combining multiple [`Iterators`][Iterator]
+### Combining multiple `Iterators`
 
 This library provides the generic [`CombinedIterator`][CombinedIterator] that takes multiple existing [`Iterators`][Iterator] and combines them into a single [`Iterator`][Iterator] that yields all values of all given [`Iterators`][Iterator].
 
@@ -78,6 +87,18 @@ List<Iterator<Foo>>[] iterators = ...
 
 // yields every foo from every iterator from iterators
 Iterator<Foo> combinedIterator = new CombinedIterator<Foo>(iterators); 
+```
+
+### Interspersing infix value
+
+This library provides the generic [`InfixingIterator`][InfixingIterator] that takes an existing [`Iterator`][Iterator] and a single value that is used as an infix and interspersed between all values yielded by the given [`Iterator`][Iterator]
+
+```java
+Foo infix = ...
+Iterator<Foo> iterator = ...
+
+// yields every foo from iterator, interspersed with infix
+Iterator<Foo> infixingIterator = new InfixingIterator<Foo>(iterator, infix);
 ```
 
 ### Handling of `null` values
@@ -152,7 +173,7 @@ Foo[] foos = ...
 Iterator<Foo> = new ArrayIterator(foos); 
 ```
 
-### Counting
+### Counting up and down
 
 This library provides the [`CountDownIterator`][CountDownIterator] and [`CountUpIterator`][CountUpIterator] that take two integer values as bounds and yield every integer value between the given bounds, moving downwards or upwards respectively.
 
@@ -178,7 +199,10 @@ Iterator<Integer> = new CountUpIterator(0, 10);
 [FilteringIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/FilteringIterator.html
 [FloatArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/FloatArrayIterator.html
 [IntegerArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/IntegerArrayIterator.html
+[InfixingIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/InfixingIterator.html
 [LongArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/LongArrayIterator.html
+[LookAhead]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/LookAhead.html
+[LookAheadIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/LookAheadIterator.html
 [NullFreeIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/NullFreeIterator.html
 [NullSaveIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/NullSaveIterator.html
 [ObjectIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/ObjectIterator.html

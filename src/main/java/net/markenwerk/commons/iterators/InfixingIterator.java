@@ -26,7 +26,7 @@ import java.util.Iterator;
 import net.markenwerk.commons.interfaces.Predicate;
 
 /**
- * An {@link InfixIterator} is an {@link Iterator} that can be wrapped around a
+ * An {@link InfixingIterator} is an {@link Iterator} that can be wrapped around a
  * given {@link Iterator} and yields a given infix between every object yielded
  * by the given {@link Iterator}.
  * 
@@ -36,11 +36,11 @@ import net.markenwerk.commons.interfaces.Predicate;
  * {@link IntegerArrayIterator#next()} didn't return the given infix.
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
+ * @since 1.1.6
  */
-public final class InfixIterator<Payload> implements Iterator<Payload> {
+public final class InfixingIterator<Payload> implements Iterator<Payload> {
 
 	private final Iterator<? extends Payload> iterator;
 
@@ -49,16 +49,16 @@ public final class InfixIterator<Payload> implements Iterator<Payload> {
 	private boolean nextIsInfix;
 
 	/**
-	 * Creates a new {@link InfixIterator} from the given {@link Iterator} and
+	 * Creates a new {@link InfixingIterator} from the given {@link Iterator} and
 	 * the given {@link Predicate}.
 	 * 
 	 * @param iterator
-	 *            The {@link Iterator}, around which the new
-	 *            {@link NullFreeIterator} will be wrapped.
+	 *           The {@link Iterator}, around which the new
+	 *           {@link NullFreeIterator} will be wrapped.
 	 * @param infix
-	 *            The infix to be yielded.
+	 *           The infix to be yielded.
 	 */
-	public InfixIterator(Iterator<? extends Payload> iterator, Payload infix) {
+	public InfixingIterator(Iterator<? extends Payload> iterator, Payload infix) {
 		this.iterator = iterator;
 		this.infix = infix;
 	}

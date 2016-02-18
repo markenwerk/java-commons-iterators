@@ -30,7 +30,7 @@ import java.util.Iterator;
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
+ * @since 1.1.5
  */
 public final class ObjectIterator<Payload> implements Iterator<Payload> {
 

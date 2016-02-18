@@ -21,40 +21,48 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.Iterator;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 /**
- * JUnit test for {@link EmptyIterator}.
+ * A {@link LookAhead} is a simple container that holds the
+ * {@link LookAhead#get() current} and the {@link LookAhead#getNext() next}
+ * payload object of an {@link LookAheadIterator}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
+ * @since 1.1.6
+ *
+ * @param <Payload>
+ *           The payload type.
  */
-public class EmptyIteratorTests {
+public interface LookAhead<Payload> {
 
 	/**
-	 * Iterate over an {@link EmptyIterator}.
+	 * Returns the current payload object of an {@link LookAheadIterator}.
+	 * 
+	 * @return The current payload object. May be {@literal null}.
 	 */
-	@Test
-	public void empty_iterate() {
-
-		Iterator<Object> iterator = new EmptyIterator<Object>();
-
-		Assert.assertFalse(iterator.hasNext());
-		Assert.assertNull(iterator.next());
-
-	}
+	public Payload get();
 
 	/**
-	 * Iterate over an {@link EmptyIterator}.
+	 * Returns the next payload object of an {@link LookAheadIterator}. The
+	 * returned value is not meaningful, if this {@link LookAhead} has no
+	 * {@literal LookAhead#hashCode() next} payload object.
+	 * 
+	 * @return The next payload object. May be {@literal null}.
 	 */
-	@Test
-	public void empty_remove() {
 
-		Iterator<Object> iterator = new EmptyIterator<Object>();
-		iterator.remove();
+	public Payload getNext();
 
-	}
+	/**
+	 * Returns whether this {@link LookAhead} has a next payload object.
+	 * 
+	 * @return Whether this {@link LookAhead} has a next payload object.
+	 */
+	public boolean hasNext();
+
+	/**
+	 * Returns whether this {@link LookAhead} has a no next payload object.
+	 * 
+	 * @return Whether this {@link LookAhead} has a no next payload object.
+	 */
+	public boolean isLast();
 
 }

@@ -1,6 +1,6 @@
 package net.markenwerk.commons.iterators;
 
-final class IteratorLookAhead<Payload> implements Ahead<Payload> {
+final class IteratorLookAhead<Payload> implements LookAhead<Payload> {
 
 	private Payload current;
 
@@ -30,6 +30,11 @@ final class IteratorLookAhead<Payload> implements Ahead<Payload> {
 	@Override
 	public boolean hasNext() {
 		return nextExists;
+	}
+
+	@Override
+	public boolean isLast() {
+		return !nextExists;
 	}
 
 	@Override

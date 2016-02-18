@@ -27,20 +27,15 @@ import net.markenwerk.commons.interfaces.Predicate;
 
 /**
  * An {@link LookAheadIterator} is an {@link Iterator} that can be wrapped
- * around a given {@link Iterator} and yields a given infix between every object
- * yielded by the given {@link Iterator}.
- * 
- * <p>
- * Calling {@link IntegerArrayIterator#remove()} calls {@link Iterator#remove()}
- * removed on the wrapped {@link Iterator}, if, and only iff, the last call to
- * {@link IntegerArrayIterator#next()} didn't return the given infix.
+ * around a given {@link Iterator} and yields a {@link LookAhead} container that
+ * holds the current and the next payload value of the given {@link Iterator}.
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
+ * @since 1.1.6
  */
-public final class LookAheadIterator<Payload> implements Iterator<Ahead<Payload>> {
+public final class LookAheadIterator<Payload> implements Iterator<LookAhead<Payload>> {
 
 	private final Iterator<? extends Payload> iterator;
 
@@ -55,8 +50,8 @@ public final class LookAheadIterator<Payload> implements Iterator<Ahead<Payload>
 	 * and the given {@link Predicate}.
 	 * 
 	 * @param iterator
-	 *            The {@link Iterator}, around which the new
-	 *            {@link LookAheadIterator} will be wrapped.
+	 *           The {@link Iterator}, around which the new
+	 *           {@link LookAheadIterator} will be wrapped.
 	 */
 	public LookAheadIterator(Iterator<? extends Payload> iterator) {
 		this.iterator = iterator;
@@ -72,7 +67,7 @@ public final class LookAheadIterator<Payload> implements Iterator<Ahead<Payload>
 	}
 
 	@Override
-	public Ahead<Payload> next() {
+	public LookAhead<Payload> next() {
 		prepareNext();
 		nextPrepared = false;
 		return lookAhead;
