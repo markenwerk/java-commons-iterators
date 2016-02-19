@@ -12,7 +12,7 @@ This is a collection of some commonly useful [`Iterator`][Iterator] implementati
 - [Filtering and Converting](#filtering-and-converting)
 - [Combining multiple `Iterators`](#combining-multiple-iterators)
 - [Interspersing infix value](#interspersing-infix-value)
-- [Looking ahead](#looking ahead)
+- [Looking ahead](#looking-ahead)
 - [Handling of null values](#handling-of-null-values)
 - [Iterating over single values](#iterating-over-single-values)
 - [Iterating over primitive arrays](#iterating-over-non-primitive-arrays)
