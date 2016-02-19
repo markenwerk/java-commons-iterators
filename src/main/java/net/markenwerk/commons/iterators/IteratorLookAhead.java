@@ -2,19 +2,24 @@ package net.markenwerk.commons.iterators;
 
 final class IteratorLookAhead<Payload> implements LookAhead<Payload> {
 
-	private Payload current;
+	private final Payload current;
 
-	private Payload next;
+	private final Payload next;
 
-	private boolean nextExists;
+	private final boolean nextExists;
 
-	protected IteratorLookAhead() {
+	IteratorLookAhead() {
+		this(null, null, false);
 	}
 
-	protected void shift(Payload next, boolean nextExists) {
-		current = this.next;
+	private IteratorLookAhead(Payload current, Payload next, boolean nextExists) {
+		this.current = current;
 		this.next = next;
 		this.nextExists = nextExists;
+	}
+
+	protected IteratorLookAhead<Payload> shift(Payload next, boolean nextExists) {
+		return new IteratorLookAhead<Payload>(this.next, next, nextExists);
 	}
 
 	@Override

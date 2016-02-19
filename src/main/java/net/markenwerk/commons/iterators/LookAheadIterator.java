@@ -39,7 +39,7 @@ public final class LookAheadIterator<Payload> implements Iterator<LookAhead<Payl
 
 	private final Iterator<? extends Payload> iterator;
 
-	private final IteratorLookAhead<Payload> lookAhead = new IteratorLookAhead<Payload>();
+	private IteratorLookAhead<Payload> lookAhead = new IteratorLookAhead<Payload>();
 
 	private boolean nextPrepared;
 
@@ -56,7 +56,7 @@ public final class LookAheadIterator<Payload> implements Iterator<LookAhead<Payl
 	public LookAheadIterator(Iterator<? extends Payload> iterator) {
 		this.iterator = iterator;
 		if (iterator.hasNext()) {
-			lookAhead.shift(iterator.next(), true);
+			lookAhead = lookAhead.shift(iterator.next(), true);
 		}
 	}
 
@@ -75,16 +75,16 @@ public final class LookAheadIterator<Payload> implements Iterator<LookAhead<Payl
 
 	@Override
 	public void remove() {
-		throw new UnsupportedOperationException("Cannot remove from a look ahead iterator.");
+		throw new UnsupportedOperationException("Cannot remove from an ahead looking iterator.");
 	}
 
 	private void prepareNext() {
 		if (!nextPrepared) {
 			hasNext = lookAhead.hasNext();
 			if (iterator.hasNext()) {
-				lookAhead.shift(iterator.next(), true);
+				lookAhead = lookAhead.shift(iterator.next(), true);
 			} else {
-				lookAhead.shift(null, false);
+				lookAhead = lookAhead.shift(null, false);
 			}
 			nextPrepared = true;
 		}
