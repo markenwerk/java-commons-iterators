@@ -106,7 +106,7 @@ Iterator<Foo> infixingIterator = new InfixingIterator<Foo>(iterator, infix);
 
 ### Looking ahead
 
-This library provides the generic [`LookAheadIterator`][LookAheadIterator] that takes an existing [`Iterator`][Iterator] and yield every value yielded by the given [`Iterator`][Iterator] wrapped in a [`LookAhead`] that also contains the next value. This allows to peak into the future, while iterating through the given [`Iterator`][Iterator].
+This library provides the generic [`LookAheadIterator`][LookAheadIterator] that takes an existing [`Iterator`][Iterator] and yield every value yielded by the given [`Iterator`][Iterator] wrapped in a [`LookAhead`][LookAhead] that also contains the next value. This allows to peak into the future, while iterating through the given [`Iterator`][Iterator].
 
 ```java
 Iterator<Foo> iterator = ...
