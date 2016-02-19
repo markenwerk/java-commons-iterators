@@ -118,13 +118,13 @@ Iterator<LookAhead<Foo>> lookAheadIterator = new LookAheadIterator<Foo>(iterator
 A [`LookAheadIterator`][LookAheadIterator] can be used to easily perform actions between every element yielded by the original [`Iterator`][Iterator].
 
 ```java
-while(lookAheadIterator.hasNext()) {
+while (lookAheadIterator.hasNext()) {
     LookAhead<Foo> lookAhead = lookAheadIterator.next();
     // returns the current foo
     Foo currentFoo = lookAhead.get() 
     doForEveryFoo(currentFoo);
     // returns whether the look ahead has a next value
-    if(lookAhead.hasNext()) {  
+    if (lookAhead.hasNext()) {  
         // returns the next foo without modifying lookAheadIterator
         Foo nextFoo = lookAhead.getNext();
         doBetweenFoos(currentFoo, nextFoo);
