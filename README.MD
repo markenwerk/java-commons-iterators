@@ -9,7 +9,7 @@
 
 ## Overview
 
-This is a collection of some commonly useful [`Iterator`][Iterator] implementations for the following use cases:
+This is a collection of companion iterators for [some commonly useful `Iterable` implementations](https://github.com/markenwerk/java-commons-iterables) for the following use cases:
 
 - [Filtering and Converting](#filtering-and-converting)
 - [Combining multiple `Iterators`](#combining-multiple-iterators)
