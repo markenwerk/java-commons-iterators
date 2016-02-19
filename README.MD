@@ -4,6 +4,8 @@
 [![Coverage Status](https://coveralls.io/repos/markenwerk/java-commons-iterators/badge.svg?branch=master&service=github)](https://coveralls.io/github/markenwerk/java-commons-iterators?branch=master)
 [![Dependency Status](https://www.versioneye.com/user/projects/564dd82a771e41003f000001/badge.svg)](https://www.versioneye.com/user/projects/564dd82a771e41003f000001)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/commons-iterators/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/commons-iterators)
+[![Java SE 6](https://img.shields.io/badge/java-SE_6-brightgreen.svg)](http://docs.oracle.com/javase/6/docs/api/)
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/markenwerk/java-commons-iterators/blob/master/LICENSE)
 
 ## Overview
 
