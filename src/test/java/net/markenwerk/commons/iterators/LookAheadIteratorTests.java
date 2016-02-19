@@ -79,6 +79,7 @@ public class LookAheadIteratorTests {
 		Assert.assertSame(values[0], first.get());
 		Assert.assertFalse(first.isLast());
 		Assert.assertTrue(first.hasNext());
+		Assert.assertSame(values[1], first.getNext());
 		Assert.assertTrue(iterator.hasNext());
 
 		LookAhead<Object> second = iterator.next();
@@ -104,12 +105,14 @@ public class LookAheadIteratorTests {
 		Assert.assertSame(values[0], first.get());
 		Assert.assertFalse(first.isLast());
 		Assert.assertTrue(first.hasNext());
+		Assert.assertSame(values[1], first.getNext());
 		Assert.assertTrue(iterator.hasNext());
 
 		LookAhead<Object> second = iterator.next();
 		Assert.assertSame(values[1], second.get());
 		Assert.assertFalse(second.isLast());
 		Assert.assertTrue(second.hasNext());
+		Assert.assertSame(values[2], second.getNext());
 		Assert.assertTrue(iterator.hasNext());
 
 		LookAhead<Object> third = iterator.next();
