@@ -21,7 +21,7 @@ This is a collection of some commonly useful [`Iterator`][Iterator] implementati
 - [Iterating over non-primitive arrays](#iterating-over-primitive-arrays)
 - [Counting up and down](#counting-up-and-down)
 
-This library is hosted in the [Maven Central Repository](http://search.maven.org/#artifactdetails|net.markenwerk|java-commons-iterators|1.1.5|jar). You can use it with the following coordinates:
+This library is hosted in the [Maven Central Repository](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/commons-iterators). You can use it with the following coordinates:
 
 ```xml
 <dependency>
