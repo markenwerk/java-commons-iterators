@@ -37,7 +37,7 @@ import java.util.Iterator;
  */
 public final class DoubleArrayIterator implements Iterator<Double> {
 
-	private final double[] values;
+	private final double[] array;
 
 	private final Double replacement;
 
@@ -52,11 +52,14 @@ public final class DoubleArrayIterator implements Iterator<Double> {
 	 * {@link DoubleArrayIterator} will behave, as if an empty {@code double[]}
 	 * has been given.
 	 * 
-	 * @param values
-	 *            The {@code double[]} to iterate over.
+	 * @param array
+	 *           The {@code double[]} to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@code double[]} is {@literal null}.
 	 */
-	public DoubleArrayIterator(double[] values) {
-		this(values, null);
+	public DoubleArrayIterator(double[] array) throws IllegalArgumentException {
+		this(array, null);
 	}
 
 	/**
@@ -68,32 +71,38 @@ public final class DoubleArrayIterator implements Iterator<Double> {
 	 * {@link DoubleArrayIterator} will behave, as if an empty {@code double[]}
 	 * has been given.
 	 * 
-	 * @param values
-	 *            The {@code double[]} to iterate over.
+	 * @param array
+	 *           The {@code double[]} to iterate over.
 	 * @param replacement
-	 *            The value to replace removed values with.
+	 *           The value to replace removed values with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@code double[]} is {@literal null}.
 	 */
-	public DoubleArrayIterator(double[] values, double replacement) {
-		this(values, Double.valueOf(replacement));
+	public DoubleArrayIterator(double[] array, double replacement) throws IllegalArgumentException {
+		this(array, Double.valueOf(replacement));
 	}
 
-	private DoubleArrayIterator(double[] values, Double replacement) {
-		this.values = null == values ? new double[0] : values;
+	private DoubleArrayIterator(double[] array, Double replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.replacement = replacement;
 	}
 
 	public boolean hasNext() {
-		return values.length != index + 1;
+		return array.length != index + 1;
 	}
 
 	public Double next() {
 		index++;
-		return values[index];
+		return array[index];
 	}
 
 	public void remove() {
 		if (null != replacement) {
-			values[index] = replacement;
+			array[index] = replacement;
 		} else {
 			throw new UnsupportedOperationException("Cannot remove from an array.");
 		}

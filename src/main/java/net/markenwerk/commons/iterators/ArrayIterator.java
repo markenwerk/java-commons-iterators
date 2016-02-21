@@ -33,13 +33,13 @@ import java.util.Iterator;
  * {@link ArrayIterator#next()}.
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
 public final class ArrayIterator<Payload> implements Iterator<Payload> {
 
-	private final Payload[] values;
+	private final Payload[] array;
 
 	private final boolean removable;
 
@@ -56,11 +56,14 @@ public final class ArrayIterator<Payload> implements Iterator<Payload> {
 	 * {@link ArrayIterator} will behave, as if an empty payload array has been
 	 * given.
 	 * 
-	 * @param values
-	 *            The payload array to iterate over.
+	 * @param array
+	 *           The payload array to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given payload array is {@literal null}.
 	 */
-	public ArrayIterator(Payload[] values) {
-		this(values, false, null);
+	public ArrayIterator(Payload[] array) throws IllegalArgumentException {
+		this(array, false, null);
 	}
 
 	/**
@@ -72,34 +75,39 @@ public final class ArrayIterator<Payload> implements Iterator<Payload> {
 	 * {@link ArrayIterator} will behave, as if an empty payload array has been
 	 * given.
 	 * 
-	 * @param values
-	 *            The payload array to iterate over.
+	 * @param array
+	 *           The payload array to iterate over.
 	 * @param replacement
-	 *            The value to replace removed values with.
+	 *           The value to replace removed values with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given payload array is {@literal null}.
 	 */
-	public ArrayIterator(Payload[] values, Payload replacement) {
-		this(values, true, replacement);
+	public ArrayIterator(Payload[] array, Payload replacement) throws IllegalArgumentException {
+		this(array, true, replacement);
 	}
 
-	@SuppressWarnings("unchecked")
-	private ArrayIterator(Payload[] values, boolean removable, Payload replacement) {
-		this.values = null == values ? (Payload[]) new Object[0] : values;
+	private ArrayIterator(Payload[] array, boolean removable, Payload replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.removable = removable;
 		this.replacement = replacement;
 	}
 
 	public boolean hasNext() {
-		return values.length != index + 1;
+		return array.length != index + 1;
 	}
 
 	public Payload next() {
 		index++;
-		return values[index];
+		return array[index];
 	}
 
 	public void remove() {
 		if (removable) {
-			values[index] = replacement;
+			array[index] = replacement;
 		} else {
 			throw new UnsupportedOperationException("Cannot remove from an array.");
 		}

@@ -37,63 +37,72 @@ import java.util.Iterator;
  */
 public final class ShortArrayIterator implements Iterator<Short> {
 
-	private final short[] values;
+	private final short[] array;
 
 	private final Short replacement;
 
 	private int index = -1;
 
 	/**
-	 * Creates a new {@linkplain ShortArrayIterator} that iterates over the
-	 * given {@code short[]}.
+	 * Creates a new {@linkplain ShortArrayIterator} that iterates over the given
+	 * {@code short[]}.
 	 * 
 	 * <p>
 	 * If the given {@code short[]} is {@literal null}, the new
-	 * {@link ShortArrayIterator} will behave, as if an empty {@code short[]}
-	 * has been given.
+	 * {@link ShortArrayIterator} will behave, as if an empty {@code short[]} has
+	 * been given.
 	 * 
-	 * @param values
-	 *            The {@code short[]} to iterate over.
+	 * @param array
+	 *           The {@code short[]} to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@code short[]} is {@literal null}.
 	 */
-	public ShortArrayIterator(short[] values) {
-		this(values, null);
+	public ShortArrayIterator(short[] array) throws IllegalArgumentException {
+		this(array, null);
 	}
 
 	/**
-	 * Creates a new {@linkplain ShortArrayIterator} that iterates over the
-	 * given {@code short[]}.
+	 * Creates a new {@linkplain ShortArrayIterator} that iterates over the given
+	 * {@code short[]}.
 	 * 
 	 * <p>
 	 * If the given {@code short[]} is {@literal null}, the new
-	 * {@link ShortArrayIterator} will behave, as if an empty {@code short[]}
-	 * has been given.
+	 * {@link ShortArrayIterator} will behave, as if an empty {@code short[]} has
+	 * been given.
 	 * 
-	 * @param values
-	 *            The {@code short[]} to iterate over.
+	 * @param array
+	 *           The {@code short[]} to iterate over.
 	 * @param replacement
-	 *            The value to replace removed values with.
+	 *           The value to replace removed values with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@code short[]} is {@literal null}.
 	 */
-	public ShortArrayIterator(short[] values, short replacement) {
-		this(values, Short.valueOf(replacement));
+	public ShortArrayIterator(short[] array, short replacement) throws IllegalArgumentException {
+		this(array, Short.valueOf(replacement));
 	}
 
-	private ShortArrayIterator(short[] values, Short replacement) {
-		this.values = null == values ? new short[0] : values;
+	private ShortArrayIterator(short[] array, Short replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.replacement = replacement;
 	}
 
 	public boolean hasNext() {
-		return values.length != index + 1;
+		return array.length != index + 1;
 	}
 
 	public Short next() {
 		index++;
-		return values[index];
+		return array[index];
 	}
 
 	public void remove() {
 		if (null != replacement) {
-			values[index] = replacement;
+			array[index] = replacement;
 		} else {
 			throw new UnsupportedOperationException("Cannot remove from an array.");
 		}

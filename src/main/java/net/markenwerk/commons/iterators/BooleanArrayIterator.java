@@ -37,7 +37,7 @@ import java.util.Iterator;
  */
 public final class BooleanArrayIterator implements Iterator<Boolean> {
 
-	private final boolean[] values;
+	private final boolean[] array;
 
 	private final Boolean replacement;
 
@@ -49,14 +49,17 @@ public final class BooleanArrayIterator implements Iterator<Boolean> {
 	 * 
 	 * <p>
 	 * If the given {@code boolean[]} is {@literal null}, the new
-	 * {@link BooleanArrayIterator} will behave, as if an empty
-	 * {@code boolean[]} has been given.
+	 * {@link BooleanArrayIterator} will behave, as if an empty {@code boolean[]}
+	 * has been given.
 	 * 
-	 * @param values
-	 *            The {@code boolean[]} to iterate over.
+	 * @param array
+	 *           The {@code boolean[]} to iterate over.
+	 *           
+	 * @throws IllegalArgumentException
+	 *            If the given {@code boolean[]} is {@literal null}.
 	 */
-	public BooleanArrayIterator(boolean[] values) {
-		this(values, null);
+	public BooleanArrayIterator(boolean[] array) throws IllegalArgumentException {
+		this(array, null);
 	}
 
 	/**
@@ -65,35 +68,41 @@ public final class BooleanArrayIterator implements Iterator<Boolean> {
 	 * 
 	 * <p>
 	 * If the given {@code boolean[]} is {@literal null}, the new
-	 * {@link BooleanArrayIterator} will behave, as if an empty
-	 * {@code boolean[]} has been given.
+	 * {@link BooleanArrayIterator} will behave, as if an empty {@code boolean[]}
+	 * has been given.
 	 * 
-	 * @param values
-	 *            The {@code boolean[]} to iterate over.
+	 * @param array
+	 *           The {@code boolean[]} to iterate over.
 	 * @param replacement
-	 *            The value to replace removed values with.
+	 *           The value to replace removed values with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@code boolean[]} is {@literal null}.
 	 */
-	public BooleanArrayIterator(boolean[] values, boolean replacement) {
-		this(values, Boolean.valueOf(replacement));
+	public BooleanArrayIterator(boolean[] array, boolean replacement) throws IllegalArgumentException {
+		this(array, Boolean.valueOf(replacement));
 	}
 
-	private BooleanArrayIterator(boolean[] values, Boolean replacement) {
-		this.values = null == values ? new boolean[0] : values;
+	private BooleanArrayIterator(boolean[] array, Boolean replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.replacement = replacement;
 	}
 
 	public boolean hasNext() {
-		return values.length != index + 1;
+		return array.length != index + 1;
 	}
 
 	public Boolean next() {
 		index++;
-		return values[index];
+		return array[index];
 	}
 
 	public void remove() {
 		if (null != replacement) {
-			values[index] = replacement;
+			array[index] = replacement;
 		} else {
 			throw new UnsupportedOperationException("Cannot remove from an array.");
 		}

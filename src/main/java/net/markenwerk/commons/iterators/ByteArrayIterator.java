@@ -37,7 +37,7 @@ import java.util.Iterator;
  */
 public final class ByteArrayIterator implements Iterator<Byte> {
 
-	private final byte[] values;
+	private final byte[] array;
 
 	private final Byte replacement;
 
@@ -52,11 +52,14 @@ public final class ByteArrayIterator implements Iterator<Byte> {
 	 * {@link ByteArrayIterator} will behave, as if an empty {@code byte[]} has
 	 * been given.
 	 * 
-	 * @param values
-	 *            The {@code byte[]} to iterate over.
+	 * @param array
+	 *           The {@code byte[]} to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@code byte[]} is {@literal null}.
 	 */
-	public ByteArrayIterator(byte[] values) {
-		this(values, null);
+	public ByteArrayIterator(byte[] array) throws IllegalArgumentException {
+		this(array, null);
 	}
 
 	/**
@@ -68,32 +71,38 @@ public final class ByteArrayIterator implements Iterator<Byte> {
 	 * {@link ByteArrayIterator} will behave, as if an empty {@code byte[]} has
 	 * been given.
 	 * 
-	 * @param values
-	 *            The {@code byte[]} to iterate over.
+	 * @param array
+	 *           The {@code byte[]} to iterate over.
 	 * @param replacement
-	 *            The value to replace removed values with.
+	 *           The value to replace removed values with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@code byte[]} is {@literal null}.
 	 */
-	public ByteArrayIterator(byte[] values, byte replacement) {
-		this(values, Byte.valueOf(replacement));
+	public ByteArrayIterator(byte[] array, byte replacement) throws IllegalArgumentException {
+		this(array, Byte.valueOf(replacement));
 	}
 
-	private ByteArrayIterator(byte[] values, Byte replacement) {
-		this.values = null == values ? new byte[0] : values;
+	private ByteArrayIterator(byte[] array, Byte replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.replacement = replacement;
 	}
 
 	public boolean hasNext() {
-		return values.length != index + 1;
+		return array.length != index + 1;
 	}
 
 	public Byte next() {
 		index++;
-		return values[index];
+		return array[index];
 	}
 
 	public void remove() {
 		if (null != replacement) {
-			values[index] = replacement;
+			array[index] = replacement;
 		} else {
 			throw new UnsupportedOperationException("Cannot remove from an array.");
 		}

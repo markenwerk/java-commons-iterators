@@ -38,7 +38,7 @@ import java.util.Iterator;
  */
 public final class LongArrayIterator implements Iterator<Long> {
 
-	private final long[] values;
+	private final long[] array;
 
 	private final Long replacement;
 
@@ -53,11 +53,14 @@ public final class LongArrayIterator implements Iterator<Long> {
 	 * {@link LongArrayIterator} will behave, as if an empty {@code long[]} has
 	 * been given.
 	 * 
-	 * @param values
-	 *            The {@code long[]} to iterate over.
+	 * @param array
+	 *           The {@code long[]} to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@code long[]} is {@literal null}.
 	 */
-	public LongArrayIterator(long[] values) {
-		this(values, null);
+	public LongArrayIterator(long[] array) throws IllegalArgumentException {
+		this(array, null);
 	}
 
 	/**
@@ -69,32 +72,38 @@ public final class LongArrayIterator implements Iterator<Long> {
 	 * {@link LongArrayIterator} will behave, as if an empty {@code long[]} has
 	 * been given.
 	 * 
-	 * @param values
-	 *            The {@code long[]} to iterate over.
+	 * @param array
+	 *           The {@code long[]} to iterate over.
 	 * @param replacement
-	 *            The value to replace removed values with.
+	 *           The value to replace removed values with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@code long[]} is {@literal null}.
 	 */
-	public LongArrayIterator(long[] values, long replacement) {
-		this(values, Long.valueOf(replacement));
+	public LongArrayIterator(long[] array, long replacement) throws IllegalArgumentException {
+		this(array, Long.valueOf(replacement));
 	}
 
-	private LongArrayIterator(long[] values, Long replacement) {
-		this.values = null == values ? new long[0] : values;
+	private LongArrayIterator(long[] array, Long replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.replacement = replacement;
 	}
 
 	public boolean hasNext() {
-		return values.length != index + 1;
+		return array.length != index + 1;
 	}
 
 	public Long next() {
 		index++;
-		return values[index];
+		return array[index];
 	}
 
 	public void remove() {
 		if (null != replacement) {
-			values[index] = replacement;
+			array[index] = replacement;
 		} else {
 			throw new UnsupportedOperationException("Cannot remove from an array.");
 		}

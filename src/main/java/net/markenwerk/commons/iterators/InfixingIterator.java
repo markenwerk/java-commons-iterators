@@ -26,9 +26,9 @@ import java.util.Iterator;
 import net.markenwerk.commons.interfaces.Predicate;
 
 /**
- * An {@link InfixingIterator} is an {@link Iterator} that can be wrapped around a
- * given {@link Iterator} and yields a given infix between every object yielded
- * by the given {@link Iterator}.
+ * An {@link InfixingIterator} is an {@link Iterator} that can be wrapped around
+ * a given {@link Iterator} and yields a given infix between every object
+ * yielded by the given {@link Iterator}.
  * 
  * <p>
  * Calling {@link IntegerArrayIterator#remove()} calls {@link Iterator#remove()}
@@ -57,8 +57,14 @@ public final class InfixingIterator<Payload> implements Iterator<Payload> {
 	 *           {@link NullFreeIterator} will be wrapped.
 	 * @param infix
 	 *           The infix to be yielded.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@link Iterator} is {@literal null}.
 	 */
-	public InfixingIterator(Iterator<? extends Payload> iterator, Payload infix) {
+	public InfixingIterator(Iterator<? extends Payload> iterator, Payload infix) throws IllegalArgumentException {
+		if (null == iterator) {
+			throw new IllegalArgumentException("iterator is null");
+		}
 		this.iterator = iterator;
 		this.infix = infix;
 	}

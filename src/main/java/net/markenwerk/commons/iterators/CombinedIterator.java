@@ -30,7 +30,7 @@ import java.util.Iterator;
  * the order they were given.
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -45,38 +45,59 @@ public final class CombinedIterator<Payload> implements Iterator<Payload> {
 	private boolean hasNext;
 
 	/**
-	 * Creates a new {@link CombinedIterator} from the given {@link Iterator
-	 * Iterators}.
+	 * Creates a new {@link CombinedIterator} from the given sequence
+	 * {@link Iterator Iterators}.
 	 * 
 	 * @param iterators
-	 *            The {@link Iterator Iterators} to combine into a single
-	 *            {@link Iterator}.
+	 *           The {@link Iterator Iterators} to combine into a single
+	 *           {@link Iterator}.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given sequence of {@link Iterator Iterators} is
+	 *            {@literal null}.
 	 */
-	public CombinedIterator(Iterator<? extends Payload>... iterators) {
-		this(new ArrayIterator<Iterator<? extends Payload>>(iterators));
+	public CombinedIterator(Iterator<? extends Payload>... iterators) throws IllegalArgumentException {
+		if (null == iterators) {
+			throw new IllegalArgumentException("iterators is null");
+		}
+		this.iterators = new ArrayIterator<Iterator<? extends Payload>>(iterators);
 	}
 
 	/**
 	 * Creates a new {@link CombinedIterator} from the given {@link Iterable} of
 	 * link Iterator Iterators}.
 	 * 
-	 * @param iterable
-	 *            The {@link Iterator Iterators} to combine into a single
-	 *            {@link Iterator}.
+	 * @param iterators
+	 *           The {@link Iterator Iterators} to combine into a single
+	 *           {@link Iterator}.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@link Iterable} of {@link Iterator Iterators} is
+	 *            {@literal null}.
 	 */
-	public CombinedIterator(Iterable<? extends Iterator<? extends Payload>> iterable) {
-		this(iterable.iterator());
+	public CombinedIterator(Iterable<? extends Iterator<? extends Payload>> iterators) throws IllegalArgumentException {
+		if (null == iterators) {
+			throw new IllegalArgumentException("iterators is null");
+		}
+		this.iterators = iterators.iterator();
 	}
 
 	/**
 	 * Creates a new {@link CombinedIterator} from the given {@link Iterator
-	 * Iterators}.
+	 * Iterators}of link Iterator Iterators}.
 	 * 
 	 * @param iterators
-	 *            The {@link Iterator Iterators} to combine into a single
-	 *            {@link Iterator}.
+	 *           The {@link Iterator Iterators} to combine into a single
+	 *           {@link Iterator}.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@link Iterator} of {@link Iterator Iterators} is
+	 *            {@literal null}.
 	 */
-	public CombinedIterator(Iterator<? extends Iterator<? extends Payload>> iterators) {
+	public CombinedIterator(Iterator<? extends Iterator<? extends Payload>> iterators) throws IllegalArgumentException {
+		if (null == iterators) {
+			throw new IllegalArgumentException("iterators is null");
+		}
 		this.iterators = iterators;
 	}
 

@@ -37,7 +37,7 @@ import net.markenwerk.commons.interfaces.Predicate;
  * a value that satisfies the given {@link Predicate} is available.
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -60,13 +60,18 @@ public final class FilteringIterator<Payload> implements Iterator<Payload> {
 	 * and the given {@link Predicate}.
 	 * 
 	 * @param iterator
-	 *            The {@link Iterator}, around which the new
-	 *            {@link NullFreeIterator} will be wrapped.
+	 *           The {@link Iterator}, around which the new
+	 *           {@link NullFreeIterator} will be wrapped.
 	 * @param predicate
-	 *            The {@link Predicate} to {@link Predicate#test(Object) test}
-	 *            every value yielded by the given {@link Iterator} with.
+	 *           The {@link Predicate} to {@link Predicate#test(Object) test}
+	 *           every value yielded by the given {@link Iterator} with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@link Iterator} is {@literal null} or if the
+	 *            given {@link Predicate} is {@literal null}.
 	 */
-	public FilteringIterator(Iterator<? extends Payload> iterator, Predicate<Payload> predicate) {
+	public FilteringIterator(Iterator<? extends Payload> iterator, Predicate<Payload> predicate)
+			throws IllegalArgumentException {
 		this(iterator, predicate, false);
 	}
 
@@ -75,17 +80,28 @@ public final class FilteringIterator<Payload> implements Iterator<Payload> {
 	 * and the given {@link Predicate}.
 	 * 
 	 * @param iterator
-	 *            The {@link Iterator}, around which the new
-	 *            {@link NullFreeIterator} will be wrapped.
+	 *           The {@link Iterator}, around which the new
+	 *           {@link NullFreeIterator} will be wrapped.
 	 * @param predicate
-	 *            The {@link Predicate} to {@link Predicate#test(Object) test}
-	 *            every value yielded by the given {@link Iterator} with.
+	 *           The {@link Predicate} to {@link Predicate#test(Object) test}
+	 *           every value yielded by the given {@link Iterator} with.
 	 * @param invertPredicate
-	 *            Whether to invert the test result and yield values that don't
-	 *            satisfy the given {@link Predicate}.
+	 *           Whether to invert the test result and yield values that don't
+	 *           satisfy the given {@link Predicate}.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@link Iterator} is {@literal null} or if the
+	 *            given {@link Predicate} is {@literal null}.
 	 */
-	public FilteringIterator(Iterator<? extends Payload> iterator, Predicate<Payload> predicate, boolean invertPredicate) {
+	public FilteringIterator(Iterator<? extends Payload> iterator, Predicate<Payload> predicate, boolean invertPredicate)
+			throws IllegalArgumentException {
+		if (null == iterator) {
+			throw new IllegalArgumentException("iterator is null");
+		}
 		this.iterator = iterator;
+		if (null == predicate) {
+			throw new IllegalArgumentException("predicate is null");
+		}
 		this.predicate = predicate;
 		satisfyingTestResult = !invertPredicate;
 	}

@@ -37,7 +37,7 @@ import java.util.Iterator;
  */
 public final class CharacterArrayIterator implements Iterator<Character> {
 
-	private final char[] values;
+	private final char[] array;
 
 	private final Character replacement;
 
@@ -52,11 +52,14 @@ public final class CharacterArrayIterator implements Iterator<Character> {
 	 * {@link CharacterArrayIterator} will behave, as if an empty {@code char[]}
 	 * has been given.
 	 * 
-	 * @param values
-	 *            The {@code char[]} to iterate over.
+	 * @param array
+	 *           The {@code char[]} to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@code char[]} is {@literal null}.
 	 */
-	public CharacterArrayIterator(char[] values) {
-		this(values, null);
+	public CharacterArrayIterator(char[] array) throws IllegalArgumentException {
+		this(array, null);
 	}
 
 	/**
@@ -68,32 +71,38 @@ public final class CharacterArrayIterator implements Iterator<Character> {
 	 * {@link CharacterArrayIterator} will behave, as if an empty {@code char[]}
 	 * has been given.
 	 * 
-	 * @param values
-	 *            The {@code char[]} to iterate over.
+	 * @param array
+	 *           The {@code char[]} to iterate over.
 	 * @param replacement
-	 *            The value to replace removed values with.
+	 *           The value to replace removed values with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@code char[]} is {@literal null}.
 	 */
-	public CharacterArrayIterator(char[] values, char replacement) {
-		this(values, Character.valueOf(replacement));
+	public CharacterArrayIterator(char[] array, char replacement) throws IllegalArgumentException {
+		this(array, Character.valueOf(replacement));
 	}
 
-	private CharacterArrayIterator(char[] values, Character replacement) {
-		this.values = null == values ? new char[0] : values;
+	private CharacterArrayIterator(char[] array, Character replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.replacement = replacement;
 	}
 
 	public boolean hasNext() {
-		return values.length != index + 1;
+		return array.length != index + 1;
 	}
 
 	public Character next() {
 		index++;
-		return values[index];
+		return array[index];
 	}
 
 	public void remove() {
 		if (null != replacement) {
-			values[index] = replacement;
+			array[index] = replacement;
 		} else {
 			throw new UnsupportedOperationException("Cannot remove from an array.");
 		}

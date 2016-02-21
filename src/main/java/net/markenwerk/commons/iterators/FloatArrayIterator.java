@@ -37,53 +37,62 @@ import java.util.Iterator;
  */
 public final class FloatArrayIterator implements Iterator<Float> {
 
-	private final float[] values;
+	private final float[] array;
 
 	private final Float replacement;
 
 	private int index = -1;
 
 	/**
-	 * Creates a new {@linkplain FloatArrayIterator} that iterates over the
-	 * given {@code float[]}.
+	 * Creates a new {@linkplain FloatArrayIterator} that iterates over the given
+	 * {@code float[]}.
 	 * 
-	 * @param values
-	 *            The {@code float[]} to iterate over.
+	 * @param array
+	 *           The {@code float[]} to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@code float[]} is {@literal null}.
 	 */
-	public FloatArrayIterator(float[] values) {
-		this(values, null);
+	public FloatArrayIterator(float[] array) throws IllegalArgumentException {
+		this(array, null);
 	}
 
 	/**
-	 * Creates a new {@linkplain FloatArrayIterator} that iterates over the
-	 * given {@code float[]}.
+	 * Creates a new {@linkplain FloatArrayIterator} that iterates over the given
+	 * {@code float[]}.
 	 * 
-	 * @param values
-	 *            The {@code float[]} to iterate over.
+	 * @param array
+	 *           The {@code float[]} to iterate over.
 	 * @param replacement
-	 *            The value to replace removed values with.
+	 *           The value to replace removed values with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *            If the given {@code float[]} is {@literal null}.
 	 */
-	public FloatArrayIterator(float[] values, float replacement) {
-		this(values, Float.valueOf(replacement));
+	public FloatArrayIterator(float[] array, float replacement) throws IllegalArgumentException {
+		this(array, Float.valueOf(replacement));
 	}
 
-	private FloatArrayIterator(float[] values, Float replacement) {
-		this.values = null == values ? new float[0] : values;
+	private FloatArrayIterator(float[] array, Float replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.replacement = replacement;
 	}
 
 	public boolean hasNext() {
-		return values.length != index + 1;
+		return array.length != index + 1;
 	}
 
 	public Float next() {
 		index++;
-		return values[index];
+		return array[index];
 	}
 
 	public void remove() {
 		if (null != replacement) {
-			values[index] = replacement;
+			array[index] = replacement;
 		} else {
 			throw new UnsupportedOperationException("Cannot remove from an array.");
 		}
