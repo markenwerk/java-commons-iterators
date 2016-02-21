@@ -33,7 +33,7 @@ import java.util.Iterator;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.5
  */
-public final class OptionalIterator<Payload> implements Iterator<Payload> {
+public final class OptionalIterator<Payload> implements ProtectedIterator<Payload> {
 
 	private final Payload value;
 

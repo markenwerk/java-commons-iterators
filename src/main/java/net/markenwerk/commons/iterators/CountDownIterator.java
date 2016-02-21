@@ -30,7 +30,7 @@ import java.util.Iterator;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class CountDownIterator implements Iterator<Integer> {
+public final class CountDownIterator implements ProtectedIterator<Integer> {
 
 	private final int target;
 
@@ -45,9 +45,9 @@ public final class CountDownIterator implements Iterator<Integer> {
 	 * {@code uper < lower}, no value will be yielded.
 	 * 
 	 * @param fromUpper
-	 *            The upper bound and first value to be yielded.
+	 *           The upper bound and first value to be yielded.
 	 * @param toLower
-	 *            The lower bound and last value to be yielded.
+	 *           The lower bound and last value to be yielded.
 	 */
 	public CountDownIterator(int fromUpper, int toLower) {
 		next = fromUpper;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Torsten Krause, Markenwerk GmbH
+ * Copyright (c) 2016 Torsten Krause, Markenwerk GmbH
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,49 +24,18 @@ package net.markenwerk.commons.iterators;
 import java.util.Iterator;
 
 /**
- * A {@link CountUpIterator} is an {@link Iterator} that yields all integer
- * value between a given lower value and a given upper bound.
+ * A {@link ProtectedIterator} is an {@link Iterator} that guarantees that every
+ * call to {@linkplain ProtectedIterator#remove()} throws an
+ * {@link UnsupportedOperationException} and doesn't alter the underlying data.
  * 
+ * <p>
+ * {@link ProtectedIterator} is a marker interface.
+ * 
+ * @param <Payload>
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
+ * @since 1.2.0
  */
-public final class CountUpIterator implements ProtectedIterator<Integer> {
-
-	private final int target;
-
-	private int next;
-
-	/**
-	 * Creates a new {@link CountUpIterator} from the given lower and upper
-	 * bound.
-	 * 
-	 * <p>
-	 * If {@code lower == upper}, only one value will be yielded. If
-	 * {@code lower > upper}, no value will be yielded.
-	 * 
-	 * @param fromLower
-	 *            The lower bound and first value to be yielded.
-	 * @param toUpper
-	 *            The upper bound and last value to be yielded.
-	 */
-	public CountUpIterator(int fromLower, int toUpper) {
-		next = fromLower;
-		target = toUpper;
-	}
-
-	@Override
-	public boolean hasNext() {
-		return next <= target;
-	}
-
-	@Override
-	public Integer next() {
-		return next++;
-	}
-
-	@Override
-	public void remove() {
-		throw new UnsupportedOperationException("Cannot remove from a counter.");
-	}
+public interface ProtectedIterator<Payload> extends Iterator<Payload> {
 
 }

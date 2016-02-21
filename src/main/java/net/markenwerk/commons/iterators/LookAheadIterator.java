@@ -35,7 +35,7 @@ import net.markenwerk.commons.interfaces.Predicate;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.6
  */
-public final class LookAheadIterator<Payload> implements Iterator<LookAhead<Payload>> {
+public final class LookAheadIterator<Payload> implements ProtectedIterator<LookAhead<Payload>> {
 
 	private static class IteratorLookAhead<Payload> implements LookAhead<Payload> {
 

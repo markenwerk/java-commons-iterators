@@ -32,11 +32,11 @@ import java.util.Iterator;
  * calling {@link EmptyIterator#next()} always returns {@literal null}.
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class EmptyIterator<Payload> implements Iterator<Payload> {
+public final class EmptyIterator<Payload> implements ProtectedIterator<Payload> {
 
 	public boolean hasNext() {
 		return false;
@@ -47,6 +47,7 @@ public final class EmptyIterator<Payload> implements Iterator<Payload> {
 	}
 
 	public void remove() {
+		throw new UnsupportedOperationException("Cannot remove from an empty iterator.");
 	}
 
 }
