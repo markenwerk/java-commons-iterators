@@ -203,7 +203,7 @@ This library provides the generic [`ArrayIterator`][ArrayIterator] that takes an
 Foo[] foos = ...
 
 // yields every foo from foos
-Iterator<Foo> iterator = new ArrayIterator(foos); 
+Iterator<Foo> arrayIterator = new ArrayIterator(foos); 
 ```
 
 ### Iterating over traversable objects
