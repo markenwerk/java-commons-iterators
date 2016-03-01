@@ -47,11 +47,6 @@ public final class ShortArrayIterator implements Iterator<Short> {
 	 * Creates a new {@linkplain ShortArrayIterator} that iterates over the
 	 * given {@code short[]}.
 	 * 
-	 * <p>
-	 * If the given {@code short[]} is {@literal null}, the new
-	 * {@link ShortArrayIterator} will behave, as if an empty {@code short[]}
-	 * has been given.
-	 * 
 	 * @param array
 	 *            The {@code short[]} to iterate over.
 	 * 
@@ -65,11 +60,6 @@ public final class ShortArrayIterator implements Iterator<Short> {
 	/**
 	 * Creates a new {@linkplain ShortArrayIterator} that iterates over the
 	 * given {@code short[]}.
-	 * 
-	 * <p>
-	 * If the given {@code short[]} is {@literal null}, the new
-	 * {@link ShortArrayIterator} will behave, as if an empty {@code short[]}
-	 * has been given.
 	 * 
 	 * @param array
 	 *            The {@code short[]} to iterate over.

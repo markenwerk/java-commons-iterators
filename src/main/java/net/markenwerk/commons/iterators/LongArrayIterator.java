@@ -48,11 +48,6 @@ public final class LongArrayIterator implements Iterator<Long> {
 	 * Creates a new {@linkplain LongArrayIterator} that iterates over the given
 	 * {@code long[]}.
 	 * 
-	 * <p>
-	 * If the given {@code long[]} is {@literal null}, the new
-	 * {@link LongArrayIterator} will behave, as if an empty {@code long[]} has
-	 * been given.
-	 * 
 	 * @param array
 	 *            The {@code long[]} to iterate over.
 	 * 
@@ -66,11 +61,6 @@ public final class LongArrayIterator implements Iterator<Long> {
 	/**
 	 * Creates a new {@linkplain LongArrayIterator} that iterates over the given
 	 * {@code long[]}.
-	 * 
-	 * <p>
-	 * If the given {@code long[]} is {@literal null}, the new
-	 * {@link LongArrayIterator} will behave, as if an empty {@code long[]} has
-	 * been given.
 	 * 
 	 * @param array
 	 *            The {@code long[]} to iterate over.

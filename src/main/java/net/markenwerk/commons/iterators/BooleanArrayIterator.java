@@ -47,11 +47,6 @@ public final class BooleanArrayIterator implements Iterator<Boolean> {
 	 * Creates a new {@linkplain BooleanArrayIterator} that iterates over the
 	 * given {@code boolean[]}.
 	 * 
-	 * <p>
-	 * If the given {@code boolean[]} is {@literal null}, the new
-	 * {@link BooleanArrayIterator} will behave, as if an empty
-	 * {@code boolean[]} has been given.
-	 * 
 	 * @param array
 	 *            The {@code boolean[]} to iterate over.
 	 * 
@@ -65,11 +60,6 @@ public final class BooleanArrayIterator implements Iterator<Boolean> {
 	/**
 	 * Creates a new {@linkplain BooleanArrayIterator} that iterates over the
 	 * given {@code boolean[]}.
-	 * 
-	 * <p>
-	 * If the given {@code boolean[]} is {@literal null}, the new
-	 * {@link BooleanArrayIterator} will behave, as if an empty
-	 * {@code boolean[]} has been given.
 	 * 
 	 * @param array
 	 *            The {@code boolean[]} to iterate over.

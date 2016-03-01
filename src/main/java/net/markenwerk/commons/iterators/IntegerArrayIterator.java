@@ -47,11 +47,6 @@ public final class IntegerArrayIterator implements Iterator<Integer> {
 	 * Creates a new {@linkplain IntegerArrayIterator} that iterates over the
 	 * given {@code int[]}.
 	 * 
-	 * <p>
-	 * If the given {@code int[]} is {@literal null}, the new
-	 * {@link IntegerArrayIterator} will behave, as if an empty {@code int[]}
-	 * has been given.
-	 * 
 	 * @param array
 	 *            The {@code int[]} to iterate over.
 	 * 
@@ -65,11 +60,6 @@ public final class IntegerArrayIterator implements Iterator<Integer> {
 	/**
 	 * Creates a new {@linkplain IntegerArrayIterator} that iterates over the
 	 * given {@code int[]}.
-	 * 
-	 * <p>
-	 * If the given {@code int[]} is {@literal null}, the new
-	 * {@link IntegerArrayIterator} will behave, as if an empty {@code int[]}
-	 * has been given.
 	 * 
 	 * @param array
 	 *            The {@code int[]} to iterate over.

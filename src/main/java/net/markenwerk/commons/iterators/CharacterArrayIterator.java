@@ -47,11 +47,6 @@ public final class CharacterArrayIterator implements Iterator<Character> {
 	 * Creates a new {@linkplain CharacterArrayIterator} that iterates over the
 	 * given {@code char[]}.
 	 * 
-	 * <p>
-	 * If the given {@code char[]} is {@literal null}, the new
-	 * {@link CharacterArrayIterator} will behave, as if an empty {@code char[]}
-	 * has been given.
-	 * 
 	 * @param array
 	 *            The {@code char[]} to iterate over.
 	 * 
@@ -65,11 +60,6 @@ public final class CharacterArrayIterator implements Iterator<Character> {
 	/**
 	 * Creates a new {@linkplain CharacterArrayIterator} that iterates over the
 	 * given {@code char[]}.
-	 * 
-	 * <p>
-	 * If the given {@code char[]} is {@literal null}, the new
-	 * {@link CharacterArrayIterator} will behave, as if an empty {@code char[]}
-	 * has been given.
 	 * 
 	 * @param array
 	 *            The {@code char[]} to iterate over.

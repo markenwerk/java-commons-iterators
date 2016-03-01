@@ -47,11 +47,6 @@ public final class ByteArrayIterator implements Iterator<Byte> {
 	 * Creates a new {@linkplain ByteArrayIterator} that iterates over the given
 	 * {@code byte[]}.
 	 * 
-	 * <p>
-	 * If the given {@code byte[]} is {@literal null}, the new
-	 * {@link ByteArrayIterator} will behave, as if an empty {@code byte[]} has
-	 * been given.
-	 * 
 	 * @param array
 	 *            The {@code byte[]} to iterate over.
 	 * 
@@ -65,11 +60,6 @@ public final class ByteArrayIterator implements Iterator<Byte> {
 	/**
 	 * Creates a new {@linkplain ByteArrayIterator} that iterates over the given
 	 * {@code byte[]}.
-	 * 
-	 * <p>
-	 * If the given {@code byte[]} is {@literal null}, the new
-	 * {@link ByteArrayIterator} will behave, as if an empty {@code byte[]} has
-	 * been given.
 	 * 
 	 * @param array
 	 *            The {@code byte[]} to iterate over.

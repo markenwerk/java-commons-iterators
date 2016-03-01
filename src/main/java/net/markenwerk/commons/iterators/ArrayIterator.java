@@ -51,11 +51,6 @@ public final class ArrayIterator<Payload> implements Iterator<Payload> {
 	 * Creates a new {@link ArrayIterator} that iterates over the given payload
 	 * array.
 	 * 
-	 * <p>
-	 * If the given payload array is {@literal null}, the new
-	 * {@link ArrayIterator} will behave, as if an empty payload array has been
-	 * given.
-	 * 
 	 * @param array
 	 *            The payload array to iterate over.
 	 * 
@@ -69,11 +64,6 @@ public final class ArrayIterator<Payload> implements Iterator<Payload> {
 	/**
 	 * Creates a new {@link ArrayIterator} that iterates over the given payload
 	 * array.
-	 * 
-	 * <p>
-	 * If the given payload array is {@literal null}, the new
-	 * {@link ArrayIterator} will behave, as if an empty payload array has been
-	 * given.
 	 * 
 	 * @param array
 	 *            The payload array to iterate over.
