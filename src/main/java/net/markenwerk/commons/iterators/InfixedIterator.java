@@ -26,7 +26,7 @@ import java.util.Iterator;
 import net.markenwerk.commons.interfaces.Predicate;
 
 /**
- * An {@link InfixingIterator} is an {@link Iterator} that can be wrapped around
+ * An {@link InfixedIterator} is an {@link Iterator} that can be wrapped around
  * a given {@link Iterator} and yields a given infix between every object
  * yielded by the given {@link Iterator}.
  * 
@@ -40,7 +40,7 @@ import net.markenwerk.commons.interfaces.Predicate;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.6
  */
-public final class InfixingIterator<Payload> implements Iterator<Payload> {
+public final class InfixedIterator<Payload> implements Iterator<Payload> {
 
 	private final Iterator<? extends Payload> iterator;
 
@@ -49,7 +49,7 @@ public final class InfixingIterator<Payload> implements Iterator<Payload> {
 	private boolean nextIsInfix;
 
 	/**
-	 * Creates a new {@link InfixingIterator} from the given {@link Iterator}
+	 * Creates a new {@link InfixedIterator} from the given {@link Iterator}
 	 * and the given {@link Predicate}.
 	 * 
 	 * @param iterator
@@ -61,7 +61,7 @@ public final class InfixingIterator<Payload> implements Iterator<Payload> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Iterator} is {@literal null}.
 	 */
-	public InfixingIterator(Iterator<? extends Payload> iterator, Payload infix) throws IllegalArgumentException {
+	public InfixedIterator(Iterator<? extends Payload> iterator, Payload infix) throws IllegalArgumentException {
 		if (null == iterator) {
 			throw new IllegalArgumentException("iterator is null");
 		}

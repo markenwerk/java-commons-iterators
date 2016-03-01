@@ -27,11 +27,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * JUnit test for {@link InfixingIterator}.
+ * JUnit test for {@link InfixedIterator}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  */
-public class InfixingIteratorTests {
+public class InfixedIteratorTests {
 
 	/**
 	 * Iterate over a {@code null} iterator.
@@ -40,7 +40,7 @@ public class InfixingIteratorTests {
 	public void iterateNullIterator() {
 
 		Object infix = new Object();
-		new InfixingIterator<Object>(null, infix);
+		new InfixedIterator<Object>(null, infix);
 
 	}
 
@@ -51,7 +51,7 @@ public class InfixingIteratorTests {
 	public void iterateEmptyIterator() {
 
 		Object infix = new Object();
-		Iterator<Object> iterator = new InfixingIterator<Object>(new EmptyIterator<Object>(), infix);
+		Iterator<Object> iterator = new InfixedIterator<Object>(new EmptyIterator<Object>(), infix);
 
 		Assert.assertFalse(iterator.hasNext());
 
@@ -65,7 +65,7 @@ public class InfixingIteratorTests {
 
 		Object infix = new Object();
 		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new InfixingIterator<Object>(new ArrayIterator<Object>(values), infix);
+		Iterator<Object> iterator = new InfixedIterator<Object>(new ArrayIterator<Object>(values), infix);
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
@@ -81,7 +81,7 @@ public class InfixingIteratorTests {
 
 		Object infix = new Object();
 		Object[] values = new Object[] { new Object(), new Object() };
-		Iterator<Object> iterator = new InfixingIterator<Object>(new ArrayIterator<Object>(values), infix);
+		Iterator<Object> iterator = new InfixedIterator<Object>(new ArrayIterator<Object>(values), infix);
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
@@ -101,7 +101,7 @@ public class InfixingIteratorTests {
 
 		Object infix = new Object();
 		Object[] values = new Object[] { new Object(), new Object(), new Object() };
-		Iterator<Object> iterator = new InfixingIterator<Object>(new ArrayIterator<Object>(values), infix);
+		Iterator<Object> iterator = new InfixedIterator<Object>(new ArrayIterator<Object>(values), infix);
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());

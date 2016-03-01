@@ -95,14 +95,14 @@ Iterator<Foo> combinedIterator = new CombinedIterator<Foo>(iterators);
 
 ### Interspersing infix value
 
-This library provides the generic [`InfixingIterator`][InfixingIterator] that takes an existing [`Iterator`][Iterator] and a single value that is used as an infix and interspersed between all values yielded by the given [`Iterator`][Iterator]
+This library provides the generic [`InfixedIterator`][InfixedIterator] that takes an existing [`Iterator`][Iterator] and a single value that is used as an infix and interspersed between all values yielded by the given [`Iterator`][Iterator]
 
 ```java
 Foo infix = ...
 Iterator<Foo> iterator = ...
 
 // yields every foo from iterator, interspersed with the infix
-Iterator<Foo> infixingIterator = new InfixingIterator<Foo>(iterator, infix);
+Iterator<Foo> infixedIterator = new InfixedIterator<Foo>(iterator, infix);
 ```
 
 ### Looking ahead
@@ -253,7 +253,7 @@ Iterator<Integer> countUpIterator = new CountUpIterator(0, 10);
 [FilteringIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/FilteringIterator.html
 [FloatArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/FloatArrayIterator.html
 [IntegerArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/IntegerArrayIterator.html
-[InfixingIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/InfixingIterator.html
+[InfixedIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/InfixedIterator.html
 [LongArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/LongArrayIterator.html
 [LookAhead]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/LookAhead.html
 [LookAheadIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/LookAheadIterator.html
