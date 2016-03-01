@@ -21,14 +21,13 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 
 /**
  * A {@link StringTokenizerIterator} is an {@link Iterator} that can be wrapped
- * around a given {@link Enumeration} and yields all tokens yielded by the given
- * {@link StringTokenizer}.
+ * around a given {@link StringTokenizer} and yields all tokens yielded by the
+ * given {@link StringTokenizer}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.2.0
