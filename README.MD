@@ -19,6 +19,7 @@ This is a collection of companion iterators for [some commonly useful `Iterable`
 - [Iterating over single values](#iterating-over-single-values)
 - [Iterating over primitive arrays](#iterating-over-non-primitive-arrays)
 - [Iterating over non-primitive arrays](#iterating-over-primitive-arrays)
+- [Iterating over traversable objects](#iterating-over-traversable-objects)
 - [Counting up and down](#counting-up-and-down)
 
 This library is hosted in the [Maven Central Repository](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/commons-iterators). You can use it with the following coordinates:
@@ -138,16 +139,17 @@ For situations where it is necessary to provide an [`Iterator`][Iterator], but n
 
 ```java
 // yields nothing
-Iterator<Foo> = new EmptyIterator<Foo>();
+Iterator<Foo> emptyIterator = new EmptyIterator<Foo>();
 ```
 
 For situations where some [`Iterator`][Iterator] is obtained and passed along, it might be useful to wrap the obtained [`Iterator`][Iterator] in a [`NullSaveIterator`][NullSaveIterator]. A [`NullSaveIterator`][NullSaveIterator] always fulfills the [`Iterator`][Iterator] contract, even if it is constructed from a `null` [`Iterator`][Iterator].
 
 ```java
+// an iterator that may be null
 Iterator<Foo> iterator = ...
 
 // yields every foo from iterator of nothing, if iterator is null
-iterator = new NullSaveIterator(iterator); 
+Iterator<Foo> nullSaveIterator = new NullSaveIterator(iterator); 
 ```
 
 For situations where some [`Iterator`][Iterator] is obtained, it might be useful to wrap the obtained [`Iterator`][Iterator] in a [`NullFreeIterator`][NullFreeIterator]. A [`NullFreeIterator`][NullFreeIterator] filters out all `null` values yielded by the obtained [`Iterator`][Iterator].
@@ -156,7 +158,7 @@ For situations where some [`Iterator`][Iterator] is obtained, it might be useful
 Iterator<Foo> iterator = ...
 
 // yields every non-null foo from iterator
-iterator = new NullFreeIterator(iterator);
+Iterator<Foo> nullFreeIterator = new NullFreeIterator(iterator);
 ```
 
 ### Iterating over single values
@@ -167,10 +169,10 @@ This library provides the [`ObjectIterator`][ObjectIterator] and [`OptionalItera
 Foo foo = ...
 
 // yields foo, even if foo is null
-Iterator<Foo> = new ObjectIterator(foo); 
+Iterator<Foo> objectIterator = new ObjectIterator(foo); 
 
 // yields foo or nothing, if foo is null
-Iterator<Foo> = new OptionalIterator(foo); 
+Iterator<Foo> optionalIterator = new OptionalIterator(foo); 
 ```
 
 ### Iterating over primitive arrays
@@ -190,7 +192,7 @@ This library provides the following [`Iterators`][Iterator] that take existing p
 boolean[] booleans = ...
 
 // yields every boolean from booleans
-Iterator<Boolean> = new BooleanArrayIterator(booleans);
+Iterator<Boolean> arraytIterator = new BooleanArrayIterator(booleans);
 ```
 
 ### Iterating over non-primitive arrays
@@ -201,7 +203,27 @@ This library provides the generic [`ArrayIterator`][ArrayIterator] that takes an
 Foo[] foos = ...
 
 // yields every foo from foos
-Iterator<Foo> = new ArrayIterator(foos); 
+Iterator<Foo> iterator = new ArrayIterator(foos); 
+```
+
+### Iterating over traversable objects
+
+This library provides the generic [`EnumerationIterator`][EnumerationIterator] that takes and existing [`Enumeration`][Enumeration] and yields every object yielded by the given [`Enumeration`][Enumeration].
+
+```java
+Enumeration<Foo> enumeration = ...
+
+// yields every foo from enumeration
+Iterator<Foo> enumerationIterator = new EnumerationIterator(enumeration); 
+```
+
+This library provides the [`StringTokenizerIterator`][StringTokenizerIterator] that takes and existing [`StringTokenizer`][StringTokenizer] and yields every string yielded by the given [`StringTokenizer`][StringTokenizer].
+
+```java
+StringTokenizer tokenizer = ...
+
+// yields every string from tokenizer
+Iterator<String> tokenizerIterator = new StringTokenizerIterator(tokenizer); 
 ```
 
 ### Counting up and down
@@ -210,10 +232,10 @@ This library provides the [`CountDownIterator`][CountDownIterator] and [`CountUp
 
 ```java
 // yields 10, 9, ..., 1, 0
-Iterator<Integer> = new CountDownIterator(10, 0);
+Iterator<Integer> countDownIterator = new CountDownIterator(10, 0);
 
 // yields 0, 1, ..., 9, 10 
-Iterator<Integer> = new CountUpIterator(0, 10); 
+Iterator<Integer> countUpIterator = new CountUpIterator(0, 10); 
 ```
 
 
@@ -227,6 +249,7 @@ Iterator<Integer> = new CountUpIterator(0, 10);
 [CountUpIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/CountUpIterator.html
 [DoubleArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/DoubleArrayIterator.html
 [EmptyIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/EmptyIterator.html
+[EnumerationIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/EnumerationIterator.html
 [FilteringIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/FilteringIterator.html
 [FloatArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/FloatArrayIterator.html
 [IntegerArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/IntegerArrayIterator.html
@@ -239,10 +262,14 @@ Iterator<Integer> = new CountUpIterator(0, 10);
 [ObjectIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/ObjectIterator.html
 [OptionalIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/OptionalIterator.html
 [ShortArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/ShortArrayIterator.html
+[StringTokenizerIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/StringTokenizerIterator.html
 
 [Converter]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Converter.html
 [Predicate]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Predicate.html
 
+[Enumeration]: https://docs.oracle.com/javase/8/docs/api/index.html?java/util/Enumeration.html
 [Iterable]: http://docs.oracle.com/javase/8/docs/api/index.html?java/lang/Iterable.html
 [Iterator]: http://docs.oracle.com/javase/8/docs/api/index.html?java/util/Iterator.html
 [List]: http://docs.oracle.com/javase/8/docs/api/index.html?java/util/List.html
+[StringTokenizer]: https://docs.oracle.com/javase/8/docs/api/index.html?java/util/StringTokenizer.html
+
