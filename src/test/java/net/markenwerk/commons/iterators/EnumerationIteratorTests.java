@@ -42,7 +42,7 @@ public class EnumerationIteratorTests {
 	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullTokenizer() {
 
-		new StringTokenizerIterator(null);
+		new EnumerationIterator<Object>(null);
 
 	}
 
