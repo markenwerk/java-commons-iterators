@@ -37,7 +37,7 @@ public class BooleanArrayIteratorTests {
 	 * Iterate over a {@code boolean[]}.
 	 */
 	@Test
-	public void booleanArray_iterate() {
+	public void iterate() {
 
 		boolean[] values = new boolean[] { true, false };
 		Iterator<Boolean> iterator = new BooleanArrayIterator(values);
@@ -53,12 +53,10 @@ public class BooleanArrayIteratorTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test
-	public void booleanArray_iterateNullArray() {
+	@Test(expected=IllegalArgumentException.class)
+	public void iterateNullArray() {
 
-		Iterator<Boolean> iterator = new BooleanArrayIterator(null);
-
-		Assert.assertFalse(iterator.hasNext());
+		new BooleanArrayIterator(null);
 
 	}
 
@@ -66,7 +64,7 @@ public class BooleanArrayIteratorTests {
 	 * Remove a value in a {@code boolean[]}.
 	 */
 	@Test
-	public void booleanArray_removeWithFallback() {
+	public void removeWithFallback() {
 
 		boolean replacement = false;
 		boolean[] values = new boolean[] { true };
@@ -86,7 +84,7 @@ public class BooleanArrayIteratorTests {
 	 * Remove a value in a {@code boolean[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void booleanArray_removeWithoutFallback() {
+	public void removeWithoutFallback() {
 
 		boolean[] values = new boolean[] { true };
 		Iterator<Boolean> iterator = new BooleanArrayIterator(values);

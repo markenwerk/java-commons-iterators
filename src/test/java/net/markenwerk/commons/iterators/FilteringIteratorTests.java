@@ -45,11 +45,31 @@ public class FilteringIteratorTests {
 	};
 
 	/**
+	 * Iterate over a {@code null} iterator.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullIterator() {
+
+		new FilteringIterator<Object>(null, UNSATISFYING_OBJECT_PREDICATE);
+
+	}
+
+	/**
+	 * Iterate with a {@code null} predicate.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullPredicate() {
+
+		new FilteringIterator<Object>(new EmptyIterator<Object>(), null);
+
+	}
+
+	/**
 	 * Filter out a unsatisfying value at the front of the underlying
 	 * {@link Iterator}.
 	 */
 	@Test
-	public void filtering_unsatisfyingAtFront() {
+	public void unsatisfyingAtFront() {
 
 		Object[] values = new Object[] { UNSATISFYING_OBJECT, new Object() };
 		Iterator<Object> iterator = new FilteringIterator<Object>(new ArrayIterator<Object>(values),
@@ -66,7 +86,7 @@ public class FilteringIteratorTests {
 	 * {@link Iterator}.
 	 */
 	@Test
-	public void filtering_unsatisfyingInMiddle() {
+	public void unsatisfyingInMiddle() {
 
 		Object[] values = new Object[] { new Object(), UNSATISFYING_OBJECT, new Object() };
 		Iterator<Object> iterator = new FilteringIterator<Object>(new ArrayIterator<Object>(values),
@@ -85,7 +105,7 @@ public class FilteringIteratorTests {
 	 * {@link Iterator}.
 	 */
 	@Test
-	public void filtering_unsatisfyingAtEnd() {
+	public void unsatisfyingAtEnd() {
 
 		Object[] values = new Object[] { new Object(), UNSATISFYING_OBJECT };
 		Iterator<Object> iterator = new FilteringIterator<Object>(new ArrayIterator<Object>(values),
@@ -102,7 +122,7 @@ public class FilteringIteratorTests {
 	 * {@link Iterator}.
 	 */
 	@Test
-	public void filtering_invertedPredicate() {
+	public void invertedPredicate() {
 
 		Object[] values = new Object[] { new Object(), UNSATISFYING_OBJECT, new Object() };
 		Iterator<Object> iterator = new FilteringIterator<Object>(new ArrayIterator<Object>(values),
@@ -118,7 +138,7 @@ public class FilteringIteratorTests {
 	 * Remove an object from the underlying {@link Iterator}.
 	 */
 	@Test
-	public void filtering_remove() {
+	public void remove() {
 
 		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };

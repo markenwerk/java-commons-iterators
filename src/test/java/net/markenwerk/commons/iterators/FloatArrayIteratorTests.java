@@ -37,7 +37,7 @@ public class FloatArrayIteratorTests {
 	 * Iterate over a {@code float[]}.
 	 */
 	@Test
-	public void floatArray_iterate() {
+	public void iterate() {
 
 		float[] values = new float[] { 1, 2 };
 		Iterator<Float> iterator = new FloatArrayIterator(values);
@@ -53,12 +53,10 @@ public class FloatArrayIteratorTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test
-	public void floatArray_iterateNullArray() {
+	@Test(expected=IllegalArgumentException.class)
+	public void iterateNullArray() {
 
-		Iterator<Float> iterator = new FloatArrayIterator(null);
-
-		Assert.assertFalse(iterator.hasNext());
+		new FloatArrayIterator(null);
 
 	}
 	
@@ -66,7 +64,7 @@ public class FloatArrayIteratorTests {
 	 * Remove a value in a {@code float[]}.
 	 */
 	@Test
-	public void floatArray_removeWithFallback() {
+	public void removeWithFallback() {
 
 		float replacement = 0;
 		float[] values = new float[] { 1 };
@@ -86,7 +84,7 @@ public class FloatArrayIteratorTests {
 	 * Remove a value in a {@code float[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void floatArray_removeWithoutFallback() {
+	public void removeWithoutFallback() {
 
 		float[] values = new float[] { 1 };
 		Iterator<Float> iterator = new FloatArrayIterator(values);

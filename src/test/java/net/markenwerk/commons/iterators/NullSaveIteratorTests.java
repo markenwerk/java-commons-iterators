@@ -37,7 +37,7 @@ public class NullSaveIteratorTests {
 	 * Iterate over a a non-{@literal null} {@link Iterator}.
 	 */
 	@Test
-	public void nullSave_withNonNullIterator() {
+	public void withNonNullIterator() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<Object> iterator = new NullSaveIterator<Object>(new ArrayIterator<Object>(values));
@@ -55,7 +55,7 @@ public class NullSaveIteratorTests {
 	 */
 
 	@Test
-	public void nullSave_withNonNullIterable() {
+	public void withNonNullIterable() {
 
 		final Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<Object> iterator = new NullSaveIterator<Object>(new Iterable<Object>() {
@@ -78,7 +78,7 @@ public class NullSaveIteratorTests {
 	 */
 
 	@Test
-	public void nullSave_withNullIterator() {
+	public void withNullIterator() {
 
 		Iterator<Object> iterator = new NullSaveIterator<Object>((Iterator<Object>) null);
 
@@ -91,7 +91,7 @@ public class NullSaveIteratorTests {
 	 */
 
 	@Test
-	public void nullSave_withNullIterable() {
+	public void withNullIterable() {
 
 		Iterator<Object> iterator = new NullSaveIterator<Object>((Iterable<Object>) null);
 
@@ -103,7 +103,7 @@ public class NullSaveIteratorTests {
 	 * Remove an object from the underlying {@link Iterator}.
 	 */
 	@Test
-	public void nullSave_remove() {
+	public void remove() {
 
 		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };

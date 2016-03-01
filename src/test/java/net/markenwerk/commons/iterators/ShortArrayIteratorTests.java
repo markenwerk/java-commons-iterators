@@ -37,7 +37,7 @@ public class ShortArrayIteratorTests {
 	 * Iterate over a {@code short[]}.
 	 */
 	@Test
-	public void shortArray_iterate() {
+	public void iterate() {
 
 		short[] values = new short[] { 1, 2 };
 		Iterator<Short> iterator = new ShortArrayIterator(values);
@@ -53,12 +53,10 @@ public class ShortArrayIteratorTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test
-	public void shortArray_iterateNullArray() {
+	@Test(expected=IllegalArgumentException.class)
+	public void iterateNullArray() {
 
-		Iterator<Short> iterator = new ShortArrayIterator(null);
-
-		Assert.assertFalse(iterator.hasNext());
+		new ShortArrayIterator(null);
 
 	}
 
@@ -66,7 +64,7 @@ public class ShortArrayIteratorTests {
 	 * Remove a value in a {@code short[]}.
 	 */
 	@Test
-	public void shortArray_removeWithFallback() {
+	public void removeWithFallback() {
 
 		short replacement = 0;
 		short[] values = new short[] { 1 };
@@ -86,7 +84,7 @@ public class ShortArrayIteratorTests {
 	 * Remove a value in a {@code short[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void shortArray_removeWithoutFallback() {
+	public void removeWithoutFallback() {
 
 		short[] values = new short[] { 1 };
 		Iterator<Short> iterator = new ShortArrayIterator(values);

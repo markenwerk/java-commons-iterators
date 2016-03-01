@@ -37,7 +37,7 @@ public class ArrayIteratorTests {
 	 * Iterate over a payload array.
 	 */
 	@Test
-	public void array_iterate() {
+	public void iterate() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<Object> iterator = new ArrayIterator<Object>(values);
@@ -53,12 +53,10 @@ public class ArrayIteratorTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test
-	public void array_iterateNullArray() {
+	@Test(expected=IllegalArgumentException.class)
+	public void iterateNullArray() {
 
-		Iterator<Object> iterator = new ArrayIterator<Object>(null);
-
-		Assert.assertFalse(iterator.hasNext());
+		new ArrayIterator<Object>(null);
 
 	}
 
@@ -66,7 +64,7 @@ public class ArrayIteratorTests {
 	 * Remove a value in a {@code short[]}.
 	 */
 	@Test
-	public void array_removeWithFallback() {
+	public void removeWithFallback() {
 
 		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };
@@ -86,7 +84,7 @@ public class ArrayIteratorTests {
 	 * Remove a value in a {@code short[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void array_removeWithoutFallback() {
+	public void removeWithoutFallback() {
 
 		Object[] values = new Object[] { new Object() };
 		Iterator<Object> iterator = new ArrayIterator<Object>(values);

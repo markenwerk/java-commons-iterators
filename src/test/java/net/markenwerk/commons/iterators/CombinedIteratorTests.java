@@ -36,11 +36,41 @@ import org.junit.Test;
 public class CombinedIteratorTests {
 
 	/**
+	 * Iterate over a {@code null} iterator.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullArray() {
+
+		new CombinedIterator<Object>((Iterator<Object>[]) null);
+
+	}
+
+	/**
+	 * Iterate over a {@code null} iterator.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullIterable() {
+
+		new CombinedIterator<Object>((Iterable<Iterator<Object>>) null);
+
+	}
+
+	/**
+	 * Iterate over a {@code null} iterator.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullIterator() {
+
+		new CombinedIterator<Object>((Iterator<Iterator<Object>>) null);
+
+	}
+
+	/**
 	 * Iterate over no iterators.
 	 */
 	@Test
 	@SuppressWarnings("unchecked")
-	public void combined_noIterators() {
+	public void noIterators() {
 
 		Iterator<Object> iterator = new CombinedIterator<Object>();
 
@@ -53,7 +83,7 @@ public class CombinedIteratorTests {
 	 */
 	@Test
 	@SuppressWarnings("unchecked")
-	public void combined_oneIterator() {
+	public void oneIterator() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<Object> iterator = new CombinedIterator<Object>(new ArrayIterator<Object>(values));
@@ -71,7 +101,7 @@ public class CombinedIteratorTests {
 	 */
 	@Test
 	@SuppressWarnings("unchecked")
-	public void combined_iteratorsArray() {
+	public void iteratorsArray() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<Object> iterator = new CombinedIterator<Object>(new ArrayIterator<Object>(values),
@@ -93,7 +123,7 @@ public class CombinedIteratorTests {
 	 * Iterate over multiple iterator.
 	 */
 	@Test
-	public void combined_iteratorsIterable() {
+	public void iteratorsIterable() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 
@@ -118,7 +148,7 @@ public class CombinedIteratorTests {
 	 * Iterate over multiple iterator.
 	 */
 	@Test
-	public void combined_iteratorsIterator() {
+	public void iteratorsIterator() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 
@@ -144,7 +174,7 @@ public class CombinedIteratorTests {
 	 */
 	@Test
 	@SuppressWarnings("unchecked")
-	public void combined_remove() {
+	public void remove() {
 
 		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };

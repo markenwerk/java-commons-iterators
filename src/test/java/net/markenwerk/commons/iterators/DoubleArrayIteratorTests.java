@@ -37,7 +37,7 @@ public class DoubleArrayIteratorTests {
 	 * Iterate over a {@code double[]}.
 	 */
 	@Test
-	public void doubleArray_iterate() {
+	public void iterate() {
 
 		double[] values = new double[] { 1, 2 };
 		Iterator<Double> iterator = new DoubleArrayIterator(values);
@@ -53,12 +53,10 @@ public class DoubleArrayIteratorTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test
-	public void doubleArray_iterateNullArray() {
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullArray() {
 
-		Iterator<Double> iterator = new DoubleArrayIterator(null);
-
-		Assert.assertFalse(iterator.hasNext());
+		new DoubleArrayIterator(null);
 
 	}
 	
@@ -66,7 +64,7 @@ public class DoubleArrayIteratorTests {
 	 * Remove a value in a {@code double[]}.
 	 */
 	@Test
-	public void doubleArray_removeWithFallback() {
+	public void removeWithFallback() {
 
 		double replacement = 2;
 		double[] values = new double[] { 1 };
@@ -86,7 +84,7 @@ public class DoubleArrayIteratorTests {
 	 * Remove a value in a {@code double[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void doubleArray_removeWithoutFallback() {
+	public void removeWithoutFallback() {
 
 		double[] values = new double[] { 1 };
 		Iterator<Double> iterator = new DoubleArrayIterator(values);

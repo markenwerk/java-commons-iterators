@@ -37,7 +37,7 @@ public class ObjectIteratorTests {
 	 * Iterate over a payload object.
 	 */
 	@Test
-	public void object_iterate() {
+	public void iterate() {
 
 		Object value = new Object();
 		Iterator<Object> iterator = new ObjectIterator<Object>(value);
@@ -52,7 +52,7 @@ public class ObjectIteratorTests {
 	 * Iterate over a {@code null} object.
 	 */
 	@Test
-	public void object_iterateNull() {
+	public void iterateNull() {
 
 		Iterator<Object> iterator = new ObjectIterator<Object>(null);
 

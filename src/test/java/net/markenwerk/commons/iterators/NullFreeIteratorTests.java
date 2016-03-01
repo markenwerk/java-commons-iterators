@@ -33,12 +33,25 @@ import org.junit.Test;
  */
 public class NullFreeIteratorTests {
 
+	
+	/**
+	 * Iterate over a {@code null} iterator.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullIterable() {
+
+		new NullFreeIterator<Object>(null);
+
+	}
+	
+	
+	
 	/**
 	 * Filter out a {@literal null} value at the front of the underlying
 	 * {@link Iterator}.
 	 */
 	@Test
-	public void nullFree_nullAtFront() {
+	public void nullAtFront() {
 
 		Object[] values = new Object[] { null, new Object() };
 		Iterator<Object> iterator = new NullFreeIterator<Object>(new ArrayIterator<Object>(values));
@@ -54,7 +67,7 @@ public class NullFreeIteratorTests {
 	 * {@link Iterator}.
 	 */
 	@Test
-	public void nullFree_nullInMiddle() {
+	public void nullInMiddle() {
 
 		Object[] values = new Object[] { new Object(), null, new Object() };
 		Iterator<Object> iterator = new NullFreeIterator<Object>(new ArrayIterator<Object>(values));
@@ -72,7 +85,7 @@ public class NullFreeIteratorTests {
 	 * {@link Iterator}.
 	 */
 	@Test
-	public void nullFree_nullAtEnd() {
+	public void nullAtEnd() {
 
 		Object[] values = new Object[] { new Object(), null };
 		Iterator<Object> iterator = new NullFreeIterator<Object>(new ArrayIterator<Object>(values));
@@ -87,7 +100,7 @@ public class NullFreeIteratorTests {
 	 * Remove an object from the underlying {@link Iterator}.
 	 */
 	@Test
-	public void nullFree_remove() {
+	public void remove() {
 
 		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };

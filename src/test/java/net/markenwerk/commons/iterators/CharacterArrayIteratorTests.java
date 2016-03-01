@@ -37,7 +37,7 @@ public class CharacterArrayIteratorTests {
 	 * Iterate over a {@code char[]}.
 	 */
 	@Test
-	public void charArray_iterate() {
+	public void iterate() {
 
 		char[] values = new char[] { 1, 2 };
 		Iterator<Character> iterator = new CharacterArrayIterator(values);
@@ -53,12 +53,10 @@ public class CharacterArrayIteratorTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test
-	public void characterArray_iterateNullArray() {
+	@Test(expected=IllegalArgumentException.class)
+	public void iterateNullArray() {
 
-		Iterator<Character> iterator = new CharacterArrayIterator(null);
-
-		Assert.assertFalse(iterator.hasNext());
+		new CharacterArrayIterator(null);
 
 	}
 	
@@ -67,7 +65,7 @@ public class CharacterArrayIteratorTests {
 	 * Remove a value in a {@code char[]}.
 	 */
 	@Test
-	public void charArray_removeWithFallback() {
+	public void removeWithFallback() {
 
 		char replacement = 0;
 		char[] values = new char[] { 1 };
@@ -87,7 +85,7 @@ public class CharacterArrayIteratorTests {
 	 * Remove a value in a {@code char[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void charArray_removeWithoutFallback() {
+	public void removeWithoutFallback() {
 
 		char[] values = new char[] { 1 };
 		Iterator<Character> iterator = new CharacterArrayIterator(values);

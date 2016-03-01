@@ -52,12 +52,34 @@ public class ConvertingIteratorTests {
 		}
 	};
 
+	
+	/**
+	 * Iterate over a {@code null} iterator.
+	 */
+	@Test(expected=IllegalArgumentException.class)
+	public void iterateNullIterator() {
+
+		new ConvertingIterator<Object, Wrapper>(null, WRAPPING_CONVERTER);
+
+	}
+	
+	/**
+	 * Iterate with a {@code null} iterator.
+	 */
+	@Test(expected=IllegalArgumentException.class)
+	public void iterateNullConverter() {
+
+		new ConvertingIterator<Object, Wrapper>(new EmptyIterator<Object>(), null);
+
+	}
+	
+	
 	/**
 	 * Convert all values yielded by the underlying {@link Iterator} to their
 	 * hash values.
 	 */
 	@Test
-	public void converting_iterate() {
+	public void iterate() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<Wrapper> iterator = new ConvertingIterator<Object, Wrapper>(new ArrayIterator<Object>(values),
@@ -75,7 +97,7 @@ public class ConvertingIteratorTests {
 	 * Remove an object from the underlying {@link Iterator}.
 	 */
 	@Test
-	public void converting_remove() {
+	public void remove() {
 
 		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };

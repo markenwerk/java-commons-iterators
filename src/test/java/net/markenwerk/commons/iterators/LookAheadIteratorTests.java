@@ -33,11 +33,23 @@ import org.junit.Test;
  */
 public class LookAheadIteratorTests {
 
+	
+	/**
+	 * Iterate over a {@code null} iterator.
+	 */
+	@Test(expected=IllegalArgumentException.class)
+	public void iterateNullIterator() {
+
+		new LookAheadIterator<Object>(null);
+
+	}
+	
+	
 	/**
 	 * Iterate over an empty iterator.
 	 */
 	@Test
-	public void lookAhead_iterateEmpty() {
+	public void iterateEmpty() {
 
 		Iterator<LookAhead<Object>> iterator = new LookAheadIterator<Object>(new EmptyIterator<Object>());
 
@@ -49,7 +61,7 @@ public class LookAheadIteratorTests {
 	 * Iterate over an {@link Iterator} with one element.
 	 */
 	@Test
-	public void object_iterateOne() {
+	public void iterateOne() {
 
 		Object[] values = new Object[] { new Object() };
 		Iterator<LookAhead<Object>> iterator = new LookAheadIterator<Object>(new ArrayIterator<Object>(values));
@@ -68,7 +80,7 @@ public class LookAheadIteratorTests {
 	 * Iterate over an {@link Iterator} with two elements.
 	 */
 	@Test
-	public void object_iterateTwo() {
+	public void iterateTwo() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<LookAhead<Object>> iterator = new LookAheadIterator<Object>(new ArrayIterator<Object>(values));
@@ -94,7 +106,7 @@ public class LookAheadIteratorTests {
 	 * Iterate over an {@link Iterator} with three elements.
 	 */
 	@Test
-	public void object_iterateThree() {
+	public void iterateThree() {
 
 		Object[] values = new Object[] { new Object(), new Object(), new Object() };
 		Iterator<LookAhead<Object>> iterator = new LookAheadIterator<Object>(new ArrayIterator<Object>(values));

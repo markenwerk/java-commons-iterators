@@ -37,7 +37,7 @@ public class IntegerArrayIteratorTests {
 	 * Iterate over a {@code int[]}.
 	 */
 	@Test
-	public void intArray_iterate() {
+	public void iterate() {
 
 		int[] values = new int[] { 1, 2 };
 		Iterator<Integer> iterator = new IntegerArrayIterator(values);
@@ -53,12 +53,10 @@ public class IntegerArrayIteratorTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test
-	public void integerArray_iterateNullArray() {
+	@Test(expected=IllegalArgumentException.class)
+	public void iterateNullArray() {
 
-		Iterator<Integer> iterator = new IntegerArrayIterator(null);
-
-		Assert.assertFalse(iterator.hasNext());
+		new IntegerArrayIterator(null);
 
 	}
 
@@ -66,7 +64,7 @@ public class IntegerArrayIteratorTests {
 	 * Remove a value in a {@code integer[]}.
 	 */
 	@Test
-	public void integerArray_removeWithFallback() {
+	public void removeWithFallback() {
 
 		int replacement = 0;
 		int[] values = new int[] { 1 };
@@ -86,7 +84,7 @@ public class IntegerArrayIteratorTests {
 	 * Remove a value in a {@code integer[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void integerArray_removeWithoutFallback() {
+	public void removeWithoutFallback() {
 
 		int[] values = new int[] { 1 };
 		Iterator<Integer> iterator = new IntegerArrayIterator(values);
