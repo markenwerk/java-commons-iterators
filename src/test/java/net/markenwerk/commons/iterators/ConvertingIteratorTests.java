@@ -29,7 +29,7 @@ import org.junit.Test;
 import net.markenwerk.commons.interfaces.Converter;
 
 /**
- * JUnit test for {@link FilteringIterator}.
+ * JUnit test for {@link ConvertingIterator}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  */

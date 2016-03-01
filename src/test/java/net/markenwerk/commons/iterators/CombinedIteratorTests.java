@@ -29,7 +29,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * JUnit test for {@link FilteringIterator}.
+ * JUnit test for {@link CombinedIterator}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  */
