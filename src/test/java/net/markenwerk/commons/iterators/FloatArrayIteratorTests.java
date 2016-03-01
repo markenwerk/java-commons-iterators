@@ -53,13 +53,13 @@ public class FloatArrayIteratorTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullArray() {
 
 		new FloatArrayIterator(null);
 
 	}
-	
+
 	/**
 	 * Remove a value in a {@code float[]}.
 	 */

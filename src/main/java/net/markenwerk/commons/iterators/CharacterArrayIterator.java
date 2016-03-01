@@ -53,10 +53,10 @@ public final class CharacterArrayIterator implements Iterator<Character> {
 	 * has been given.
 	 * 
 	 * @param array
-	 *           The {@code char[]} to iterate over.
+	 *            The {@code char[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code char[]} is {@literal null}.
+	 *             If the given {@code char[]} is {@literal null}.
 	 */
 	public CharacterArrayIterator(char[] array) throws IllegalArgumentException {
 		this(array, null);
@@ -72,12 +72,12 @@ public final class CharacterArrayIterator implements Iterator<Character> {
 	 * has been given.
 	 * 
 	 * @param array
-	 *           The {@code char[]} to iterate over.
+	 *            The {@code char[]} to iterate over.
 	 * @param replacement
-	 *           The value to replace removed values with.
+	 *            The value to replace removed values with.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code char[]} is {@literal null}.
+	 *             If the given {@code char[]} is {@literal null}.
 	 */
 	public CharacterArrayIterator(char[] array, char replacement) throws IllegalArgumentException {
 		this(array, Character.valueOf(replacement));

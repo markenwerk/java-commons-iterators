@@ -49,7 +49,7 @@ public class EmptyIteratorTests {
 	/**
 	 * Iterate over an {@link EmptyIterator}.
 	 */
-	@Test(expected=UnsupportedOperationException.class)
+	@Test(expected = UnsupportedOperationException.class)
 	public void remove() {
 
 		new EmptyIterator<Object>().remove();

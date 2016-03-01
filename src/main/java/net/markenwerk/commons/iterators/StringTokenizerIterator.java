@@ -42,12 +42,12 @@ public final class StringTokenizerIterator implements ProtectedIterator<String> 
 	 * {@link StringTokenizer}.
 	 * 
 	 * @param tokenizer
-	 *           The {@link StringTokenizer}, around which the new
-	 *           {@link StringTokenizerIterator} will be wrapped, or
-	 *           {@literal null}.
+	 *            The {@link StringTokenizer}, around which the new
+	 *            {@link StringTokenizerIterator} will be wrapped, or
+	 *            {@literal null}.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@link StringTokenizer} is {@literal null}.
+	 *             If the given {@link StringTokenizer} is {@literal null}.
 	 */
 	public StringTokenizerIterator(StringTokenizer tokenizer) throws IllegalArgumentException {
 		if (null == tokenizer) {

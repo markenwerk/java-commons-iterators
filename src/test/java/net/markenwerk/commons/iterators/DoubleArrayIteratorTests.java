@@ -59,7 +59,7 @@ public class DoubleArrayIteratorTests {
 		new DoubleArrayIterator(null);
 
 	}
-	
+
 	/**
 	 * Remove a value in a {@code double[]}.
 	 */

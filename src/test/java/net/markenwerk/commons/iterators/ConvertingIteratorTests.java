@@ -52,28 +52,26 @@ public class ConvertingIteratorTests {
 		}
 	};
 
-	
 	/**
 	 * Iterate over a {@code null} iterator.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullIterator() {
 
 		new ConvertingIterator<Object, Wrapper>(null, WRAPPING_CONVERTER);
 
 	}
-	
+
 	/**
 	 * Iterate with a {@code null} iterator.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullConverter() {
 
 		new ConvertingIterator<Object, Wrapper>(new EmptyIterator<Object>(), null);
 
 	}
-	
-	
+
 	/**
 	 * Convert all values yielded by the underlying {@link Iterator} to their
 	 * hash values.

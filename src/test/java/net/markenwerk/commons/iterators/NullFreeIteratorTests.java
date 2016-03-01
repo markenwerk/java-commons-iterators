@@ -33,7 +33,6 @@ import org.junit.Test;
  */
 public class NullFreeIteratorTests {
 
-	
 	/**
 	 * Iterate over a {@code null} iterator.
 	 */
@@ -43,9 +42,7 @@ public class NullFreeIteratorTests {
 		new NullFreeIterator<Object>(null);
 
 	}
-	
-	
-	
+
 	/**
 	 * Filter out a {@literal null} value at the front of the underlying
 	 * {@link Iterator}.

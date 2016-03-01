@@ -53,10 +53,10 @@ public final class ByteArrayIterator implements Iterator<Byte> {
 	 * been given.
 	 * 
 	 * @param array
-	 *           The {@code byte[]} to iterate over.
+	 *            The {@code byte[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code byte[]} is {@literal null}.
+	 *             If the given {@code byte[]} is {@literal null}.
 	 */
 	public ByteArrayIterator(byte[] array) throws IllegalArgumentException {
 		this(array, null);
@@ -72,12 +72,12 @@ public final class ByteArrayIterator implements Iterator<Byte> {
 	 * been given.
 	 * 
 	 * @param array
-	 *           The {@code byte[]} to iterate over.
+	 *            The {@code byte[]} to iterate over.
 	 * @param replacement
-	 *           The value to replace removed values with.
+	 *            The value to replace removed values with.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code byte[]} is {@literal null}.
+	 *             If the given {@code byte[]} is {@literal null}.
 	 */
 	public ByteArrayIterator(byte[] array, byte replacement) throws IllegalArgumentException {
 		this(array, Byte.valueOf(replacement));

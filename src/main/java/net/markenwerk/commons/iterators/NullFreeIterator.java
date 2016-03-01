@@ -33,7 +33,7 @@ import java.util.Iterator;
  * unless a value that is not {@literal null} is available.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -49,11 +49,11 @@ public final class NullFreeIterator<Payload> implements Iterator<Payload> {
 	 * Creates a new {@link NullFreeIterator} from the given {@link Iterator}.
 	 * 
 	 * @param iterator
-	 *           The {@link Iterator}, around which the new
-	 *           {@link NullFreeIterator} will be wrapped.
+	 *            The {@link Iterator}, around which the new
+	 *            {@link NullFreeIterator} will be wrapped.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@link Iterator} is {@literal null}.
+	 *             If the given {@link Iterator} is {@literal null}.
 	 */
 	public NullFreeIterator(Iterator<Payload> iterator) throws IllegalArgumentException {
 		if (null == iterator) {

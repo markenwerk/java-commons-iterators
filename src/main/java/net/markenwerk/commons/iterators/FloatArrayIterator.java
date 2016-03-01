@@ -44,30 +44,30 @@ public final class FloatArrayIterator implements Iterator<Float> {
 	private int index = -1;
 
 	/**
-	 * Creates a new {@linkplain FloatArrayIterator} that iterates over the given
-	 * {@code float[]}.
+	 * Creates a new {@linkplain FloatArrayIterator} that iterates over the
+	 * given {@code float[]}.
 	 * 
 	 * @param array
-	 *           The {@code float[]} to iterate over.
+	 *            The {@code float[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code float[]} is {@literal null}.
+	 *             If the given {@code float[]} is {@literal null}.
 	 */
 	public FloatArrayIterator(float[] array) throws IllegalArgumentException {
 		this(array, null);
 	}
 
 	/**
-	 * Creates a new {@linkplain FloatArrayIterator} that iterates over the given
-	 * {@code float[]}.
+	 * Creates a new {@linkplain FloatArrayIterator} that iterates over the
+	 * given {@code float[]}.
 	 * 
 	 * @param array
-	 *           The {@code float[]} to iterate over.
+	 *            The {@code float[]} to iterate over.
 	 * @param replacement
-	 *           The value to replace removed values with.
+	 *            The value to replace removed values with.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code float[]} is {@literal null}.
+	 *             If the given {@code float[]} is {@literal null}.
 	 */
 	public FloatArrayIterator(float[] array, float replacement) throws IllegalArgumentException {
 		this(array, Float.valueOf(replacement));

@@ -53,10 +53,10 @@ public final class DoubleArrayIterator implements Iterator<Double> {
 	 * has been given.
 	 * 
 	 * @param array
-	 *           The {@code double[]} to iterate over.
+	 *            The {@code double[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code double[]} is {@literal null}.
+	 *             If the given {@code double[]} is {@literal null}.
 	 */
 	public DoubleArrayIterator(double[] array) throws IllegalArgumentException {
 		this(array, null);
@@ -72,12 +72,12 @@ public final class DoubleArrayIterator implements Iterator<Double> {
 	 * has been given.
 	 * 
 	 * @param array
-	 *           The {@code double[]} to iterate over.
+	 *            The {@code double[]} to iterate over.
 	 * @param replacement
-	 *           The value to replace removed values with.
+	 *            The value to replace removed values with.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code double[]} is {@literal null}.
+	 *             If the given {@code double[]} is {@literal null}.
 	 */
 	public DoubleArrayIterator(double[] array, double replacement) throws IllegalArgumentException {
 		this(array, Double.valueOf(replacement));

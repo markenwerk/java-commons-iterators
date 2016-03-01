@@ -32,7 +32,7 @@ import java.util.Iterator;
  * calling {@link EmptyIterator#next()} always returns {@literal null}.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */

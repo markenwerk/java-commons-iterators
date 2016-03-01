@@ -29,7 +29,7 @@ import java.util.Iterator;
  * {@link Iterator}, if the given payload object is {@literal null}.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.5
  */
@@ -44,7 +44,7 @@ public final class OptionalIterator<Payload> implements ProtectedIterator<Payloa
 	 * payload object.
 	 * 
 	 * @param value
-	 *           The payload object to iterate over.
+	 *            The payload object to iterate over.
 	 */
 	public OptionalIterator(Payload value) {
 		this.value = value;

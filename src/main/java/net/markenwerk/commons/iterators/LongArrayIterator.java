@@ -54,10 +54,10 @@ public final class LongArrayIterator implements Iterator<Long> {
 	 * been given.
 	 * 
 	 * @param array
-	 *           The {@code long[]} to iterate over.
+	 *            The {@code long[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code long[]} is {@literal null}.
+	 *             If the given {@code long[]} is {@literal null}.
 	 */
 	public LongArrayIterator(long[] array) throws IllegalArgumentException {
 		this(array, null);
@@ -73,12 +73,12 @@ public final class LongArrayIterator implements Iterator<Long> {
 	 * been given.
 	 * 
 	 * @param array
-	 *           The {@code long[]} to iterate over.
+	 *            The {@code long[]} to iterate over.
 	 * @param replacement
-	 *           The value to replace removed values with.
+	 *            The value to replace removed values with.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code long[]} is {@literal null}.
+	 *             If the given {@code long[]} is {@literal null}.
 	 */
 	public LongArrayIterator(long[] array, long replacement) throws IllegalArgumentException {
 		this(array, Long.valueOf(replacement));

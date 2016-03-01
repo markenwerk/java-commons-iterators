@@ -33,18 +33,16 @@ import org.junit.Test;
  */
 public class LookAheadIteratorTests {
 
-	
 	/**
 	 * Iterate over a {@code null} iterator.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullIterator() {
 
 		new LookAheadIterator<Object>(null);
 
 	}
-	
-	
+
 	/**
 	 * Iterate over an empty iterator.
 	 */

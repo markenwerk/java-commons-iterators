@@ -30,7 +30,7 @@ import java.util.Iterator;
  * {@link Enumeration}.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.2.0
  */
@@ -43,11 +43,12 @@ public final class EnumerationIterator<Payload> implements ProtectedIterator<Pay
 	 * {@link Enumeration}.
 	 * 
 	 * @param enumeration
-	 *           The {@link Enumeration}, around which the new
-	 *           {@link EnumerationIterator} will be wrapped, or {@literal null}.
+	 *            The {@link Enumeration}, around which the new
+	 *            {@link EnumerationIterator} will be wrapped, or
+	 *            {@literal null}.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@link Enumeration} is {@literal null}.
+	 *             If the given {@link Enumeration} is {@literal null}.
 	 */
 	public EnumerationIterator(Enumeration<Payload> enumeration) throws IllegalArgumentException {
 		if (null == enumeration) {

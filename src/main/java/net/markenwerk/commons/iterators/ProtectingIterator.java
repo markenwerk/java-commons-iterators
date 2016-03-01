@@ -33,7 +33,7 @@ import net.markenwerk.commons.interfaces.Predicate;
  * {@link Iterator}.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.2.0
  */
@@ -46,11 +46,11 @@ public final class ProtectingIterator<Payload> implements ProtectedIterator<Payl
 	 * and the given {@link Predicate}.
 	 * 
 	 * @param iterator
-	 *           The {@link Iterator}, around which the new
-	 *           {@link NullFreeIterator} will be wrapped.
+	 *            The {@link Iterator}, around which the new
+	 *            {@link NullFreeIterator} will be wrapped.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@link Iterator} is {@literal null}.
+	 *             If the given {@link Iterator} is {@literal null}.
 	 */
 	public ProtectingIterator(Iterator<? extends Payload> iterator) throws IllegalArgumentException {
 		if (null == iterator) {

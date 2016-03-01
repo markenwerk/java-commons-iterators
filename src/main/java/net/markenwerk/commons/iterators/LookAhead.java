@@ -30,7 +30,7 @@ package net.markenwerk.commons.iterators;
  * @since 1.1.6
  *
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  */
 public interface LookAhead<Payload> {
 

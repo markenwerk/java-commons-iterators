@@ -32,7 +32,7 @@ import java.util.Iterator;
  * {@link ProtectedIterator} is a marker interface.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.2.0
  */

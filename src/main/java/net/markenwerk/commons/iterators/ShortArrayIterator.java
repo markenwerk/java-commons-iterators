@@ -44,40 +44,40 @@ public final class ShortArrayIterator implements Iterator<Short> {
 	private int index = -1;
 
 	/**
-	 * Creates a new {@linkplain ShortArrayIterator} that iterates over the given
-	 * {@code short[]}.
+	 * Creates a new {@linkplain ShortArrayIterator} that iterates over the
+	 * given {@code short[]}.
 	 * 
 	 * <p>
 	 * If the given {@code short[]} is {@literal null}, the new
-	 * {@link ShortArrayIterator} will behave, as if an empty {@code short[]} has
-	 * been given.
+	 * {@link ShortArrayIterator} will behave, as if an empty {@code short[]}
+	 * has been given.
 	 * 
 	 * @param array
-	 *           The {@code short[]} to iterate over.
+	 *            The {@code short[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code short[]} is {@literal null}.
+	 *             If the given {@code short[]} is {@literal null}.
 	 */
 	public ShortArrayIterator(short[] array) throws IllegalArgumentException {
 		this(array, null);
 	}
 
 	/**
-	 * Creates a new {@linkplain ShortArrayIterator} that iterates over the given
-	 * {@code short[]}.
+	 * Creates a new {@linkplain ShortArrayIterator} that iterates over the
+	 * given {@code short[]}.
 	 * 
 	 * <p>
 	 * If the given {@code short[]} is {@literal null}, the new
-	 * {@link ShortArrayIterator} will behave, as if an empty {@code short[]} has
-	 * been given.
+	 * {@link ShortArrayIterator} will behave, as if an empty {@code short[]}
+	 * has been given.
 	 * 
 	 * @param array
-	 *           The {@code short[]} to iterate over.
+	 *            The {@code short[]} to iterate over.
 	 * @param replacement
-	 *           The value to replace removed values with.
+	 *            The value to replace removed values with.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code short[]} is {@literal null}.
+	 *             If the given {@code short[]} is {@literal null}.
 	 */
 	public ShortArrayIterator(short[] array, short replacement) throws IllegalArgumentException {
 		this(array, Short.valueOf(replacement));

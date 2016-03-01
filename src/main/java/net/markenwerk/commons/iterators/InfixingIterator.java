@@ -36,7 +36,7 @@ import net.markenwerk.commons.interfaces.Predicate;
  * {@link IntegerArrayIterator#next()} didn't return the given infix.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.6
  */
@@ -49,17 +49,17 @@ public final class InfixingIterator<Payload> implements Iterator<Payload> {
 	private boolean nextIsInfix;
 
 	/**
-	 * Creates a new {@link InfixingIterator} from the given {@link Iterator} and
-	 * the given {@link Predicate}.
+	 * Creates a new {@link InfixingIterator} from the given {@link Iterator}
+	 * and the given {@link Predicate}.
 	 * 
 	 * @param iterator
-	 *           The {@link Iterator}, around which the new
-	 *           {@link NullFreeIterator} will be wrapped.
+	 *            The {@link Iterator}, around which the new
+	 *            {@link NullFreeIterator} will be wrapped.
 	 * @param infix
-	 *           The infix to be yielded.
+	 *            The infix to be yielded.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@link Iterator} is {@literal null}.
+	 *             If the given {@link Iterator} is {@literal null}.
 	 */
 	public InfixingIterator(Iterator<? extends Payload> iterator, Payload infix) throws IllegalArgumentException {
 		if (null == iterator) {

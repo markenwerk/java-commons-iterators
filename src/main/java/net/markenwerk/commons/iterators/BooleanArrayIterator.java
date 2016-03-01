@@ -49,14 +49,14 @@ public final class BooleanArrayIterator implements Iterator<Boolean> {
 	 * 
 	 * <p>
 	 * If the given {@code boolean[]} is {@literal null}, the new
-	 * {@link BooleanArrayIterator} will behave, as if an empty {@code boolean[]}
-	 * has been given.
+	 * {@link BooleanArrayIterator} will behave, as if an empty
+	 * {@code boolean[]} has been given.
 	 * 
 	 * @param array
-	 *           The {@code boolean[]} to iterate over.
-	 *           
+	 *            The {@code boolean[]} to iterate over.
+	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code boolean[]} is {@literal null}.
+	 *             If the given {@code boolean[]} is {@literal null}.
 	 */
 	public BooleanArrayIterator(boolean[] array) throws IllegalArgumentException {
 		this(array, null);
@@ -68,16 +68,16 @@ public final class BooleanArrayIterator implements Iterator<Boolean> {
 	 * 
 	 * <p>
 	 * If the given {@code boolean[]} is {@literal null}, the new
-	 * {@link BooleanArrayIterator} will behave, as if an empty {@code boolean[]}
-	 * has been given.
+	 * {@link BooleanArrayIterator} will behave, as if an empty
+	 * {@code boolean[]} has been given.
 	 * 
 	 * @param array
-	 *           The {@code boolean[]} to iterate over.
+	 *            The {@code boolean[]} to iterate over.
 	 * @param replacement
-	 *           The value to replace removed values with.
+	 *            The value to replace removed values with.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code boolean[]} is {@literal null}.
+	 *             If the given {@code boolean[]} is {@literal null}.
 	 */
 	public BooleanArrayIterator(boolean[] array, boolean replacement) throws IllegalArgumentException {
 		this(array, Boolean.valueOf(replacement));

@@ -33,7 +33,7 @@ import java.util.Iterator;
  * {@link ArrayIterator#next()}.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -57,10 +57,10 @@ public final class ArrayIterator<Payload> implements Iterator<Payload> {
 	 * given.
 	 * 
 	 * @param array
-	 *           The payload array to iterate over.
+	 *            The payload array to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given payload array is {@literal null}.
+	 *             If the given payload array is {@literal null}.
 	 */
 	public ArrayIterator(Payload[] array) throws IllegalArgumentException {
 		this(array, false, null);
@@ -76,12 +76,12 @@ public final class ArrayIterator<Payload> implements Iterator<Payload> {
 	 * given.
 	 * 
 	 * @param array
-	 *           The payload array to iterate over.
+	 *            The payload array to iterate over.
 	 * @param replacement
-	 *           The value to replace removed values with.
+	 *            The value to replace removed values with.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given payload array is {@literal null}.
+	 *             If the given payload array is {@literal null}.
 	 */
 	public ArrayIterator(Payload[] array, Payload replacement) throws IllegalArgumentException {
 		this(array, true, replacement);

@@ -49,18 +49,17 @@ public class ByteArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
+
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullArray() {
 
 		new ByteArrayIterator(null);
 
 	}
-	
-	
+
 	/**
 	 * Remove a value in a {@code byte[]}.
 	 */

@@ -49,14 +49,14 @@ public final class IntegerArrayIterator implements Iterator<Integer> {
 	 * 
 	 * <p>
 	 * If the given {@code int[]} is {@literal null}, the new
-	 * {@link IntegerArrayIterator} will behave, as if an empty {@code int[]} has
-	 * been given.
+	 * {@link IntegerArrayIterator} will behave, as if an empty {@code int[]}
+	 * has been given.
 	 * 
 	 * @param array
-	 *           The {@code int[]} to iterate over.
+	 *            The {@code int[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code int[]} is {@literal null}.
+	 *             If the given {@code int[]} is {@literal null}.
 	 */
 	public IntegerArrayIterator(int[] array) throws IllegalArgumentException {
 		this(array, null);
@@ -68,16 +68,16 @@ public final class IntegerArrayIterator implements Iterator<Integer> {
 	 * 
 	 * <p>
 	 * If the given {@code int[]} is {@literal null}, the new
-	 * {@link IntegerArrayIterator} will behave, as if an empty {@code int[]} has
-	 * been given.
+	 * {@link IntegerArrayIterator} will behave, as if an empty {@code int[]}
+	 * has been given.
 	 * 
 	 * @param array
-	 *           The {@code int[]} to iterate over.
+	 *            The {@code int[]} to iterate over.
 	 * @param replacement
-	 *           The value to replace removed values with.
+	 *            The value to replace removed values with.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code int[]} is {@literal null}.
+	 *             If the given {@code int[]} is {@literal null}.
 	 */
 	public IntegerArrayIterator(int[] array, int replacement) throws IllegalArgumentException {
 		this(array, Integer.valueOf(replacement));

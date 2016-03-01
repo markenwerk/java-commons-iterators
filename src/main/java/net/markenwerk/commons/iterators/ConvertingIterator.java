@@ -31,9 +31,9 @@ import net.markenwerk.commons.interfaces.Converter;
  * {@link Converter}.
  * 
  * @param <From>
- *           The type to convert values from.
+ *            The type to convert values from.
  * @param <To>
- *           The type to convert values to.
+ *            The type to convert values to.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -54,15 +54,16 @@ public final class ConvertingIterator<From, To> implements Iterator<To> {
 	 * and the given {@link Converter}.
 	 * 
 	 * @param iterator
-	 *           The {@link Iterator}, around which the new
-	 *           {@link NullFreeIterator} will be wrapped.
+	 *            The {@link Iterator}, around which the new
+	 *            {@link NullFreeIterator} will be wrapped.
 	 * @param converter
-	 *           The {@link Converter} to {@link Converter#convert(Object)
-	 *           convert} every value yielded by the given {@link Iterator} with.
+	 *            The {@link Converter} to {@link Converter#convert(Object)
+	 *            convert} every value yielded by the given {@link Iterator}
+	 *            with.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@link Iterator} is {@literal null} or the given
-	 *            {@link Converter} is {@literal null}.
+	 *             If the given {@link Iterator} is {@literal null} or the given
+	 *             {@link Converter} is {@literal null}.
 	 */
 	public ConvertingIterator(Iterator<? extends From> iterator, Converter<From, To> converter)
 			throws IllegalArgumentException {

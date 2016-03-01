@@ -31,7 +31,7 @@ import net.markenwerk.commons.interfaces.Predicate;
  * the current and the next payload value of the given {@link Iterator}.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.6
  */
@@ -99,11 +99,11 @@ public final class LookAheadIterator<Payload> implements ProtectedIterator<LookA
 	 * and the given {@link Predicate}.
 	 * 
 	 * @param iterator
-	 *           The {@link Iterator}, around which the new
-	 *           {@link LookAheadIterator} will be wrapped.
+	 *            The {@link Iterator}, around which the new
+	 *            {@link LookAheadIterator} will be wrapped.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@link Iterator} is {@literal null}.
+	 *             If the given {@link Iterator} is {@literal null}.
 	 */
 	public LookAheadIterator(Iterator<? extends Payload> iterator) throws IllegalArgumentException {
 		if (null == iterator) {

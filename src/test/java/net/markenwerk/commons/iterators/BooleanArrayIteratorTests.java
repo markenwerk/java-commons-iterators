@@ -53,7 +53,7 @@ public class BooleanArrayIteratorTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullArray() {
 
 		new BooleanArrayIterator(null);

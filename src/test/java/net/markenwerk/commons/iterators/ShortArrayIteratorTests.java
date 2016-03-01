@@ -53,7 +53,7 @@ public class ShortArrayIteratorTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullArray() {
 
 		new ShortArrayIterator(null);
