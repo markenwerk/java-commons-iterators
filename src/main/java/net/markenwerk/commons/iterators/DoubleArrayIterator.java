@@ -92,7 +92,7 @@ public final class DoubleArrayIterator implements Iterator<Double> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("DoubleArrayIterator has no further element");
 		} else {
-			return array[index++];
+			return array[++index];
 		}
 	}
 

@@ -92,7 +92,7 @@ public final class BooleanArrayIterator implements Iterator<Boolean> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("BooleanArrayIterator has no further element");
 		} else {
-			return array[index++];
+			return array[++index];
 		}
 	}
 

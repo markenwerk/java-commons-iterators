@@ -92,7 +92,7 @@ public final class FloatArrayIterator implements Iterator<Float> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("FloatArrayIterator has no further element");
 		} else {
-			return array[index++];
+			return array[++index];
 		}
 	}
 

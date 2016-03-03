@@ -92,7 +92,7 @@ public final class CharacterArrayIterator implements Iterator<Character> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("CharacterArrayIterator has no further element");
 		} else {
-			return array[index++];
+			return array[++index];
 		}
 	}
 

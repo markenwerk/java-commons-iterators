@@ -92,7 +92,7 @@ public final class ByteArrayIterator implements Iterator<Byte> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("ByteArrayIterator has no further element");
 		} else {
-			return array[index++];
+			return array[++index];
 		}
 	}
 

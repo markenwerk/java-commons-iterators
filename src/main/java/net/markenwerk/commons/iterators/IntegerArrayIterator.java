@@ -92,7 +92,7 @@ public final class IntegerArrayIterator implements Iterator<Integer> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("IntegerArrayIterator has no further element");
 		} else {
-			return array[index++];
+			return array[++index];
 		}
 	}
 

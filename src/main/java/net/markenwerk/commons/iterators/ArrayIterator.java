@@ -97,7 +97,7 @@ public final class ArrayIterator<Payload> implements Iterator<Payload> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("ArrayIterator has no further element");
 		} else {
-			return array[index++];
+			return array[++index];
 		}
 	}
 

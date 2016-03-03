@@ -93,7 +93,7 @@ public final class LongArrayIterator implements Iterator<Long> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("LongArrayIterator has no further element");
 		} else {
-			return array[index++];
+			return array[++index];
 		}
 	}
 

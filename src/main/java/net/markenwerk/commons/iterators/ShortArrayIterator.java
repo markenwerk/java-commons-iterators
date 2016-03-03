@@ -92,7 +92,7 @@ public final class ShortArrayIterator implements Iterator<Short> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("ShortArrayIterator has no further element");
 		} else {
-			return array[index++];
+			return array[++index];
 		}
 	}
 
