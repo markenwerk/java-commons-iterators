@@ -44,7 +44,7 @@ This library provides the generic [`FilteringIterator`][FilteringIterator] that 
 Iterator<Foo> iterator = ...
 
 // yields every foo from from iterator that matches the condition
-Iterator<Foo> filteringIterator = new FilteringIterator<Foo>(iterator, new Predicate<Foo>(){
+Iterator<Foo> filteringIterator = new FilteringIterator<>(iterator, new Predicate<Foo>(){
 
 	@Override
 	public boolean test(Object object) throws PredicateException {
@@ -60,7 +60,7 @@ This library provides the generic [`ConvertingIterator`][ConvertingIterator] tha
 Iterator<Foo> iterator = ...
 
 // yields a bar for every foo from from iterator
-Iterator<Bar> convertingIterator = new ConvertingIterator<Foo, Bar>(iterator, new Converter<Foo, Bar>(){
+Iterator<Bar> convertingIterator = new ConvertingIterator<>(iterator, new Converter<Foo, Bar>(){
 
 	@Override
 	public Bar convert(Foo foo) throws ConverterException {
@@ -81,7 +81,7 @@ Iterator<Foo> iterator1 = ...
 Iterator<Foo> iterator2 = ...
 
 // yields every foo from every iterator1 and iterator2
-Iterator<Foo> combinedIterator = new CombinedIterator<Foo>(iterator1, iterator2); 
+Iterator<Foo> combinedIterator = new CombinedIterator<>(iterator1, iterator2); 
 ```
 
 It can be constructed from an [`Iterable`][Iterable] of [`Iterators`][Iterator] (i.e. a [`List`][List]).
@@ -90,7 +90,7 @@ It can be constructed from an [`Iterable`][Iterable] of [`Iterators`][Iterator] 
 List<Iterator<Foo>>[] iterators = ...
 
 // yields every foo from every iterator from iterators
-Iterator<Foo> combinedIterator = new CombinedIterator<Foo>(iterators); 
+Iterator<Foo> combinedIterator = new CombinedIterator<>(iterators); 
 ```
 
 ### Interspersing infix value
@@ -102,7 +102,7 @@ Foo infix = ...
 Iterator<Foo> iterator = ...
 
 // yields every foo from iterator, interspersed with the infix
-Iterator<Foo> infixedIterator = new InfixedIterator<Foo>(iterator, infix);
+Iterator<Foo> infixedIterator = new InfixedIterator<>(iterator, infix);
 ```
 
 ### Looking ahead
@@ -113,7 +113,7 @@ This library provides the generic [`LookAheadIterator`][LookAheadIterator] that 
 Iterator<Foo> iterator = ...
 
 // yields a look ahead for every foo from iterator
-Iterator<LookAhead<Foo>> lookAheadIterator = new LookAheadIterator<Foo>(iterator);
+Iterator<LookAhead<Foo>> lookAheadIterator = new LookAheadIterator<>(iterator);
 ```
 
 A [`LookAheadIterator`][LookAheadIterator] can be used to easily perform actions between every element yielded by the original [`Iterator`][Iterator].
@@ -139,7 +139,7 @@ For situations where it is necessary to provide an [`Iterator`][Iterator], but n
 
 ```java
 // yields nothing
-Iterator<Foo> emptyIterator = new EmptyIterator<Foo>();
+Iterator<Foo> emptyIterator = new EmptyIterator<>();
 ```
 
 For situations where some [`Iterator`][Iterator] is obtained and passed along, it might be useful to wrap the obtained [`Iterator`][Iterator] in a [`NullSaveIterator`][NullSaveIterator]. A [`NullSaveIterator`][NullSaveIterator] always fulfills the [`Iterator`][Iterator] contract, even if it is constructed from a `null` [`Iterator`][Iterator].
@@ -149,7 +149,7 @@ For situations where some [`Iterator`][Iterator] is obtained and passed along, i
 Iterator<Foo> iterator = ...
 
 // yields every foo from iterator of nothing, if iterator is null
-Iterator<Foo> nullSaveIterator = new NullSaveIterator(iterator); 
+Iterator<Foo> nullSaveIterator = new NullSaveIterator<>(iterator); 
 ```
 
 For situations where some [`Iterator`][Iterator] is obtained, it might be useful to wrap the obtained [`Iterator`][Iterator] in a [`NullFreeIterator`][NullFreeIterator]. A [`NullFreeIterator`][NullFreeIterator] filters out all `null` values yielded by the obtained [`Iterator`][Iterator].
@@ -158,7 +158,7 @@ For situations where some [`Iterator`][Iterator] is obtained, it might be useful
 Iterator<Foo> iterator = ...
 
 // yields every non-null foo from iterator
-Iterator<Foo> nullFreeIterator = new NullFreeIterator(iterator);
+Iterator<Foo> nullFreeIterator = new NullFreeIterator<>(iterator);
 ```
 
 ### Iterating over single values
@@ -169,10 +169,10 @@ This library provides the [`ObjectIterator`][ObjectIterator] and [`OptionalItera
 Foo foo = ...
 
 // yields foo, even if foo is null
-Iterator<Foo> objectIterator = new ObjectIterator(foo); 
+Iterator<Foo> objectIterator = new ObjectIterator<>(foo); 
 
 // yields foo or nothing, if foo is null
-Iterator<Foo> optionalIterator = new OptionalIterator(foo); 
+Iterator<Foo> optionalIterator = new OptionalIterator<>(foo); 
 ```
 
 ### Iterating over primitive arrays
@@ -203,7 +203,7 @@ This library provides the generic [`ArrayIterator`][ArrayIterator] that takes an
 Foo[] foos = ...
 
 // yields every foo from foos
-Iterator<Foo> arrayIterator = new ArrayIterator(foos); 
+Iterator<Foo> arrayIterator = new ArrayIterator<>(foos); 
 ```
 
 ### Iterating over traversable objects
@@ -214,7 +214,7 @@ This library provides the generic [`EnumerationIterator`][EnumerationIterator] t
 Enumeration<Foo> enumeration = ...
 
 // yields every foo from enumeration
-Iterator<Foo> enumerationIterator = new EnumerationIterator(enumeration); 
+Iterator<Foo> enumerationIterator = new EnumerationIterator<>(enumeration); 
 ```
 
 This library provides the [`StringTokenizerIterator`][StringTokenizerIterator] that takes and existing [`StringTokenizer`][StringTokenizer] and yields every string yielded by the given [`StringTokenizer`][StringTokenizer].
