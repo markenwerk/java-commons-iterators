@@ -28,7 +28,7 @@ import java.util.Map;
  * An {@link Entry} is a simple immutable container class that holds a
  * key-value-pair. It is intended to be used for {@link Iterator Iterators} that
  * iterate over {@link Map}-like structures that have no specific
- * {@link Map.Entry Entry} implementation.
+ * {@link java.util.Map.Entry Entry} implementation.
  * 
  * @param <Key>
  *            The key type.
