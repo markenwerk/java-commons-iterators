@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * A {@link CombinedIterator} is an {@link Iterator} that wraps arround some
@@ -108,10 +109,13 @@ public final class CombinedIterator<Payload> implements Iterator<Payload> {
 	}
 
 	@Override
-	public Payload next() {
-		prepareNext();
-		nextPrepared = false;
-		return currentIterator.next();
+	public Payload next() throws NoSuchElementException {
+		if (!hasNext()) {
+			throw new NoSuchElementException("CombinedIterator has no further element");
+		} else {
+			nextPrepared = false;
+			return currentIterator.next();
+		}
 	}
 
 	@Override

@@ -38,15 +38,18 @@ import java.util.Iterator;
  */
 public final class EmptyIterator<Payload> implements ProtectedIterator<Payload> {
 
+	@Override
 	public boolean hasNext() {
 		return false;
 	}
 
+	@Override
 	public Payload next() {
 		return null;
 	}
 
-	public void remove() {
+	@Override
+	public void remove() throws UnsupportedOperationException {
 		throw new UnsupportedOperationException("Cannot remove from an empty iterator.");
 	}
 

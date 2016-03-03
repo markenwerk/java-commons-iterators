@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * A {@link NullFreeIterator} is an {@link Iterator} that can be wrapped around
@@ -62,17 +63,23 @@ public final class NullFreeIterator<Payload> implements Iterator<Payload> {
 		this.iterator = iterator;
 	}
 
+	@Override
 	public boolean hasNext() {
 		prepareNext();
 		return null != next;
 	}
 
-	public Payload next() {
-		prepareNext();
-		nextPrepared = false;
-		return next;
+	@Override
+	public Payload next() throws NoSuchElementException {
+		if (!hasNext()) {
+			throw new NoSuchElementException("NullFreeIterator has no further element");
+		} else {
+			nextPrepared = false;
+			return next;
+		}
 	}
 
+	@Override
 	public void remove() {
 		iterator.remove();
 	}

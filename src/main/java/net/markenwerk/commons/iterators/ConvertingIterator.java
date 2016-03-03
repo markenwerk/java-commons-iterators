@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import net.markenwerk.commons.interfaces.Converter;
 
@@ -84,10 +85,13 @@ public final class ConvertingIterator<From, To> implements Iterator<To> {
 	}
 
 	@Override
-	public To next() {
-		prepareNext();
-		nextPrepared = false;
-		return next;
+	public To next() throws NoSuchElementException {
+		if (!hasNext()) {
+			throw new NoSuchElementException("ConvertingIterator has no further element");
+		} else {
+			nextPrepared = false;
+			return next;
+		}
 	}
 
 	@Override

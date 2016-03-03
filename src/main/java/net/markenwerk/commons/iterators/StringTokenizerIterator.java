@@ -55,16 +55,19 @@ public final class StringTokenizerIterator implements ProtectedIterator<String> 
 		this.tokenizer = tokenizer;
 	}
 
+	@Override
 	public boolean hasNext() {
 		return tokenizer.hasMoreElements();
 	}
 
+	@Override
 	public String next() {
 		return tokenizer.nextToken();
 	}
 
-	public void remove() {
-		throw new UnsupportedOperationException("Cannot remove from a tokenizer iterator.");
+	@Override
+	public void remove() throws UnsupportedOperationException {
+		throw new UnsupportedOperationException("Cannot remove from a StringTokenizerIterator");
 	}
 
 }

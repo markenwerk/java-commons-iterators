@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * A {@link CountUpIterator} is an {@link Iterator} that yields all integer
@@ -60,13 +61,17 @@ public final class CountUpIterator implements ProtectedIterator<Integer> {
 	}
 
 	@Override
-	public Integer next() {
-		return next++;
+	public Integer next() throws NoSuchElementException {
+		if (!hasNext()) {
+			throw new NoSuchElementException("CountUpIterator has no further element");
+		} else {
+			return next++;
+		}
 	}
 
 	@Override
-	public void remove() {
-		throw new UnsupportedOperationException("Cannot remove from a counter.");
+	public void remove() throws UnsupportedOperationException {
+		throw new UnsupportedOperationException("Cannot remove from a CountUpIterator");
 	}
 
 }

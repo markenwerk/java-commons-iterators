@@ -23,6 +23,7 @@ package net.markenwerk.commons.iterators;
 
 import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * A {@link EnumerationIterator} is an {@link Iterator} that can be wrapped
@@ -57,16 +58,23 @@ public final class EnumerationIterator<Payload> implements ProtectedIterator<Pay
 		this.enumeration = enumeration;
 	}
 
+	@Override
 	public boolean hasNext() {
 		return enumeration.hasMoreElements();
 	}
 
+	@Override
 	public Payload next() {
-		return enumeration.nextElement();
+		if (!hasNext()) {
+			throw new NoSuchElementException("EnumerationIterator has no further element");
+		} else {
+			return enumeration.nextElement();
+		}
 	}
 
+	@Override
 	public void remove() {
-		throw new UnsupportedOperationException("Cannot remove from an enumeration iterator.");
+		throw new UnsupportedOperationException("Cannot remove from an EnumerationIterator");
 	}
 
 }

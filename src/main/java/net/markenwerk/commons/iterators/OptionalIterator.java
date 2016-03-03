@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * An {@link OptionalIterator} is a {@link Iterator} that behaves like an
@@ -54,13 +55,17 @@ public final class OptionalIterator<Payload> implements ProtectedIterator<Payloa
 		return null != value && !visited;
 	}
 
-	public Payload next() {
-		visited = true;
-		return value;
+	public Payload next() throws NoSuchElementException {
+		if (!hasNext()) {
+			throw new NoSuchElementException("OptionalIterator has no further element");
+		} else {
+			visited = true;
+			return value;
+		}
 	}
 
-	public void remove() {
-		throw new UnsupportedOperationException("Cannot remove the payload object.");
+	public void remove() throws UnsupportedOperationException {
+		throw new UnsupportedOperationException("Cannot remove from an OptionalIterator");
 	}
 
 }

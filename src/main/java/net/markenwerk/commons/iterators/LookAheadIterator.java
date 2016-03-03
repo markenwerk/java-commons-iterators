@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import net.markenwerk.commons.interfaces.Predicate;
 
@@ -37,7 +38,7 @@ import net.markenwerk.commons.interfaces.Predicate;
  */
 public final class LookAheadIterator<Payload> implements ProtectedIterator<LookAhead<Payload>> {
 
-	private static class IteratorLookAhead<Payload> implements LookAhead<Payload> {
+	private static class Ahead<Payload> implements LookAhead<Payload> {
 
 		private final Payload current;
 
@@ -45,18 +46,18 @@ public final class LookAheadIterator<Payload> implements ProtectedIterator<LookA
 
 		private final boolean nextExists;
 
-		IteratorLookAhead() {
+		Ahead() {
 			this(null, null, false);
 		}
 
-		private IteratorLookAhead(Payload current, Payload next, boolean nextExists) {
+		private Ahead(Payload current, Payload next, boolean nextExists) {
 			this.current = current;
 			this.next = next;
 			this.nextExists = nextExists;
 		}
 
-		protected IteratorLookAhead<Payload> shift(Payload next, boolean nextExists) {
-			return new IteratorLookAhead<Payload>(this.next, next, nextExists);
+		protected Ahead<Payload> shift(Payload next, boolean nextExists) {
+			return new Ahead<Payload>(this.next, next, nextExists);
 		}
 
 		@Override
@@ -81,14 +82,14 @@ public final class LookAheadIterator<Payload> implements ProtectedIterator<LookA
 
 		@Override
 		public String toString() {
-			return "IteratorLookAhead [current=" + current + ", next=" + next + ", hasNext=" + nextExists + "]";
+			return "Ahead [current=" + current + ", next=" + next + ", hasNext=" + nextExists + "]";
 		}
 
 	}
 
 	private final Iterator<? extends Payload> iterator;
 
-	private IteratorLookAhead<Payload> lookAhead = new IteratorLookAhead<Payload>();
+	private Ahead<Payload> lookAhead = new Ahead<Payload>();
 
 	private boolean nextPrepared;
 
@@ -122,15 +123,18 @@ public final class LookAheadIterator<Payload> implements ProtectedIterator<LookA
 	}
 
 	@Override
-	public LookAhead<Payload> next() {
-		prepareNext();
-		nextPrepared = false;
-		return lookAhead;
+	public LookAhead<Payload> next() throws NoSuchElementException {
+		if (!hasNext()) {
+			throw new NoSuchElementException("LookAheadIterator has no further element");
+		} else {
+			nextPrepared = false;
+			return lookAhead;
+		}
 	}
 
 	@Override
-	public void remove() {
-		throw new UnsupportedOperationException("Cannot remove from an ahead looking iterator.");
+	public void remove() throws UnsupportedOperationException {
+		throw new UnsupportedOperationException("Cannot remove from a LookAheadIterator");
 	}
 
 	private void prepareNext() {

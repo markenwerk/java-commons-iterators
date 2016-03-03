@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import net.markenwerk.commons.interfaces.Predicate;
 
@@ -113,10 +114,13 @@ public final class FilteringIterator<Payload> implements Iterator<Payload> {
 	}
 
 	@Override
-	public Payload next() {
-		prepareNext();
-		nextPrepared = false;
-		return next;
+	public Payload next() throws NoSuchElementException {
+		if (!hasNext()) {
+			throw new NoSuchElementException("FilterungIterator has no further element");
+		} else {
+			nextPrepared = false;
+			return next;
+		}
 	}
 
 	@Override

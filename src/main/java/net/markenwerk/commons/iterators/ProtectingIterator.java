@@ -70,8 +70,8 @@ public final class ProtectingIterator<Payload> implements ProtectedIterator<Payl
 	}
 
 	@Override
-	public void remove() {
-		throw new UnsupportedOperationException("Cannot remove from a protected iterator.");
+	public void remove() throws UnsupportedOperationException {
+		throw new UnsupportedOperationException("Cannot remove from a ProtectingIterator");
 
 	}
 

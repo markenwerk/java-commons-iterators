@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import net.markenwerk.commons.interfaces.Predicate;
 
@@ -49,8 +50,8 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 	private boolean nextIsInfix;
 
 	/**
-	 * Creates a new {@link InfixedIterator} from the given {@link Iterator}
-	 * and the given {@link Predicate}.
+	 * Creates a new {@link InfixedIterator} from the given {@link Iterator} and
+	 * the given {@link Predicate}.
 	 * 
 	 * @param iterator
 	 *            The {@link Iterator}, around which the new
@@ -75,8 +76,10 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 	}
 
 	@Override
-	public Payload next() {
-		if (nextIsInfix) {
+	public Payload next() throws NoSuchElementException {
+		if (!hasNext()) {
+			throw new NoSuchElementException("InfixedIterator has no further element");
+		} else if (nextIsInfix) {
 			nextIsInfix = false;
 			return infix;
 		} else {
@@ -88,7 +91,7 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 
 	@Override
 	public void remove() {
-		if (nextIsInfix || !iterator.hasNext()) {
+		if (!nextIsInfix || iterator.hasNext()) {
 			iterator.remove();
 		}
 	}

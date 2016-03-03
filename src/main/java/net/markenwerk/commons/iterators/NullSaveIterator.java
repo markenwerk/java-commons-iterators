@@ -69,14 +69,17 @@ public final class NullSaveIterator<Payload> implements Iterator<Payload> {
 		this.iterator = null == iterator ? new EmptyIterator<Payload>() : iterator;
 	}
 
+	@Override
 	public boolean hasNext() {
 		return iterator.hasNext();
 	}
 
+	@Override
 	public Payload next() {
 		return iterator.next();
 	}
 
+	@Override
 	public void remove() {
 		iterator.remove();
 	}
