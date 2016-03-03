@@ -37,12 +37,22 @@ public class InfixedIteratorTests {
 	private static final Object INFIX = new Object();
 
 	/**
-	 * Iterate over a {@code null} iterator.
+	 * Iterate with a {@code null} iterator.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullIterator() {
 
 		new InfixedIterator<Object>(null, INFIX);
+
+	}
+
+	/**
+	 * Iterate with a {@code null} infixes.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void create_nullInfixes() {
+
+		new InfixedIterator<Object>(new EmptyIterator<Object>(), (Object[]) null);
 
 	}
 
@@ -93,24 +103,42 @@ public class InfixedIteratorTests {
 	}
 
 	/**
-	 * Iterate over an {@link Iterator} with three elements.
+	 * Iterate over an {@link Iterator} with two elements.
 	 */
 	@Test
-	public void iterate_threeElements() {
+	public void iterate_noInfixes() {
 
-		Object[] values = new Object[] { new Object(), new Object(), new Object() };
-		Iterator<Object> iterator = new InfixedIterator<Object>(new ArrayIterator<Object>(values), INFIX);
+		Object[] values = new Object[] { new Object(), new Object() };
+		Iterator<Object> iterator = new InfixedIterator<Object>(new ArrayIterator<Object>(values));
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(values[0], iterator.next());
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(values[1], iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
+	
+	/**
+	 * Iterate over an {@link Iterator} with two elements.
+	 */
+	@Test
+	public void iterate_twoInfixes() {
+
+		Object additionalInfix = new Object();
+		Object[] values = new Object[] { new Object(), new Object() };
+		Iterator<Object> iterator = new InfixedIterator<Object>(new ArrayIterator<Object>(values), INFIX,
+				additionalInfix);
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(INFIX, iterator.next());
 		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(additionalInfix, iterator.next());
+		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[1], iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(INFIX, iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[2], iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}

@@ -37,7 +37,7 @@ import net.markenwerk.commons.interfaces.Predicate;
  * {@link IntegerArrayIterator#next()} didn't return the given infix.
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.6
  */
@@ -45,9 +45,11 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 
 	private final Iterator<? extends Payload> iterator;
 
-	private final Payload infix;
+	private final Payload[] infixes;
 
-	private boolean nextIsInfix;
+	private boolean infixing;
+
+	private int infixIndex = -1;
 
 	private boolean nextCalled;
 
@@ -56,25 +58,28 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 	 * the given {@link Predicate}.
 	 * 
 	 * @param iterator
-	 *            The {@link Iterator}, around which the new
-	 *            {@link NullFreeIterator} will be wrapped.
-	 * @param infix
-	 *            The infix to be yielded.
+	 *           The {@link Iterator}, around which the new
+	 *           {@link NullFreeIterator} will be wrapped.
+	 * @param infixes
+	 *           The infixes to be yielded.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@link Iterator} is {@literal null}.
+	 *            If the given {@link Iterator} is {@literal null}.
 	 */
-	public InfixedIterator(Iterator<? extends Payload> iterator, Payload infix) throws IllegalArgumentException {
+	public InfixedIterator(Iterator<? extends Payload> iterator, Payload... infixes) throws IllegalArgumentException {
 		if (null == iterator) {
 			throw new IllegalArgumentException("iterator is null");
 		}
+		if (null == infixes) {
+			throw new IllegalArgumentException("infixes is null");
+		}
 		this.iterator = iterator;
-		this.infix = infix;
+		this.infixes = infixes;
 	}
 
 	@Override
 	public boolean hasNext() {
-		return nextIsInfix || iterator.hasNext();
+		return infixing || iterator.hasNext();
 	}
 
 	@Override
@@ -83,12 +88,15 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 			throw new NoSuchElementException("InfixedIterator has no further element");
 		} else {
 			nextCalled = true;
-			if (nextIsInfix) {
-				nextIsInfix = false;
-				return infix;
+			if (infixing) {
+				infixing = ++infixIndex != infixes.length - 1;
+				return infixes[infixIndex];
 			} else {
 				Payload current = iterator.next();
-				nextIsInfix = iterator.hasNext();
+				if (iterator.hasNext()) {
+					infixIndex = -1;
+					infixing = 0 != infixes.length;
+				}
 				return current;
 			}
 		}
@@ -98,7 +106,7 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 	public void remove() {
 		if (!nextCalled) {
 			throw new IllegalStateException("next() hasn't been called yet");
-		} else if (!nextIsInfix) {
+		} else if (!infixing) {
 			iterator.remove();
 		}
 	}
