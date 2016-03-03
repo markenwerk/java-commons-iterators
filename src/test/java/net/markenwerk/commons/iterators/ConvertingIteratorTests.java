@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -53,20 +54,20 @@ public class ConvertingIteratorTests {
 	};
 
 	/**
-	 * Iterate over a {@code null} iterator.
+	 * Create for a {@code null} iterator.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullIterator() {
+	public void create_nullIterator() {
 
 		new ConvertingIterator<Object, Wrapper>(null, WRAPPING_CONVERTER);
 
 	}
 
 	/**
-	 * Iterate with a {@code null} iterator.
+	 * Create for a {@code null} iterator.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullConverter() {
+	public void create_nullConverter() {
 
 		new ConvertingIterator<Object, Wrapper>(new EmptyIterator<Object>(), null);
 
@@ -92,6 +93,19 @@ public class ConvertingIteratorTests {
 	}
 
 	/**
+	 * Try to iterate with no next element.
+	 */
+	@Test(expected = NoSuchElementException.class)
+	public void iterate_noNext() {
+
+		Iterator<Wrapper> iterator = new ConvertingIterator<Object, Wrapper>(new EmptyIterator<Object>(),
+				WRAPPING_CONVERTER);
+
+		iterator.next();
+
+	}
+
+	/**
 	 * Remove an object from the underlying {@link Iterator}.
 	 */
 	@Test
@@ -104,8 +118,21 @@ public class ConvertingIteratorTests {
 
 		iterator.next();
 		iterator.remove();
-		
+
 		Assert.assertSame(replacement, values[0]);
+
+	}
+
+	/**
+	 * Try to remove a value before call to {@link Iterator#next()}.
+	 */
+	@Test(expected = IllegalStateException.class)
+	public void remove_beforeNext() {
+
+		Iterator<Wrapper> iterator = new ConvertingIterator<Object, Wrapper>(new EmptyIterator<Object>(),
+				WRAPPING_CONVERTER);
+
+		iterator.remove();
 
 	}
 

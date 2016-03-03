@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -45,20 +46,20 @@ public class FilteringIteratorTests {
 	};
 
 	/**
-	 * Iterate over a {@code null} iterator.
+	 * Create with a {@code null} iterator.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullIterator() {
+	public void create_nullIterator() {
 
 		new FilteringIterator<Object>(null, UNSATISFYING_OBJECT_PREDICATE);
 
 	}
 
 	/**
-	 * Iterate with a {@code null} predicate.
+	 * Create with a {@code null} predicate.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullPredicate() {
+	public void create_nullPredicate() {
 
 		new FilteringIterator<Object>(new EmptyIterator<Object>(), null);
 
@@ -69,7 +70,7 @@ public class FilteringIteratorTests {
 	 * {@link Iterator}.
 	 */
 	@Test
-	public void unsatisfyingAtFront() {
+	public void iterate_unsatisfyingAtFront() {
 
 		Object[] values = new Object[] { UNSATISFYING_OBJECT, new Object() };
 		Iterator<Object> iterator = new FilteringIterator<Object>(new ArrayIterator<Object>(values),
@@ -86,7 +87,7 @@ public class FilteringIteratorTests {
 	 * {@link Iterator}.
 	 */
 	@Test
-	public void unsatisfyingInMiddle() {
+	public void iterate_unsatisfyingInMiddle() {
 
 		Object[] values = new Object[] { new Object(), UNSATISFYING_OBJECT, new Object() };
 		Iterator<Object> iterator = new FilteringIterator<Object>(new ArrayIterator<Object>(values),
@@ -105,7 +106,7 @@ public class FilteringIteratorTests {
 	 * {@link Iterator}.
 	 */
 	@Test
-	public void unsatisfyingAtEnd() {
+	public void iterate_unsatisfyingAtEnd() {
 
 		Object[] values = new Object[] { new Object(), UNSATISFYING_OBJECT };
 		Iterator<Object> iterator = new FilteringIterator<Object>(new ArrayIterator<Object>(values),
@@ -122,7 +123,7 @@ public class FilteringIteratorTests {
 	 * {@link Iterator}.
 	 */
 	@Test
-	public void invertedPredicate() {
+	public void iterate_invertedPredicate() {
 
 		Object[] values = new Object[] { new Object(), UNSATISFYING_OBJECT, new Object() };
 		Iterator<Object> iterator = new FilteringIterator<Object>(new ArrayIterator<Object>(values),
@@ -131,6 +132,19 @@ public class FilteringIteratorTests {
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(UNSATISFYING_OBJECT, iterator.next());
 		Assert.assertFalse(iterator.hasNext());
+
+	}
+
+	/**
+	 * Try to iterate with no next element.
+	 */
+	@Test(expected = NoSuchElementException.class)
+	public void iterate_noNext() {
+
+		Iterator<Object> iterator = new FilteringIterator<Object>(new EmptyIterator<Object>(),
+				UNSATISFYING_OBJECT_PREDICATE);
+
+		iterator.next();
 
 	}
 
@@ -149,6 +163,19 @@ public class FilteringIteratorTests {
 		iterator.remove();
 
 		Assert.assertSame(replacement, values[0]);
+
+	}
+
+	/**
+	 * Try to remove a value before call to {@link Iterator#next()}.
+	 */
+	@Test(expected = IllegalStateException.class)
+	public void remove_beforeNext() {
+
+		Iterator<Object> iterator = new FilteringIterator<Object>(new EmptyIterator<Object>(),
+				UNSATISFYING_OBJECT_PREDICATE);
+
+		iterator.remove();
 
 	}
 

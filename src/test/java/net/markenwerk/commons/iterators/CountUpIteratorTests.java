@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -37,7 +38,7 @@ public class CountUpIteratorTests {
 	 * Count up from a lower bound that is larger than the upper bound.
 	 */
 	@Test
-	public void lowerBoundLargerThanUpperBound() {
+	public void iterate_lowerBoundLargerThanUpperBound() {
 
 		Iterator<Integer> iterator = new CountUpIterator(2, 1);
 
@@ -49,7 +50,7 @@ public class CountUpIteratorTests {
 	 * Count up from a lower bound that equals the upper bound.
 	 */
 	@Test
-	public void lowerBoundEqualsUpperBound() {
+	public void iterate_lowerBoundEqualsUpperBound() {
 
 		Iterator<Integer> iterator = new CountUpIterator(0, 0);
 
@@ -63,7 +64,7 @@ public class CountUpIteratorTests {
 	 * Count up from a lower bound that is smaller than the upper bound.
 	 */
 	@Test
-	public void lowerBoundSmallerThanUpperBound() {
+	public void iterate_lowerBoundSmallerThanUpperBound() {
 
 		Iterator<Integer> iterator = new CountUpIterator(1, 2);
 
@@ -72,6 +73,18 @@ public class CountUpIteratorTests {
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertEquals(Integer.valueOf(2), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
+
+	}
+
+	/**
+	 * Try to iterate with no next element.
+	 */
+	@Test(expected = NoSuchElementException.class)
+	public void iterate_noNext() {
+
+		Iterator<Integer> iterator = new CountUpIterator(1, 0);
+
+		iterator.next();
 
 	}
 

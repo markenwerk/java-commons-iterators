@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -42,7 +43,19 @@ public class EmptyIteratorTests {
 		Iterator<Object> iterator = new EmptyIterator<Object>();
 
 		Assert.assertFalse(iterator.hasNext());
-		Assert.assertNull(iterator.next());
+
+	}
+	
+	
+	/**
+	 * Try to iterate with no next element.
+	 */
+	@Test(expected = NoSuchElementException.class)
+	public void iterate_noNext() {
+
+		Iterator<Object> iterator = new EmptyIterator<Object>();
+
+		iterator.next();
 
 	}
 
@@ -52,7 +65,9 @@ public class EmptyIteratorTests {
 	@Test(expected = UnsupportedOperationException.class)
 	public void remove() {
 
-		new EmptyIterator<Object>().remove();
+		Iterator<Object> iterator = new EmptyIterator<Object>();
+
+		iterator.remove();
 
 	}
 

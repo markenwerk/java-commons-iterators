@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -37,7 +38,7 @@ public class ObjectIteratorTests {
 	 * Iterate over a payload object.
 	 */
 	@Test
-	public void iterate() {
+	public void iterate_nonNull() {
 
 		Object value = new Object();
 		Iterator<Object> iterator = new ObjectIterator<Object>(value);
@@ -52,7 +53,7 @@ public class ObjectIteratorTests {
 	 * Iterate over a {@code null} object.
 	 */
 	@Test
-	public void iterateNull() {
+	public void iterate_null() {
 
 		Iterator<Object> iterator = new ObjectIterator<Object>(null);
 
@@ -62,4 +63,31 @@ public class ObjectIteratorTests {
 
 	}
 
+	
+	
+	/**
+	 * Try to iterate with no next element.
+	 */
+	@Test(expected = NoSuchElementException.class)
+	public void iterate_noNext() {
+
+		Iterator<Object> iterator = new ObjectIterator<Object>(new Object());
+
+		iterator.next();
+		iterator.next();
+
+	}
+
+	/**
+	 * Try to remove a value before call to {@link Iterator#next()}.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void remove() {
+
+		Iterator<Object> iterator = new ObjectIterator<Object>(new Object());
+
+		iterator.remove();
+
+	}
+	
 }

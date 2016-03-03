@@ -34,10 +34,10 @@ import org.junit.Test;
 public class NullFreeIteratorTests {
 
 	/**
-	 * Iterate over a {@code null} iterator.
+	 * Create with a {@code null} {@link Iterator}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullIterable() {
+	public void create_nullIterator() {
 
 		new NullFreeIterator<Object>(null);
 
@@ -48,7 +48,7 @@ public class NullFreeIteratorTests {
 	 * {@link Iterator}.
 	 */
 	@Test
-	public void nullAtFront() {
+	public void iterate_nullAtFront() {
 
 		Object[] values = new Object[] { null, new Object() };
 		Iterator<Object> iterator = new NullFreeIterator<Object>(new ArrayIterator<Object>(values));
@@ -64,7 +64,7 @@ public class NullFreeIteratorTests {
 	 * {@link Iterator}.
 	 */
 	@Test
-	public void nullInMiddle() {
+	public void iterate_nullInMiddle() {
 
 		Object[] values = new Object[] { new Object(), null, new Object() };
 		Iterator<Object> iterator = new NullFreeIterator<Object>(new ArrayIterator<Object>(values));
@@ -82,7 +82,7 @@ public class NullFreeIteratorTests {
 	 * {@link Iterator}.
 	 */
 	@Test
-	public void nullAtEnd() {
+	public void iterate_nullAtEnd() {
 
 		Object[] values = new Object[] { new Object(), null };
 		Iterator<Object> iterator = new NullFreeIterator<Object>(new ArrayIterator<Object>(values));

@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -39,7 +40,7 @@ public class InfixedIteratorTests {
 	 * Iterate over a {@code null} iterator.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullIterator() {
+	public void create_nullIterator() {
 
 		new InfixedIterator<Object>(null, INFIX);
 
@@ -49,7 +50,7 @@ public class InfixedIteratorTests {
 	 * Iterate over an empty iterator.
 	 */
 	@Test
-	public void iterateEmptyIterator() {
+	public void iterate_noElements() {
 
 		Iterator<Object> iterator = new InfixedIterator<Object>(new EmptyIterator<Object>(), INFIX);
 
@@ -61,7 +62,7 @@ public class InfixedIteratorTests {
 	 * Iterate over an {@link Iterator} with one element.
 	 */
 	@Test
-	public void iterateOne() {
+	public void iterate_oneElement() {
 
 		Object[] values = new Object[] { new Object() };
 		Iterator<Object> iterator = new InfixedIterator<Object>(new ArrayIterator<Object>(values), INFIX);
@@ -76,7 +77,7 @@ public class InfixedIteratorTests {
 	 * Iterate over an {@link Iterator} with two elements.
 	 */
 	@Test
-	public void iterateTwo() {
+	public void iterate_twoElements() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<Object> iterator = new InfixedIterator<Object>(new ArrayIterator<Object>(values), INFIX);
@@ -95,7 +96,7 @@ public class InfixedIteratorTests {
 	 * Iterate over an {@link Iterator} with three elements.
 	 */
 	@Test
-	public void iterateThree() {
+	public void iterate_threeElements() {
 
 		Object[] values = new Object[] { new Object(), new Object(), new Object() };
 		Iterator<Object> iterator = new InfixedIterator<Object>(new ArrayIterator<Object>(values), INFIX);
@@ -111,6 +112,47 @@ public class InfixedIteratorTests {
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[2], iterator.next());
 		Assert.assertFalse(iterator.hasNext());
+
+	}
+
+	/**
+	 * Try to iterate with no next element.
+	 */
+	@Test(expected = NoSuchElementException.class)
+	public void iterate_noNext() {
+
+		Iterator<Object> iterator = new InfixedIterator<Object>(new EmptyIterator<Object>(), INFIX);
+
+		iterator.next();
+
+	}
+
+	/**
+	 * Remove an object from the underlying {@link Iterator}.
+	 */
+	@Test
+	public void remove() {
+
+		Object replacement = new Object();
+		Object[] values = new Object[] { new Object() };
+		Iterator<Object> iterator = new InfixedIterator<Object>(new ArrayIterator<Object>(values, replacement), INFIX);
+
+		iterator.next();
+		iterator.remove();
+
+		Assert.assertSame(replacement, values[0]);
+
+	}
+
+	/**
+	 * Try to remove a value before call to {@link Iterator#next()}.
+	 */
+	@Test(expected = IllegalStateException.class)
+	public void remove_beforeNext() {
+
+		Iterator<Object> iterator = new InfixedIterator<Object>(new EmptyIterator<Object>(), INFIX);
+
+		iterator.remove();
 
 	}
 

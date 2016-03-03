@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -34,10 +35,10 @@ import org.junit.Test;
 public class LookAheadIteratorTests {
 
 	/**
-	 * Iterate over a {@code null} iterator.
+	 * Create with a {@code null} iterator.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullIterator() {
+	public void create_nullIterator() {
 
 		new LookAheadIterator<Object>(null);
 
@@ -47,7 +48,7 @@ public class LookAheadIteratorTests {
 	 * Iterate over an empty iterator.
 	 */
 	@Test
-	public void iterateEmpty() {
+	public void iterate_noElements() {
 
 		Iterator<LookAhead<Object>> iterator = new LookAheadIterator<Object>(new EmptyIterator<Object>());
 
@@ -59,7 +60,7 @@ public class LookAheadIteratorTests {
 	 * Iterate over an {@link Iterator} with one element.
 	 */
 	@Test
-	public void iterateOne() {
+	public void iterate_oneElement() {
 
 		Object[] values = new Object[] { new Object() };
 		Iterator<LookAhead<Object>> iterator = new LookAheadIterator<Object>(new ArrayIterator<Object>(values));
@@ -78,7 +79,7 @@ public class LookAheadIteratorTests {
 	 * Iterate over an {@link Iterator} with two elements.
 	 */
 	@Test
-	public void iterateTwo() {
+	public void iterate_twoElements() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<LookAhead<Object>> iterator = new LookAheadIterator<Object>(new ArrayIterator<Object>(values));
@@ -104,7 +105,7 @@ public class LookAheadIteratorTests {
 	 * Iterate over an {@link Iterator} with three elements.
 	 */
 	@Test
-	public void iterateThree() {
+	public void iterate_threeElements() {
 
 		Object[] values = new Object[] { new Object(), new Object(), new Object() };
 		Iterator<LookAhead<Object>> iterator = new LookAheadIterator<Object>(new ArrayIterator<Object>(values));
@@ -130,6 +131,30 @@ public class LookAheadIteratorTests {
 		Assert.assertTrue(third.isLast());
 		Assert.assertFalse(third.hasNext());
 		Assert.assertFalse(iterator.hasNext());
+
+	}
+
+	/**
+	 * Try to iterate with no next element.
+	 */
+	@Test(expected = NoSuchElementException.class)
+	public void iterate_noNext() {
+
+		Iterator<LookAhead<Object>> iterator = new LookAheadIterator<Object>(new EmptyIterator<Object>());
+
+		iterator.next();
+
+	}
+
+	/**
+	 * Remove a value from a {@link LookAheadIterator}.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void remove() {
+
+		Iterator<LookAhead<Object>> iterator = new LookAheadIterator<Object>(new EmptyIterator<Object>());
+
+		iterator.remove();
 
 	}
 

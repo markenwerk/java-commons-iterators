@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -37,7 +38,7 @@ public class CountDownIteratorTests {
 	 * Count down from an upper bound that is smaller than the lower bound.
 	 */
 	@Test
-	public void countDown_upperBoundSmallerThanLowerBound() {
+	public void iterate_upperBoundSmallerThanLowerBound() {
 
 		Iterator<Integer> iterator = new CountDownIterator(1, 2);
 
@@ -49,7 +50,7 @@ public class CountDownIteratorTests {
 	 * Count down from an upper bound that equals the lower bound.
 	 */
 	@Test
-	public void countDown_upperBoundEqualsLowerBound() {
+	public void iterate_upperBoundEqualsLowerBound() {
 
 		Iterator<Integer> iterator = new CountDownIterator(0, 0);
 
@@ -63,7 +64,7 @@ public class CountDownIteratorTests {
 	 * Count down from an upper bound that is larger than the lower bound.
 	 */
 	@Test
-	public void countDown_upperBoundLargerThanLowerBound() {
+	public void iterate_upperBoundLargerThanLowerBound() {
 
 		Iterator<Integer> iterator = new CountDownIterator(2, 1);
 
@@ -75,6 +76,19 @@ public class CountDownIteratorTests {
 
 	}
 
+	
+	/**
+	 * Try to iterate with no next element.
+	 */
+	@Test(expected = NoSuchElementException.class)
+	public void iterate_noNext() {
+
+		Iterator<Integer> iterator = new CountDownIterator(0, 1);
+
+		iterator.next();
+
+	}
+	
 	/**
 	 * Remove a value from a {@link CountDownIterator}.
 	 */

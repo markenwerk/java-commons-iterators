@@ -24,6 +24,7 @@ package net.markenwerk.commons.iterators;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Vector;
 
 import org.junit.Assert;
@@ -37,10 +38,10 @@ import org.junit.Test;
 public class EnumerationIteratorTests {
 
 	/**
-	 * Iterate over a {@code null} {@link Enumeration}.
+	 * Create with a {@code null} {@link Enumeration}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullTokenizer() {
+	public void create_nullEnumeration() {
 
 		new EnumerationIterator<Object>(null);
 
@@ -50,7 +51,7 @@ public class EnumerationIteratorTests {
 	 * Iterate over an empty {@link Enumeration}.
 	 */
 	@Test
-	public void iterateEmpty() {
+	public void iterate_emptyEnumeration() {
 
 		Enumeration<Object> enumeration = new Vector<Object>(Arrays.asList()).elements();
 		Iterator<Object> iterator = new EnumerationIterator<Object>(enumeration);
@@ -63,7 +64,7 @@ public class EnumerationIteratorTests {
 	 * Iterate over an {@link Enumeration} with one element.
 	 */
 	@Test
-	public void iterateOne() {
+	public void iterate_nonEmptyEnumeration() {
 
 		Object value = new Object();
 		Enumeration<Object> enumeration = new Vector<Object>(Arrays.asList(value)).elements();
@@ -76,20 +77,28 @@ public class EnumerationIteratorTests {
 	}
 
 	/**
-	 * Iterate over an {@link Enumeration} with two elements.
+	 * Try to iterate with no next element.
 	 */
-	@Test
-	public void iterateTwo() {
+	@Test(expected = NoSuchElementException.class)
+	public void iterate_noNext() {
 
-		Object[] values = new Object[] { new Object(), new Object() };
-		Enumeration<Object> enumeration = new Vector<Object>(Arrays.asList(values)).elements();
+		Enumeration<Object> enumeration = new Vector<Object>(Arrays.asList()).elements();
 		Iterator<Object> iterator = new EnumerationIterator<Object>(enumeration);
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
+		iterator.next();
+
+	}
+
+	/**
+	 * Iterate over an {@link EnumerationIterator}.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void remove() {
+
+		Enumeration<Object> enumeration = new Vector<Object>(Arrays.asList()).elements();
+		Iterator<Object> iterator = new EnumerationIterator<Object>(enumeration);
+
+		iterator.remove();
 
 	}
 

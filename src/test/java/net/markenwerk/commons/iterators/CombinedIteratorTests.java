@@ -24,6 +24,7 @@ package net.markenwerk.commons.iterators;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -36,30 +37,30 @@ import org.junit.Test;
 public class CombinedIteratorTests {
 
 	/**
-	 * Iterate over a {@code null} iterator.
+	 * Create with a {@code null} iterator.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullArray() {
+	public void create_nullArray() {
 
 		new CombinedIterator<Object>((Iterator<Object>[]) null);
 
 	}
 
 	/**
-	 * Iterate over a {@code null} iterator.
+	 * Create with a {@code null} iterator.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullIterable() {
+	public void create_nullIterable() {
 
 		new CombinedIterator<Object>((Iterable<Iterator<Object>>) null);
 
 	}
 
 	/**
-	 * Iterate over a {@code null} iterator.
+	 * Create with a {@code null} iterator.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullIterator() {
+	public void create_nullIterator() {
 
 		new CombinedIterator<Object>((Iterator<Iterator<Object>>) null);
 
@@ -70,7 +71,7 @@ public class CombinedIteratorTests {
 	 */
 	@Test
 	@SuppressWarnings("unchecked")
-	public void noIterators() {
+	public void iterate_noIterators() {
 
 		Iterator<Object> iterator = new CombinedIterator<Object>();
 
@@ -83,7 +84,7 @@ public class CombinedIteratorTests {
 	 */
 	@Test
 	@SuppressWarnings("unchecked")
-	public void oneIterator() {
+	public void iterate_oneIterator() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<Object> iterator = new CombinedIterator<Object>(new ArrayIterator<Object>(values));
@@ -101,7 +102,7 @@ public class CombinedIteratorTests {
 	 */
 	@Test
 	@SuppressWarnings("unchecked")
-	public void iteratorsArray() {
+	public void iterate_iteratorsArray() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<Object> iterator = new CombinedIterator<Object>(new ArrayIterator<Object>(values),
@@ -123,7 +124,7 @@ public class CombinedIteratorTests {
 	 * Iterate over multiple iterator.
 	 */
 	@Test
-	public void iteratorsIterable() {
+	public void iterate_iteratorsIterable() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 
@@ -148,7 +149,7 @@ public class CombinedIteratorTests {
 	 * Iterate over multiple iterator.
 	 */
 	@Test
-	public void iteratorsIterator() {
+	public void iterate_iteratorsIterator() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 
@@ -170,6 +171,19 @@ public class CombinedIteratorTests {
 	}
 
 	/**
+	 * Try to iterate with no next element.
+	 */
+	@Test(expected = NoSuchElementException.class)
+	@SuppressWarnings("unchecked")
+	public void iterate_noNext() {
+
+		Iterator<Object> iterator = new CombinedIterator<Object>();
+
+		iterator.next();
+
+	}
+
+	/**
 	 * Remove an object from the underlying {@link Iterator}.
 	 */
 	@Test
@@ -180,13 +194,23 @@ public class CombinedIteratorTests {
 		Object[] values = new Object[] { new Object() };
 		Iterator<Object> iterator = new CombinedIterator<Object>(new ArrayIterator<Object>(values, replacement));
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 		Assert.assertSame(replacement, values[0]);
+
+	}
+
+	/**
+	 * Try to remove a value before call to {@link Iterator#next()}.
+	 */
+	@Test(expected = IllegalStateException.class)
+	@SuppressWarnings("unchecked")
+	public void remove_beforeNext() {
+
+		Iterator<Object> iterator = new CombinedIterator<Object>();
+
+		iterator.remove();
 
 	}
 

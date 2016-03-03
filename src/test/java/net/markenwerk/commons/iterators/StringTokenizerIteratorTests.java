@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 import org.junit.Assert;
@@ -35,10 +36,10 @@ import org.junit.Test;
 public class StringTokenizerIteratorTests {
 
 	/**
-	 * Iterate over a {@code null} {@link StringTokenizer}.
+	 * Create with a {@code null} {@link StringTokenizer}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullTokenizer() {
+	public void create_nullTokenizer() {
 
 		new StringTokenizerIterator(null);
 
@@ -48,7 +49,7 @@ public class StringTokenizerIteratorTests {
 	 * Iterate over an empty {@link StringTokenizer}.
 	 */
 	@Test
-	public void iterateEmpty() {
+	public void iterate_emptyTokenizer() {
 
 		Iterator<String> iterator = new StringTokenizerIterator(new StringTokenizer(""));
 
@@ -60,7 +61,7 @@ public class StringTokenizerIteratorTests {
 	 * Iterate over an {@link StringTokenizer} with one element.
 	 */
 	@Test
-	public void iterateOne() {
+	public void iterate_nonEmptyTokenizer() {
 
 		Iterator<String> iterator = new StringTokenizerIterator(new StringTokenizer("foo"));
 
@@ -71,18 +72,26 @@ public class StringTokenizerIteratorTests {
 	}
 
 	/**
-	 * Iterate over an {@link StringTokenizer} with two elements.
+	 * Try to iterate with no next element.
 	 */
-	@Test
-	public void iterateTwo() {
+	@Test(expected = NoSuchElementException.class)
+	public void iterate_noNext() {
 
-		Iterator<String> iterator = new StringTokenizerIterator(new StringTokenizer("foo bar"));
+		Iterator<String> iterator = new StringTokenizerIterator(new StringTokenizer(""));
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals("foo", iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals("bar", iterator.next());
-		Assert.assertFalse(iterator.hasNext());
+		iterator.next();
+
+	}
+
+	/**
+	 * Try to remove a value before call to {@link Iterator#next()}.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void remove() {
+
+		Iterator<String> iterator = new StringTokenizerIterator(new StringTokenizer(""));
+
+		iterator.remove();
 
 	}
 
