@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * An {@link ArrayIterator} is a {@link Iterator} that iterates over a given
@@ -86,20 +87,28 @@ public final class ArrayIterator<Payload> implements Iterator<Payload> {
 		this.replacement = replacement;
 	}
 
+	@Override
 	public boolean hasNext() {
 		return array.length != index + 1;
 	}
 
-	public Payload next() {
-		index++;
-		return array[index];
+	@Override
+	public Payload next() throws NoSuchElementException {
+		if (!hasNext()) {
+			throw new NoSuchElementException("ArrayIterator has no further element");
+		} else {
+			return array[index++];
+		}
 	}
 
-	public void remove() {
-		if (removable) {
-			array[index] = replacement;
+	@Override
+	public void remove() throws IllegalStateException, UnsupportedOperationException {
+		if (-1 == index) {
+			throw new IllegalStateException("next() hasn't been called yet");
+		} else if (!removable) {
+			throw new UnsupportedOperationException("Cannot remove from an ArrayIterator");
 		} else {
-			throw new UnsupportedOperationException("Cannot remove from an array.");
+			array[index] = replacement;
 		}
 	}
 

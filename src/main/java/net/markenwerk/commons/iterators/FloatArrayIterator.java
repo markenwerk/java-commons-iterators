@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * A {@link FloatArrayIterator} is an {@link Iterator} that iterates over a
@@ -81,20 +82,28 @@ public final class FloatArrayIterator implements Iterator<Float> {
 		this.replacement = replacement;
 	}
 
+	@Override
 	public boolean hasNext() {
 		return array.length != index + 1;
 	}
 
-	public Float next() {
-		index++;
-		return array[index];
+	@Override
+	public Float next() throws NoSuchElementException {
+		if (!hasNext()) {
+			throw new NoSuchElementException("FloatArrayIterator has no further element");
+		} else {
+			return array[index++];
+		}
 	}
 
-	public void remove() {
-		if (null != replacement) {
-			array[index] = replacement;
+	@Override
+	public void remove() throws IllegalStateException, UnsupportedOperationException {
+		if (-1 == index) {
+			throw new IllegalStateException("next() hasn't been called yet");
+		} else if (null == replacement) {
+			throw new UnsupportedOperationException("Cannot remove from a FloatArrayIterator");
 		} else {
-			throw new UnsupportedOperationException("Cannot remove from an array.");
+			array[index] = replacement;
 		}
 	}
 

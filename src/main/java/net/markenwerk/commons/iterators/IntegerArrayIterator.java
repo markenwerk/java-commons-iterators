@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * An {@link IntegerArrayIterator} is an {@link Iterator} that iterates over a
@@ -81,21 +82,28 @@ public final class IntegerArrayIterator implements Iterator<Integer> {
 		this.replacement = replacement;
 	}
 
+	@Override
 	public boolean hasNext() {
 		return array.length != index + 1;
 	}
 
-	public Integer next() {
-		index++;
-		return array[index];
-	}
-
-	public void remove() {
-		if (null != replacement) {
-			array[index] = replacement;
+	@Override
+	public Integer next() throws NoSuchElementException {
+		if (!hasNext()) {
+			throw new NoSuchElementException("IntegerArrayIterator has no further element");
 		} else {
-			throw new UnsupportedOperationException("Cannot remove from an array.");
+			return array[index++];
 		}
 	}
 
+	@Override
+	public void remove() throws IllegalStateException, UnsupportedOperationException {
+		if (-1 == index) {
+			throw new IllegalStateException("next() hasn't been called yet");
+		} else if (null == replacement) {
+			throw new UnsupportedOperationException("Cannot remove from an IntegerArrayIterator");
+		} else {
+			array[index] = replacement;
+		}
+	}
 }
