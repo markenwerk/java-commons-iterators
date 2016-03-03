@@ -56,6 +56,8 @@ public final class FilteringIterator<Payload> implements Iterator<Payload> {
 
 	private Payload next;
 
+	private boolean nextCalled;
+
 	/**
 	 * Creates a new {@link FilteringIterator} from the given {@link Iterator}
 	 * and the given {@link Predicate}.
@@ -118,6 +120,7 @@ public final class FilteringIterator<Payload> implements Iterator<Payload> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("FilterungIterator has no further element");
 		} else {
+			nextCalled = true;
 			nextPrepared = false;
 			return next;
 		}
@@ -125,7 +128,11 @@ public final class FilteringIterator<Payload> implements Iterator<Payload> {
 
 	@Override
 	public void remove() {
-		iterator.remove();
+		if (!nextCalled) {
+			throw new IllegalStateException("next() hasn't been called yet");
+		} else {
+			iterator.remove();
+		}
 	}
 
 	private void prepareNext() {

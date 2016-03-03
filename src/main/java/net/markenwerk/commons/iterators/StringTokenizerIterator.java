@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 /**
@@ -61,8 +62,12 @@ public final class StringTokenizerIterator implements ProtectedIterator<String> 
 	}
 
 	@Override
-	public String next() {
-		return tokenizer.nextToken();
+	public String next() throws NoSuchElementException {
+		if (!hasNext()) {
+			throw new NoSuchElementException("StringTokenizerIterator has no further element");
+		} else {
+			return tokenizer.nextToken();
+		}
 	}
 
 	@Override

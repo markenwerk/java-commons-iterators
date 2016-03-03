@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * An {@link EmptyIterator} is an {@link Iterator} that doesn't yield any
@@ -44,13 +45,13 @@ public final class EmptyIterator<Payload> implements ProtectedIterator<Payload> 
 	}
 
 	@Override
-	public Payload next() {
-		return null;
+	public Payload next() throws NoSuchElementException {
+		throw new NoSuchElementException("EmptyIterator has no further element");
 	}
 
 	@Override
 	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from an empty iterator.");
+		throw new UnsupportedOperationException("Cannot remove from an EmptyIterator");
 	}
 
 }

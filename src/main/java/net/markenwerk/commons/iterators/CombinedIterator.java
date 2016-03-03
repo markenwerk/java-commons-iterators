@@ -45,6 +45,8 @@ public final class CombinedIterator<Payload> implements Iterator<Payload> {
 
 	private boolean hasNext;
 
+	private boolean nextCalled;
+
 	/**
 	 * Creates a new {@link CombinedIterator} from the given sequence
 	 * {@link Iterator Iterators}.
@@ -113,14 +115,19 @@ public final class CombinedIterator<Payload> implements Iterator<Payload> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("CombinedIterator has no further element");
 		} else {
+			nextCalled = true;
 			nextPrepared = false;
 			return currentIterator.next();
 		}
 	}
 
 	@Override
-	public void remove() {
-		currentIterator.remove();
+	public void remove() throws IllegalStateException {
+		if (!nextCalled) {
+			throw new IllegalStateException("next() hasn't been called yet");
+		} else {
+			currentIterator.remove();
+		}
 	}
 
 	private void prepareNext() {

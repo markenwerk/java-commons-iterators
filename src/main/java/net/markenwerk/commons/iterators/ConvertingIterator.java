@@ -50,6 +50,8 @@ public final class ConvertingIterator<From, To> implements Iterator<To> {
 
 	private To next;
 
+	private boolean nextCalled;
+
 	/**
 	 * Creates a new {@link ConvertingIterator} from the given {@link Iterator}
 	 * and the given {@link Converter}.
@@ -71,10 +73,10 @@ public final class ConvertingIterator<From, To> implements Iterator<To> {
 		if (null == iterator) {
 			throw new IllegalArgumentException("iterator is null");
 		}
-		this.iterator = iterator;
 		if (null == converter) {
 			throw new IllegalArgumentException("converter is null");
 		}
+		this.iterator = iterator;
 		this.converter = converter;
 	}
 
@@ -89,6 +91,7 @@ public final class ConvertingIterator<From, To> implements Iterator<To> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("ConvertingIterator has no further element");
 		} else {
+			nextCalled = true;
 			nextPrepared = false;
 			return next;
 		}
@@ -96,7 +99,11 @@ public final class ConvertingIterator<From, To> implements Iterator<To> {
 
 	@Override
 	public void remove() {
-		iterator.remove();
+		if (!nextCalled) {
+			throw new IllegalStateException("next() hasn't been called yet");
+		} else {
+			iterator.remove();
+		}
 	}
 
 	private void prepareNext() {

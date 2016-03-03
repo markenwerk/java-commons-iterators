@@ -49,6 +49,8 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 
 	private boolean nextIsInfix;
 
+	private boolean nextCalled;
+
 	/**
 	 * Creates a new {@link InfixedIterator} from the given {@link Iterator} and
 	 * the given {@link Predicate}.
@@ -79,19 +81,24 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 	public Payload next() throws NoSuchElementException {
 		if (!hasNext()) {
 			throw new NoSuchElementException("InfixedIterator has no further element");
-		} else if (nextIsInfix) {
-			nextIsInfix = false;
-			return infix;
 		} else {
-			Payload current = iterator.next();
-			nextIsInfix = iterator.hasNext();
-			return current;
+			nextCalled = true;
+			if (nextIsInfix) {
+				nextIsInfix = false;
+				return infix;
+			} else {
+				Payload current = iterator.next();
+				nextIsInfix = iterator.hasNext();
+				return current;
+			}
 		}
 	}
 
 	@Override
 	public void remove() {
-		if (!nextIsInfix || iterator.hasNext()) {
+		if (!nextCalled) {
+			throw new IllegalStateException("next() hasn't been called yet");
+		} else if (!nextIsInfix) {
 			iterator.remove();
 		}
 	}
