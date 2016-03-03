@@ -109,10 +109,7 @@ public class NullSaveIteratorTests {
 		Object[] values = new Object[] { new Object() };
 		Iterator<Object> iterator = new NullSaveIterator<Object>(new ArrayIterator<Object>(values, replacement));
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 		Assert.assertSame(replacement, values[0]);

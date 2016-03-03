@@ -70,12 +70,9 @@ public class ByteArrayIteratorTests {
 		byte[] values = new byte[] { 1 };
 		Iterator<Byte> iterator = new ByteArrayIterator(values, replacement);
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Byte.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
-
+		
 		Assert.assertEquals(replacement, values[0]);
 
 	}
@@ -89,10 +86,7 @@ public class ByteArrayIteratorTests {
 		byte[] values = new byte[] { 1 };
 		Iterator<Byte> iterator = new ByteArrayIterator(values);
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Byte.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 	}

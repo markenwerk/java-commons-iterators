@@ -70,10 +70,7 @@ public class IntegerArrayIteratorTests {
 		int[] values = new int[] { 1 };
 		Iterator<Integer> iterator = new IntegerArrayIterator(values, replacement);
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Integer.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 		Assert.assertEquals(replacement, values[0]);
@@ -89,10 +86,7 @@ public class IntegerArrayIteratorTests {
 		int[] values = new int[] { 1 };
 		Iterator<Integer> iterator = new IntegerArrayIterator(values);
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Integer.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 	}

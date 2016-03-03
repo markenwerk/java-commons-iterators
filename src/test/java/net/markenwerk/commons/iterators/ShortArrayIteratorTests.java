@@ -70,10 +70,7 @@ public class ShortArrayIteratorTests {
 		short[] values = new short[] { 1 };
 		Iterator<Short> iterator = new ShortArrayIterator(values, replacement);
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Short.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 		Assert.assertEquals(replacement, values[0]);
@@ -89,10 +86,7 @@ public class ShortArrayIteratorTests {
 		short[] values = new short[] { 1 };
 		Iterator<Short> iterator = new ShortArrayIterator(values);
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Short.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 	}

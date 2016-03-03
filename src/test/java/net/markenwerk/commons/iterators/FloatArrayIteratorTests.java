@@ -70,10 +70,7 @@ public class FloatArrayIteratorTests {
 		float[] values = new float[] { 1 };
 		Iterator<Float> iterator = new FloatArrayIterator(values, replacement);
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Float.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 		Assert.assertEquals(replacement, values[0], 0);
@@ -89,10 +86,7 @@ public class FloatArrayIteratorTests {
 		float[] values = new float[] { 1 };
 		Iterator<Float> iterator = new FloatArrayIterator(values);
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Float.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 	}
