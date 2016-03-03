@@ -21,6 +21,8 @@
  */
 package net.markenwerk.commons.iterators;
 
+import java.util.NoSuchElementException;
+
 /**
  * A {@link LookAhead} is a simple container that holds the
  * {@link LookAhead#get() current} and the {@link LookAhead#getNext() next}
@@ -30,7 +32,7 @@ package net.markenwerk.commons.iterators;
  * @since 1.1.6
  *
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  */
 public interface LookAhead<Payload> {
 
@@ -47,9 +49,12 @@ public interface LookAhead<Payload> {
 	 * {@literal LookAhead#hashCode() next} payload object.
 	 * 
 	 * @return The next payload object. May be {@literal null}.
+	 * 
+	 * @throws NoSuchElementException
+	 *            If this {@link LookAhead} has no {@link LookAhead#getNext()
+	 *            next} payload object.
 	 */
-
-	public Payload getNext();
+	public Payload getNext() throws NoSuchElementException;
 
 	/**
 	 * Returns whether this {@link LookAhead} has a next payload object.
