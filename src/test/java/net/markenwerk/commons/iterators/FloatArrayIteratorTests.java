@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,6 +33,16 @@ import org.junit.Test;
  * @author Torsten Krause (tk at markenwerk dot net)
  */
 public class FloatArrayIteratorTests {
+
+	/**
+	 * Create with a {@code null} array.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void create_nullArray() {
+
+		new FloatArrayIterator(null);
+
+	}
 
 	/**
 	 * Iterate over a {@code float[]}.
@@ -49,14 +60,16 @@ public class FloatArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-
+	
 	/**
-	 * Iterate over a {@code null} array.
+	 * Try to iterate with no next element.
 	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullArray() {
+	@Test(expected = NoSuchElementException.class)
+	public void iterate_noNext() {
 
-		new FloatArrayIterator(null);
+		Iterator<Float> iterator = new FloatArrayIterator(new float[0]);
+
+		iterator.next();
 
 	}
 
@@ -64,7 +77,7 @@ public class FloatArrayIteratorTests {
 	 * Remove a value in a {@code float[]}.
 	 */
 	@Test
-	public void removeWithFallback() {
+	public void remove_fallback() {
 
 		float replacement = 0;
 		float[] values = new float[] { 1 };
@@ -81,12 +94,24 @@ public class FloatArrayIteratorTests {
 	 * Remove a value in a {@code float[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void removeWithoutFallback() {
+	public void remove_noFallback() {
 
 		float[] values = new float[] { 1 };
 		Iterator<Float> iterator = new FloatArrayIterator(values);
 
 		iterator.next();
+		iterator.remove();
+
+	}
+
+	/**
+	 * Try to remove a value before call to {@link Iterator#next()}.
+	 */
+	@Test(expected = IllegalStateException.class)
+	public void remove_beforeNext() {
+
+		Iterator<Float> iterator = new FloatArrayIterator(new float[0]);
+
 		iterator.remove();
 
 	}

@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,6 +33,16 @@ import org.junit.Test;
  * @author Torsten Krause (tk at markenwerk dot net)
  */
 public class ShortArrayIteratorTests {
+
+	/**
+	 * Create with a {@code null} array.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void create_nullArray() {
+
+		new ShortArrayIterator(null);
+
+	}
 
 	/**
 	 * Iterate over a {@code short[]}.
@@ -49,14 +60,17 @@ public class ShortArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-
+	
+	
 	/**
-	 * Iterate over a {@code null} array.
+	 * Try to iterate with no next element.
 	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullArray() {
+	@Test(expected = NoSuchElementException.class)
+	public void iterate_noNext() {
 
-		new ShortArrayIterator(null);
+		Iterator<Short> iterator = new ShortArrayIterator(new short[0]);
+
+		iterator.next();
 
 	}
 
@@ -64,7 +78,7 @@ public class ShortArrayIteratorTests {
 	 * Remove a value in a {@code short[]}.
 	 */
 	@Test
-	public void removeWithFallback() {
+	public void remove_fallback() {
 
 		short replacement = 0;
 		short[] values = new short[] { 1 };
@@ -81,12 +95,24 @@ public class ShortArrayIteratorTests {
 	 * Remove a value in a {@code short[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void removeWithoutFallback() {
+	public void remove_noFallback() {
 
 		short[] values = new short[] { 1 };
 		Iterator<Short> iterator = new ShortArrayIterator(values);
 
 		iterator.next();
+		iterator.remove();
+
+	}
+
+	/**
+	 * Try to remove a value before call to {@link Iterator#next()}.
+	 */
+	@Test(expected = IllegalStateException.class)
+	public void remove_beforeNext() {
+
+		Iterator<Short> iterator = new ShortArrayIterator(new short[0]);
+
 		iterator.remove();
 
 	}

@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,6 +34,18 @@ import org.junit.Test;
  */
 public class LongArrayIteratorTests {
 
+	
+
+	/**
+	 * Create with a {@code null} array.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void create_nullArray() {
+
+		new LongArrayIterator(null);
+
+	}
+	
 	/**
 	 * Iterate over a {@code long[]}.
 	 */
@@ -50,21 +63,25 @@ public class LongArrayIteratorTests {
 
 	}
 
+	
 	/**
-	 * Iterate over a {@code null} array.
+	 * Try to iterate with no next element.
 	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullArray() {
+	@Test(expected = NoSuchElementException.class)
+	public void iterate_noNext() {
 
-		new LongArrayIterator(null);
+		Iterator<Long> iterator = new LongArrayIterator(new long[0]);
+
+		iterator.next();
 
 	}
+	
 
 	/**
 	 * Remove a value in a {@code long[]}.
 	 */
 	@Test
-	public void removeWithFallback() {
+	public void remove_fallback() {
 
 		long replacement = 0;
 		long[] values = new long[] { 1 };
@@ -81,12 +98,24 @@ public class LongArrayIteratorTests {
 	 * Remove a value in a {@code long[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void removeWithoutFallback() {
+	public void remove_noFallback() {
 
 		long[] values = new long[] { 1 };
 		Iterator<Long> iterator = new LongArrayIterator(values);
 
 		iterator.next();
+		iterator.remove();
+
+	}
+	
+	/**
+	 * Try to remove a value before call to {@link Iterator#next()}.
+	 */
+	@Test(expected = IllegalStateException.class)
+	public void remove_beforeNext() {
+
+		Iterator<Long> iterator = new LongArrayIterator(new long[0]);
+
 		iterator.remove();
 
 	}

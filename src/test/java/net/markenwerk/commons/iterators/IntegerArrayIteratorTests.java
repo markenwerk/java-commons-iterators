@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,6 +34,16 @@ import org.junit.Test;
  */
 public class IntegerArrayIteratorTests {
 
+	/**
+	 * Create with a {@code null} array.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullArray() {
+
+		new IntegerArrayIterator(null);
+
+	}
+	
 	/**
 	 * Iterate over a {@code int[]}.
 	 */
@@ -49,22 +60,27 @@ public class IntegerArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-
+	
+	
 	/**
-	 * Iterate over a {@code null} array.
+	 * Try to iterate with no next element.
 	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullArray() {
+	@Test(expected = NoSuchElementException.class)
+	public void iterate_noNext() {
 
-		new IntegerArrayIterator(null);
+		Iterator<Integer> iterator = new IntegerArrayIterator(new int[0]);
+
+		iterator.next();
 
 	}
+
+
 
 	/**
 	 * Remove a value in a {@code integer[]}.
 	 */
 	@Test
-	public void removeWithFallback() {
+	public void remove_fallback() {
 
 		int replacement = 0;
 		int[] values = new int[] { 1 };
@@ -81,7 +97,7 @@ public class IntegerArrayIteratorTests {
 	 * Remove a value in a {@code integer[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void removeWithoutFallback() {
+	public void remove_noFallback() {
 
 		int[] values = new int[] { 1 };
 		Iterator<Integer> iterator = new IntegerArrayIterator(values);
@@ -91,4 +107,17 @@ public class IntegerArrayIteratorTests {
 
 	}
 
+	
+	/**
+	 * Try to remove a value before call to {@link Iterator#next()}.
+	 */
+	@Test(expected = IllegalStateException.class)
+	public void remove_beforeNext() {
+
+		Iterator<Integer> iterator = new IntegerArrayIterator(new int[0]);
+
+		iterator.remove();
+
+	}
+	
 }

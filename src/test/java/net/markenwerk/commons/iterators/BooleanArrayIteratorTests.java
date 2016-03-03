@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,6 +34,17 @@ import org.junit.Test;
  */
 public class BooleanArrayIteratorTests {
 
+	
+	/**
+	 * Create with a {@code null} array.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void create_nullArray() {
+
+		new BooleanArrayIterator(null);
+
+	}
+	
 	/**
 	 * Iterate over a {@code boolean[]}.
 	 */
@@ -49,22 +61,27 @@ public class BooleanArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-
+	
+	
 	/**
-	 * Iterate over a {@code null} array.
+	 * Try to iterate with no next element.
 	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullArray() {
+	@Test(expected = NoSuchElementException.class)
+	public void iterate_noNext() {
 
-		new BooleanArrayIterator(null);
+		Iterator<Boolean> iterator = new BooleanArrayIterator(new boolean[0]);
+
+		iterator.next();
 
 	}
+
+
 
 	/**
 	 * Remove a value in a {@code boolean[]}.
 	 */
 	@Test
-	public void removeWithFallback() {
+	public void remove_fallback() {
 
 		boolean replacement = false;
 		boolean[] values = new boolean[] { true };
@@ -81,7 +98,7 @@ public class BooleanArrayIteratorTests {
 	 * Remove a value in a {@code boolean[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void removeWithoutFallback() {
+	public void remove_noFallback() {
 
 		boolean[] values = new boolean[] { true };
 		Iterator<Boolean> iterator = new BooleanArrayIterator(values);
@@ -89,6 +106,20 @@ public class BooleanArrayIteratorTests {
 		iterator.next();
 		iterator.remove();
 
+
 	}
 
+	/**
+	 * Try to remove a value before call to {@link Iterator#next()}.
+	 */
+	@Test(expected = IllegalStateException.class)
+	public void remove_beforeNext() {
+
+		Iterator<Boolean> iterator = new BooleanArrayIterator(new boolean[0]);
+
+		iterator.remove();
+
+	}
+
+	
 }
