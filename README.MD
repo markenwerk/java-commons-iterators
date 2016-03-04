@@ -29,7 +29,7 @@ This library is hosted in the [Maven Central Repository](https://maven-badges.he
 ```xml
 <dependency>
 	<groupId>net.markenwerk</groupId>
-	<artifactId>java-commons-iterators</artifactId>
+	<artifactId>commons-iterators</artifactId>
 	<version>2.2.0</version>
 </dependency>
 ```
