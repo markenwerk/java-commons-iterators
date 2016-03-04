@@ -21,6 +21,7 @@ This is a collection of companion iterators for [some commonly useful `Iterable`
 - [Iterating over primitive arrays](#iterating-over-non-primitive-arrays)
 - [Iterating over non-primitive arrays](#iterating-over-primitive-arrays)
 - [Iterating over other objects](#iterating-over-other-objects)
+- [Keeping track of iteration index](#keeping-track-of-iteration-index)
 - [Counting up and down](#counting-up-and-down)
 
 This library is hosted in the [Maven Central Repository](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/commons-iterators). You can use it with the following coordinates:
@@ -274,6 +275,17 @@ StringTokenizer tokenizer = ...
 
 // yields every string from tokenizer
 Iterator<String> tokenizerIterator = new StringTokenizerIterator(tokenizer); 
+```
+
+### Keeping track of iteration index
+
+This library provides the generic [`IndexedIterator`][IndexedIterator] that takes an existing [`Iterator`][Iterator] and yield every value yielded by the given [`Iterator`][Iterator] wrapped in an [`Entry`][Entry] whose key is the iteration index of the yielded element.
+
+```java
+Iterator<Foo> iterator = ...
+
+// yields an entry for every foo from iterator with
+Iterator<Entry<Integer, Foo>> indexedIterator = new IndexedIterator<>(iterator);
 ```
 
 ### Counting up and down
