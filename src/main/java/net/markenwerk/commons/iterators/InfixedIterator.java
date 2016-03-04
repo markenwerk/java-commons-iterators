@@ -24,20 +24,18 @@ package net.markenwerk.commons.iterators;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import net.markenwerk.commons.interfaces.Predicate;
-
 /**
  * An {@link InfixedIterator} is an {@link Iterator} that can be wrapped around
- * a given {@link Iterator} and yields a given infix between every object
- * yielded by the given {@link Iterator}.
+ * a given {@link Iterator} and yields some given infix values between every
+ * value yielded by the given {@link Iterator}.
  * 
  * <p>
  * Calling {@link IntegerArrayIterator#remove()} calls {@link Iterator#remove()}
  * removed on the wrapped {@link Iterator}, if, and only iff, the last call to
- * {@link IntegerArrayIterator#next()} didn't return the given infix.
+ * {@link IntegerArrayIterator#next()} didn't return an infix value.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.6
  */
@@ -55,16 +53,16 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 
 	/**
 	 * Creates a new {@link InfixedIterator} from the given {@link Iterator} and
-	 * the given {@link Predicate}.
+	 * the given infix values.
 	 * 
 	 * @param iterator
-	 *           The {@link Iterator}, around which the new
-	 *           {@link NullFreeIterator} will be wrapped.
+	 *            The {@link Iterator}, around which the new
+	 *            {@link NullFreeIterator} will be wrapped.
 	 * @param infixes
-	 *           The infixes to be yielded.
+	 *            The infixes to be yielded.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@link Iterator} is {@literal null}.
+	 *             If the given {@link Iterator} is {@literal null}.
 	 */
 	public InfixedIterator(Iterator<? extends Payload> iterator, Payload... infixes) throws IllegalArgumentException {
 		if (null == iterator) {

@@ -103,7 +103,7 @@ public class InfixedIteratorTests {
 	}
 
 	/**
-	 * Iterate over an {@link Iterator} with two elements.
+	 * Iterate over an {@link Iterator} with no infixes.
 	 */
 	@Test
 	public void iterate_noInfixes() {
@@ -121,7 +121,7 @@ public class InfixedIteratorTests {
 	
 	
 	/**
-	 * Iterate over an {@link Iterator} with two elements.
+	 * Iterate over an {@link Iterator} with two infixes.
 	 */
 	@Test
 	public void iterate_twoInfixes() {
