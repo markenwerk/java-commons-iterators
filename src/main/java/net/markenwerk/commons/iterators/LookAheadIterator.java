@@ -27,7 +27,7 @@ import java.util.NoSuchElementException;
 import net.markenwerk.commons.interfaces.Predicate;
 
 /**
- * A {@link LookAheadIterator} is an {@link Iterator} that can be wrapped around
+ * A {@link LookAheadIterator} is an {@link ProtectedIterator} that can be wrapped around
  * a given {@link Iterator} and yields a {@link LookAhead} container that holds
  * the current and the next payload value of the given {@link Iterator}.
  * 

@@ -25,7 +25,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * An {@link OptionalIterator} is a {@link Iterator} that behaves like an
+ * An {@link OptionalIterator} is a {@link ProtectedIterator} that behaves like an
  * {@link ObjectIterator} for a given payload object, or like an empty
  * {@link Iterator}, if the given payload object is {@literal null}.
  * 

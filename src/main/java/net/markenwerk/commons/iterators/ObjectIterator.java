@@ -21,11 +21,10 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * An {@link ObjectIterator} is a {@link Iterator} that iterates over a single
+ * An {@link ObjectIterator} is a {@link ProtectedIterator} that iterates over a single
  * payload object.
  * 
  * @param <Payload>

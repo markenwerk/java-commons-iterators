@@ -21,11 +21,10 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link CountDownIterator} is an {@link Iterator} that yields all integer
+ * A {@link CountDownIterator} is an {@link ProtectedIterator} that yields all integer
  * value between a given upper value and a given lower bound.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)

@@ -21,11 +21,10 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * An {@link EmptyIterator} is an {@link Iterator} that doesn't yield any
+ * An {@link EmptyIterator} is an {@link ProtectedIterator} that doesn't yield any
  * values.
  * 
  * <p>

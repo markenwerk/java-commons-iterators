@@ -21,12 +21,11 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 /**
- * A {@link StringTokenizerIterator} is an {@link Iterator} that can be wrapped
+ * A {@link StringTokenizerIterator} is an {@link ProtectedIterator} that can be wrapped
  * around a given {@link StringTokenizer} and yields all tokens yielded by the
  * given {@link StringTokenizer}.
  * 

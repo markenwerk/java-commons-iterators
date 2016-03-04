@@ -22,11 +22,10 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link EnumerationIterator} is an {@link Iterator} that can be wrapped
+ * A {@link EnumerationIterator} is an {@link ProtectedIterator} that can be wrapped
  * around a given {@link Enumeration} and yields all values yielded by the given
  * {@link Enumeration}.
  * 
