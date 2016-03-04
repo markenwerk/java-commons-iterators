@@ -184,7 +184,7 @@ Iterator<Foo> nullFreeIterator = new NullFreeIterator<>(iterator);
 
 ### Handling of `remove()` operation
 
-This library provides the [`ProtectedIterator`][ProtectedIterator] interface. A [`ProtectedIterator`][ProtectedIterator] is an [`Iterator`][Iterator] that must throw a [`UnsupportedoperationException`][UnsupportedoperationException], if `remove()` is called.
+This library provides the [`ProtectedIterator`][ProtectedIterator] interface. A [`ProtectedIterator`][ProtectedIterator] is an [`Iterator`][Iterator] that must throw a [`UnsupportedOperationException`][UnsupportedOperationException], if `remove()` is called.
 
 This library provides the [`ProtectingIterator`][ProtectingIterator] that takes an existing [`Iterator`][Iterator] and yields all values yielded by the given [`Iterator`][Iterator], but throws a [`UnsupportedoperationException`][UnsupportedoperationException], if `remove()` is called.
 
@@ -195,7 +195,7 @@ Iterator<Foo> iterator = ...
 ProtectingIterator<Foo> protectingIterator = new ProtectingIterator<>(iterator); 
 ```
 
-This library provides the [`ResultHandlerIterator`][ResultHandlerIterator] that takes an existing [`Iterator`][Iterator] and a [`Handler`][Handler] and yields all values yielded by the given [`Iterator`][Iterator], but calls the given handler with the last yielded value, instead of calling `remove()` on the given [`Iterator`][Iterator].
+This library provides the [`RemoveHandlerIterator`][RemoveHandlerIterator] that takes an existing [`Iterator`][Iterator] and a [`Handler`][Handler] and yields all values yielded by the given [`Iterator`][Iterator], but calls the given handler with the last yielded value, instead of calling `remove()` on the given [`Iterator`][Iterator].
 
 ```java
 Iterator<Foo> iterator = ...
@@ -328,4 +328,5 @@ Iterator<Integer> countUpIterator = new CountUpIterator(0, 10);
 [Iterator]: http://docs.oracle.com/javase/8/docs/api/index.html?java/util/Iterator.html
 [List]: http://docs.oracle.com/javase/8/docs/api/index.html?java/util/List.html
 [StringTokenizer]: https://docs.oracle.com/javase/8/docs/api/index.html?java/util/StringTokenizer.html
+[UnsupportedOperationException]: https://docs.oracle.com/javase/8/docs/api/index.html?java/lang/UnsupportedOperationException.html
 
