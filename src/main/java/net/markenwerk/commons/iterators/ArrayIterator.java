@@ -21,30 +21,20 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * An {@link ArrayIterator} is a {@link Iterator} that iterates over a given
- * payload array.
- * 
- * <p>
- * Calling {@link ArrayIterator#remove()} may set the array to the given
- * replacement value at the index that corresponds to the last value returned by
- * {@link ArrayIterator#next()}.
+ * An {@link ArrayIterator} is a {@link ProtectedIterator} that iterates over a
+ * given payload array.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class ArrayIterator<Payload> implements Iterator<Payload> {
+public final class ArrayIterator<Payload> implements ProtectedIterator<Payload> {
 
 	private final Payload[] array;
-
-	private final boolean removable;
-
-	private final Payload replacement;
 
 	private int index = -1;
 
@@ -59,32 +49,10 @@ public final class ArrayIterator<Payload> implements Iterator<Payload> {
 	 *             If the given payload array is {@literal null}.
 	 */
 	public ArrayIterator(Payload[] array) throws IllegalArgumentException {
-		this(array, false, null);
-	}
-
-	/**
-	 * Creates a new {@link ArrayIterator} that iterates over the given payload
-	 * array.
-	 * 
-	 * @param array
-	 *            The payload array to iterate over.
-	 * @param replacement
-	 *            The value to replace removed values with.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given payload array is {@literal null}.
-	 */
-	public ArrayIterator(Payload[] array, Payload replacement) throws IllegalArgumentException {
-		this(array, true, replacement);
-	}
-
-	private ArrayIterator(Payload[] array, boolean removable, Payload replacement) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
 		this.array = array;
-		this.removable = removable;
-		this.replacement = replacement;
 	}
 
 	@Override
@@ -102,14 +70,8 @@ public final class ArrayIterator<Payload> implements Iterator<Payload> {
 	}
 
 	@Override
-	public void remove() throws IllegalStateException, UnsupportedOperationException {
-		if (-1 == index) {
-			throw new IllegalStateException("next() hasn't been called yet");
-		} else if (!removable) {
-			throw new UnsupportedOperationException("Cannot remove from an ArrayIterator");
-		} else {
-			array[index] = replacement;
-		}
+	public void remove() throws UnsupportedOperationException {
+		throw new UnsupportedOperationException("Cannot remove from an ArrayIterator");
 	}
 
 }

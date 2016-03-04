@@ -34,7 +34,6 @@ import org.junit.Test;
  */
 public class DoubleArrayIteratorTests {
 
-	
 	/**
 	 * Create with a {@code null} array.
 	 */
@@ -44,7 +43,7 @@ public class DoubleArrayIteratorTests {
 		new DoubleArrayIterator(null);
 
 	}
-	
+
 	/**
 	 * Iterate over a {@code double[]}.
 	 */
@@ -61,8 +60,7 @@ public class DoubleArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
 	/**
 	 * Try to iterate with no next element.
 	 */
@@ -75,46 +73,14 @@ public class DoubleArrayIteratorTests {
 
 	}
 
-
-
-	/**
-	 * Remove a value in a {@code double[]}.
-	 */
-	@Test
-	public void remove_fallback() {
-
-		double replacement = 2;
-		double[] values = new double[] { 1 };
-		Iterator<Double> iterator = new DoubleArrayIterator(values, replacement);
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0], 0);
-
-	}
-
 	/**
 	 * Remove a value in a {@code double[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void remove_noFallback() {
+	public void remove() {
 
 		double[] values = new double[] { 1 };
 		Iterator<Double> iterator = new DoubleArrayIterator(values);
-
-		iterator.next();
-		iterator.remove();
-
-	}
-
-	/**
-	 * Try to remove a value before call to {@link Iterator#next()}.
-	 */
-	@Test(expected = IllegalStateException.class)
-	public void remove_beforeNext() {
-
-		Iterator<Double> iterator = new DoubleArrayIterator(new double[0]);
 
 		iterator.remove();
 

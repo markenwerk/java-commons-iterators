@@ -21,26 +21,18 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link DoubleArrayIterator} is an {@link Iterator} that iterates over a
- * given {@code double[]}.
- * 
- * <p>
- * Calling {@link DoubleArrayIterator#remove()} sets the array to {@literal 0}
- * at the index that corresponds to the last value returned by
- * {@link DoubleArrayIterator#next()}.
+ * A {@link DoubleArrayIterator} is an {@link ProtectedIterator} that iterates
+ * over a given {@code double[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class DoubleArrayIterator implements Iterator<Double> {
+public final class DoubleArrayIterator implements ProtectedIterator<Double> {
 
 	private final double[] array;
-
-	private final Double replacement;
 
 	private int index = -1;
 
@@ -55,31 +47,10 @@ public final class DoubleArrayIterator implements Iterator<Double> {
 	 *             If the given {@code double[]} is {@literal null}.
 	 */
 	public DoubleArrayIterator(double[] array) throws IllegalArgumentException {
-		this(array, null);
-	}
-
-	/**
-	 * Creates a new {@linkplain DoubleArrayIterator} that iterates over the
-	 * given {@code double[]}.
-	 * 
-	 * @param array
-	 *            The {@code double[]} to iterate over.
-	 * @param replacement
-	 *            The value to replace removed values with.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@code double[]} is {@literal null}.
-	 */
-	public DoubleArrayIterator(double[] array, double replacement) throws IllegalArgumentException {
-		this(array, Double.valueOf(replacement));
-	}
-
-	private DoubleArrayIterator(double[] array, Double replacement) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
 		this.array = array;
-		this.replacement = replacement;
 	}
 
 	@Override
@@ -97,14 +68,8 @@ public final class DoubleArrayIterator implements Iterator<Double> {
 	}
 
 	@Override
-	public void remove() throws IllegalStateException, UnsupportedOperationException {
-		if (-1 == index) {
-			throw new IllegalStateException("next() hasn't been called yet");
-		} else if (null == replacement) {
-			throw new UnsupportedOperationException("Cannot remove from a DoubleArrayIterator");
-		} else {
-			array[index] = replacement;
-		}
+	public void remove() throws UnsupportedOperationException {
+		throw new UnsupportedOperationException("Cannot remove from a DoubleArrayIterator");
 	}
 
 }

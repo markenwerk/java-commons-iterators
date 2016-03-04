@@ -21,26 +21,18 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link CharacterArrayIterator} is an {@link Iterator} that iterates over a
- * given {@code char[]}.
- * 
- * <p>
- * Calling {@link CharacterArrayIterator#remove()} sets the array to
- * {@literal 0} at the index that corresponds to the last value returned by
- * {@link CharacterArrayIterator#next()}.
+ * A {@link CharacterArrayIterator} is an {@link ProtectedIterator} that
+ * iterates over a given {@code char[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class CharacterArrayIterator implements Iterator<Character> {
+public final class CharacterArrayIterator implements ProtectedIterator<Character> {
 
 	private final char[] array;
-
-	private final Character replacement;
 
 	private int index = -1;
 
@@ -55,31 +47,10 @@ public final class CharacterArrayIterator implements Iterator<Character> {
 	 *             If the given {@code char[]} is {@literal null}.
 	 */
 	public CharacterArrayIterator(char[] array) throws IllegalArgumentException {
-		this(array, null);
-	}
-
-	/**
-	 * Creates a new {@linkplain CharacterArrayIterator} that iterates over the
-	 * given {@code char[]}.
-	 * 
-	 * @param array
-	 *            The {@code char[]} to iterate over.
-	 * @param replacement
-	 *            The value to replace removed values with.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@code char[]} is {@literal null}.
-	 */
-	public CharacterArrayIterator(char[] array, char replacement) throws IllegalArgumentException {
-		this(array, Character.valueOf(replacement));
-	}
-
-	private CharacterArrayIterator(char[] array, Character replacement) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
 		this.array = array;
-		this.replacement = replacement;
 	}
 
 	@Override
@@ -98,13 +69,7 @@ public final class CharacterArrayIterator implements Iterator<Character> {
 
 	@Override
 	public void remove() throws IllegalStateException, UnsupportedOperationException {
-		if (-1 == index) {
-			throw new IllegalStateException("next() hasn't been called yet");
-		} else if (null == replacement) {
-			throw new UnsupportedOperationException("Cannot remove from a CharacterArrayIterator");
-		} else {
-			array[index] = replacement;
-		}
+		throw new UnsupportedOperationException("Cannot remove from a CharacterArrayIterator");
 	}
 
 }

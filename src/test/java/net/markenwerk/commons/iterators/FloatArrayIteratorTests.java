@@ -60,7 +60,7 @@ public class FloatArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
+
 	/**
 	 * Try to iterate with no next element.
 	 */
@@ -76,41 +76,11 @@ public class FloatArrayIteratorTests {
 	/**
 	 * Remove a value in a {@code float[]}.
 	 */
-	@Test
-	public void remove_fallback() {
-
-		float replacement = 0;
-		float[] values = new float[] { 1 };
-		Iterator<Float> iterator = new FloatArrayIterator(values, replacement);
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0], 0);
-
-	}
-
-	/**
-	 * Remove a value in a {@code float[]}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void remove_noFallback() {
+	public void remove() {
 
 		float[] values = new float[] { 1 };
 		Iterator<Float> iterator = new FloatArrayIterator(values);
-
-		iterator.next();
-		iterator.remove();
-
-	}
-
-	/**
-	 * Try to remove a value before call to {@link Iterator#next()}.
-	 */
-	@Test(expected = IllegalStateException.class)
-	public void remove_beforeNext() {
-
-		Iterator<Float> iterator = new FloatArrayIterator(new float[0]);
 
 		iterator.remove();
 

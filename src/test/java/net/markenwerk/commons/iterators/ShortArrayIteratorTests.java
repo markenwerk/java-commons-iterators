@@ -60,8 +60,7 @@ public class ShortArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
 	/**
 	 * Try to iterate with no next element.
 	 */
@@ -77,41 +76,11 @@ public class ShortArrayIteratorTests {
 	/**
 	 * Remove a value in a {@code short[]}.
 	 */
-	@Test
-	public void remove_fallback() {
-
-		short replacement = 0;
-		short[] values = new short[] { 1 };
-		Iterator<Short> iterator = new ShortArrayIterator(values, replacement);
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0]);
-
-	}
-
-	/**
-	 * Remove a value in a {@code short[]}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void remove_noFallback() {
+	public void remove() {
 
 		short[] values = new short[] { 1 };
 		Iterator<Short> iterator = new ShortArrayIterator(values);
-
-		iterator.next();
-		iterator.remove();
-
-	}
-
-	/**
-	 * Try to remove a value before call to {@link Iterator#next()}.
-	 */
-	@Test(expected = IllegalStateException.class)
-	public void remove_beforeNext() {
-
-		Iterator<Short> iterator = new ShortArrayIterator(new short[0]);
 
 		iterator.remove();
 

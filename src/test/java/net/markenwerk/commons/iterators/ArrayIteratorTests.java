@@ -76,42 +76,11 @@ public class ArrayIteratorTests {
 	/**
 	 * Remove a value in a {@code short[]}.
 	 */
-	@Test
-	public void remove_fallback() {
-
-		Object replacement = new Object();
-		Object[] values = new Object[] { new Object() };
-
-		Iterator<Object> iterator = new ArrayIterator<Object>(values, replacement);
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0]);
-
-	}
-
-	/**
-	 * Remove a value in a {@code short[]}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void remove_noFallback() {
+	public void remove() {
 
 		Object[] values = new Object[] { new Object() };
 		Iterator<Object> iterator = new ArrayIterator<Object>(values);
-
-		iterator.next();
-		iterator.remove();
-
-	}
-
-	/**
-	 * Try to remove a value before call to {@link Iterator#next()}.
-	 */
-	@Test(expected = IllegalStateException.class)
-	public void remove_beforeNext() {
-
-		Iterator<Object> iterator = new ArrayIterator<Object>(new Object[0]);
 
 		iterator.remove();
 

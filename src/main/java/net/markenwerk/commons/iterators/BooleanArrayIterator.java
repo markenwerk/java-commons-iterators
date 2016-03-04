@@ -21,26 +21,18 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link BooleanArrayIterator} is a {@link Iterator} that iterates over a
- * given {@code boolean[]}.
- * 
- * <p>
- * Calling {@link BooleanArrayIterator#remove()} sets the array to
- * {@literal false} at the index that corresponds to the last value returned by
- * {@link BooleanArrayIterator#next()}.
+ * A {@link BooleanArrayIterator} is a {@link ProtectedIterator} that iterates
+ * over a given {@code boolean[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class BooleanArrayIterator implements Iterator<Boolean> {
+public final class BooleanArrayIterator implements ProtectedIterator<Boolean> {
 
 	private final boolean[] array;
-
-	private final Boolean replacement;
 
 	private int index = -1;
 
@@ -55,31 +47,10 @@ public final class BooleanArrayIterator implements Iterator<Boolean> {
 	 *             If the given {@code boolean[]} is {@literal null}.
 	 */
 	public BooleanArrayIterator(boolean[] array) throws IllegalArgumentException {
-		this(array, null);
-	}
-
-	/**
-	 * Creates a new {@linkplain BooleanArrayIterator} that iterates over the
-	 * given {@code boolean[]}.
-	 * 
-	 * @param array
-	 *            The {@code boolean[]} to iterate over.
-	 * @param replacement
-	 *            The value to replace removed values with.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@code boolean[]} is {@literal null}.
-	 */
-	public BooleanArrayIterator(boolean[] array, boolean replacement) throws IllegalArgumentException {
-		this(array, Boolean.valueOf(replacement));
-	}
-
-	private BooleanArrayIterator(boolean[] array, Boolean replacement) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
 		this.array = array;
-		this.replacement = replacement;
 	}
 
 	@Override
@@ -97,14 +68,8 @@ public final class BooleanArrayIterator implements Iterator<Boolean> {
 	}
 
 	@Override
-	public void remove() throws IllegalStateException, UnsupportedOperationException {
-		if (-1 == index) {
-			throw new IllegalStateException("next() hasn't been called yet");
-		} else if (null == replacement) {
-			throw new UnsupportedOperationException("Cannot remove from a BooleanArrayIterator");
-		} else {
-			array[index] = replacement;
-		}
+	public void remove() throws UnsupportedOperationException {
+		throw new UnsupportedOperationException("Cannot remove from a BooleanArrayIterator");
 	}
 
 }

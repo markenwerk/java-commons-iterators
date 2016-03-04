@@ -21,26 +21,18 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * An {@link IntegerArrayIterator} is an {@link Iterator} that iterates over a
- * given {@code int[]}.
- * 
- * <p>
- * Calling {@link IntegerArrayIterator#remove()} sets the array to {@literal 0}
- * at the index that corresponds to the last value returned by
- * {@link IntegerArrayIterator#next()}.
+ * An {@link IntegerArrayIterator} is an {@link ProtectedIterator} that iterates
+ * over a given {@code int[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class IntegerArrayIterator implements Iterator<Integer> {
+public final class IntegerArrayIterator implements ProtectedIterator<Integer> {
 
 	private final int[] array;
-
-	private final Integer replacement;
 
 	private int index = -1;
 
@@ -55,31 +47,10 @@ public final class IntegerArrayIterator implements Iterator<Integer> {
 	 *             If the given {@code int[]} is {@literal null}.
 	 */
 	public IntegerArrayIterator(int[] array) throws IllegalArgumentException {
-		this(array, null);
-	}
-
-	/**
-	 * Creates a new {@linkplain IntegerArrayIterator} that iterates over the
-	 * given {@code int[]}.
-	 * 
-	 * @param array
-	 *            The {@code int[]} to iterate over.
-	 * @param replacement
-	 *            The value to replace removed values with.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@code int[]} is {@literal null}.
-	 */
-	public IntegerArrayIterator(int[] array, int replacement) throws IllegalArgumentException {
-		this(array, Integer.valueOf(replacement));
-	}
-
-	private IntegerArrayIterator(int[] array, Integer replacement) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
 		this.array = array;
-		this.replacement = replacement;
 	}
 
 	@Override
@@ -97,13 +68,7 @@ public final class IntegerArrayIterator implements Iterator<Integer> {
 	}
 
 	@Override
-	public void remove() throws IllegalStateException, UnsupportedOperationException {
-		if (-1 == index) {
-			throw new IllegalStateException("next() hasn't been called yet");
-		} else if (null == replacement) {
-			throw new UnsupportedOperationException("Cannot remove from an IntegerArrayIterator");
-		} else {
-			array[index] = replacement;
-		}
+	public void remove() throws UnsupportedOperationException {
+		throw new UnsupportedOperationException("Cannot remove from an IntegerArrayIterator");
 	}
 }

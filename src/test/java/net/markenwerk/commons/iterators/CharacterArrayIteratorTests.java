@@ -60,7 +60,7 @@ public class CharacterArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
+
 	/**
 	 * Try to iterate with no next element.
 	 */
@@ -76,41 +76,11 @@ public class CharacterArrayIteratorTests {
 	/**
 	 * Remove a value in a {@code char[]}.
 	 */
-	@Test
-	public void remove_fallback() {
-
-		char replacement = 0;
-		char[] values = new char[] { 1 };
-		Iterator<Character> iterator = new CharacterArrayIterator(values, replacement);
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0]);
-
-	}
-
-	/**
-	 * Remove a value in a {@code char[]}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void remove_noFallback() {
+	public void remove() {
 
 		char[] values = new char[] { 1 };
 		Iterator<Character> iterator = new CharacterArrayIterator(values);
-
-		iterator.next();
-		iterator.remove();
-
-	}
-
-	/**
-	 * Try to remove a value before call to {@link Iterator#next()}.
-	 */
-	@Test(expected = IllegalStateException.class)
-	public void remove_beforeNext() {
-
-		Iterator<Character> iterator = new CharacterArrayIterator(new char[0]);
 
 		iterator.remove();
 

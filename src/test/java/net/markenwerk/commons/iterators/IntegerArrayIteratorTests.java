@@ -43,7 +43,7 @@ public class IntegerArrayIteratorTests {
 		new IntegerArrayIterator(null);
 
 	}
-	
+
 	/**
 	 * Iterate over a {@code int[]}.
 	 */
@@ -60,8 +60,7 @@ public class IntegerArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
 	/**
 	 * Try to iterate with no next element.
 	 */
@@ -74,50 +73,17 @@ public class IntegerArrayIteratorTests {
 
 	}
 
-
-
-	/**
-	 * Remove a value in a {@code integer[]}.
-	 */
-	@Test
-	public void remove_fallback() {
-
-		int replacement = 0;
-		int[] values = new int[] { 1 };
-		Iterator<Integer> iterator = new IntegerArrayIterator(values, replacement);
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0]);
-
-	}
-
 	/**
 	 * Remove a value in a {@code integer[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void remove_noFallback() {
+	public void remove() {
 
 		int[] values = new int[] { 1 };
 		Iterator<Integer> iterator = new IntegerArrayIterator(values);
 
-		iterator.next();
 		iterator.remove();
 
 	}
 
-	
-	/**
-	 * Try to remove a value before call to {@link Iterator#next()}.
-	 */
-	@Test(expected = IllegalStateException.class)
-	public void remove_beforeNext() {
-
-		Iterator<Integer> iterator = new IntegerArrayIterator(new int[0]);
-
-		iterator.remove();
-
-	}
-	
 }

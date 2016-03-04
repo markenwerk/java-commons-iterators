@@ -21,26 +21,18 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link ShortArrayIterator} is an {@link Iterator} that iterates over a
- * given {@code short[]}.
- * 
- * <p>
- * Calling {@link ShortArrayIterator#remove()} sets the array to {@literal 0} at
- * the index that corresponds to the last value returned by
- * {@link ShortArrayIterator#next()}.
+ * A {@link ShortArrayIterator} is an {@link ProtectedIterator} that iterates
+ * over a given {@code short[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class ShortArrayIterator implements Iterator<Short> {
+public final class ShortArrayIterator implements ProtectedIterator<Short> {
 
 	private final short[] array;
-
-	private final Short replacement;
 
 	private int index = -1;
 
@@ -55,31 +47,10 @@ public final class ShortArrayIterator implements Iterator<Short> {
 	 *             If the given {@code short[]} is {@literal null}.
 	 */
 	public ShortArrayIterator(short[] array) throws IllegalArgumentException {
-		this(array, null);
-	}
-
-	/**
-	 * Creates a new {@linkplain ShortArrayIterator} that iterates over the
-	 * given {@code short[]}.
-	 * 
-	 * @param array
-	 *            The {@code short[]} to iterate over.
-	 * @param replacement
-	 *            The value to replace removed values with.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@code short[]} is {@literal null}.
-	 */
-	public ShortArrayIterator(short[] array, short replacement) throws IllegalArgumentException {
-		this(array, Short.valueOf(replacement));
-	}
-
-	private ShortArrayIterator(short[] array, Short replacement) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
 		this.array = array;
-		this.replacement = replacement;
 	}
 
 	@Override
@@ -97,14 +68,8 @@ public final class ShortArrayIterator implements Iterator<Short> {
 	}
 
 	@Override
-	public void remove() throws IllegalStateException, UnsupportedOperationException {
-		if (-1 == index) {
-			throw new IllegalStateException("next() hasn't been called yet");
-		} else if (null == replacement) {
-			throw new UnsupportedOperationException("Cannot remove from a ShortArrayIterator");
-		} else {
-			array[index] = replacement;
-		}
+	public void remove() throws UnsupportedOperationException {
+		throw new UnsupportedOperationException("Cannot remove from a ShortArrayIterator");
 	}
 
 }

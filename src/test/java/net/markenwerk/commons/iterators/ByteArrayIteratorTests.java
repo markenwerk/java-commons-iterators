@@ -60,8 +60,7 @@ public class ByteArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
 	/**
 	 * Try to iterate with no next element.
 	 */
@@ -77,41 +76,11 @@ public class ByteArrayIteratorTests {
 	/**
 	 * Remove a value in a {@code byte[]}.
 	 */
-	@Test
-	public void remove_fallback() {
-
-		byte replacement = 0;
-		byte[] values = new byte[] { 1 };
-		Iterator<Byte> iterator = new ByteArrayIterator(values, replacement);
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0]);
-
-	}
-
-	/**
-	 * Remove a value in a {@code byte[]}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void remove_noFallback() {
+	public void remove() {
 
 		byte[] values = new byte[] { 1 };
 		Iterator<Byte> iterator = new ByteArrayIterator(values);
-
-		iterator.next();
-		iterator.remove();
-
-	}
-
-	/**
-	 * Try to remove a value before call to {@link Iterator#next()}.
-	 */
-	@Test(expected = IllegalStateException.class)
-	public void remove_beforeNext() {
-
-		Iterator<Byte> iterator = new ByteArrayIterator(new byte[0]);
 
 		iterator.remove();
 

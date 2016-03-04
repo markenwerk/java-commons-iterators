@@ -21,26 +21,18 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link FloatArrayIterator} is an {@link Iterator} that iterates over a
- * given {@code float[]}.
- * 
- * <p>
- * Calling {@link FloatArrayIterator#remove()} sets the array to {@literal 0} at
- * the index that corresponds to the last value returned by
- * {@link FloatArrayIterator#next()}.
+ * A {@link FloatArrayIterator} is an {@link ProtectedIterator} that iterates
+ * over a given {@code float[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class FloatArrayIterator implements Iterator<Float> {
+public final class FloatArrayIterator implements ProtectedIterator<Float> {
 
 	private final float[] array;
-
-	private final Float replacement;
 
 	private int index = -1;
 
@@ -55,31 +47,10 @@ public final class FloatArrayIterator implements Iterator<Float> {
 	 *             If the given {@code float[]} is {@literal null}.
 	 */
 	public FloatArrayIterator(float[] array) throws IllegalArgumentException {
-		this(array, null);
-	}
-
-	/**
-	 * Creates a new {@linkplain FloatArrayIterator} that iterates over the
-	 * given {@code float[]}.
-	 * 
-	 * @param array
-	 *            The {@code float[]} to iterate over.
-	 * @param replacement
-	 *            The value to replace removed values with.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@code float[]} is {@literal null}.
-	 */
-	public FloatArrayIterator(float[] array, float replacement) throws IllegalArgumentException {
-		this(array, Float.valueOf(replacement));
-	}
-
-	private FloatArrayIterator(float[] array, Float replacement) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
 		this.array = array;
-		this.replacement = replacement;
 	}
 
 	@Override
@@ -97,14 +68,8 @@ public final class FloatArrayIterator implements Iterator<Float> {
 	}
 
 	@Override
-	public void remove() throws IllegalStateException, UnsupportedOperationException {
-		if (-1 == index) {
-			throw new IllegalStateException("next() hasn't been called yet");
-		} else if (null == replacement) {
-			throw new UnsupportedOperationException("Cannot remove from a FloatArrayIterator");
-		} else {
-			array[index] = replacement;
-		}
+	public void remove() throws UnsupportedOperationException {
+		throw new UnsupportedOperationException("Cannot remove from a FloatArrayIterator");
 	}
 
 }

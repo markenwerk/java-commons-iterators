@@ -34,7 +34,6 @@ import org.junit.Test;
  */
 public class BooleanArrayIteratorTests {
 
-	
 	/**
 	 * Create with a {@code null} array.
 	 */
@@ -44,7 +43,7 @@ public class BooleanArrayIteratorTests {
 		new BooleanArrayIterator(null);
 
 	}
-	
+
 	/**
 	 * Iterate over a {@code boolean[]}.
 	 */
@@ -61,8 +60,7 @@ public class BooleanArrayIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
 	/**
 	 * Try to iterate with no next element.
 	 */
@@ -75,51 +73,17 @@ public class BooleanArrayIteratorTests {
 
 	}
 
-
-
-	/**
-	 * Remove a value in a {@code boolean[]}.
-	 */
-	@Test
-	public void remove_fallback() {
-
-		boolean replacement = false;
-		boolean[] values = new boolean[] { true };
-		Iterator<Boolean> iterator = new BooleanArrayIterator(values, replacement);
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0]);
-
-	}
-
 	/**
 	 * Remove a value in a {@code boolean[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void remove_noFallback() {
+	public void remove() {
 
 		boolean[] values = new boolean[] { true };
 		Iterator<Boolean> iterator = new BooleanArrayIterator(values);
 
-		iterator.next();
-		iterator.remove();
-
-
-	}
-
-	/**
-	 * Try to remove a value before call to {@link Iterator#next()}.
-	 */
-	@Test(expected = IllegalStateException.class)
-	public void remove_beforeNext() {
-
-		Iterator<Boolean> iterator = new BooleanArrayIterator(new boolean[0]);
-
 		iterator.remove();
 
 	}
 
-	
 }

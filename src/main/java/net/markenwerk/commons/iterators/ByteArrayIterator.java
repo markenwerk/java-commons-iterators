@@ -21,26 +21,18 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link ByteArrayIterator} is an {@link Iterator} that iterates over a given
- * {@code byte[]}.
- * 
- * <p>
- * Calling {@link ByteArrayIterator#remove()} sets the array to {@literal 0} at
- * the index that corresponds to the last value returned by
- * {@link ByteArrayIterator#next()}.
+ * A {@link ByteArrayIterator} is an {@link ProtectedIterator} that iterates
+ * over a given {@code byte[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class ByteArrayIterator implements Iterator<Byte> {
+public final class ByteArrayIterator implements ProtectedIterator<Byte> {
 
 	private final byte[] array;
-
-	private final Byte replacement;
 
 	private int index = -1;
 
@@ -55,31 +47,10 @@ public final class ByteArrayIterator implements Iterator<Byte> {
 	 *             If the given {@code byte[]} is {@literal null}.
 	 */
 	public ByteArrayIterator(byte[] array) throws IllegalArgumentException {
-		this(array, null);
-	}
-
-	/**
-	 * Creates a new {@linkplain ByteArrayIterator} that iterates over the given
-	 * {@code byte[]}.
-	 * 
-	 * @param array
-	 *            The {@code byte[]} to iterate over.
-	 * @param replacement
-	 *            The value to replace removed values with.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@code byte[]} is {@literal null}.
-	 */
-	public ByteArrayIterator(byte[] array, byte replacement) throws IllegalArgumentException {
-		this(array, Byte.valueOf(replacement));
-	}
-
-	private ByteArrayIterator(byte[] array, Byte replacement) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
 		this.array = array;
-		this.replacement = replacement;
 	}
 
 	@Override
@@ -97,14 +68,8 @@ public final class ByteArrayIterator implements Iterator<Byte> {
 	}
 
 	@Override
-	public void remove() throws IllegalStateException, UnsupportedOperationException {
-		if (-1 == index) {
-			throw new IllegalStateException("next() hasn't been called yet");
-		} else if (null == replacement) {
-			throw new UnsupportedOperationException("Cannot remove from a ByteArrayIterator");
-		} else {
-			array[index] = replacement;
-		}
+	public void remove() throws UnsupportedOperationException {
+		throw new UnsupportedOperationException("Cannot remove from a ByteArrayIterator");
 	}
 
 }
