@@ -60,7 +60,8 @@ public final class RemoveHandlerIterator<Payload> implements Iterator<Payload> {
 	 *            The {@link Handler} to be used.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@link Iterator} is {@literal null}.
+	 *             If the given {@link Iterator} is {@literal null} of if the
+	 *             given {@link Handler} is {@literal null}.
 	 */
 	public RemoveHandlerIterator(Iterator<? extends Payload> iterator, Handler<Payload> removeHandler)
 			throws IllegalArgumentException {
