@@ -96,6 +96,7 @@ public class CountDownIteratorTests {
 	public void countUp_remove() {
 
 		Iterator<Integer> iterator = new CountDownIterator(1, 2);
+		
 		iterator.remove();
 
 	}

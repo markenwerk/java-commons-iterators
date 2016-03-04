@@ -95,6 +95,7 @@ public class CountUpIteratorTests {
 	public void remove() {
 
 		Iterator<Integer> iterator = new CountUpIterator(1, 2);
+		
 		iterator.remove();
 
 	}
