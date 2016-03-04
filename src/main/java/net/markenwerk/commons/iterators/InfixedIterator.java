@@ -105,7 +105,7 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 	}
 
 	@Override
-	public void remove() {
+	public void remove() throws IllegalStateException {
 		if (!nextCalled) {
 			throw new IllegalStateException("next() hasn't been called yet");
 		} else if (currentRemovable) {
