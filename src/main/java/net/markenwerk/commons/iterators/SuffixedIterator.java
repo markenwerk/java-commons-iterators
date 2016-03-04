@@ -51,6 +51,8 @@ public final class SuffixedIterator<Payload> implements Iterator<Payload> {
 
 	private boolean nextCalled;
 
+	private boolean currentRemovable;
+
 	/**
 	 * Creates a new {@link SuffixedIterator} from the given {@link Iterator}
 	 * and the given suffix values.
@@ -89,6 +91,7 @@ public final class SuffixedIterator<Payload> implements Iterator<Payload> {
 			nextCalled = true;
 			if (suffixing) {
 				suffixing = ++suffixIndex != suffixes.length - 1;
+				currentRemovable = false;
 				return suffixes[suffixIndex];
 			} else {
 				Payload current = iterator.next();
@@ -96,6 +99,7 @@ public final class SuffixedIterator<Payload> implements Iterator<Payload> {
 					suffixIndex = -1;
 					suffixing = 0 != suffixes.length;
 				}
+				currentRemovable = true;
 				return current;
 			}
 		}
@@ -105,7 +109,7 @@ public final class SuffixedIterator<Payload> implements Iterator<Payload> {
 	public void remove() {
 		if (!nextCalled) {
 			throw new IllegalStateException("next() hasn't been called yet");
-		} else if (!suffixing) {
+		} else if (currentRemovable) {
 			iterator.remove();
 		}
 	}

@@ -51,6 +51,8 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 
 	private boolean nextCalled;
 
+	private boolean currentRemovable;
+
 	/**
 	 * Creates a new {@link InfixedIterator} from the given {@link Iterator} and
 	 * the given infix values.
@@ -88,6 +90,7 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 			nextCalled = true;
 			if (infixing) {
 				infixing = ++infixIndex != infixes.length - 1;
+				currentRemovable = false;
 				return infixes[infixIndex];
 			} else {
 				Payload current = iterator.next();
@@ -95,6 +98,7 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 					infixIndex = -1;
 					infixing = 0 != infixes.length;
 				}
+				currentRemovable = true;
 				return current;
 			}
 		}
@@ -104,7 +108,7 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 	public void remove() {
 		if (!nextCalled) {
 			throw new IllegalStateException("next() hasn't been called yet");
-		} else if (!infixing) {
+		} else if (currentRemovable) {
 			iterator.remove();
 		}
 	}

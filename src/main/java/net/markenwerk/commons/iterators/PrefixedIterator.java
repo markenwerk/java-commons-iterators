@@ -51,6 +51,8 @@ public final class PrefixedIterator<Payload> implements Iterator<Payload> {
 
 	private boolean nextCalled;
 
+	private boolean currentRemovable;
+
 	/**
 	 * Creates a new {@link PrefixedIterator} from the given {@link Iterator}
 	 * and the given prefix values.
@@ -89,9 +91,11 @@ public final class PrefixedIterator<Payload> implements Iterator<Payload> {
 			nextCalled = true;
 			if (prefixing) {
 				prefixing = ++prefixIndex != prefixes.length - 1;
+				currentRemovable = false;
 				return prefixes[prefixIndex];
 			} else {
 				Payload current = iterator.next();
+				currentRemovable = true;
 				return current;
 			}
 		}
@@ -101,7 +105,7 @@ public final class PrefixedIterator<Payload> implements Iterator<Payload> {
 	public void remove() {
 		if (!nextCalled) {
 			throw new IllegalStateException("next() hasn't been called yet");
-		} else if (!prefixing) {
+		} else if (currentRemovable) {
 			iterator.remove();
 		}
 	}
