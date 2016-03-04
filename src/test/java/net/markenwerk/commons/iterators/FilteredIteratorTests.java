@@ -30,11 +30,11 @@ import org.junit.Test;
 import net.markenwerk.commons.interfaces.Predicate;
 
 /**
- * JUnit test for {@link FilteringIterator}.
+ * JUnit test for {@link FilteredIterator}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  */
-public class FilteringIteratorTests {
+public class FilteredIteratorTests {
 
 	private final Object UNSATISFYING_OBJECT = new Object();
 
@@ -51,7 +51,7 @@ public class FilteringIteratorTests {
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullIterator() {
 
-		new FilteringIterator<Object>(null, UNSATISFYING_OBJECT_PREDICATE);
+		new FilteredIterator<Object>(null, UNSATISFYING_OBJECT_PREDICATE);
 
 	}
 
@@ -61,7 +61,7 @@ public class FilteringIteratorTests {
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullPredicate() {
 
-		new FilteringIterator<Object>(new EmptyIterator<Object>(), null);
+		new FilteredIterator<Object>(new EmptyIterator<Object>(), null);
 
 	}
 
@@ -73,7 +73,7 @@ public class FilteringIteratorTests {
 	public void iterate_unsatisfyingAtFront() {
 
 		Object[] values = new Object[] { UNSATISFYING_OBJECT, new Object() };
-		Iterator<Object> iterator = new FilteringIterator<Object>(new ArrayIterator<Object>(values),
+		Iterator<Object> iterator = new FilteredIterator<Object>(new ArrayIterator<Object>(values),
 				UNSATISFYING_OBJECT_PREDICATE);
 
 		Assert.assertTrue(iterator.hasNext());
@@ -90,7 +90,7 @@ public class FilteringIteratorTests {
 	public void iterate_unsatisfyingInMiddle() {
 
 		Object[] values = new Object[] { new Object(), UNSATISFYING_OBJECT, new Object() };
-		Iterator<Object> iterator = new FilteringIterator<Object>(new ArrayIterator<Object>(values),
+		Iterator<Object> iterator = new FilteredIterator<Object>(new ArrayIterator<Object>(values),
 				UNSATISFYING_OBJECT_PREDICATE);
 
 		Assert.assertTrue(iterator.hasNext());
@@ -109,7 +109,7 @@ public class FilteringIteratorTests {
 	public void iterate_unsatisfyingAtEnd() {
 
 		Object[] values = new Object[] { new Object(), UNSATISFYING_OBJECT };
-		Iterator<Object> iterator = new FilteringIterator<Object>(new ArrayIterator<Object>(values),
+		Iterator<Object> iterator = new FilteredIterator<Object>(new ArrayIterator<Object>(values),
 				UNSATISFYING_OBJECT_PREDICATE);
 
 		Assert.assertTrue(iterator.hasNext());
@@ -126,7 +126,7 @@ public class FilteringIteratorTests {
 	public void iterate_invertedPredicate() {
 
 		Object[] values = new Object[] { new Object(), UNSATISFYING_OBJECT, new Object() };
-		Iterator<Object> iterator = new FilteringIterator<Object>(new ArrayIterator<Object>(values),
+		Iterator<Object> iterator = new FilteredIterator<Object>(new ArrayIterator<Object>(values),
 				UNSATISFYING_OBJECT_PREDICATE, true);
 
 		Assert.assertTrue(iterator.hasNext());
@@ -141,7 +141,7 @@ public class FilteringIteratorTests {
 	@Test(expected = NoSuchElementException.class)
 	public void iterate_noNext() {
 
-		Iterator<Object> iterator = new FilteringIterator<Object>(new EmptyIterator<Object>(),
+		Iterator<Object> iterator = new FilteredIterator<Object>(new EmptyIterator<Object>(),
 				UNSATISFYING_OBJECT_PREDICATE);
 
 		iterator.next();
@@ -156,7 +156,7 @@ public class FilteringIteratorTests {
 
 		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new FilteringIterator<Object>(new ArrayIterator<Object>(values, replacement),
+		Iterator<Object> iterator = new FilteredIterator<Object>(new ArrayIterator<Object>(values, replacement),
 				UNSATISFYING_OBJECT_PREDICATE);
 
 		iterator.next();
@@ -172,7 +172,7 @@ public class FilteringIteratorTests {
 	@Test(expected = IllegalStateException.class)
 	public void remove_beforeNext() {
 
-		Iterator<Object> iterator = new FilteringIterator<Object>(new EmptyIterator<Object>(),
+		Iterator<Object> iterator = new FilteredIterator<Object>(new EmptyIterator<Object>(),
 				UNSATISFYING_OBJECT_PREDICATE);
 
 		iterator.remove();

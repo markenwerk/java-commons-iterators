@@ -38,13 +38,13 @@ Consult the [usage description](#usage) and [Javadoc](https://markenwerk.github.
 
 ### Filtering and Converting
 
-This library provides the generic [`FilteringIterator`][FilteringIterator] that takes an existing [`Iterator`][Iterator] and a [`Predicate`][Predicate] and filters out all values yielded by the given [`Iterator`][Iterator] that don't satisfy the given [`Predicate`][Predicate].
+This library provides the generic [`FilteredIterator`][FilteredIterator] that takes an existing [`Iterator`][Iterator] and a [`Predicate`][Predicate] and filters out all values yielded by the given [`Iterator`][Iterator] that don't satisfy the given [`Predicate`][Predicate].
 
 ```java
 Iterator<Foo> iterator = ...
 
 // yields every foo from from iterator that matches the condition
-Iterator<Foo> filteringIterator = new FilteringIterator<>(iterator, new Predicate<Foo>(){
+Iterator<Foo> FilteredIterator = new FilteredIterator<>(iterator, new Predicate<Foo>(){
 
 	@Override
 	public boolean test(Object object) throws PredicateException {
@@ -250,7 +250,7 @@ Iterator<Integer> countUpIterator = new CountUpIterator(0, 10);
 [DoubleArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/DoubleArrayIterator.html
 [EmptyIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/EmptyIterator.html
 [EnumerationIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/EnumerationIterator.html
-[FilteringIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/FilteringIterator.html
+[FilteredIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/FilteredIterator.html
 [FloatArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/FloatArrayIterator.html
 [IntegerArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/IntegerArrayIterator.html
 [InfixedIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/InfixedIterator.html

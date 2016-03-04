@@ -27,14 +27,14 @@ import java.util.NoSuchElementException;
 import net.markenwerk.commons.interfaces.Predicate;
 
 /**
- * A {@link FilteringIterator} is an {@link Iterator} that can be wrapped around
+ * A {@link FilteredIterator} is an {@link Iterator} that can be wrapped around
  * a given {@link Iterator} and filters out values according to a given
  * {@link Predicate}.
  * 
  * <p>
- * Calling {@link FilteringIterator#next()} will never return a value that
+ * Calling {@link FilteredIterator#next()} will never return a value that
  * doesn't satisfy the given {@link Predicate} and calling
- * {@link FilteringIterator#hasNext()} will never return {@literal true}, unless
+ * {@link FilteredIterator#hasNext()} will never return {@literal true}, unless
  * a value that satisfies the given {@link Predicate} is available.
  * 
  * @param <Payload>
@@ -42,7 +42,7 @@ import net.markenwerk.commons.interfaces.Predicate;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class FilteringIterator<Payload> implements Iterator<Payload> {
+public final class FilteredIterator<Payload> implements Iterator<Payload> {
 
 	private final Iterator<? extends Payload> iterator;
 
@@ -59,7 +59,7 @@ public final class FilteringIterator<Payload> implements Iterator<Payload> {
 	private boolean nextCalled;
 
 	/**
-	 * Creates a new {@link FilteringIterator} from the given {@link Iterator}
+	 * Creates a new {@link FilteredIterator} from the given {@link Iterator}
 	 * and the given {@link Predicate}.
 	 * 
 	 * @param iterator
@@ -73,13 +73,13 @@ public final class FilteringIterator<Payload> implements Iterator<Payload> {
 	 *             If the given {@link Iterator} is {@literal null} or if the
 	 *             given {@link Predicate} is {@literal null}.
 	 */
-	public FilteringIterator(Iterator<? extends Payload> iterator, Predicate<Payload> predicate)
+	public FilteredIterator(Iterator<? extends Payload> iterator, Predicate<Payload> predicate)
 			throws IllegalArgumentException {
 		this(iterator, predicate, false);
 	}
 
 	/**
-	 * Creates a new {@link FilteringIterator} from the given {@link Iterator}
+	 * Creates a new {@link FilteredIterator} from the given {@link Iterator}
 	 * and the given {@link Predicate}.
 	 * 
 	 * @param iterator
@@ -96,7 +96,7 @@ public final class FilteringIterator<Payload> implements Iterator<Payload> {
 	 *             If the given {@link Iterator} is {@literal null} or if the
 	 *             given {@link Predicate} is {@literal null}.
 	 */
-	public FilteringIterator(Iterator<? extends Payload> iterator, Predicate<Payload> predicate, boolean invertPredicate)
+	public FilteredIterator(Iterator<? extends Payload> iterator, Predicate<Payload> predicate, boolean invertPredicate)
 			throws IllegalArgumentException {
 		if (null == iterator) {
 			throw new IllegalArgumentException("iterator is null");
