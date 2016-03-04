@@ -111,15 +111,13 @@ public class ConvertingIteratorTests {
 	@Test
 	public void remove() {
 
-		Object replacement = new Object();
-		Object[] values = new Object[] { new Object() };
-		Iterator<Wrapper> iterator = new ConvertingIterator<Object, Wrapper>(new ArrayIterator<Object>(values,
-				replacement), WRAPPING_CONVERTER);
+		RemoveTestIterator testIterator = new RemoveTestIterator();
+		Iterator<Wrapper> iterator = new ConvertingIterator<Object, Wrapper>(testIterator, WRAPPING_CONVERTER);
 
 		iterator.next();
 		iterator.remove();
 
-		Assert.assertSame(replacement, values[0]);
+		Assert.assertTrue(testIterator.removed());
 
 	}
 

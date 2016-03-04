@@ -141,15 +141,13 @@ public class SuffixedIteratorTests {
 	@Test
 	public void remove() {
 
-		Object replacement = new Object();
-		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new SuffixedIterator<Object>(new ArrayIterator<Object>(values, replacement), SUFFIX);
+		RemoveTestIterator testIterator = new RemoveTestIterator();
+		Iterator<Object> iterator = new SuffixedIterator<Object>(testIterator, SUFFIX);
 
-		iterator.next();
 		iterator.next();
 		iterator.remove();
-
-		Assert.assertSame(replacement, values[0]);
+		
+		Assert.assertTrue(testIterator.removed());
 
 	}
 

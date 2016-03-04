@@ -154,15 +154,13 @@ public class FilteredIteratorTests {
 	@Test
 	public void remove() {
 
-		Object replacement = new Object();
-		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new FilteredIterator<Object>(new ArrayIterator<Object>(values, replacement),
-				UNSATISFYING_OBJECT_PREDICATE);
+		RemoveTestIterator testIterator = new RemoveTestIterator();
+		Iterator<Object> iterator = new FilteredIterator<Object>(testIterator, UNSATISFYING_OBJECT_PREDICATE);
 
 		iterator.next();
 		iterator.remove();
 
-		Assert.assertSame(replacement, values[0]);
+		Assert.assertTrue(testIterator.removed());
 
 	}
 

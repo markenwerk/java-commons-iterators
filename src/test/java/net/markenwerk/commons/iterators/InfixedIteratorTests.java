@@ -118,8 +118,7 @@ public class InfixedIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
 	/**
 	 * Iterate over an {@link Iterator} with two infixes.
 	 */
@@ -161,14 +160,13 @@ public class InfixedIteratorTests {
 	@Test
 	public void remove() {
 
-		Object replacement = new Object();
-		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new InfixedIterator<Object>(new ArrayIterator<Object>(values, replacement), INFIX);
+		RemoveTestIterator testIterator = new RemoveTestIterator();
+		Iterator<Object> iterator = new InfixedIterator<Object>(testIterator, INFIX);
 
 		iterator.next();
 		iterator.remove();
 
-		Assert.assertSame(replacement, values[0]);
+		Assert.assertTrue(testIterator.removed());
 
 	}
 

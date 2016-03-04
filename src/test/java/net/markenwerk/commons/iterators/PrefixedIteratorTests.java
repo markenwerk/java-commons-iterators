@@ -141,15 +141,14 @@ public class PrefixedIteratorTests {
 	@Test
 	public void remove() {
 
-		Object replacement = new Object();
-		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new PrefixedIterator<Object>(new ArrayIterator<Object>(values, replacement), PREFIX);
+		RemoveTestIterator testIterator = new RemoveTestIterator();
+		Iterator<Object> iterator = new PrefixedIterator<Object>(testIterator, PREFIX);
 
 		iterator.next();
 		iterator.next();
 		iterator.remove();
 
-		Assert.assertSame(replacement, values[0]);
+		Assert.assertTrue(testIterator.removed());
 
 	}
 
