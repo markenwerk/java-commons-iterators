@@ -315,6 +315,7 @@ Iterator<Integer> countUpIterator = new CountUpIterator(0, 10);
 [FilteredIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/FilteredIterator.html
 [FloatArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/FloatArrayIterator.html
 [IntegerArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/IntegerArrayIterator.html
+[IndexedIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/IndexedIterator.html
 [InfixedIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/InfixedIterator.html
 [LongArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/LongArrayIterator.html
 [LookAhead]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/LookAhead.html
@@ -334,6 +335,8 @@ Iterator<Integer> countUpIterator = new CountUpIterator(0, 10);
 [Converter]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Converter.html
 [Handler]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Handler.html
 [Predicate]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Predicate.html
+
+[Entry]: https://markenwerk.github.io/java-commons-datastructures/index.html?net/markenwerk/commons/datastructures/Entry.html
 
 [Enumeration]: https://docs.oracle.com/javase/8/docs/api/index.html?java/util/Enumeration.html
 [Iterable]: http://docs.oracle.com/javase/8/docs/api/index.html?java/lang/Iterable.html
