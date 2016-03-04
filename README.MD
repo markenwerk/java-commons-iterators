@@ -13,13 +13,13 @@ This is a collection of companion iterators for [some commonly useful `Iterable`
 
 - [Filtering and Converting](#filtering-and-converting)
 - [Combining multiple `Iterators`](#combining-multiple-iterators)
-- [Interspersing infix value](#interspersing-infix-value)
+- [Inserting affix values](#inserting-affix-values)
 - [Looking ahead](#looking-ahead)
 - [Handling of null values](#handling-of-null-values)
 - [Iterating over single values](#iterating-over-single-values)
 - [Iterating over primitive arrays](#iterating-over-non-primitive-arrays)
 - [Iterating over non-primitive arrays](#iterating-over-primitive-arrays)
-- [Iterating over traversable objects](#iterating-over-traversable-objects)
+- [Iterating over other objects](#iterating-over-other-objects)
 - [Counting up and down](#counting-up-and-down)
 
 This library is hosted in the [Maven Central Repository](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/commons-iterators). You can use it with the following coordinates:
@@ -93,9 +93,19 @@ List<Iterator<Foo>>[] iterators = ...
 Iterator<Foo> combinedIterator = new CombinedIterator<>(iterators); 
 ```
 
-### Interspersing infix value
+### Inserting affix values
 
-This library provides the generic [`InfixedIterator`][InfixedIterator] that takes an existing [`Iterator`][Iterator] and a single value that is used as an infix and interspersed between all values yielded by the given [`Iterator`][Iterator]
+This library provides the generic [`PrefixedIterator`][PrefixedIterator] that takes an existing [`Iterator`][Iterator] and yields given prefix values before every value yielded by the given {@link Iterator}.
+
+```java
+Foo prefix = ...
+Iterator<Foo> iterator = ...
+
+// yields prefix and than every foo from iterator
+Iterator<Foo> prefixedIterator = new PrefixedIterator<>(iterator, prefix);
+```
+
+This library provides the generic [`InfixedIterator`][InfixedIterator] that takes an existing [`Iterator`][Iterator] and yields given infix values between every value yielded by the given [`Iterator`][Iterator].
 
 ```java
 Foo infix = ...
@@ -103,6 +113,16 @@ Iterator<Foo> iterator = ...
 
 // yields every foo from iterator, interspersed with the infix
 Iterator<Foo> infixedIterator = new InfixedIterator<>(iterator, infix);
+```
+
+This library provides the generic [`SuffixedIterator`][SuffixedIterator] that takes an existing [`Iterator`][Iterator] and yields given suffix values after every value yielded by the given {@link Iterator}.
+
+```java
+Foo suffix = ...
+Iterator<Foo> iterator = ...
+
+// yields every foo from iterator and than prefix
+Iterator<Foo> suffixedIterator = new SuffixedIterator<>(iterator, suffix);
 ```
 
 ### Looking ahead
@@ -206,7 +226,7 @@ Foo[] foos = ...
 Iterator<Foo> arrayIterator = new ArrayIterator<>(foos); 
 ```
 
-### Iterating over traversable objects
+### Iterating over other objects
 
 This library provides the generic [`EnumerationIterator`][EnumerationIterator] that takes and existing [`Enumeration`][Enumeration] and yields every object yielded by the given [`Enumeration`][Enumeration].
 
@@ -261,8 +281,10 @@ Iterator<Integer> countUpIterator = new CountUpIterator(0, 10);
 [NullSaveIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/NullSaveIterator.html
 [ObjectIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/ObjectIterator.html
 [OptionalIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/OptionalIterator.html
+[PrefixedIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/PrefixedIterator.html
 [ShortArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/ShortArrayIterator.html
 [StringTokenizerIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/StringTokenizerIterator.html
+[SuffixedIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/SuffixedIterator.html
 
 [Converter]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Converter.html
 [Predicate]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Predicate.html
