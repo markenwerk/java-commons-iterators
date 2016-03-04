@@ -150,6 +150,7 @@
 					<notimestamp>true</notimestamp>
 					<links>
 						<link>https://markenwerk.github.io/java-commons-interfaces/</link>
+						<link>https://markenwerk.github.io/java-commons-datastructures/</link>
 					</links>
 				</configuration>
 				<executions>

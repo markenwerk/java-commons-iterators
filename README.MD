@@ -15,7 +15,8 @@ This is a collection of companion iterators for [some commonly useful `Iterable`
 - [Combining multiple `Iterators`](#combining-multiple-iterators)
 - [Inserting affix values](#inserting-affix-values)
 - [Looking ahead](#looking-ahead)
-- [Handling of null values](#handling-of-null-values)
+- [Handling of `null` values](#handling-of-null-values)
+- [Handling of `remove()` operation](#handling-of-remove-operation)
 - [Iterating over single values](#iterating-over-single-values)
 - [Iterating over primitive arrays](#iterating-over-non-primitive-arrays)
 - [Iterating over non-primitive arrays](#iterating-over-primitive-arrays)
@@ -181,6 +182,35 @@ Iterator<Foo> iterator = ...
 Iterator<Foo> nullFreeIterator = new NullFreeIterator<>(iterator);
 ```
 
+### Handling of `remove()` operation
+
+This library provides the [`ProtectedIterator`][ProtectedIterator] interface. A [`ProtectedIterator`][ProtectedIterator] is an [`Iterator`][Iterator] that must throw a [`UnsupportedoperationException`][UnsupportedoperationException], if `remove()` is called.
+
+This library provides the [`ProtectingIterator`][ProtectingIterator] that takes an existing [`Iterator`][Iterator] and yields all values yielded by the given [`Iterator`][Iterator], but throws a [`UnsupportedoperationException`][UnsupportedoperationException], if `remove()` is called.
+
+```java
+Iterator<Foo> iterator = ...
+
+// yields every foo from iterator, but doesn't allow removing
+ProtectingIterator<Foo> protectingIterator = new ProtectingIterator<>(iterator); 
+```
+
+This library provides the [`ResultHandlerIterator`][ResultHandlerIterator] that takes an existing [`Iterator`][Iterator] and a [`Handler`][Handler] and yields all values yielded by the given [`Iterator`][Iterator], but calls the given handler with the last yielded value, instead of calling `remove()` on the given [`Iterator`][Iterator].
+
+```java
+Iterator<Foo> iterator = ...
+
+// yields every foo from iterator, but intercepts removing
+Iterator<Foo> removeHandlerIterator = new RemoveHandlerIterator<>(iterator, new Handler<Foo>(){
+
+	@Override
+	public void handle(Foo foo) {
+		System.out.println(foo + " has been removed"); // some handling
+	}
+	
+}); 
+```
+
 ### Iterating over single values
 
 This library provides the [`ObjectIterator`][ObjectIterator] and [`OptionalIterator`][OptionalIterator] that take and yield an existing object. An [`ObjectIterator`][ObjectIterator] always yields the given object, whereas an [`OptionalIterator`][OptionalIterator] only yields the given object, if it isn't `null`. 
@@ -282,11 +312,15 @@ Iterator<Integer> countUpIterator = new CountUpIterator(0, 10);
 [ObjectIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/ObjectIterator.html
 [OptionalIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/OptionalIterator.html
 [PrefixedIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/PrefixedIterator.html
+[ProtectedIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/ProtectedIterator.html
+[ProtectingIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/ProtectingIterator.html
+[RemoveHandlerIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/RemoveHandlerIterator.html
 [ShortArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/ShortArrayIterator.html
 [StringTokenizerIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/StringTokenizerIterator.html
 [SuffixedIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/SuffixedIterator.html
 
 [Converter]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Converter.html
+[Handler]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Handler.html
 [Predicate]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Predicate.html
 
 [Enumeration]: https://docs.oracle.com/javase/8/docs/api/index.html?java/util/Enumeration.html
