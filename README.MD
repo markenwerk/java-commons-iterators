@@ -95,7 +95,7 @@ Iterator<Foo> combinedIterator = new CombinedIterator<>(iterators);
 
 ### Inserting affix values
 
-This library provides the generic [`PrefixedIterator`][PrefixedIterator] that takes an existing [`Iterator`][Iterator] and yields given prefix values before every value yielded by the given {@link Iterator}.
+This library provides the generic [`PrefixedIterator`][PrefixedIterator] that takes an existing [`Iterator`][Iterator] and yields given prefix values before every value yielded by the given [`Iterator`][Iterator].
 
 ```java
 Foo prefix = ...
@@ -115,7 +115,7 @@ Iterator<Foo> iterator = ...
 Iterator<Foo> infixedIterator = new InfixedIterator<>(iterator, infix);
 ```
 
-This library provides the generic [`SuffixedIterator`][SuffixedIterator] that takes an existing [`Iterator`][Iterator] and yields given suffix values after every value yielded by the given {@link Iterator}.
+This library provides the generic [`SuffixedIterator`][SuffixedIterator] that takes an existing [`Iterator`][Iterator] and yields given suffix values after every value yielded by the given [`Iterator`][Iterator].
 
 ```java
 Foo suffix = ...
