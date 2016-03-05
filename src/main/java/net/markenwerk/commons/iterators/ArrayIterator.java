@@ -48,7 +48,7 @@ public final class ArrayIterator<Payload> implements ProtectedIterator<Payload> 
 	 * @throws IllegalArgumentException
 	 *             If the given payload array is {@literal null}.
 	 */
-	public ArrayIterator(Payload[] array) throws IllegalArgumentException {
+	public ArrayIterator(Payload ... array) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}

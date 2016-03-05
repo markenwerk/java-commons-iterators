@@ -46,7 +46,7 @@ public final class CharacterArrayIterator implements ProtectedIterator<Character
 	 * @throws IllegalArgumentException
 	 *             If the given {@code char[]} is {@literal null}.
 	 */
-	public CharacterArrayIterator(char[] array) throws IllegalArgumentException {
+	public CharacterArrayIterator(char ... array) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}

@@ -46,7 +46,7 @@ public final class IntegerArrayIterator implements ProtectedIterator<Integer> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code int[]} is {@literal null}.
 	 */
-	public IntegerArrayIterator(int[] array) throws IllegalArgumentException {
+	public IntegerArrayIterator(int ... array) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}

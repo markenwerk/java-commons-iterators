@@ -46,7 +46,7 @@ public final class FloatArrayIterator implements ProtectedIterator<Float> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code float[]} is {@literal null}.
 	 */
-	public FloatArrayIterator(float[] array) throws IllegalArgumentException {
+	public FloatArrayIterator(float ... array) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}

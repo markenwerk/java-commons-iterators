@@ -46,7 +46,7 @@ public final class BooleanArrayIterator implements ProtectedIterator<Boolean> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code boolean[]} is {@literal null}.
 	 */
-	public BooleanArrayIterator(boolean[] array) throws IllegalArgumentException {
+	public BooleanArrayIterator(boolean ... array) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}

@@ -46,7 +46,7 @@ public final class ShortArrayIterator implements ProtectedIterator<Short> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code short[]} is {@literal null}.
 	 */
-	public ShortArrayIterator(short[] array) throws IllegalArgumentException {
+	public ShortArrayIterator(short ... array) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
