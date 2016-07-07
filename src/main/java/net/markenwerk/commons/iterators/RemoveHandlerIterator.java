@@ -41,7 +41,7 @@ public final class RemoveHandlerIterator<Payload> implements Iterator<Payload> {
 
 	private final Iterator<? extends Payload> iterator;
 
-	private final Handler<Payload> removeHandler;
+	private final Handler<? super Payload> removeHandler;
 
 	private boolean nextCalled;
 
@@ -63,7 +63,7 @@ public final class RemoveHandlerIterator<Payload> implements Iterator<Payload> {
 	 *             If the given {@link Iterator} is {@literal null} of if the
 	 *             given {@link Handler} is {@literal null}.
 	 */
-	public RemoveHandlerIterator(Iterator<? extends Payload> iterator, Handler<Payload> removeHandler)
+	public RemoveHandlerIterator(Iterator<? extends Payload> iterator, Handler<? super Payload> removeHandler)
 			throws IllegalArgumentException {
 		if (null == iterator) {
 			throw new IllegalArgumentException("iterator is null");

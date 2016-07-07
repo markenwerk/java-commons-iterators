@@ -36,7 +36,7 @@ import java.util.NoSuchElementException;
  */
 public final class EnumerationIterator<Payload> implements ProtectedIterator<Payload> {
 
-	private final Enumeration<Payload> enumeration;
+	private final Enumeration<? extends Payload> enumeration;
 
 	/**
 	 * Creates a new {@link EnumerationIterator} from the given
@@ -50,7 +50,7 @@ public final class EnumerationIterator<Payload> implements ProtectedIterator<Pay
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Enumeration} is {@literal null}.
 	 */
-	public EnumerationIterator(Enumeration<Payload> enumeration) throws IllegalArgumentException {
+	public EnumerationIterator(Enumeration<? extends Payload> enumeration) throws IllegalArgumentException {
 		if (null == enumeration) {
 			throw new IllegalArgumentException("enumeration is null");
 		}
@@ -75,5 +75,5 @@ public final class EnumerationIterator<Payload> implements ProtectedIterator<Pay
 	public void remove() {
 		throw new UnsupportedOperationException("Cannot remove from an EnumerationIterator");
 	}
-
+	
 }

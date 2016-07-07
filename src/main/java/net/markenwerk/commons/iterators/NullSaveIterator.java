@@ -44,7 +44,7 @@ import java.util.Iterator;
  */
 public final class NullSaveIterator<Payload> implements Iterator<Payload> {
 
-	private final Iterator<Payload> iterator;
+	private final Iterator<? extends Payload> iterator;
 
 	/**
 	 * Creates a new {@link NullSaveIterator} from the given {@link Iterable}.
@@ -54,7 +54,7 @@ public final class NullSaveIterator<Payload> implements Iterator<Payload> {
 	 *            around which the new {@link NullSaveIterator} will be wrapped,
 	 *            or {@literal null}.
 	 */
-	public NullSaveIterator(Iterable<Payload> iterable) {
+	public NullSaveIterator(Iterable<? extends Payload> iterable) {
 		this.iterator = null == iterable ? new EmptyIterator<Payload>() : iterable.iterator();
 	}
 
@@ -65,7 +65,7 @@ public final class NullSaveIterator<Payload> implements Iterator<Payload> {
 	 *            The {@link Iterator}, around which the new
 	 *            {@link NullSaveIterator} will be wrapped, or {@literal null}.
 	 */
-	public NullSaveIterator(Iterator<Payload> iterator) {
+	public NullSaveIterator(Iterator<? extends Payload> iterator) {
 		this.iterator = null == iterator ? new EmptyIterator<Payload>() : iterator;
 	}
 

@@ -42,7 +42,7 @@ public final class ConvertingIterator<From, To> implements Iterator<To> {
 
 	private final Iterator<? extends From> iterator;
 
-	private final Converter<From, To> converter;
+	private final Converter<? super From, ? extends To> converter;
 
 	private boolean nextPrepared;
 
@@ -68,7 +68,7 @@ public final class ConvertingIterator<From, To> implements Iterator<To> {
 	 *             If the given {@link Iterator} is {@literal null} or the given
 	 *             {@link Converter} is {@literal null}.
 	 */
-	public ConvertingIterator(Iterator<? extends From> iterator, Converter<From, To> converter)
+	public ConvertingIterator(Iterator<? extends From> iterator, Converter<? super From, ? extends To> converter)
 			throws IllegalArgumentException {
 		if (null == iterator) {
 			throw new IllegalArgumentException("iterator is null");
@@ -118,5 +118,5 @@ public final class ConvertingIterator<From, To> implements Iterator<To> {
 			nextPrepared = true;
 		}
 	}
-
+	
 }

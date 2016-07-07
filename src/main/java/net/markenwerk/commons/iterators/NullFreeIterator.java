@@ -40,7 +40,7 @@ import java.util.NoSuchElementException;
  */
 public final class NullFreeIterator<Payload> implements Iterator<Payload> {
 
-	private final Iterator<Payload> iterator;
+	private final Iterator<? extends Payload> iterator;
 
 	private boolean nextPrepared;
 
@@ -56,7 +56,7 @@ public final class NullFreeIterator<Payload> implements Iterator<Payload> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Iterator} is {@literal null}.
 	 */
-	public NullFreeIterator(Iterator<Payload> iterator) throws IllegalArgumentException {
+	public NullFreeIterator(Iterator<? extends Payload> iterator) throws IllegalArgumentException {
 		if (null == iterator) {
 			throw new IllegalArgumentException("iterator is null");
 		}

@@ -82,5 +82,5 @@ public final class IndexedIterator<Payload> implements Iterator<Entry<Integer, P
 			iterator.remove();
 		}
 	}
-
+	
 }
