@@ -40,7 +40,7 @@ public class ArrayIteratorTests {
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullArray() {
 
-		new ArrayIterator<Object>((Object) null);
+		new ArrayIterator<Object>((Object[]) null);
 
 	}
 
