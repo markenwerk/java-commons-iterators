@@ -22,6 +22,7 @@ This is a collection of companion iterators for [some commonly useful `Iterable`
 - [Iterating over primitive arrays](#iterating-over-non-primitive-arrays)
 - [Iterating over non-primitive arrays](#iterating-over-primitive-arrays)
 - [Iterating over other objects](#iterating-over-other-objects)
+- [Iterating infinitely](#iterating-infinitely)
 - [Keeping track of iteration index](#keeping-track-of-iteration-index)
 - [Counting up and down](#counting-up-and-down)
 
@@ -289,7 +290,7 @@ Iterator<Foo> arrayIterator = new ArrayIterator<>(foos);
 
 ### Iterating over other objects
 
-This library provides the generic [`EnumerationIterator`][EnumerationIterator] that takes and existing [`Enumeration`][Enumeration] and yields every object yielded by the given [`Enumeration`][Enumeration].
+This library provides the generic [`EnumerationIterator`][EnumerationIterator] that takes an existing [`Enumeration`][Enumeration] and yields every object yielded by the given [`Enumeration`][Enumeration].
 
 ```java
 Enumeration<Foo> enumeration = ...
@@ -298,7 +299,7 @@ Enumeration<Foo> enumeration = ...
 Iterator<Foo> enumerationIterator = new EnumerationIterator<>(enumeration); 
 ```
 
-This library provides the [`NodeListIterator`][NodeListIterator] that takes and existing [`NodeList`][NodeList] and yields every [`Node`][Node] yielded by the given [`NodeList`][NodeList].
+This library provides the [`NodeListIterator`][NodeListIterator] that takes an existing [`NodeList`][NodeList] and yields every [`Node`][Node] yielded by the given [`NodeList`][NodeList].
 
 ```java
 NodeList nodeList = ...
@@ -307,13 +308,24 @@ NodeList nodeList = ...
 Iterator<Node> nodeListIterator = new NodeListIterator(nodeList); 
 ```
 
-This library provides the [`StringTokenizerIterator`][StringTokenizerIterator] that takes and existing [`StringTokenizer`][StringTokenizer] and yields every string yielded by the given [`StringTokenizer`][StringTokenizer].
+This library provides the [`StringTokenizerIterator`][StringTokenizerIterator] that takes an existing [`StringTokenizer`][StringTokenizer] and yields every string yielded by the given [`StringTokenizer`][StringTokenizer].
 
 ```java
 StringTokenizer tokenizer = ...
 
 // yields every string from tokenizer
 Iterator<String> tokenizerIterator = new StringTokenizerIterator(tokenizer); 
+```
+
+### Iterating infinitely
+
+This library provides the [`InfiniteIterator`][InfiniteIterator] that takes a [`Provider`][Provider] and infinitely yields provided values.
+
+```java
+Provider<Foo> provider = ...
+
+// yields provided foos forever
+Iterator<Foo> infiniteIterator = new InfiniteIterator(provider); 
 ```
 
 ### Keeping track of iteration index
@@ -355,6 +367,7 @@ Iterator<Integer> countUpIterator = new CountUpIterator(0, 10);
 [FloatArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/FloatArrayIterator.html
 [IntegerArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/IntegerArrayIterator.html
 [IndexedIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/IndexedIterator.html
+[InfinteIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/InfinteIterator.html
 [InfixedIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/InfixedIterator.html
 [LongArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/LongArrayIterator.html
 [LookAhead]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/LookAhead.html
@@ -378,6 +391,7 @@ Iterator<Integer> countUpIterator = new CountUpIterator(0, 10);
 [Converter]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Converter.html
 [Handler]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Handler.html
 [Predicate]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Predicate.html
+[Provider]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Provider.html
 
 [Entry]: https://markenwerk.github.io/java-commons-datastructures/index.html?net/markenwerk/commons/datastructures/Entry.html
 [Pair]: https://markenwerk.github.io/java-commons-datastructures/index.html?net/markenwerk/commons/datastructures/Pair.html
