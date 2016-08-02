@@ -18,6 +18,7 @@ This is a collection of companion iterators for [some commonly useful `Iterable`
 - [Handling of `null` values](#handling-of-null-values)
 - [Handling of `remove()` operation](#handling-of-remove-operation)
 - [Iterating over single values](#iterating-over-single-values)
+- [Iterating over multiple values](#iterating-over-multiple-values)
 - [Iterating over primitive arrays](#iterating-over-non-primitive-arrays)
 - [Iterating over non-primitive arrays](#iterating-over-primitive-arrays)
 - [Iterating over other objects](#iterating-over-other-objects)
@@ -226,6 +227,35 @@ Iterator<Foo> objectIterator = new ObjectIterator<>(foo);
 Iterator<Foo> optionalIterator = new OptionalIterator<>(foo); 
 ```
 
+### Iterating over multiple values
+
+This library provides the generic [`PairIterator`][PairIterator] that takes an existing [`Pair`][Pair] and yields both elements of the given [`Pair`][Pair]:
+
+```java
+Pair<Foo> pair = ...
+
+// yields both foos from pair
+Iterator<Foo> pairIterator = new PairIterator<>(pair); 
+```
+
+This library provides the generic [`TupleIterator`][TupleIterator] that takes an existing [`Tuple`][Tuple] with elements of a similar type and yields both elements of the given [`Tuple`][Tuple]:
+
+```java
+Tuple<Foo, Foo> tuple = ...
+
+// yields both foos from tuple
+Iterator<Foo> tupleIterator = new TupleIterator<>(tuple); 
+```
+
+This library provides the generic [`TripleIterator`][TripleIterator] that takes an existing [`Triple`][Triple] with elements of a similar type and yields both elements of the given [`Triple`][Triple]:
+
+```java
+Triple<Foo, Foo, Foo> triple = ...
+
+// yields all foos from triple
+Iterator<Foo> tripleIterator = new TripleIterator<>(triple); 
+```
+
 ### Iterating over primitive arrays
 
 This library provides the following [`Iterators`][Iterator] that take existing primitive arrays and yield all elements of the given array:
@@ -266,6 +296,15 @@ Enumeration<Foo> enumeration = ...
 
 // yields every foo from enumeration
 Iterator<Foo> enumerationIterator = new EnumerationIterator<>(enumeration); 
+```
+
+This library provides the [`NodeListIterator`][NodeListIterator] that takes and existing [`NodeList`][NodeList] and yields every [`Node`][Node] yielded by the given [`NodeList`][NodeList].
+
+```java
+NodeList nodeList = ...
+
+// yields every node from nodeList
+Iterator<Node> nodeListIterator = new NodeListIterator(nodeList); 
 ```
 
 This library provides the [`StringTokenizerIterator`][StringTokenizerIterator] that takes and existing [`StringTokenizer`][StringTokenizer] and yields every string yielded by the given [`StringTokenizer`][StringTokenizer].
@@ -324,6 +363,7 @@ Iterator<Integer> countUpIterator = new CountUpIterator(0, 10);
 [NullSaveIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/NullSaveIterator.html
 [ObjectIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/ObjectIterator.html
 [OptionalIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/OptionalIterator.html
+[PairIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/PairIterator.html
 [PrefixedIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/PrefixedIterator.html
 [ProtectedIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/ProtectedIterator.html
 [ProtectingIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/ProtectingIterator.html
@@ -331,17 +371,24 @@ Iterator<Integer> countUpIterator = new CountUpIterator(0, 10);
 [ShortArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/ShortArrayIterator.html
 [StringTokenizerIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/StringTokenizerIterator.html
 [SuffixedIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/SuffixedIterator.html
+[TripleIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/TripleIterator.html
+[TupleIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/TupleIterator.html
 
 [Converter]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Converter.html
 [Handler]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Handler.html
 [Predicate]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Predicate.html
 
 [Entry]: https://markenwerk.github.io/java-commons-datastructures/index.html?net/markenwerk/commons/datastructures/Entry.html
+[Pair]: https://markenwerk.github.io/java-commons-datastructures/index.html?net/markenwerk/commons/datastructures/Pair.html
+[Triple]: https://markenwerk.github.io/java-commons-datastructures/index.html?net/markenwerk/commons/datastructures/Triple.html
+[Tuple]: https://markenwerk.github.io/java-commons-datastructures/index.html?net/markenwerk/commons/datastructures/Tuple.html
 
 [Enumeration]: https://docs.oracle.com/javase/8/docs/api/index.html?java/util/Enumeration.html
 [Iterable]: http://docs.oracle.com/javase/8/docs/api/index.html?java/lang/Iterable.html
 [Iterator]: http://docs.oracle.com/javase/8/docs/api/index.html?java/util/Iterator.html
 [List]: http://docs.oracle.com/javase/8/docs/api/index.html?java/util/List.html
+[Node]: https://docs.oracle.com/javase/8/docs/api/index.html?org/w3c/dom/Node.html
+[NodeList]: https://docs.oracle.com/javase/8/docs/api/index.html?org/w3c/dom/NodeList.html
 [StringTokenizer]: https://docs.oracle.com/javase/8/docs/api/index.html?java/util/StringTokenizer.html
 [UnsupportedOperationException]: https://docs.oracle.com/javase/8/docs/api/index.html?java/lang/UnsupportedOperationException.html
 
