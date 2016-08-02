@@ -34,7 +34,7 @@ public final class ShortArrayIterator implements ProtectedIterator<Short> {
 
 	private final short[] array;
 
-	private int index = -1;
+	private int index;
 
 	/**
 	 * Creates a new {@linkplain ShortArrayIterator} that iterates over the
@@ -55,7 +55,7 @@ public final class ShortArrayIterator implements ProtectedIterator<Short> {
 
 	@Override
 	public boolean hasNext() {
-		return array.length != index + 1;
+		return index < array.length;
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public final class ShortArrayIterator implements ProtectedIterator<Short> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("ShortArrayIterator has no further element");
 		} else {
-			return array[++index];
+			return array[index++];
 		}
 	}
 

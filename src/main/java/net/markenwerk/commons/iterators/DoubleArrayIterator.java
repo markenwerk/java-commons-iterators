@@ -34,7 +34,7 @@ public final class DoubleArrayIterator implements ProtectedIterator<Double> {
 
 	private final double[] array;
 
-	private int index = -1;
+	private int index;
 
 	/**
 	 * Creates a new {@linkplain DoubleArrayIterator} that iterates over the
@@ -55,7 +55,7 @@ public final class DoubleArrayIterator implements ProtectedIterator<Double> {
 
 	@Override
 	public boolean hasNext() {
-		return array.length != index + 1;
+		return index < array.length;
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public final class DoubleArrayIterator implements ProtectedIterator<Double> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("DoubleArrayIterator has no further element");
 		} else {
-			return array[++index];
+			return array[index++];
 		}
 	}
 

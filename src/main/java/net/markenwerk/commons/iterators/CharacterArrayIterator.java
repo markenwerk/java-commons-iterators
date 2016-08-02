@@ -34,7 +34,7 @@ public final class CharacterArrayIterator implements ProtectedIterator<Character
 
 	private final char[] array;
 
-	private int index = -1;
+	private int index ;
 
 	/**
 	 * Creates a new {@linkplain CharacterArrayIterator} that iterates over the
@@ -55,7 +55,7 @@ public final class CharacterArrayIterator implements ProtectedIterator<Character
 
 	@Override
 	public boolean hasNext() {
-		return array.length != index + 1;
+		return index < array.length;
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public final class CharacterArrayIterator implements ProtectedIterator<Character
 		if (!hasNext()) {
 			throw new NoSuchElementException("CharacterArrayIterator has no further element");
 		} else {
-			return array[++index];
+			return array[index++];
 		}
 	}
 

@@ -34,7 +34,7 @@ public final class LongArrayIterator implements ProtectedIterator<Long> {
 
 	private final long[] array;
 
-	private int index = -1;
+	private int index;
 
 	/**
 	 * Creates a new {@linkplain LongArrayIterator} that iterates over the given
@@ -55,7 +55,7 @@ public final class LongArrayIterator implements ProtectedIterator<Long> {
 
 	@Override
 	public boolean hasNext() {
-		return array.length != index + 1;
+		return index < array.length;
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public final class LongArrayIterator implements ProtectedIterator<Long> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("LongArrayIterator has no further element");
 		} else {
-			return array[++index];
+			return array[index++];
 		}
 	}
 

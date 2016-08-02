@@ -38,7 +38,7 @@ public final class TripleIterator<Payload> implements ProtectedIterator<Payload>
 
 	private final Triple<? extends Payload, ? extends Payload, ? extends Payload> triple;
 
-	private int index = -1;
+	private int index;
 
 	/**
 	 * Creates a new {@link TripleIterator} that iterates over the given {@link Triple}.
@@ -59,12 +59,12 @@ public final class TripleIterator<Payload> implements ProtectedIterator<Payload>
 
 	@Override
 	public boolean hasNext() {
-		return index < 2;
+		return index < 3;
 	}
 
 	@Override
 	public Payload next() throws NoSuchElementException {
-		switch (++index) {
+		switch (index++) {
 		case 0:
 			return triple.getFirst();
 		case 1:

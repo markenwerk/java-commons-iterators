@@ -37,7 +37,7 @@ public final class NodeListIterator implements ProtectedIterator<Node> {
 
 	private final NodeList nodeList;
 
-	private int index = -1;
+	private int index;
 
 	/**
 	 * Creates a new {@link NodeListIterator} that iterates over the given
@@ -58,7 +58,7 @@ public final class NodeListIterator implements ProtectedIterator<Node> {
 
 	@Override
 	public boolean hasNext() {
-		return nodeList.getLength() != index + 1;
+		return index < nodeList.getLength();
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public final class NodeListIterator implements ProtectedIterator<Node> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("NodeListIterator has no further element");
 		} else {
-			return nodeList.item(++index);
+			return nodeList.item(index++);
 		}
 	}
 

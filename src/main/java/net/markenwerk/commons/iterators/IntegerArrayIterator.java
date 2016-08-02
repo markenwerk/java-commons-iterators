@@ -34,7 +34,7 @@ public final class IntegerArrayIterator implements ProtectedIterator<Integer> {
 
 	private final int[] array;
 
-	private int index = -1;
+	private int index;
 
 	/**
 	 * Creates a new {@linkplain IntegerArrayIterator} that iterates over the
@@ -55,7 +55,7 @@ public final class IntegerArrayIterator implements ProtectedIterator<Integer> {
 
 	@Override
 	public boolean hasNext() {
-		return array.length != index + 1;
+		return index < array.length;
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public final class IntegerArrayIterator implements ProtectedIterator<Integer> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("IntegerArrayIterator has no further element");
 		} else {
-			return array[++index];
+			return array[index++];
 		}
 	}
 

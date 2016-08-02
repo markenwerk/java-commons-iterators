@@ -36,7 +36,7 @@ public final class ArrayIterator<Payload> implements ProtectedIterator<Payload> 
 
 	private final Payload[] array;
 
-	private int index = -1;
+	private int index;
 
 	/**
 	 * Creates a new {@link ArrayIterator} that iterates over the given payload
@@ -57,7 +57,7 @@ public final class ArrayIterator<Payload> implements ProtectedIterator<Payload> 
 
 	@Override
 	public boolean hasNext() {
-		return array.length != index + 1;
+		return index < array.length;
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public final class ArrayIterator<Payload> implements ProtectedIterator<Payload> 
 		if (!hasNext()) {
 			throw new NoSuchElementException("ArrayIterator has no further element");
 		} else {
-			return array[++index];
+			return array[index++];
 		}
 	}
 

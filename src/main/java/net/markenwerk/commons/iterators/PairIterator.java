@@ -38,7 +38,7 @@ public final class PairIterator<Payload> implements ProtectedIterator<Payload> {
 
 	private final Pair<? extends Payload> pair;
 
-	private int index = -1;
+	private int index;
 
 	/**
 	 * Creates a new {@link PairIterator} that iterates over the given {@link Pair}.
@@ -58,12 +58,12 @@ public final class PairIterator<Payload> implements ProtectedIterator<Payload> {
 
 	@Override
 	public boolean hasNext() {
-		return index < 1;
+		return index < 2;
 	}
 
 	@Override
 	public Payload next() throws NoSuchElementException {
-		switch (++index) {
+		switch (index++) {
 		case 0:
 			return pair.getFirst();
 		case 1:

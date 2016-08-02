@@ -38,7 +38,7 @@ public final class TupleIterator<Payload> implements ProtectedIterator<Payload> 
 
 	private final Tuple<? extends Payload, ? extends Payload> tuple;
 
-	private int index = -1;
+	private int index;
 
 	/**
 	 * Creates a new {@link TupleIterator} that iterates over the given {@link Tuple}.
@@ -58,12 +58,12 @@ public final class TupleIterator<Payload> implements ProtectedIterator<Payload> 
 
 	@Override
 	public boolean hasNext() {
-		return index < 1;
+		return index < 2;
 	}
 
 	@Override
 	public Payload next() throws NoSuchElementException {
-		switch (++index) {
+		switch (index++) {
 		case 0:
 			return tuple.getFirst();
 		case 1:

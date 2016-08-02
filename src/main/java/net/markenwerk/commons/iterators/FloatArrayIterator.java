@@ -34,7 +34,7 @@ public final class FloatArrayIterator implements ProtectedIterator<Float> {
 
 	private final float[] array;
 
-	private int index = -1;
+	private int index;
 
 	/**
 	 * Creates a new {@linkplain FloatArrayIterator} that iterates over the
@@ -55,7 +55,7 @@ public final class FloatArrayIterator implements ProtectedIterator<Float> {
 
 	@Override
 	public boolean hasNext() {
-		return array.length != index + 1;
+		return index < array.length;
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public final class FloatArrayIterator implements ProtectedIterator<Float> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("FloatArrayIterator has no further element");
 		} else {
-			return array[++index];
+			return array[index++];
 		}
 	}
 

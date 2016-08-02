@@ -34,7 +34,7 @@ public final class BooleanArrayIterator implements ProtectedIterator<Boolean> {
 
 	private final boolean[] array;
 
-	private int index = -1;
+	private int index;
 
 	/**
 	 * Creates a new {@linkplain BooleanArrayIterator} that iterates over the
@@ -55,7 +55,7 @@ public final class BooleanArrayIterator implements ProtectedIterator<Boolean> {
 
 	@Override
 	public boolean hasNext() {
-		return array.length != index + 1;
+		return index < array.length;
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public final class BooleanArrayIterator implements ProtectedIterator<Boolean> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("BooleanArrayIterator has no further element");
 		} else {
-			return array[++index];
+			return array[index++];
 		}
 	}
 

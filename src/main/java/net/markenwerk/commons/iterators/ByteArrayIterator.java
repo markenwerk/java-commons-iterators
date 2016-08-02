@@ -34,7 +34,7 @@ public final class ByteArrayIterator implements ProtectedIterator<Byte> {
 
 	private final byte[] array;
 
-	private int index = -1;
+	private int index;
 
 	/**
 	 * Creates a new {@linkplain ByteArrayIterator} that iterates over the given
@@ -55,7 +55,7 @@ public final class ByteArrayIterator implements ProtectedIterator<Byte> {
 
 	@Override
 	public boolean hasNext() {
-		return array.length != index + 1;
+		return index < array.length;
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public final class ByteArrayIterator implements ProtectedIterator<Byte> {
 		if (!hasNext()) {
 			throw new NoSuchElementException("ByteArrayIterator has no further element");
 		} else {
-			return array[++index];
+			return array[index++];
 		}
 	}
 
