@@ -59,7 +59,7 @@ public final class TripleIterator<Payload> implements ProtectedIterator<Payload>
 
 	@Override
 	public boolean hasNext() {
-		return index < 1;
+		return index < 2;
 	}
 
 	@Override
@@ -69,6 +69,8 @@ public final class TripleIterator<Payload> implements ProtectedIterator<Payload>
 			return triple.getFirst();
 		case 1:
 			return triple.getSecond();
+		case 2:
+			return triple.getThird();
 		default:
 			throw new NoSuchElementException("TripleIterator has no further element");
 		}
