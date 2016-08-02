@@ -187,7 +187,7 @@ Iterator<Foo> nullFreeIterator = new NullFreeIterator<>(iterator);
 
 ### Handling of `remove()` operation
 
-This library provides the [`ProtectedIterator`][ProtectedIterator] interface. A [`ProtectedIterator`][ProtectedIterator] is an [`Iterator`][Iterator] that must throw a [`UnsupportedOperationException`][UnsupportedOperationException], if `remove()` is called.
+This library provides the [`ProtectedIterator`][ProtectedIterator] interface. A [`ProtectedIterator`][ProtectedIterator] is an [`Iterator`][Iterator] that must throw an [`UnsupportedOperationException`][UnsupportedOperationException], if `remove()` is called.
 
 This library provides the [`ProtectingIterator`][ProtectingIterator] that takes an existing [`Iterator`][Iterator] and yields all values yielded by the given [`Iterator`][Iterator], but throws a [`UnsupportedoperationException`][UnsupportedoperationException], if `remove()` is called.
 
