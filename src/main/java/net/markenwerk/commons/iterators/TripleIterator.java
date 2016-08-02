@@ -32,7 +32,7 @@ import net.markenwerk.commons.datastructures.Triple;
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since TODO
+ * @since 3.0.0
  */
 public final class TripleIterator<Payload> implements ProtectedIterator<Payload> {
 

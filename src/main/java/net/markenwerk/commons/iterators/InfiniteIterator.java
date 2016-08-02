@@ -30,7 +30,7 @@ import net.markenwerk.commons.interfaces.Provider;
  * @param <Payload>
  *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since TODO
+ * @since 3.0.0
  */
 public final class InfiniteIterator<Payload> implements ProtectedIterator<Payload> {
 
