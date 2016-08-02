@@ -113,11 +113,7 @@ var activeTableTab = "activeTableTab";
 <pre>public interface <span class="typeNameLabel">Translator&lt;From,To&gt;</span>
 extends <a href="../../../../net/markenwerk/commons/interfaces/Converter.html" title="interface in net.markenwerk.commons.interfaces">Converter</a>&lt;From,To&gt;</pre>
 <div class="block">A <a href="../../../../net/markenwerk/commons/interfaces/Translator.html" title="interface in net.markenwerk.commons.interfaces"><code>Translator</code></a> is used to convert (transform, translate, project,
- evaluate, ...) values from one form into another and back. As such, a
- <a href="../../../../net/markenwerk/commons/interfaces/Translator.html" title="interface in net.markenwerk.commons.interfaces"><code>Translator</code></a> is little more than an arbitrary function and its reveres
- function.It is usually used in a scenario where some sort of data provider
- wants to offer the possibility to convert values into the desired type before
- delivery or during the data processing.
+ evaluate, ...) values from one form into another and back.
  
  <p>
  Common use cases of a <a href="../../../../net/markenwerk/commons/interfaces/Converter.html" title="interface in net.markenwerk.commons.interfaces"><code>Converter</code></a> include:
@@ -127,7 +123,7 @@ extends <a href="../../../../net/markenwerk/commons/interfaces/Converter.html" t
  
  <pre>
  Converter&lt;String, UUID&gt; uuidTranslator = new Translator&lt;String, UUID&gt; () {
-   Override
+    @Override
    public UUID convert(String uuidString) throws ConverterException {
      try{
        return UUID.fromString(uuidString);
@@ -136,7 +132,7 @@ extends <a href="../../../../net/markenwerk/commons/interfaces/Converter.html" t
      }
    }
     
-   Override
+    @Override
    public String revert(UUID uuid) {
      return uuid.toString();
    }
@@ -148,12 +144,12 @@ extends <a href="../../../../net/markenwerk/commons/interfaces/Converter.html" t
  
  <pre>
  Converter&lt;Entity, Integer&gt; idConverter = new Converter&lt;Entity, Integer&gt; () {
-   Override
+    @Override
    public Integer convert(Entity entity) throws ConverterException {
      return entity.getId();
    }
    
-   Override
+    @Override
    public Entity revert(Integer id) {
      try{
        return EntityDao.getById(id);
@@ -171,8 +167,6 @@ extends <a href="../../../../net/markenwerk/commons/interfaces/Converter.html" t
 <dd>1.0.0</dd>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>Torsten Krause (tk at markenwerk dot net)</dd>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../net/markenwerk/commons/interfaces/Converter.html" title="interface in net.markenwerk.commons.interfaces"><code>Converter</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -234,17 +228,17 @@ extends <a href="../../../../net/markenwerk/commons/interfaces/Converter.html" t
  <a href="../../../../net/markenwerk/commons/interfaces/Converter.html#convert-From-"><code>Converter.convert(Object)</code></a>.
  
  <p>
+ Implementers should catch any exception and wrap them in a
+ <a href="../../../../net/markenwerk/commons/exceptions/ConversionException.html" title="class in net.markenwerk.commons.exceptions"><code>ConversionException</code></a>.
+ 
+ <p>
  Depending on the use case, if the given value null, the
  <a href="../../../../net/markenwerk/commons/interfaces/Translator.html" title="interface in net.markenwerk.commons.interfaces"><code>Translator</code></a> should return null.
  
  <p>
  It lies in the responsibility of the caller, to handle unwanted
  null-values by replacing them with a sensible default value or
- throwing a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang"><code>NullPointerException</code></a>.
- 
- <p>
- Implementers should catch any exception and wrap them in a
- <a href="../../../../net/markenwerk/commons/exceptions/ConversionException.html" title="class in net.markenwerk.commons.exceptions"><code>ConversionException</code></a>.</div>
+ throwing a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang"><code>NullPointerException</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>to</code> - The value to be reverted.</dd>

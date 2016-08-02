@@ -83,12 +83,11 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../net/markenwerk/commons/interfaces/Callback.html" title="interface in net.markenwerk.commons.interfaces">Callback</a>&lt;Result&gt;</td>
+<td class="colFirst"><a href="../../../../net/markenwerk/commons/interfaces/Callback.html" title="interface in net.markenwerk.commons.interfaces">Callback</a>&lt;Callee,Result&gt;</td>
 <td class="colLast">
 <div class="block">For an arbitrary process, that will eventually yield a result, a
  <a href="../../../../net/markenwerk/commons/interfaces/Callback.html" title="interface in net.markenwerk.commons.interfaces"><code>Callback</code></a> is used, to convey that result from the executor of the
- process (hereafter: executor) back to the initiator of the process
- (hereafter: initiator).</div>
+ process (the callee) back to the initiator of the process (the caller).</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -99,26 +98,12 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../net/markenwerk/commons/interfaces/Handler.html" title="interface in net.markenwerk.commons.interfaces">Handler</a>&lt;Event&gt;</td>
+<td class="colFirst"><a href="../../../../net/markenwerk/commons/interfaces/Handler.html" title="interface in net.markenwerk.commons.interfaces">Handler</a>&lt;Value&gt;</td>
 <td class="colLast">
-<div class="block">For an arbitrary process, that may encounter some kind of event and needs to
- delegate the event handling, a <a href="../../../../net/markenwerk/commons/interfaces/Handler.html" title="interface in net.markenwerk.commons.interfaces"><code>Handler</code></a> is used, to convey that event
- from the executor of the process (hereafter: executor) back to the initiator
- of the process (hereafter: initiator).</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../net/markenwerk/commons/interfaces/OrderProducer.html" title="interface in net.markenwerk.commons.interfaces">OrderProducer</a>&lt;Order,Product&gt;</td>
-<td class="colLast">
-<div class="block">An <a href="../../../../net/markenwerk/commons/interfaces/OrderProducer.html" title="interface in net.markenwerk.commons.interfaces"><code>OrderProducer</code></a> produces customized values of the corresponding
- product type.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../net/markenwerk/commons/interfaces/OrderProvider.html" title="interface in net.markenwerk.commons.interfaces">OrderProvider</a>&lt;Order,Product&gt;</td>
-<td class="colLast">
-<div class="block">A <a href="../../../../net/markenwerk/commons/interfaces/OrderProvider.html" title="interface in net.markenwerk.commons.interfaces"><code>OrderProvider</code></a> provides customized values of the corresponding
- product type.</div>
+<div class="block">For an arbitrary process, that may encounter some condition and needs to
+ delegate the handling, a <a href="../../../../net/markenwerk/commons/interfaces/Handler.html" title="interface in net.markenwerk.commons.interfaces"><code>Handler</code></a> is used, to convey the involved
+ value from the executor of the process (hereafter: executor) back to the
+ initiator of the process (hereafter: initiator).</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -128,18 +113,26 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces">Producer</a>&lt;Product&gt;</td>
+<td class="colFirst"><a href="../../../../net/markenwerk/commons/interfaces/Processor.html" title="interface in net.markenwerk.commons.interfaces">Processor</a>&lt;Value&gt;</td>
 <td class="colLast">
-<div class="block">A <a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><code>Producer</code></a> produces values of the corresponding product type.</div>
+<div class="block">A <a href="../../../../net/markenwerk/commons/interfaces/Processor.html" title="interface in net.markenwerk.commons.interfaces"><code>Processor</code></a> is used to process (transform, translate, project,
+ evaluate, ...) values.</div>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces">Producer</a>&lt;Order,Product&gt;</td>
+<td class="colLast">
+<div class="block">An <a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><code>Producer</code></a> produces customized values of the corresponding product
+ type.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces">Provider</a>&lt;Product&gt;</td>
 <td class="colLast">
 <div class="block">A <a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><code>Provider</code></a> provides values of the corresponding product type.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../../net/markenwerk/commons/interfaces/Translator.html" title="interface in net.markenwerk.commons.interfaces">Translator</a>&lt;From,To&gt;</td>
 <td class="colLast">
 <div class="block">A <a href="../../../../net/markenwerk/commons/interfaces/Translator.html" title="interface in net.markenwerk.commons.interfaces"><code>Translator</code></a> is used to convert (transform, translate, project,

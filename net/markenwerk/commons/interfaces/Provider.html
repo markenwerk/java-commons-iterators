@@ -103,10 +103,6 @@ var activeTableTab = "activeTableTab";
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>Product</code> - The type of the values to be provided.</dd>
 </dl>
-<dl>
-<dt>All Known Subinterfaces:</dt>
-<dd><a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces">Producer</a>&lt;Product&gt;</dd>
-</dl>
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">Provider&lt;Product&gt;</span></pre>
@@ -114,22 +110,12 @@ var activeTableTab = "activeTableTab";
  
  <p>
  Implementers may provide a new instance of the product each time
- <a href="../../../../net/markenwerk/commons/interfaces/Provider.html#create--"><code>create()</code></a> is called, but aren't required to do so. An
+ <a href="../../../../net/markenwerk/commons/interfaces/Provider.html#provide--"><code>provide()</code></a> is called, but aren't required to do so. An
  instance of the product that has already been returned once, may be returned
  again for any or all following calls.
  
  <p>
- It is therefore not recommended to use <a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><code>Provides</code></a> for products
- that are stateful unless the internal state of a values doesn't change the
- value. It is for example okay to use <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> as the product type,
- although instances are stateful (<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> instances store their hash
- value after it has been calculated for the first time and are therefore
- technically stateful), but it is not okay to use <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a> as the
- product type, because every call to <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true#next--" title="class or interface in java.util"><code>Iterator.next()</code></a> actually changes
- the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a> instance.
- 
- <p>
- <a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><code>Providers</code></a> are intended to be used in situation, where a
+ A <a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><code>Provider</code></a> is intended to be used in a situation, where a
  mechanism to retrieve a value is more desirable than having the value from
  the start. These are usually, but not necessarily, situations where the
  following two conditions are met.
@@ -141,15 +127,13 @@ var activeTableTab = "activeTableTab";
  
  <p>
  The second condition may only be true for the first call to
- <a href="../../../../net/markenwerk/commons/interfaces/Provider.html#create--"><code>create()</code></a> since <a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><code>Providers</code></a> are allowed to
+ <a href="../../../../net/markenwerk/commons/interfaces/Provider.html#provide--"><code>provide()</code></a> since the <a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><code>Provider</code></a> is allowed to
  cache and reuse the value.</div>
 <dl>
 <dt><span class="simpleTagLabel">Since:</span></dt>
 <dd>1.0.0</dd>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>Torsten Krause (tk at markenwerk dot net)</dd>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><code>Producer</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -171,7 +155,7 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="type parameter in Provider">Product</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../net/markenwerk/commons/interfaces/Provider.html#create--">create</a></span>()</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../net/markenwerk/commons/interfaces/Provider.html#provide--">provide</a></span>()</code>
 <div class="block">Provides a product, This may be a costly operation.</div>
 </td>
 </tr>
@@ -190,35 +174,30 @@ var activeTableTab = "activeTableTab";
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="create--">
+<a name="provide--">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>create</h4>
-<pre><a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="type parameter in Provider">Product</a>&nbsp;create()
-        throws <a href="../../../../net/markenwerk/commons/exceptions/CreationException.html" title="class in net.markenwerk.commons.exceptions">CreationException</a></pre>
+<h4>provide</h4>
+<pre><a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="type parameter in Provider">Product</a>&nbsp;provide()
+         throws <a href="../../../../net/markenwerk/commons/exceptions/ProvisioningException.html" title="class in net.markenwerk.commons.exceptions">ProvisioningException</a></pre>
 <div class="block">Provides a product, This may be a costly operation.
+ 
+ <p>
+ Implementers should catch any exception and wrap them in a
+ <a href="../../../../net/markenwerk/commons/exceptions/ProvisioningException.html" title="class in net.markenwerk.commons.exceptions"><code>ProvisioningException</code></a>.
  
  <p>
  Implementers may provide a new instance of the product each time this
  method is called, but aren't required to do so. An instance of the
  product that has already been returned once, may be returned again in any
- or all following calls.
- 
- <p>
- It lies in the responsibility of the caller, to handle unwanted
- null-values by replacing them with a sensible default value or
- throwing a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang"><code>NullPointerException</code></a>.
- 
- <p>
- Implementers should catch any exception and wrap them in a
- <a href="../../../../net/markenwerk/commons/exceptions/CreationException.html" title="class in net.markenwerk.commons.exceptions"><code>CreationException</code></a>.</div>
+ or all following calls.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The provided product.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../net/markenwerk/commons/exceptions/CreationException.html" title="class in net.markenwerk.commons.exceptions">CreationException</a></code> - If the provisioning of the product failed.</dd>
+<dd><code><a href="../../../../net/markenwerk/commons/exceptions/ProvisioningException.html" title="class in net.markenwerk.commons.exceptions">ProvisioningException</a></code> - If the provisioning of the product failed.</dd>
 </dl>
 </li>
 </ul>

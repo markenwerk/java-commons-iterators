@@ -112,11 +112,7 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public interface <span class="typeNameLabel">Converter&lt;From,To&gt;</span></pre>
 <div class="block">A <a href="../../../../net/markenwerk/commons/interfaces/Converter.html" title="interface in net.markenwerk.commons.interfaces"><code>Converter</code></a> is used to convert (transform, translate, project,
- evaluate, ...) values from one form into another. As such, a
- <a href="../../../../net/markenwerk/commons/interfaces/Converter.html" title="interface in net.markenwerk.commons.interfaces"><code>Converter</code></a> is little more than an arbitrary function. It is usually
- used in a scenario where some sort of data provider wants to offer the
- possibility to convert values into the desired type before delivery or during
- the data processing.
+ evaluate, ...) values from one form into another.
  
  <p>
  Common use cases of a <a href="../../../../net/markenwerk/commons/interfaces/Converter.html" title="interface in net.markenwerk.commons.interfaces"><code>Converter</code></a> include:
@@ -126,7 +122,7 @@ var activeTableTab = "activeTableTab";
  
  <pre>
   Converter&lt;String, UUID&gt; uuidConverter = new Converter&lt;String, UUID&gt; () {
-    Override
+     @Override
     public UUID convert(String uuidString) throws ConverterException {
       try{
         return UUID.fromString(uuidString);
@@ -142,7 +138,7 @@ var activeTableTab = "activeTableTab";
  
  <pre>
  Converter&lt;Entity, Integer&gt; idConverter = new Converter&lt;Entity, Integer&gt; () {
-   Override
+    @Override
    public Integer convert(Entity entity) throws ConverterException {
      return entity.getId();
    }
@@ -156,8 +152,6 @@ var activeTableTab = "activeTableTab";
 <dd>1.0.0</dd>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>Torsten Krause (tk at markenwerk dot net)</dd>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../net/markenwerk/commons/interfaces/Translator.html" title="interface in net.markenwerk.commons.interfaces"><code>Translator</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -211,17 +205,17 @@ var activeTableTab = "activeTableTab";
 <div class="block">Called to convert a given value.
  
  <p>
+ Implementers should catch any exception and wrap them in a
+ <a href="../../../../net/markenwerk/commons/exceptions/ConversionException.html" title="class in net.markenwerk.commons.exceptions"><code>ConversionException</code></a>.
+ 
+ <p>
  Depending on the use case, if the given value null, the
  <a href="../../../../net/markenwerk/commons/interfaces/Converter.html" title="interface in net.markenwerk.commons.interfaces"><code>Converter</code></a> should return null.
  
  <p>
  It lies in the responsibility of the caller, to handle unwanted
  null-values by replacing them with a sensible default value or
- throwing a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang"><code>NullPointerException</code></a>.
- 
- <p>
- Implementers should catch any exception and wrap them in a
- <a href="../../../../net/markenwerk/commons/exceptions/ConversionException.html" title="class in net.markenwerk.commons.exceptions"><code>ConversionException</code></a>.</div>
+ throwing an appropriate <a href="../../../../net/markenwerk/commons/exceptions/ConversionException.html" title="class in net.markenwerk.commons.exceptions"><code>ConversionException</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - The value to be converted.</dd>

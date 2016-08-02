@@ -79,7 +79,7 @@
 <div class="block">An <a href="net/markenwerk/commons/iterators/ArrayIterator.html" title="class in net.markenwerk.commons.iterators"><code>ArrayIterator</code></a> is a <a href="net/markenwerk/commons/iterators/ProtectedIterator.html" title="interface in net.markenwerk.commons.iterators"><code>ProtectedIterator</code></a> that iterates over a
  given payload array.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/ArrayIterator.html#ArrayIterator-Payload:A-">ArrayIterator(Payload[])</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/ArrayIterator.html" title="class in net.markenwerk.commons.iterators">ArrayIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/ArrayIterator.html#ArrayIterator-Payload...-">ArrayIterator(Payload...)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/ArrayIterator.html" title="class in net.markenwerk.commons.iterators">ArrayIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/ArrayIterator.html" title="class in net.markenwerk.commons.iterators"><code>ArrayIterator</code></a> that iterates over the given payload
  array.</div>
@@ -95,7 +95,7 @@
 <div class="block">A <a href="net/markenwerk/commons/iterators/BooleanArrayIterator.html" title="class in net.markenwerk.commons.iterators"><code>BooleanArrayIterator</code></a> is a <a href="net/markenwerk/commons/iterators/ProtectedIterator.html" title="interface in net.markenwerk.commons.iterators"><code>ProtectedIterator</code></a> that iterates
  over a given <code>boolean[]</code>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/BooleanArrayIterator.html#BooleanArrayIterator-boolean:A-">BooleanArrayIterator(boolean[])</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/BooleanArrayIterator.html" title="class in net.markenwerk.commons.iterators">BooleanArrayIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/BooleanArrayIterator.html#BooleanArrayIterator-boolean...-">BooleanArrayIterator(boolean...)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/BooleanArrayIterator.html" title="class in net.markenwerk.commons.iterators">BooleanArrayIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/BooleanArrayIterator.html" title="class in net.markenwerk.commons.iterators">BooleanArrayIterator</a> that iterates over the
  given <code>boolean[]</code>.</div>
@@ -117,7 +117,7 @@
 <div class="block">A <a href="net/markenwerk/commons/iterators/ByteArrayIterator.html" title="class in net.markenwerk.commons.iterators"><code>ByteArrayIterator</code></a> is an <a href="net/markenwerk/commons/iterators/ProtectedIterator.html" title="interface in net.markenwerk.commons.iterators"><code>ProtectedIterator</code></a> that iterates
  over a given <code>byte[]</code>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/ByteArrayIterator.html#ByteArrayIterator-byte:A-">ByteArrayIterator(byte[])</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/ByteArrayIterator.html" title="class in net.markenwerk.commons.iterators">ByteArrayIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/ByteArrayIterator.html#ByteArrayIterator-byte...-">ByteArrayIterator(byte...)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/ByteArrayIterator.html" title="class in net.markenwerk.commons.iterators">ByteArrayIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/ByteArrayIterator.html" title="class in net.markenwerk.commons.iterators">ByteArrayIterator</a> that iterates over the given
  <code>byte[]</code>.</div>
@@ -128,19 +128,18 @@
 </a>
 <h2 class="title">C</h2>
 <dl>
-<dt><a href="net/markenwerk/commons/interfaces/Callback.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Callback</span></a>&lt;<a href="net/markenwerk/commons/interfaces/Callback.html" title="type parameter in Callback">Result</a>&gt; - Interface in <a href="net/markenwerk/commons/interfaces/package-summary.html">net.markenwerk.commons.interfaces</a></dt>
+<dt><a href="net/markenwerk/commons/interfaces/Callback.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Callback</span></a>&lt;<a href="net/markenwerk/commons/interfaces/Callback.html" title="type parameter in Callback">Callee</a>,<a href="net/markenwerk/commons/interfaces/Callback.html" title="type parameter in Callback">Result</a>&gt; - Interface in <a href="net/markenwerk/commons/interfaces/package-summary.html">net.markenwerk.commons.interfaces</a></dt>
 <dd>
 <div class="block">For an arbitrary process, that will eventually yield a result, a
  <a href="net/markenwerk/commons/interfaces/Callback.html" title="interface in net.markenwerk.commons.interfaces"><code>Callback</code></a> is used, to convey that result from the executor of the
- process (hereafter: executor) back to the initiator of the process
- (hereafter: initiator).</div>
+ process (the callee) back to the initiator of the process (the caller).</div>
 </dd>
 <dt><a href="net/markenwerk/commons/iterators/CharacterArrayIterator.html" title="class in net.markenwerk.commons.iterators"><span class="typeNameLink">CharacterArrayIterator</span></a> - Class in <a href="net/markenwerk/commons/iterators/package-summary.html">net.markenwerk.commons.iterators</a></dt>
 <dd>
 <div class="block">A <a href="net/markenwerk/commons/iterators/CharacterArrayIterator.html" title="class in net.markenwerk.commons.iterators"><code>CharacterArrayIterator</code></a> is an <a href="net/markenwerk/commons/iterators/ProtectedIterator.html" title="interface in net.markenwerk.commons.iterators"><code>ProtectedIterator</code></a> that
  iterates over a given <code>char[]</code>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/CharacterArrayIterator.html#CharacterArrayIterator-char:A-">CharacterArrayIterator(char[])</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/CharacterArrayIterator.html" title="class in net.markenwerk.commons.iterators">CharacterArrayIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/CharacterArrayIterator.html#CharacterArrayIterator-char...-">CharacterArrayIterator(char...)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/CharacterArrayIterator.html" title="class in net.markenwerk.commons.iterators">CharacterArrayIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/CharacterArrayIterator.html" title="class in net.markenwerk.commons.iterators">CharacterArrayIterator</a> that iterates over the
  given <code>char[]</code>.</div>
@@ -168,8 +167,8 @@
 </dd>
 <dt><a href="net/markenwerk/commons/exceptions/ConversionException.html" title="class in net.markenwerk.commons.exceptions"><span class="typeNameLink">ConversionException</span></a> - Exception in <a href="net/markenwerk/commons/exceptions/package-summary.html">net.markenwerk.commons.exceptions</a></dt>
 <dd>
-<div class="block">A <a href="net/markenwerk/commons/exceptions/ConversionException.html" title="class in net.markenwerk.commons.exceptions"><code>ConversionException</code></a> indicates that an arbitrary conversion
- (transformation, translation, projection, evaluation, ...) has failed.</div>
+<div class="block">A <a href="net/markenwerk/commons/exceptions/ConversionException.html" title="class in net.markenwerk.commons.exceptions"><code>ConversionException</code></a> indicates that a <a href="net/markenwerk/commons/interfaces/Converter.html" title="interface in net.markenwerk.commons.interfaces"><code>Converter</code></a> (or
+ <a href="net/markenwerk/commons/interfaces/Translator.html" title="interface in net.markenwerk.commons.interfaces"><code>Translator</code></a>) failed to convert (or revert )a value.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/ConversionException.html#ConversionException-java.lang.String-java.lang.Throwable-">ConversionException(String, Throwable)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/ConversionException.html" title="class in net.markenwerk.commons.exceptions">ConversionException</a></dt>
 <dd>
@@ -199,7 +198,7 @@
  around a given <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a> and converts all values with a given
  <a href="net/markenwerk/commons/interfaces/Converter.html" title="interface in net.markenwerk.commons.interfaces"><code>Converter</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/ConvertingIterator.html#ConvertingIterator-java.util.Iterator-net.markenwerk.commons.interfaces.Converter-">ConvertingIterator(Iterator&lt;? extends From&gt;, Converter&lt;From, To&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/ConvertingIterator.html" title="class in net.markenwerk.commons.iterators">ConvertingIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/ConvertingIterator.html#ConvertingIterator-java.util.Iterator-net.markenwerk.commons.interfaces.Converter-">ConvertingIterator(Iterator&lt;? extends From&gt;, Converter&lt;? super From, ? extends To&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/ConvertingIterator.html" title="class in net.markenwerk.commons.iterators">ConvertingIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/ConvertingIterator.html" title="class in net.markenwerk.commons.iterators"><code>ConvertingIterator</code></a> from the given <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a>
  and the given <a href="net/markenwerk/commons/interfaces/Converter.html" title="interface in net.markenwerk.commons.interfaces"><code>Converter</code></a>.</div>
@@ -224,39 +223,6 @@
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/CountUpIterator.html" title="class in net.markenwerk.commons.iterators"><code>CountUpIterator</code></a> from the given lower and upper
  bound.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/interfaces/OrderProducer.html#create-Order-">create(Order)</a></span> - Method in interface net.markenwerk.commons.interfaces.<a href="net/markenwerk/commons/interfaces/OrderProducer.html" title="interface in net.markenwerk.commons.interfaces">OrderProducer</a></dt>
-<dd>
-<div class="block">Produces a new customized product.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/interfaces/OrderProvider.html#create-Order-">create(Order)</a></span> - Method in interface net.markenwerk.commons.interfaces.<a href="net/markenwerk/commons/interfaces/OrderProvider.html" title="interface in net.markenwerk.commons.interfaces">OrderProvider</a></dt>
-<dd>
-<div class="block">Provides a customized product.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/interfaces/Producer.html#create--">create()</a></span> - Method in interface net.markenwerk.commons.interfaces.<a href="net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces">Producer</a></dt>
-<dd>
-<div class="block">Produces a new product.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/interfaces/Provider.html#create--">create()</a></span> - Method in interface net.markenwerk.commons.interfaces.<a href="net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces">Provider</a></dt>
-<dd>
-<div class="block">Provides a product, This may be a costly operation.</div>
-</dd>
-<dt><a href="net/markenwerk/commons/exceptions/CreationException.html" title="class in net.markenwerk.commons.exceptions"><span class="typeNameLink">CreationException</span></a> - Exception in <a href="net/markenwerk/commons/exceptions/package-summary.html">net.markenwerk.commons.exceptions</a></dt>
-<dd>
-<div class="block">A <a href="net/markenwerk/commons/exceptions/CreationException.html" title="class in net.markenwerk.commons.exceptions"><code>CreationException</code></a> indicates that a <a href="net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><code>Producer</code></a> failed to
- produce a product.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/CreationException.html#CreationException-java.lang.String-java.lang.Throwable-">CreationException(String, Throwable)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/CreationException.html" title="class in net.markenwerk.commons.exceptions">CreationException</a></dt>
-<dd>
-<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/CreationException.html" title="class in net.markenwerk.commons.exceptions"><code>CreationException</code></a> with the given message and cause.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/CreationException.html#CreationException-java.lang.String-">CreationException(String)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/CreationException.html" title="class in net.markenwerk.commons.exceptions">CreationException</a></dt>
-<dd>
-<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/CreationException.html" title="class in net.markenwerk.commons.exceptions"><code>CreationException</code></a> with the given message.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/CreationException.html#CreationException-java.lang.Throwable-">CreationException(Throwable)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/CreationException.html" title="class in net.markenwerk.commons.exceptions">CreationException</a></dt>
-<dd>
-<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/CreationException.html" title="class in net.markenwerk.commons.exceptions"><code>CreationException</code></a> with the given cause.</div>
-</dd>
 </dl>
 <a name="I:D">
 <!--   -->
@@ -268,7 +234,7 @@
 <div class="block">A <a href="net/markenwerk/commons/iterators/DoubleArrayIterator.html" title="class in net.markenwerk.commons.iterators"><code>DoubleArrayIterator</code></a> is an <a href="net/markenwerk/commons/iterators/ProtectedIterator.html" title="interface in net.markenwerk.commons.iterators"><code>ProtectedIterator</code></a> that iterates
  over a given <code>double[]</code>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/DoubleArrayIterator.html#DoubleArrayIterator-double:A-">DoubleArrayIterator(double[])</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/DoubleArrayIterator.html" title="class in net.markenwerk.commons.iterators">DoubleArrayIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/DoubleArrayIterator.html#DoubleArrayIterator-double...-">DoubleArrayIterator(double...)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/DoubleArrayIterator.html" title="class in net.markenwerk.commons.iterators">DoubleArrayIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/DoubleArrayIterator.html" title="class in net.markenwerk.commons.iterators">DoubleArrayIterator</a> that iterates over the
  given <code>double[]</code>.</div>
@@ -306,7 +272,7 @@
  around a given <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Enumeration.html?is-external=true" title="class or interface in java.util"><code>Enumeration</code></a> and yields all values yielded by the given
  <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Enumeration.html?is-external=true" title="class or interface in java.util"><code>Enumeration</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/EnumerationIterator.html#EnumerationIterator-java.util.Enumeration-">EnumerationIterator(Enumeration&lt;Payload&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/EnumerationIterator.html" title="class in net.markenwerk.commons.iterators">EnumerationIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/EnumerationIterator.html#EnumerationIterator-java.util.Enumeration-">EnumerationIterator(Enumeration&lt;? extends Payload&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/EnumerationIterator.html" title="class in net.markenwerk.commons.iterators">EnumerationIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/EnumerationIterator.html" title="class in net.markenwerk.commons.iterators"><code>EnumerationIterator</code></a> from the given
  <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Enumeration.html?is-external=true" title="class or interface in java.util"><code>Enumeration</code></a>.</div>
@@ -325,24 +291,6 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/datastructures/Wrapper.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class net.markenwerk.commons.datastructures.<a href="net/markenwerk/commons/datastructures/Wrapper.html" title="class in net.markenwerk.commons.datastructures">Wrapper</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="net/markenwerk/commons/exceptions/EvaluationException.html" title="class in net.markenwerk.commons.exceptions"><span class="typeNameLink">EvaluationException</span></a> - Exception in <a href="net/markenwerk/commons/exceptions/package-summary.html">net.markenwerk.commons.exceptions</a></dt>
-<dd>
-<div class="block">A <a href="net/markenwerk/commons/exceptions/EvaluationException.html" title="class in net.markenwerk.commons.exceptions"><code>EvaluationException</code></a> indicates that the evaluation of a
- <a href="net/markenwerk/commons/interfaces/Predicate.html" title="interface in net.markenwerk.commons.interfaces"><code>Predicate</code></a> has failed.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/EvaluationException.html#EvaluationException-java.lang.String-java.lang.Throwable-">EvaluationException(String, Throwable)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/EvaluationException.html" title="class in net.markenwerk.commons.exceptions">EvaluationException</a></dt>
-<dd>
-<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/EvaluationException.html" title="class in net.markenwerk.commons.exceptions"><code>EvaluationException</code></a> with the given message and
- cause.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/EvaluationException.html#EvaluationException-java.lang.String-">EvaluationException(String)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/EvaluationException.html" title="class in net.markenwerk.commons.exceptions">EvaluationException</a></dt>
-<dd>
-<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/EvaluationException.html" title="class in net.markenwerk.commons.exceptions"><code>EvaluationException</code></a> with the given message.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/EvaluationException.html#EvaluationException-java.lang.Throwable-">EvaluationException(Throwable)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/EvaluationException.html" title="class in net.markenwerk.commons.exceptions">EvaluationException</a></dt>
-<dd>
-<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/EvaluationException.html" title="class in net.markenwerk.commons.exceptions"><code>EvaluationException</code></a> with the given cause.</div>
-</dd>
 </dl>
 <a name="I:F">
 <!--   -->
@@ -355,12 +303,12 @@
  a given <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a> and filters out values according to a given
  <a href="net/markenwerk/commons/interfaces/Predicate.html" title="interface in net.markenwerk.commons.interfaces"><code>Predicate</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/FilteredIterator.html#FilteredIterator-java.util.Iterator-net.markenwerk.commons.interfaces.Predicate-">FilteredIterator(Iterator&lt;? extends Payload&gt;, Predicate&lt;Payload&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/FilteredIterator.html" title="class in net.markenwerk.commons.iterators">FilteredIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/FilteredIterator.html#FilteredIterator-java.util.Iterator-net.markenwerk.commons.interfaces.Predicate-">FilteredIterator(Iterator&lt;? extends Payload&gt;, Predicate&lt;? super Payload&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/FilteredIterator.html" title="class in net.markenwerk.commons.iterators">FilteredIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/FilteredIterator.html" title="class in net.markenwerk.commons.iterators"><code>FilteredIterator</code></a> from the given <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a>
  and the given <a href="net/markenwerk/commons/interfaces/Predicate.html" title="interface in net.markenwerk.commons.interfaces"><code>Predicate</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/FilteredIterator.html#FilteredIterator-java.util.Iterator-net.markenwerk.commons.interfaces.Predicate-boolean-">FilteredIterator(Iterator&lt;? extends Payload&gt;, Predicate&lt;Payload&gt;, boolean)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/FilteredIterator.html" title="class in net.markenwerk.commons.iterators">FilteredIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/FilteredIterator.html#FilteredIterator-java.util.Iterator-net.markenwerk.commons.interfaces.Predicate-boolean-">FilteredIterator(Iterator&lt;? extends Payload&gt;, Predicate&lt;? super Payload&gt;, boolean)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/FilteredIterator.html" title="class in net.markenwerk.commons.iterators">FilteredIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/FilteredIterator.html" title="class in net.markenwerk.commons.iterators"><code>FilteredIterator</code></a> from the given <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a>
  and the given <a href="net/markenwerk/commons/interfaces/Predicate.html" title="interface in net.markenwerk.commons.interfaces"><code>Predicate</code></a>.</div>
@@ -370,7 +318,7 @@
 <div class="block">A <a href="net/markenwerk/commons/iterators/FloatArrayIterator.html" title="class in net.markenwerk.commons.iterators"><code>FloatArrayIterator</code></a> is an <a href="net/markenwerk/commons/iterators/ProtectedIterator.html" title="interface in net.markenwerk.commons.iterators"><code>ProtectedIterator</code></a> that iterates
  over a given <code>float[]</code>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/FloatArrayIterator.html#FloatArrayIterator-float:A-">FloatArrayIterator(float[])</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/FloatArrayIterator.html" title="class in net.markenwerk.commons.iterators">FloatArrayIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/FloatArrayIterator.html#FloatArrayIterator-float...-">FloatArrayIterator(float...)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/FloatArrayIterator.html" title="class in net.markenwerk.commons.iterators">FloatArrayIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/FloatArrayIterator.html" title="class in net.markenwerk.commons.iterators">FloatArrayIterator</a> that iterates over the
  given <code>float[]</code>.</div>
@@ -457,16 +405,34 @@
 </a>
 <h2 class="title">H</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/interfaces/Handler.html#handle-Event-">handle(Event)</a></span> - Method in interface net.markenwerk.commons.interfaces.<a href="net/markenwerk/commons/interfaces/Handler.html" title="interface in net.markenwerk.commons.interfaces">Handler</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/interfaces/Handler.html#handle-Value-">handle(Value)</a></span> - Method in interface net.markenwerk.commons.interfaces.<a href="net/markenwerk/commons/interfaces/Handler.html" title="interface in net.markenwerk.commons.interfaces">Handler</a></dt>
 <dd>
-<div class="block">Called by the executor when an event occurs.</div>
+<div class="block">Called by the executor when an condition occurs.</div>
 </dd>
-<dt><a href="net/markenwerk/commons/interfaces/Handler.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Handler</span></a>&lt;<a href="net/markenwerk/commons/interfaces/Handler.html" title="type parameter in Handler">Event</a>&gt; - Interface in <a href="net/markenwerk/commons/interfaces/package-summary.html">net.markenwerk.commons.interfaces</a></dt>
+<dt><a href="net/markenwerk/commons/interfaces/Handler.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Handler</span></a>&lt;<a href="net/markenwerk/commons/interfaces/Handler.html" title="type parameter in Handler">Value</a>&gt; - Interface in <a href="net/markenwerk/commons/interfaces/package-summary.html">net.markenwerk.commons.interfaces</a></dt>
 <dd>
-<div class="block">For an arbitrary process, that may encounter some kind of event and needs to
- delegate the event handling, a <a href="net/markenwerk/commons/interfaces/Handler.html" title="interface in net.markenwerk.commons.interfaces"><code>Handler</code></a> is used, to convey that event
- from the executor of the process (hereafter: executor) back to the initiator
- of the process (hereafter: initiator).</div>
+<div class="block">For an arbitrary process, that may encounter some condition and needs to
+ delegate the handling, a <a href="net/markenwerk/commons/interfaces/Handler.html" title="interface in net.markenwerk.commons.interfaces"><code>Handler</code></a> is used, to convey the involved
+ value from the executor of the process (hereafter: executor) back to the
+ initiator of the process (hereafter: initiator).</div>
+</dd>
+<dt><a href="net/markenwerk/commons/exceptions/HandlingException.html" title="class in net.markenwerk.commons.exceptions"><span class="typeNameLink">HandlingException</span></a> - Exception in <a href="net/markenwerk/commons/exceptions/package-summary.html">net.markenwerk.commons.exceptions</a></dt>
+<dd>
+<div class="block">A <a href="net/markenwerk/commons/exceptions/HandlingException.html" title="class in net.markenwerk.commons.exceptions"><code>HandlingException</code></a> indicates that a <a href="net/markenwerk/commons/interfaces/Handler.html" title="interface in net.markenwerk.commons.interfaces"><code>Handler</code></a> failed to
+ handle a value.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/HandlingException.html#HandlingException-java.lang.String-java.lang.Throwable-">HandlingException(String, Throwable)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/HandlingException.html" title="class in net.markenwerk.commons.exceptions">HandlingException</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/HandlingException.html" title="class in net.markenwerk.commons.exceptions"><code>HandlingException</code></a> with the given message and
+ cause.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/HandlingException.html#HandlingException-java.lang.String-">HandlingException(String)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/HandlingException.html" title="class in net.markenwerk.commons.exceptions">HandlingException</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/HandlingException.html" title="class in net.markenwerk.commons.exceptions"><code>HandlingException</code></a> with the given message.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/HandlingException.html#HandlingException-java.lang.Throwable-">HandlingException(Throwable)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/HandlingException.html" title="class in net.markenwerk.commons.exceptions">HandlingException</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/HandlingException.html" title="class in net.markenwerk.commons.exceptions"><code>HandlingException</code></a> with the given cause.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/datastructures/Entry.html#hashCode--">hashCode()</a></span> - Method in class net.markenwerk.commons.datastructures.<a href="net/markenwerk/commons/datastructures/Entry.html" title="class in net.markenwerk.commons.datastructures">Entry</a></dt>
 <dd>&nbsp;</dd>
@@ -510,6 +476,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/IndexedIterator.html#hasNext--">hasNext()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/IndexedIterator.html" title="class in net.markenwerk.commons.iterators">IndexedIterator</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/InfiniteIterator.html#hasNext--">hasNext()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/InfiniteIterator.html" title="class in net.markenwerk.commons.iterators">InfiniteIterator</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/InfixedIterator.html#hasNext--">hasNext()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/InfixedIterator.html" title="class in net.markenwerk.commons.iterators">InfixedIterator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/IntegerArrayIterator.html#hasNext--">hasNext()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/IntegerArrayIterator.html" title="class in net.markenwerk.commons.iterators">IntegerArrayIterator</a></dt>
@@ -522,6 +490,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/LookAheadIterator.html#hasNext--">hasNext()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/LookAheadIterator.html" title="class in net.markenwerk.commons.iterators">LookAheadIterator</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/NodeListIterator.html#hasNext--">hasNext()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/NodeListIterator.html" title="class in net.markenwerk.commons.iterators">NodeListIterator</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/NullFreeIterator.html#hasNext--">hasNext()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/NullFreeIterator.html" title="class in net.markenwerk.commons.iterators">NullFreeIterator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/NullSaveIterator.html#hasNext--">hasNext()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/NullSaveIterator.html" title="class in net.markenwerk.commons.iterators">NullSaveIterator</a></dt>
@@ -529,6 +499,8 @@
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/ObjectIterator.html#hasNext--">hasNext()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/ObjectIterator.html" title="class in net.markenwerk.commons.iterators">ObjectIterator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/OptionalIterator.html#hasNext--">hasNext()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/OptionalIterator.html" title="class in net.markenwerk.commons.iterators">OptionalIterator</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/PairIterator.html#hasNext--">hasNext()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/PairIterator.html" title="class in net.markenwerk.commons.iterators">PairIterator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/PrefixedIterator.html#hasNext--">hasNext()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/PrefixedIterator.html" title="class in net.markenwerk.commons.iterators">PrefixedIterator</a></dt>
 <dd>&nbsp;</dd>
@@ -541,6 +513,10 @@
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/StringTokenizerIterator.html#hasNext--">hasNext()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/StringTokenizerIterator.html" title="class in net.markenwerk.commons.iterators">StringTokenizerIterator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/SuffixedIterator.html#hasNext--">hasNext()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/SuffixedIterator.html" title="class in net.markenwerk.commons.iterators">SuffixedIterator</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/TripleIterator.html#hasNext--">hasNext()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/TripleIterator.html" title="class in net.markenwerk.commons.iterators">TripleIterator</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/TupleIterator.html#hasNext--">hasNext()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/TupleIterator.html" title="class in net.markenwerk.commons.iterators">TupleIterator</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a name="I:I">
@@ -559,6 +535,16 @@
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/IndexedIterator.html" title="class in net.markenwerk.commons.iterators"><code>IndexedIterator</code></a> from the given <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a>.</div>
 </dd>
+<dt><a href="net/markenwerk/commons/iterators/InfiniteIterator.html" title="class in net.markenwerk.commons.iterators"><span class="typeNameLink">InfiniteIterator</span></a>&lt;<a href="net/markenwerk/commons/iterators/InfiniteIterator.html" title="type parameter in InfiniteIterator">Payload</a>&gt; - Class in <a href="net/markenwerk/commons/iterators/package-summary.html">net.markenwerk.commons.iterators</a></dt>
+<dd>
+<div class="block">An <a href="net/markenwerk/commons/iterators/InfiniteIterator.html" title="class in net.markenwerk.commons.iterators"><code>InfiniteIterator</code></a> is a <a href="net/markenwerk/commons/iterators/ProtectedIterator.html" title="interface in net.markenwerk.commons.iterators"><code>ProtectedIterator</code></a> that infinitely
+ iterates, using a <a href="net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><code>Provider</code></a>, tom provide further elements.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/InfiniteIterator.html#InfiniteIterator-net.markenwerk.commons.interfaces.Provider-">InfiniteIterator(Provider&lt;? extends Payload&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/InfiniteIterator.html" title="class in net.markenwerk.commons.iterators">InfiniteIterator</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/iterators/InfiniteIterator.html" title="class in net.markenwerk.commons.iterators"><code>InfiniteIterator</code></a> that iterates over the given
+ <a href="net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><code>Provider</code></a>.</div>
+</dd>
 <dt><a href="net/markenwerk/commons/iterators/InfixedIterator.html" title="class in net.markenwerk.commons.iterators"><span class="typeNameLink">InfixedIterator</span></a>&lt;<a href="net/markenwerk/commons/iterators/InfixedIterator.html" title="type parameter in InfixedIterator">Payload</a>&gt; - Class in <a href="net/markenwerk/commons/iterators/package-summary.html">net.markenwerk.commons.iterators</a></dt>
 <dd>
 <div class="block">An <a href="net/markenwerk/commons/iterators/InfixedIterator.html" title="class in net.markenwerk.commons.iterators"><code>InfixedIterator</code></a> is an <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a> that can be wrapped around
@@ -575,7 +561,7 @@
 <div class="block">An <a href="net/markenwerk/commons/iterators/IntegerArrayIterator.html" title="class in net.markenwerk.commons.iterators"><code>IntegerArrayIterator</code></a> is an <a href="net/markenwerk/commons/iterators/ProtectedIterator.html" title="interface in net.markenwerk.commons.iterators"><code>ProtectedIterator</code></a> that iterates
  over a given <code>int[]</code>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/IntegerArrayIterator.html#IntegerArrayIterator-int:A-">IntegerArrayIterator(int[])</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/IntegerArrayIterator.html" title="class in net.markenwerk.commons.iterators">IntegerArrayIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/IntegerArrayIterator.html#IntegerArrayIterator-int...-">IntegerArrayIterator(int...)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/IntegerArrayIterator.html" title="class in net.markenwerk.commons.iterators">IntegerArrayIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/IntegerArrayIterator.html" title="class in net.markenwerk.commons.iterators">IntegerArrayIterator</a> that iterates over the
  given <code>int[]</code>.</div>
@@ -622,7 +608,7 @@
 <div class="block">A <a href="net/markenwerk/commons/iterators/LongArrayIterator.html" title="class in net.markenwerk.commons.iterators"><code>LongArrayIterator</code></a> is an <a href="net/markenwerk/commons/iterators/ProtectedIterator.html" title="interface in net.markenwerk.commons.iterators"><code>ProtectedIterator</code></a> that iterates
  over a given <code>long[]</code>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/LongArrayIterator.html#LongArrayIterator-long:A-">LongArrayIterator(long[])</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/LongArrayIterator.html" title="class in net.markenwerk.commons.iterators">LongArrayIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/LongArrayIterator.html#LongArrayIterator-long...-">LongArrayIterator(long...)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/LongArrayIterator.html" title="class in net.markenwerk.commons.iterators">LongArrayIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/LongArrayIterator.html" title="class in net.markenwerk.commons.iterators">LongArrayIterator</a> that iterates over the given
  <code>long[]</code>.</div>
@@ -686,6 +672,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/IndexedIterator.html#next--">next()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/IndexedIterator.html" title="class in net.markenwerk.commons.iterators">IndexedIterator</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/InfiniteIterator.html#next--">next()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/InfiniteIterator.html" title="class in net.markenwerk.commons.iterators">InfiniteIterator</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/InfixedIterator.html#next--">next()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/InfixedIterator.html" title="class in net.markenwerk.commons.iterators">InfixedIterator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/IntegerArrayIterator.html#next--">next()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/IntegerArrayIterator.html" title="class in net.markenwerk.commons.iterators">IntegerArrayIterator</a></dt>
@@ -694,6 +682,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/LookAheadIterator.html#next--">next()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/LookAheadIterator.html" title="class in net.markenwerk.commons.iterators">LookAheadIterator</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/NodeListIterator.html#next--">next()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/NodeListIterator.html" title="class in net.markenwerk.commons.iterators">NodeListIterator</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/NullFreeIterator.html#next--">next()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/NullFreeIterator.html" title="class in net.markenwerk.commons.iterators">NullFreeIterator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/NullSaveIterator.html#next--">next()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/NullSaveIterator.html" title="class in net.markenwerk.commons.iterators">NullSaveIterator</a></dt>
@@ -701,6 +691,8 @@
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/ObjectIterator.html#next--">next()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/ObjectIterator.html" title="class in net.markenwerk.commons.iterators">ObjectIterator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/OptionalIterator.html#next--">next()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/OptionalIterator.html" title="class in net.markenwerk.commons.iterators">OptionalIterator</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/PairIterator.html#next--">next()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/PairIterator.html" title="class in net.markenwerk.commons.iterators">PairIterator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/PrefixedIterator.html#next--">next()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/PrefixedIterator.html" title="class in net.markenwerk.commons.iterators">PrefixedIterator</a></dt>
 <dd>&nbsp;</dd>
@@ -714,12 +706,26 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/SuffixedIterator.html#next--">next()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/SuffixedIterator.html" title="class in net.markenwerk.commons.iterators">SuffixedIterator</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/TripleIterator.html#next--">next()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/TripleIterator.html" title="class in net.markenwerk.commons.iterators">TripleIterator</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/TupleIterator.html#next--">next()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/TupleIterator.html" title="class in net.markenwerk.commons.iterators">TupleIterator</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="net/markenwerk/commons/iterators/NodeListIterator.html" title="class in net.markenwerk.commons.iterators"><span class="typeNameLink">NodeListIterator</span></a> - Class in <a href="net/markenwerk/commons/iterators/package-summary.html">net.markenwerk.commons.iterators</a></dt>
+<dd>
+<div class="block">An <a href="net/markenwerk/commons/iterators/NodeListIterator.html" title="class in net.markenwerk.commons.iterators"><code>NodeListIterator</code></a> is a <a href="net/markenwerk/commons/iterators/ProtectedIterator.html" title="interface in net.markenwerk.commons.iterators"><code>ProtectedIterator</code></a> that iterates over
+ a given <a href="http://docs.oracle.com/javase/8/docs/api/org/w3c/dom/NodeList.html?is-external=true" title="class or interface in org.w3c.dom"><code>NodeList</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/NodeListIterator.html#NodeListIterator-org.w3c.dom.NodeList-">NodeListIterator(NodeList)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/NodeListIterator.html" title="class in net.markenwerk.commons.iterators">NodeListIterator</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/iterators/NodeListIterator.html" title="class in net.markenwerk.commons.iterators"><code>NodeListIterator</code></a> that iterates over the given
+ <a href="http://docs.oracle.com/javase/8/docs/api/org/w3c/dom/NodeList.html?is-external=true" title="class or interface in org.w3c.dom"><code>NodeList</code></a>.</div>
+</dd>
 <dt><a href="net/markenwerk/commons/iterators/NullFreeIterator.html" title="class in net.markenwerk.commons.iterators"><span class="typeNameLink">NullFreeIterator</span></a>&lt;<a href="net/markenwerk/commons/iterators/NullFreeIterator.html" title="type parameter in NullFreeIterator">Payload</a>&gt; - Class in <a href="net/markenwerk/commons/iterators/package-summary.html">net.markenwerk.commons.iterators</a></dt>
 <dd>
 <div class="block">A <a href="net/markenwerk/commons/iterators/NullFreeIterator.html" title="class in net.markenwerk.commons.iterators"><code>NullFreeIterator</code></a> is an <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a> that can be wrapped around
  a given <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a> and filters out null values.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/NullFreeIterator.html#NullFreeIterator-java.util.Iterator-">NullFreeIterator(Iterator&lt;Payload&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/NullFreeIterator.html" title="class in net.markenwerk.commons.iterators">NullFreeIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/NullFreeIterator.html#NullFreeIterator-java.util.Iterator-">NullFreeIterator(Iterator&lt;? extends Payload&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/NullFreeIterator.html" title="class in net.markenwerk.commons.iterators">NullFreeIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/NullFreeIterator.html" title="class in net.markenwerk.commons.iterators"><code>NullFreeIterator</code></a> from the given <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a>.</div>
 </dd>
@@ -730,11 +736,11 @@
  <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a> is null (by behaving like an
  <a href="net/markenwerk/commons/iterators/EmptyIterator.html" title="class in net.markenwerk.commons.iterators"><code>EmptyIterator</code></a>).</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/NullSaveIterator.html#NullSaveIterator-java.lang.Iterable-">NullSaveIterator(Iterable&lt;Payload&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/NullSaveIterator.html" title="class in net.markenwerk.commons.iterators">NullSaveIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/NullSaveIterator.html#NullSaveIterator-java.lang.Iterable-">NullSaveIterator(Iterable&lt;? extends Payload&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/NullSaveIterator.html" title="class in net.markenwerk.commons.iterators">NullSaveIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/NullSaveIterator.html" title="class in net.markenwerk.commons.iterators"><code>NullSaveIterator</code></a> from the given <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang"><code>Iterable</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/NullSaveIterator.html#NullSaveIterator-java.util.Iterator-">NullSaveIterator(Iterator&lt;Payload&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/NullSaveIterator.html" title="class in net.markenwerk.commons.iterators">NullSaveIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/NullSaveIterator.html#NullSaveIterator-java.util.Iterator-">NullSaveIterator(Iterator&lt;? extends Payload&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/NullSaveIterator.html" title="class in net.markenwerk.commons.iterators">NullSaveIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/NullSaveIterator.html" title="class in net.markenwerk.commons.iterators"><code>NullSaveIterator</code></a> from the given <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a>.</div>
 </dd>
@@ -754,9 +760,9 @@
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/ObjectIterator.html" title="class in net.markenwerk.commons.iterators"><code>ObjectIterator</code></a> that iterates over the given payload
  object.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/interfaces/Callback.html#onResult-Result-">onResult(Result)</a></span> - Method in interface net.markenwerk.commons.interfaces.<a href="net/markenwerk/commons/interfaces/Callback.html" title="interface in net.markenwerk.commons.interfaces">Callback</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/interfaces/Callback.html#onResult-Callee-Result-">onResult(Callee, Result)</a></span> - Method in interface net.markenwerk.commons.interfaces.<a href="net/markenwerk/commons/interfaces/Callback.html" title="interface in net.markenwerk.commons.interfaces">Callback</a></dt>
 <dd>
-<div class="block">Called by the executor when a result is available.</div>
+<div class="block">Called by the callee if and when a result is available.</div>
 </dd>
 <dt><a href="net/markenwerk/commons/iterators/OptionalIterator.html" title="class in net.markenwerk.commons.iterators"><span class="typeNameLink">OptionalIterator</span></a>&lt;<a href="net/markenwerk/commons/iterators/OptionalIterator.html" title="type parameter in OptionalIterator">Payload</a>&gt; - Class in <a href="net/markenwerk/commons/iterators/package-summary.html">net.markenwerk.commons.iterators</a></dt>
 <dd>
@@ -768,16 +774,6 @@
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/OptionalIterator.html" title="class in net.markenwerk.commons.iterators"><code>OptionalIterator</code></a> that iterates over the given
  payload object.</div>
-</dd>
-<dt><a href="net/markenwerk/commons/interfaces/OrderProducer.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">OrderProducer</span></a>&lt;<a href="net/markenwerk/commons/interfaces/OrderProducer.html" title="type parameter in OrderProducer">Order</a>,<a href="net/markenwerk/commons/interfaces/OrderProducer.html" title="type parameter in OrderProducer">Product</a>&gt; - Interface in <a href="net/markenwerk/commons/interfaces/package-summary.html">net.markenwerk.commons.interfaces</a></dt>
-<dd>
-<div class="block">An <a href="net/markenwerk/commons/interfaces/OrderProducer.html" title="interface in net.markenwerk.commons.interfaces"><code>OrderProducer</code></a> produces customized values of the corresponding
- product type.</div>
-</dd>
-<dt><a href="net/markenwerk/commons/interfaces/OrderProvider.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">OrderProvider</span></a>&lt;<a href="net/markenwerk/commons/interfaces/OrderProvider.html" title="type parameter in OrderProvider">Order</a>,<a href="net/markenwerk/commons/interfaces/OrderProvider.html" title="type parameter in OrderProvider">Product</a>&gt; - Interface in <a href="net/markenwerk/commons/interfaces/package-summary.html">net.markenwerk.commons.interfaces</a></dt>
-<dd>
-<div class="block">A <a href="net/markenwerk/commons/interfaces/OrderProvider.html" title="interface in net.markenwerk.commons.interfaces"><code>OrderProvider</code></a> provides customized values of the corresponding
- product type.</div>
 </dd>
 </dl>
 <a name="I:P">
@@ -794,6 +790,15 @@
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/datastructures/Pair.html" title="class in net.markenwerk.commons.datastructures"><code>Pair</code></a> for the given values.</div>
 </dd>
+<dt><a href="net/markenwerk/commons/iterators/PairIterator.html" title="class in net.markenwerk.commons.iterators"><span class="typeNameLink">PairIterator</span></a>&lt;<a href="net/markenwerk/commons/iterators/PairIterator.html" title="type parameter in PairIterator">Payload</a>&gt; - Class in <a href="net/markenwerk/commons/iterators/package-summary.html">net.markenwerk.commons.iterators</a></dt>
+<dd>
+<div class="block">An <a href="net/markenwerk/commons/iterators/PairIterator.html" title="class in net.markenwerk.commons.iterators"><code>PairIterator</code></a> is a <a href="net/markenwerk/commons/iterators/ProtectedIterator.html" title="interface in net.markenwerk.commons.iterators"><code>ProtectedIterator</code></a> that iterates over a
+ given <a href="net/markenwerk/commons/datastructures/Pair.html" title="class in net.markenwerk.commons.datastructures"><code>Pair</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/PairIterator.html#PairIterator-net.markenwerk.commons.datastructures.Pair-">PairIterator(Pair&lt;? extends Payload&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/PairIterator.html" title="class in net.markenwerk.commons.iterators">PairIterator</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/iterators/PairIterator.html" title="class in net.markenwerk.commons.iterators"><code>PairIterator</code></a> that iterates over the given <a href="net/markenwerk/commons/datastructures/Pair.html" title="class in net.markenwerk.commons.datastructures"><code>Pair</code></a>.</div>
+</dd>
 <dt><a href="net/markenwerk/commons/interfaces/Predicate.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Predicate</span></a>&lt;<a href="net/markenwerk/commons/interfaces/Predicate.html" title="type parameter in Predicate">Subject</a>&gt; - Interface in <a href="net/markenwerk/commons/interfaces/package-summary.html">net.markenwerk.commons.interfaces</a></dt>
 <dd>
 <div class="block">A <a href="net/markenwerk/commons/interfaces/Predicate.html" title="interface in net.markenwerk.commons.interfaces"><code>Predicate</code></a> is used to perform arbitrary test on test subject.</div>
@@ -809,9 +814,59 @@
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/PrefixedIterator.html" title="class in net.markenwerk.commons.iterators"><code>PrefixedIterator</code></a> from the given <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a>
  and the given prefix values.</div>
 </dd>
-<dt><a href="net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Producer</span></a>&lt;<a href="net/markenwerk/commons/interfaces/Producer.html" title="type parameter in Producer">Product</a>&gt; - Interface in <a href="net/markenwerk/commons/interfaces/package-summary.html">net.markenwerk.commons.interfaces</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/interfaces/Processor.html#process-Value-">process(Value)</a></span> - Method in interface net.markenwerk.commons.interfaces.<a href="net/markenwerk/commons/interfaces/Processor.html" title="interface in net.markenwerk.commons.interfaces">Processor</a></dt>
 <dd>
-<div class="block">A <a href="net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><code>Producer</code></a> produces values of the corresponding product type.</div>
+<div class="block">Called to process a given value.</div>
+</dd>
+<dt><a href="net/markenwerk/commons/exceptions/ProcessingException.html" title="class in net.markenwerk.commons.exceptions"><span class="typeNameLink">ProcessingException</span></a> - Exception in <a href="net/markenwerk/commons/exceptions/package-summary.html">net.markenwerk.commons.exceptions</a></dt>
+<dd>
+<div class="block">A <a href="net/markenwerk/commons/exceptions/ProcessingException.html" title="class in net.markenwerk.commons.exceptions"><code>ProcessingException</code></a> indicates that a <a href="http://docs.oracle.com/javase/8/docs/api/javax/annotation/processing/Processor.html?is-external=true" title="class or interface in javax.annotation.processing"><code>Processor</code></a> failed to
+ process a value.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/ProcessingException.html#ProcessingException-java.lang.String-java.lang.Throwable-">ProcessingException(String, Throwable)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/ProcessingException.html" title="class in net.markenwerk.commons.exceptions">ProcessingException</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/ProcessingException.html" title="class in net.markenwerk.commons.exceptions"><code>ProcessingException</code></a> with the given message and
+ cause.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/ProcessingException.html#ProcessingException-java.lang.String-">ProcessingException(String)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/ProcessingException.html" title="class in net.markenwerk.commons.exceptions">ProcessingException</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/ProcessingException.html" title="class in net.markenwerk.commons.exceptions"><code>ProcessingException</code></a> with the given message.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/ProcessingException.html#ProcessingException-java.lang.Throwable-">ProcessingException(Throwable)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/ProcessingException.html" title="class in net.markenwerk.commons.exceptions">ProcessingException</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/ProcessingException.html" title="class in net.markenwerk.commons.exceptions"><code>ProcessingException</code></a> with the given cause.</div>
+</dd>
+<dt><a href="net/markenwerk/commons/interfaces/Processor.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Processor</span></a>&lt;<a href="net/markenwerk/commons/interfaces/Processor.html" title="type parameter in Processor">Value</a>&gt; - Interface in <a href="net/markenwerk/commons/interfaces/package-summary.html">net.markenwerk.commons.interfaces</a></dt>
+<dd>
+<div class="block">A <a href="net/markenwerk/commons/interfaces/Processor.html" title="interface in net.markenwerk.commons.interfaces"><code>Processor</code></a> is used to process (transform, translate, project,
+ evaluate, ...) values.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/interfaces/Producer.html#produce-Order-">produce(Order)</a></span> - Method in interface net.markenwerk.commons.interfaces.<a href="net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces">Producer</a></dt>
+<dd>
+<div class="block">Produces a customized product.</div>
+</dd>
+<dt><a href="net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Producer</span></a>&lt;<a href="net/markenwerk/commons/interfaces/Producer.html" title="type parameter in Producer">Order</a>,<a href="net/markenwerk/commons/interfaces/Producer.html" title="type parameter in Producer">Product</a>&gt; - Interface in <a href="net/markenwerk/commons/interfaces/package-summary.html">net.markenwerk.commons.interfaces</a></dt>
+<dd>
+<div class="block">An <a href="net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><code>Producer</code></a> produces customized values of the corresponding product
+ type.</div>
+</dd>
+<dt><a href="net/markenwerk/commons/exceptions/ProductionException.html" title="class in net.markenwerk.commons.exceptions"><span class="typeNameLink">ProductionException</span></a> - Exception in <a href="net/markenwerk/commons/exceptions/package-summary.html">net.markenwerk.commons.exceptions</a></dt>
+<dd>
+<div class="block">A <a href="net/markenwerk/commons/exceptions/ProductionException.html" title="class in net.markenwerk.commons.exceptions"><code>ProductionException</code></a> indicates that a <a href="net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><code>Producer</code></a> failed to
+ produce a value.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/ProductionException.html#ProductionException-java.lang.String-java.lang.Throwable-">ProductionException(String, Throwable)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/ProductionException.html" title="class in net.markenwerk.commons.exceptions">ProductionException</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/ProductionException.html" title="class in net.markenwerk.commons.exceptions"><code>ProductionException</code></a> with the given message and
+ cause.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/ProductionException.html#ProductionException-java.lang.String-">ProductionException(String)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/ProductionException.html" title="class in net.markenwerk.commons.exceptions">ProductionException</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/ProductionException.html" title="class in net.markenwerk.commons.exceptions"><code>ProductionException</code></a> with the given message.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/ProductionException.html#ProductionException-java.lang.Throwable-">ProductionException(Throwable)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/ProductionException.html" title="class in net.markenwerk.commons.exceptions">ProductionException</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/ProductionException.html" title="class in net.markenwerk.commons.exceptions"><code>ProductionException</code></a> with the given cause.</div>
 </dd>
 <dt><a href="net/markenwerk/commons/iterators/ProtectedIterator.html" title="interface in net.markenwerk.commons.iterators"><span class="typeNameLink">ProtectedIterator</span></a>&lt;<a href="net/markenwerk/commons/iterators/ProtectedIterator.html" title="type parameter in ProtectedIterator">Payload</a>&gt; - Interface in <a href="net/markenwerk/commons/iterators/package-summary.html">net.markenwerk.commons.iterators</a></dt>
 <dd>
@@ -832,9 +887,31 @@
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/ProtectingIterator.html" title="class in net.markenwerk.commons.iterators"><code>ProtectingIterator</code></a> from the given <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a>
  and the given <a href="net/markenwerk/commons/interfaces/Predicate.html" title="interface in net.markenwerk.commons.interfaces"><code>Predicate</code></a>.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/interfaces/Provider.html#provide--">provide()</a></span> - Method in interface net.markenwerk.commons.interfaces.<a href="net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces">Provider</a></dt>
+<dd>
+<div class="block">Provides a product, This may be a costly operation.</div>
+</dd>
 <dt><a href="net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Provider</span></a>&lt;<a href="net/markenwerk/commons/interfaces/Provider.html" title="type parameter in Provider">Product</a>&gt; - Interface in <a href="net/markenwerk/commons/interfaces/package-summary.html">net.markenwerk.commons.interfaces</a></dt>
 <dd>
 <div class="block">A <a href="net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><code>Provider</code></a> provides values of the corresponding product type.</div>
+</dd>
+<dt><a href="net/markenwerk/commons/exceptions/ProvisioningException.html" title="class in net.markenwerk.commons.exceptions"><span class="typeNameLink">ProvisioningException</span></a> - Exception in <a href="net/markenwerk/commons/exceptions/package-summary.html">net.markenwerk.commons.exceptions</a></dt>
+<dd>
+<div class="block">A <a href="net/markenwerk/commons/exceptions/ProvisioningException.html" title="class in net.markenwerk.commons.exceptions"><code>ProvisioningException</code></a> indicates that a <a href="http://docs.oracle.com/javase/8/docs/api/java/security/Provider.html?is-external=true" title="class or interface in java.security"><code>Provider</code></a> failed to
+ provide a value.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/ProvisioningException.html#ProvisioningException-java.lang.String-java.lang.Throwable-">ProvisioningException(String, Throwable)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/ProvisioningException.html" title="class in net.markenwerk.commons.exceptions">ProvisioningException</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/ProvisioningException.html" title="class in net.markenwerk.commons.exceptions"><code>ProvisioningException</code></a> with the given message and
+ cause.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/ProvisioningException.html#ProvisioningException-java.lang.String-">ProvisioningException(String)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/ProvisioningException.html" title="class in net.markenwerk.commons.exceptions">ProvisioningException</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/ProvisioningException.html" title="class in net.markenwerk.commons.exceptions"><code>ProvisioningException</code></a> with the given message.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/exceptions/ProvisioningException.html#ProvisioningException-java.lang.Throwable-">ProvisioningException(Throwable)</a></span> - Constructor for exception net.markenwerk.commons.exceptions.<a href="net/markenwerk/commons/exceptions/ProvisioningException.html" title="class in net.markenwerk.commons.exceptions">ProvisioningException</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/exceptions/ProvisioningException.html" title="class in net.markenwerk.commons.exceptions"><code>ProvisioningException</code></a> with the given cause.</div>
 </dd>
 </dl>
 <a name="I:R">
@@ -870,6 +947,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/IndexedIterator.html#remove--">remove()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/IndexedIterator.html" title="class in net.markenwerk.commons.iterators">IndexedIterator</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/InfiniteIterator.html#remove--">remove()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/InfiniteIterator.html" title="class in net.markenwerk.commons.iterators">InfiniteIterator</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/InfixedIterator.html#remove--">remove()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/InfixedIterator.html" title="class in net.markenwerk.commons.iterators">InfixedIterator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/IntegerArrayIterator.html#remove--">remove()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/IntegerArrayIterator.html" title="class in net.markenwerk.commons.iterators">IntegerArrayIterator</a></dt>
@@ -878,6 +957,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/LookAheadIterator.html#remove--">remove()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/LookAheadIterator.html" title="class in net.markenwerk.commons.iterators">LookAheadIterator</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/NodeListIterator.html#remove--">remove()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/NodeListIterator.html" title="class in net.markenwerk.commons.iterators">NodeListIterator</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/NullFreeIterator.html#remove--">remove()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/NullFreeIterator.html" title="class in net.markenwerk.commons.iterators">NullFreeIterator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/NullSaveIterator.html#remove--">remove()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/NullSaveIterator.html" title="class in net.markenwerk.commons.iterators">NullSaveIterator</a></dt>
@@ -885,6 +966,8 @@
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/ObjectIterator.html#remove--">remove()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/ObjectIterator.html" title="class in net.markenwerk.commons.iterators">ObjectIterator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/OptionalIterator.html#remove--">remove()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/OptionalIterator.html" title="class in net.markenwerk.commons.iterators">OptionalIterator</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/PairIterator.html#remove--">remove()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/PairIterator.html" title="class in net.markenwerk.commons.iterators">PairIterator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/PrefixedIterator.html#remove--">remove()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/PrefixedIterator.html" title="class in net.markenwerk.commons.iterators">PrefixedIterator</a></dt>
 <dd>&nbsp;</dd>
@@ -898,6 +981,10 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/SuffixedIterator.html#remove--">remove()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/SuffixedIterator.html" title="class in net.markenwerk.commons.iterators">SuffixedIterator</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/TripleIterator.html#remove--">remove()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/TripleIterator.html" title="class in net.markenwerk.commons.iterators">TripleIterator</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/TupleIterator.html#remove--">remove()</a></span> - Method in class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/TupleIterator.html" title="class in net.markenwerk.commons.iterators">TupleIterator</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="net/markenwerk/commons/iterators/RemoveHandlerIterator.html" title="class in net.markenwerk.commons.iterators"><span class="typeNameLink">RemoveHandlerIterator</span></a>&lt;<a href="net/markenwerk/commons/iterators/RemoveHandlerIterator.html" title="type parameter in RemoveHandlerIterator">Payload</a>&gt; - Class in <a href="net/markenwerk/commons/iterators/package-summary.html">net.markenwerk.commons.iterators</a></dt>
 <dd>
 <div class="block">An <a href="net/markenwerk/commons/iterators/RemoveHandlerIterator.html" title="class in net.markenwerk.commons.iterators"><code>RemoveHandlerIterator</code></a> is an <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a> that can be wrapped
@@ -905,7 +992,7 @@
  <a href="net/markenwerk/commons/iterators/RemoveHandlerIterator.html#remove--">RemoveHandlerIterator.remove()</a> and calls a given <a href="net/markenwerk/commons/interfaces/Handler.html" title="interface in net.markenwerk.commons.interfaces"><code>Handler</code></a>
  for the current value.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/RemoveHandlerIterator.html#RemoveHandlerIterator-java.util.Iterator-net.markenwerk.commons.interfaces.Handler-">RemoveHandlerIterator(Iterator&lt;? extends Payload&gt;, Handler&lt;Payload&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/RemoveHandlerIterator.html" title="class in net.markenwerk.commons.iterators">RemoveHandlerIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/RemoveHandlerIterator.html#RemoveHandlerIterator-java.util.Iterator-net.markenwerk.commons.interfaces.Handler-">RemoveHandlerIterator(Iterator&lt;? extends Payload&gt;, Handler&lt;? super Payload&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/RemoveHandlerIterator.html" title="class in net.markenwerk.commons.iterators">RemoveHandlerIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/RemoveHandlerIterator.html" title="class in net.markenwerk.commons.iterators"><code>RemoveHandlerIterator</code></a> from the given
  <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a> and the given <a href="net/markenwerk/commons/interfaces/Predicate.html" title="interface in net.markenwerk.commons.interfaces"><code>Predicate</code></a>.</div>
@@ -938,7 +1025,7 @@
 <div class="block">A <a href="net/markenwerk/commons/iterators/ShortArrayIterator.html" title="class in net.markenwerk.commons.iterators"><code>ShortArrayIterator</code></a> is an <a href="net/markenwerk/commons/iterators/ProtectedIterator.html" title="interface in net.markenwerk.commons.iterators"><code>ProtectedIterator</code></a> that iterates
  over a given <code>short[]</code>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/ShortArrayIterator.html#ShortArrayIterator-short:A-">ShortArrayIterator(short[])</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/ShortArrayIterator.html" title="class in net.markenwerk.commons.iterators">ShortArrayIterator</a></dt>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/ShortArrayIterator.html#ShortArrayIterator-short...-">ShortArrayIterator(short...)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/ShortArrayIterator.html" title="class in net.markenwerk.commons.iterators">ShortArrayIterator</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/iterators/ShortArrayIterator.html" title="class in net.markenwerk.commons.iterators">ShortArrayIterator</a> that iterates over the
  given <code>short[]</code>.</div>
@@ -1005,6 +1092,15 @@
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/datastructures/Triple.html" title="class in net.markenwerk.commons.datastructures"><code>Triple</code></a> for the given values.</div>
 </dd>
+<dt><a href="net/markenwerk/commons/iterators/TripleIterator.html" title="class in net.markenwerk.commons.iterators"><span class="typeNameLink">TripleIterator</span></a>&lt;<a href="net/markenwerk/commons/iterators/TripleIterator.html" title="type parameter in TripleIterator">Payload</a>&gt; - Class in <a href="net/markenwerk/commons/iterators/package-summary.html">net.markenwerk.commons.iterators</a></dt>
+<dd>
+<div class="block">An <a href="net/markenwerk/commons/iterators/TripleIterator.html" title="class in net.markenwerk.commons.iterators"><code>TripleIterator</code></a> is a <a href="net/markenwerk/commons/iterators/ProtectedIterator.html" title="interface in net.markenwerk.commons.iterators"><code>ProtectedIterator</code></a> that iterates over a
+ given <a href="net/markenwerk/commons/datastructures/Triple.html" title="class in net.markenwerk.commons.datastructures"><code>Triple</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/TripleIterator.html#TripleIterator-net.markenwerk.commons.datastructures.Triple-">TripleIterator(Triple&lt;? extends Payload, ? extends Payload, ? extends Payload&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/TripleIterator.html" title="class in net.markenwerk.commons.iterators">TripleIterator</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/iterators/TripleIterator.html" title="class in net.markenwerk.commons.iterators"><code>TripleIterator</code></a> that iterates over the given <a href="net/markenwerk/commons/datastructures/Triple.html" title="class in net.markenwerk.commons.datastructures"><code>Triple</code></a>.</div>
+</dd>
 <dt><a href="net/markenwerk/commons/datastructures/Tuple.html" title="class in net.markenwerk.commons.datastructures"><span class="typeNameLink">Tuple</span></a>&lt;<a href="net/markenwerk/commons/datastructures/Tuple.html" title="type parameter in Tuple">First</a>,<a href="net/markenwerk/commons/datastructures/Tuple.html" title="type parameter in Tuple">Second</a>&gt; - Class in <a href="net/markenwerk/commons/datastructures/package-summary.html">net.markenwerk.commons.datastructures</a></dt>
 <dd>
 <div class="block">A <a href="net/markenwerk/commons/datastructures/Tuple.html" title="class in net.markenwerk.commons.datastructures"><code>Tuple</code></a> is a simple immutable container class that holds two values.</div>
@@ -1012,6 +1108,15 @@
 <dt><span class="memberNameLink"><a href="net/markenwerk/commons/datastructures/Tuple.html#Tuple-First-Second-">Tuple(First, Second)</a></span> - Constructor for class net.markenwerk.commons.datastructures.<a href="net/markenwerk/commons/datastructures/Tuple.html" title="class in net.markenwerk.commons.datastructures">Tuple</a></dt>
 <dd>
 <div class="block">Creates a new <a href="net/markenwerk/commons/datastructures/Tuple.html" title="class in net.markenwerk.commons.datastructures"><code>Tuple</code></a> for the given values.</div>
+</dd>
+<dt><a href="net/markenwerk/commons/iterators/TupleIterator.html" title="class in net.markenwerk.commons.iterators"><span class="typeNameLink">TupleIterator</span></a>&lt;<a href="net/markenwerk/commons/iterators/TupleIterator.html" title="type parameter in TupleIterator">Payload</a>&gt; - Class in <a href="net/markenwerk/commons/iterators/package-summary.html">net.markenwerk.commons.iterators</a></dt>
+<dd>
+<div class="block">An <a href="net/markenwerk/commons/iterators/TupleIterator.html" title="class in net.markenwerk.commons.iterators"><code>TupleIterator</code></a> is a <a href="net/markenwerk/commons/iterators/ProtectedIterator.html" title="interface in net.markenwerk.commons.iterators"><code>ProtectedIterator</code></a> that iterates over a
+ given <a href="net/markenwerk/commons/datastructures/Tuple.html" title="class in net.markenwerk.commons.datastructures"><code>Tuple</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/markenwerk/commons/iterators/TupleIterator.html#TupleIterator-net.markenwerk.commons.datastructures.Tuple-">TupleIterator(Tuple&lt;? extends Payload, ? extends Payload&gt;)</a></span> - Constructor for class net.markenwerk.commons.iterators.<a href="net/markenwerk/commons/iterators/TupleIterator.html" title="class in net.markenwerk.commons.iterators">TupleIterator</a></dt>
+<dd>
+<div class="block">Creates a new <a href="net/markenwerk/commons/iterators/TupleIterator.html" title="class in net.markenwerk.commons.iterators"><code>TupleIterator</code></a> that iterates over the given <a href="net/markenwerk/commons/datastructures/Tuple.html" title="class in net.markenwerk.commons.datastructures"><code>Tuple</code></a>.</div>
 </dd>
 </dl>
 <a name="I:W">

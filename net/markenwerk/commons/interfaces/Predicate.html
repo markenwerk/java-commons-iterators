@@ -49,8 +49,8 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../net/markenwerk/commons/interfaces/OrderProvider.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../net/markenwerk/commons/interfaces/Handler.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../net/markenwerk/commons/interfaces/Processor.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?net/markenwerk/commons/interfaces/Predicate.html" target="_top">Frames</a></li>
@@ -106,10 +106,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">Predicate&lt;Subject&gt;</span></pre>
-<div class="block">A <a href="../../../../net/markenwerk/commons/interfaces/Predicate.html" title="interface in net.markenwerk.commons.interfaces"><code>Predicate</code></a> is used to perform arbitrary test on test subject. It is
- usually used in a scenario where some sort of data provider wants to offer
- the possibility to filter values before delivery or during the data
- processing.</div>
+<div class="block">A <a href="../../../../net/markenwerk/commons/interfaces/Predicate.html" title="interface in net.markenwerk.commons.interfaces"><code>Predicate</code></a> is used to perform arbitrary test on test subject.</div>
 <dl>
 <dt><span class="simpleTagLabel">Since:</span></dt>
 <dd>1.0.0</dd>
@@ -163,25 +160,16 @@ var activeTableTab = "activeTableTab";
 <ul class="blockListLast">
 <li class="blockList">
 <h4>test</h4>
-<pre>boolean&nbsp;test(<a href="../../../../net/markenwerk/commons/interfaces/Predicate.html" title="type parameter in Predicate">Subject</a>&nbsp;subject)
-      throws <a href="../../../../net/markenwerk/commons/exceptions/EvaluationException.html" title="class in net.markenwerk.commons.exceptions">EvaluationException</a></pre>
+<pre>boolean&nbsp;test(<a href="../../../../net/markenwerk/commons/interfaces/Predicate.html" title="type parameter in Predicate">Subject</a>&nbsp;subject)</pre>
 <div class="block">Performs the test on a given test subject.
- 
+
  <p>
- It lies in the responsibility of the caller, to handle unwanted
- null-values by replacing them with a sensible default value or
- throwing a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang"><code>NullPointerException</code></a>.
- 
- <p>
- Implementers should catch any exception and wrap them in a
- <a href="../../../../net/markenwerk/commons/exceptions/EvaluationException.html" title="class in net.markenwerk.commons.exceptions"><code>EvaluationException</code></a>.</div>
+ Implementers must not throw any exceptions.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>subject</code> - The test subject.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Whether the test subject passed the test.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../net/markenwerk/commons/exceptions/EvaluationException.html" title="class in net.markenwerk.commons.exceptions">EvaluationException</a></code> - If testing the test subject failed.</dd>
 </dl>
 </li>
 </ul>
@@ -213,8 +201,8 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../net/markenwerk/commons/interfaces/OrderProvider.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../net/markenwerk/commons/interfaces/Handler.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../net/markenwerk/commons/interfaces/Processor.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?net/markenwerk/commons/interfaces/Predicate.html" target="_top">Frames</a></li>

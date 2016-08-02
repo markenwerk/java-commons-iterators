@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../net/markenwerk/commons/interfaces/Predicate.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../net/markenwerk/commons/interfaces/Processor.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -93,7 +93,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">net.markenwerk.commons.interfaces</div>
-<h2 title="Interface Producer" class="title">Interface Producer&lt;Product&gt;</h2>
+<h2 title="Interface Producer" class="title">Interface Producer&lt;Order,Product&gt;</h2>
 </div>
 <div class="contentContainer">
 <div class="description">
@@ -101,46 +101,42 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>Order</code> - The type of the product customization.</dd>
 <dd><code>Product</code> - The type of the values to be produced.</dd>
-</dl>
-<dl>
-<dt>All Superinterfaces:</dt>
-<dd><a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces">Provider</a>&lt;Product&gt;</dd>
 </dl>
 <hr>
 <br>
-<pre>public interface <span class="typeNameLabel">Producer&lt;Product&gt;</span>
-extends <a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces">Provider</a>&lt;Product&gt;</pre>
-<div class="block">A <a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><code>Producer</code></a> produces values of the corresponding product type.
+<pre>public interface <span class="typeNameLabel">Producer&lt;Order,Product&gt;</span></pre>
+<div class="block">An <a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><code>Producer</code></a> produces customized values of the corresponding product
+ type. It acts like a <a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><code>Provider</code></a> that takes orders and produces
+ corresponding products.
  
  <p>
- Implementers must produce a new instance of the product, each time
- <a href="../../../../net/markenwerk/commons/interfaces/Producer.html#create--"><code>create()</code></a> is called. It is therefore possible to use a
- <a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><code>Producer</code></a> as a <a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><code>Provider</code></a>.
+ Implementers may produce a new instance of the product each time
+ <a href="../../../../net/markenwerk/commons/interfaces/Producer.html#produce-Order-"><code>produce(Object)</code></a> is called, but aren't required to do so. An
+ instance of the product that has already been returned once, may be returned
+ again for any or all following calls.
  
  <p>
- It is therefore okay to use <a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><code>Producers</code></a> for products that are
- stateful.
+ A <a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><code>Producer</code></a> is intended to be used in a situation, where a mechanism
+ to retrieve a value is more desirable than having the value from the start.
+ These are usually, but not necessarily, situations where the following two
+ conditions are met.
+ 
+ <ul>
+ <li>It is not certain that the value will be used.</li>
+ <li>It is likely that it is a costly operation to create the value.</li>
+ </ul>
  
  <p>
- <a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><code>Producers</code></a> are intended to be used in situation, where a
- mechanism to retrieve a value is more desirable than having the value from
- the start and a <a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><code>Provider</code></a> is not sufficient (i.e. because the product
- is stateful).
- 
- <p>
- <a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><code>Producers</code></a> are especially helpful, if it is likely that
- multiple instances of a stateful product will be used (i.e. multiple
- <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterators</code></a> over the same underlying data). Another use case
- where a <a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><code>Producer</code></a> may be more favorable than a <a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><code>Provider</code></a> is, if
- it is not desirable to keep the value in memory.</div>
+ The second condition may only be true for the first call to
+ <a href="../../../../net/markenwerk/commons/interfaces/Producer.html#produce-Order-"><code>produce(Object)</code></a> since the <a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="interface in net.markenwerk.commons.interfaces"><code>Producer</code></a> are allowed to
+ cache and reuse the value.</div>
 <dl>
 <dt><span class="simpleTagLabel">Since:</span></dt>
 <dd>1.0.0</dd>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>Torsten Krause (tk at markenwerk dot net)</dd>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><code>Provider</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -162,8 +158,8 @@ extends <a href="../../../../net/markenwerk/commons/interfaces/Provider.html" ti
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="type parameter in Producer">Product</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../net/markenwerk/commons/interfaces/Producer.html#create--">create</a></span>()</code>
-<div class="block">Produces a new product.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../net/markenwerk/commons/interfaces/Producer.html#produce-Order-">produce</a></span>(<a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="type parameter in Producer">Order</a>&nbsp;order)</code>
+<div class="block">Produces a customized product.</div>
 </td>
 </tr>
 </table>
@@ -181,35 +177,34 @@ extends <a href="../../../../net/markenwerk/commons/interfaces/Provider.html" ti
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="create--">
+<a name="produce-java.lang.Object-">
+<!--   -->
+</a><a name="produce-Order-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>create</h4>
-<pre><a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="type parameter in Producer">Product</a>&nbsp;create()
-        throws <a href="../../../../net/markenwerk/commons/exceptions/CreationException.html" title="class in net.markenwerk.commons.exceptions">CreationException</a></pre>
-<div class="block">Produces a new product. This may be a costly operation
- 
- <p>
- Implementers must produce a new instance of the product, each time this
- method is called.
- 
- <p>
- It lies in the responsibility of the caller, to handle unwanted
- null-values by replacing them with a sensible default value or
- throwing a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang"><code>NullPointerException</code></a>.
+<h4>produce</h4>
+<pre><a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="type parameter in Producer">Product</a>&nbsp;produce(<a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="type parameter in Producer">Order</a>&nbsp;order)
+         throws <a href="../../../../net/markenwerk/commons/exceptions/ProductionException.html" title="class in net.markenwerk.commons.exceptions">ProductionException</a></pre>
+<div class="block">Produces a customized product. This may be a costly operation
  
  <p>
  Implementers should catch any exception and wrap them in a
- <a href="../../../../net/markenwerk/commons/exceptions/CreationException.html" title="class in net.markenwerk.commons.exceptions"><code>CreationException</code></a>.</div>
+ <a href="../../../../net/markenwerk/commons/exceptions/ProductionException.html" title="class in net.markenwerk.commons.exceptions"><code>ProductionException</code></a>.
+ 
+ <p>
+ Implementers may provide a new instance of the product each time this
+ method is called, but aren't required to do so. An instance of the
+ product that has already been returned once, may be returned again in any
+ or all following calls.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../net/markenwerk/commons/interfaces/Provider.html#create--">create</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces">Provider</a>&lt;<a href="../../../../net/markenwerk/commons/interfaces/Producer.html" title="type parameter in Producer">Product</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>order</code> - The order to take into account.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The produced product.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../net/markenwerk/commons/exceptions/CreationException.html" title="class in net.markenwerk.commons.exceptions">CreationException</a></code> - If the production of the product failed.</dd>
+<dd><code><a href="../../../../net/markenwerk/commons/exceptions/ProductionException.html" title="class in net.markenwerk.commons.exceptions">ProductionException</a></code> - If the production of the product failed.</dd>
 </dl>
 </li>
 </ul>
@@ -241,7 +236,7 @@ extends <a href="../../../../net/markenwerk/commons/interfaces/Provider.html" ti
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../net/markenwerk/commons/interfaces/Predicate.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../net/markenwerk/commons/interfaces/Processor.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../net/markenwerk/commons/interfaces/Provider.html" title="interface in net.markenwerk.commons.interfaces"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
