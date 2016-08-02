@@ -27,16 +27,9 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link ShortArrayIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class ShortArrayIteratorTests {
 
-	/**
-	 * Create with a {@code null} array.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullArray() {
 
@@ -44,9 +37,6 @@ public class ShortArrayIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over a {@code short[]}.
-	 */
 	@Test
 	public void iterate() {
 
@@ -61,9 +51,6 @@ public class ShortArrayIteratorTests {
 
 	}
 
-	/**
-	 * Try to iterate with no next element.
-	 */
 	@Test(expected = NoSuchElementException.class)
 	public void iterate_noNext() {
 
@@ -73,9 +60,6 @@ public class ShortArrayIteratorTests {
 
 	}
 
-	/**
-	 * Remove a value in a {@code short[]}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
 	public void remove() {
 

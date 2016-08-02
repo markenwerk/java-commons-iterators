@@ -29,11 +29,7 @@ import org.junit.Test;
 
 import net.markenwerk.commons.interfaces.Predicate;
 
-/**
- * JUnit test for {@link FilteredIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class FilteredIteratorTests {
 
 	private final Object UNSATISFYING_OBJECT = new Object();
@@ -45,9 +41,6 @@ public class FilteredIteratorTests {
 		}
 	};
 
-	/**
-	 * Create with a {@code null} iterator.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullIterator() {
 
@@ -55,9 +48,6 @@ public class FilteredIteratorTests {
 
 	}
 
-	/**
-	 * Create with a {@code null} predicate.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullPredicate() {
 
@@ -65,10 +55,6 @@ public class FilteredIteratorTests {
 
 	}
 
-	/**
-	 * Filter out a unsatisfying value at the front of the underlying
-	 * {@link Iterator}.
-	 */
 	@Test
 	public void iterate_unsatisfyingAtFront() {
 
@@ -82,10 +68,6 @@ public class FilteredIteratorTests {
 
 	}
 
-	/**
-	 * Filter out a unsatisfying value in the middle of the underlying
-	 * {@link Iterator}.
-	 */
 	@Test
 	public void iterate_unsatisfyingInMiddle() {
 
@@ -101,10 +83,6 @@ public class FilteredIteratorTests {
 
 	}
 
-	/**
-	 * Filter out a unsatisfying value at the end of the underlying
-	 * {@link Iterator}.
-	 */
 	@Test
 	public void iterate_unsatisfyingAtEnd() {
 
@@ -118,10 +96,6 @@ public class FilteredIteratorTests {
 
 	}
 
-	/**
-	 * Filter out a unsatisfying value in the middle of the underlying
-	 * {@link Iterator}.
-	 */
 	@Test
 	public void iterate_invertedPredicate() {
 
@@ -135,9 +109,6 @@ public class FilteredIteratorTests {
 
 	}
 
-	/**
-	 * Try to iterate with no next element.
-	 */
 	@Test(expected = NoSuchElementException.class)
 	public void iterate_noNext() {
 
@@ -148,9 +119,6 @@ public class FilteredIteratorTests {
 
 	}
 
-	/**
-	 * Remove an object from the underlying {@link Iterator}.
-	 */
 	@Test
 	public void remove() {
 
@@ -164,9 +132,6 @@ public class FilteredIteratorTests {
 
 	}
 
-	/**
-	 * Try to remove a value before call to {@link Iterator#next()}.
-	 */
 	@Test(expected = IllegalStateException.class)
 	public void remove_beforeNext() {
 

@@ -29,11 +29,7 @@ import org.junit.Test;
 import net.markenwerk.commons.datastructures.Box;
 import net.markenwerk.commons.interfaces.Handler;
 
-/**
- * JUnit test for {@link RemoveHandlerIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class RemoveHandlerIteratorTests {
 
 	private static final Handler<Object> EMPTY_HANDLER = new Handler<Object>() {
@@ -42,9 +38,6 @@ public class RemoveHandlerIteratorTests {
 		}
 	};
 
-	/**
-	 * Create with a {@code null} {@link Iterator}.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullIterator() {
 
@@ -52,9 +45,6 @@ public class RemoveHandlerIteratorTests {
 
 	}
 
-	/**
-	 * Create with a {@code null} remove {@link Handler}.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullRemoveHandler() {
 
@@ -62,10 +52,6 @@ public class RemoveHandlerIteratorTests {
 
 	}
 
-	/**
-	 * Filter out a {@literal null} value at the front of the underlying
-	 * {@link Iterator}.
-	 */
 	@Test
 	public void iterate() {
 
@@ -78,9 +64,6 @@ public class RemoveHandlerIteratorTests {
 
 	}
 
-	/**
-	 * Remove an object from the underlying {@link Iterator}.
-	 */
 	@Test
 	public void remove() {
 

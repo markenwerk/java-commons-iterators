@@ -27,18 +27,11 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link PrefixedIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class PrefixedIteratorTests {
 
 	private static final Object PREFIX = new Object();
 
-	/**
-	 * Iterate with a {@code null} iterator.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullIterator() {
 
@@ -46,9 +39,6 @@ public class PrefixedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate with a {@code null} prefixes.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullPrefixes() {
 
@@ -56,9 +46,6 @@ public class PrefixedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an empty iterator.
-	 */
 	@Test
 	public void iterate_noElements() {
 
@@ -70,9 +57,6 @@ public class PrefixedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an {@link Iterator} with one element.
-	 */
 	@Test
 	public void iterate_oneElement() {
 
@@ -87,9 +71,6 @@ public class PrefixedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an {@link Iterator} with no prefixes.
-	 */
 	@Test
 	public void iterate_noPrefixes() {
 
@@ -102,9 +83,6 @@ public class PrefixedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an {@link Iterator} with two prefixes.
-	 */
 	@Test
 	public void iterate_twoPrefixes() {
 
@@ -123,9 +101,6 @@ public class PrefixedIteratorTests {
 
 	}
 
-	/**
-	 * Try to iterate with no next element.
-	 */
 	@Test(expected = NoSuchElementException.class)
 	public void iterate_noNext() {
 
@@ -135,9 +110,6 @@ public class PrefixedIteratorTests {
 
 	}
 
-	/**
-	 * Remove an object from the underlying {@link Iterator}.
-	 */
 	@Test
 	public void remove() {
 
@@ -152,9 +124,6 @@ public class PrefixedIteratorTests {
 
 	}
 
-	/**
-	 * Try to remove a value before call to {@link Iterator#next()}.
-	 */
 	@Test(expected = IllegalStateException.class)
 	public void remove_beforeNext() {
 

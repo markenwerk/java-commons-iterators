@@ -26,16 +26,9 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link NullSaveIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class NullSaveIteratorTests {
 
-	/**
-	 * Iterate over a a non-{@literal null} {@link Iterator}.
-	 */
 	@Test
 	public void iterate_nonNullIterator() {
 
@@ -49,10 +42,6 @@ public class NullSaveIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-
-	/**
-	 * Iterate over a a non-{@literal null} {@link Iterable}.
-	 */
 
 	@Test
 	public void iterate_nonNullIterable() {
@@ -73,10 +62,6 @@ public class NullSaveIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over a a {@literal null} {@link Iterator}.
-	 */
-
 	@Test
 	public void iterate_nullIterator() {
 
@@ -85,10 +70,6 @@ public class NullSaveIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-
-	/**
-	 * Iterate over a a non-{@literal null} {@link Iterable}.
-	 */
 
 	@Test
 	public void iterate_nNullIterable() {
@@ -99,9 +80,6 @@ public class NullSaveIteratorTests {
 
 	}
 
-	/**
-	 * Remove an object from the underlying {@link Iterator}.
-	 */
 	@Test
 	public void remove() {
 

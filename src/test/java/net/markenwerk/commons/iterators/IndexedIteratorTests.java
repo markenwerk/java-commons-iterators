@@ -29,16 +29,9 @@ import org.junit.Test;
 
 import net.markenwerk.commons.datastructures.Entry;
 
-/**
- * JUnit test for {@link IndexedIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class IndexedIteratorTests {
 
-	/**
-	 * Iterate with a {@code null} iterator.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullIterator() {
 
@@ -46,9 +39,6 @@ public class IndexedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an empty iterator.
-	 */
 	@Test
 	public void iterate_noElements() {
 
@@ -58,9 +48,6 @@ public class IndexedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an {@link Iterator} with one element.
-	 */
 	@Test
 	public void iterate_oneElement() {
 
@@ -75,9 +62,6 @@ public class IndexedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an {@link Iterator} with two elements.
-	 */
 	@Test
 	public void iterate_twoElements() {
 
@@ -96,9 +80,6 @@ public class IndexedIteratorTests {
 
 	}
 
-	/**
-	 * Try to iterate with no next element.
-	 */
 	@Test(expected = NoSuchElementException.class)
 	public void iterate_noNext() {
 
@@ -108,9 +89,6 @@ public class IndexedIteratorTests {
 
 	}
 
-	/**
-	 * Remove an object from the underlying {@link Iterator}.
-	 */
 	@Test
 	public void remove() {
 
@@ -124,9 +102,6 @@ public class IndexedIteratorTests {
 
 	}
 
-	/**
-	 * Try to remove a value before call to {@link Iterator#next()}.
-	 */
 	@Test(expected = IllegalStateException.class)
 	public void remove_beforeNext() {
 

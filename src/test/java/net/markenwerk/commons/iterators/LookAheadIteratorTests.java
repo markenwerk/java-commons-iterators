@@ -27,16 +27,9 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link LookAheadIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class LookAheadIteratorTests {
 
-	/**
-	 * Create with a {@code null} iterator.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullIterator() {
 
@@ -44,9 +37,6 @@ public class LookAheadIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an empty iterator.
-	 */
 	@Test
 	public void iterate_noElements() {
 
@@ -56,9 +46,6 @@ public class LookAheadIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an {@link Iterator} with one element.
-	 */
 	@Test
 	public void iterate_oneElement() {
 
@@ -75,9 +62,6 @@ public class LookAheadIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an {@link Iterator} with two elements.
-	 */
 	@Test
 	public void iterate_twoElements() {
 
@@ -101,9 +85,6 @@ public class LookAheadIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an {@link Iterator} with three elements.
-	 */
 	@Test
 	public void iterate_threeElements() {
 
@@ -134,9 +115,6 @@ public class LookAheadIteratorTests {
 
 	}
 
-	/**
-	 * Try to iterate with no next element.
-	 */
 	@Test(expected = NoSuchElementException.class)
 	public void iterate_noNext() {
 
@@ -146,9 +124,6 @@ public class LookAheadIteratorTests {
 
 	}
 
-	/**
-	 * Remove a value from a {@link LookAheadIterator}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
 	public void remove() {
 

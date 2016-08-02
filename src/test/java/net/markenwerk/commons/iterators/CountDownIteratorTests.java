@@ -27,16 +27,9 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link CountDownIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class CountDownIteratorTests {
 
-	/**
-	 * Count down from an upper bound that is smaller than the lower bound.
-	 */
 	@Test
 	public void iterate_upperBoundSmallerThanLowerBound() {
 
@@ -46,9 +39,6 @@ public class CountDownIteratorTests {
 
 	}
 
-	/**
-	 * Count down from an upper bound that equals the lower bound.
-	 */
 	@Test
 	public void iterate_upperBoundEqualsLowerBound() {
 
@@ -60,9 +50,6 @@ public class CountDownIteratorTests {
 
 	}
 
-	/**
-	 * Count down from an upper bound that is larger than the lower bound.
-	 */
 	@Test
 	public void iterate_upperBoundLargerThanLowerBound() {
 
@@ -76,10 +63,6 @@ public class CountDownIteratorTests {
 
 	}
 
-	
-	/**
-	 * Try to iterate with no next element.
-	 */
 	@Test(expected = NoSuchElementException.class)
 	public void iterate_noNext() {
 
@@ -88,15 +71,12 @@ public class CountDownIteratorTests {
 		iterator.next();
 
 	}
-	
-	/**
-	 * Remove a value from a {@link CountDownIterator}.
-	 */
+
 	@Test(expected = UnsupportedOperationException.class)
 	public void countUp_remove() {
 
 		Iterator<Integer> iterator = new CountDownIterator(1, 2);
-		
+
 		iterator.remove();
 
 	}

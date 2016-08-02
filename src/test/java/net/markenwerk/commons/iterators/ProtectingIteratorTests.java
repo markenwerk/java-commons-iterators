@@ -28,16 +28,9 @@ import java.util.LinkedList;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link ProtectingIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class ProtectingIteratorTests {
 
-	/**
-	 * Create with a {@code null} {@link Iterator}.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullIterator() {
 
@@ -45,10 +38,6 @@ public class ProtectingIteratorTests {
 
 	}
 
-	/**
-	 * Filter out a {@literal null} value at the front of the underlying
-	 * {@link Iterator}.
-	 */
 	@Test
 	public void iterate() {
 
@@ -61,9 +50,6 @@ public class ProtectingIteratorTests {
 
 	}
 
-	/**
-	 * Remove an object from the underlying {@link Iterator}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
 	public void remove() {
 

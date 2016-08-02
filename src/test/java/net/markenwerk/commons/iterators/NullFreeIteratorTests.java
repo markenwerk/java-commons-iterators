@@ -26,16 +26,9 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link NullFreeIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class NullFreeIteratorTests {
 
-	/**
-	 * Create with a {@code null} {@link Iterator}.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullIterator() {
 
@@ -43,10 +36,6 @@ public class NullFreeIteratorTests {
 
 	}
 
-	/**
-	 * Filter out a {@literal null} value at the front of the underlying
-	 * {@link Iterator}.
-	 */
 	@Test
 	public void iterate_nullAtFront() {
 
@@ -59,10 +48,6 @@ public class NullFreeIteratorTests {
 
 	}
 
-	/**
-	 * Filter out a {@literal null} value in the middle of the underlying
-	 * {@link Iterator}.
-	 */
 	@Test
 	public void iterate_nullInMiddle() {
 
@@ -77,10 +62,6 @@ public class NullFreeIteratorTests {
 
 	}
 
-	/**
-	 * Filter out a {@literal null} value at the end of the underlying
-	 * {@link Iterator}.
-	 */
 	@Test
 	public void iterate_nullAtEnd() {
 
@@ -93,9 +74,6 @@ public class NullFreeIteratorTests {
 
 	}
 
-	/**
-	 * Remove an object from the underlying {@link Iterator}.
-	 */
 	@Test
 	public void remove() {
 

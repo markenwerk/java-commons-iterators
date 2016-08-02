@@ -27,16 +27,9 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link DoubleArrayIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class DoubleArrayIteratorTests {
 
-	/**
-	 * Create with a {@code null} array.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullArray() {
 
@@ -44,9 +37,6 @@ public class DoubleArrayIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over a {@code double[]}.
-	 */
 	@Test
 	public void iterate() {
 
@@ -61,9 +51,6 @@ public class DoubleArrayIteratorTests {
 
 	}
 
-	/**
-	 * Try to iterate with no next element.
-	 */
 	@Test(expected = NoSuchElementException.class)
 	public void iterate_noNext() {
 
@@ -73,9 +60,6 @@ public class DoubleArrayIteratorTests {
 
 	}
 
-	/**
-	 * Remove a value in a {@code double[]}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
 	public void remove() {
 

@@ -29,11 +29,7 @@ import org.junit.Test;
 
 import net.markenwerk.commons.interfaces.Converter;
 
-/**
- * JUnit test for {@link ConvertingIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class ConvertingIteratorTests {
 
 	private static final class Wrapper {
@@ -53,9 +49,6 @@ public class ConvertingIteratorTests {
 		}
 	};
 
-	/**
-	 * Create for a {@code null} iterator.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullIterator() {
 
@@ -63,9 +56,6 @@ public class ConvertingIteratorTests {
 
 	}
 
-	/**
-	 * Create for a {@code null} iterator.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullConverter() {
 
@@ -73,10 +63,6 @@ public class ConvertingIteratorTests {
 
 	}
 
-	/**
-	 * Convert all values yielded by the underlying {@link Iterator} to their
-	 * hash values.
-	 */
 	@Test
 	public void iterate() {
 
@@ -92,9 +78,6 @@ public class ConvertingIteratorTests {
 
 	}
 
-	/**
-	 * Try to iterate with no next element.
-	 */
 	@Test(expected = NoSuchElementException.class)
 	public void iterate_noNext() {
 
@@ -105,9 +88,6 @@ public class ConvertingIteratorTests {
 
 	}
 
-	/**
-	 * Remove an object from the underlying {@link Iterator}.
-	 */
 	@Test
 	public void remove() {
 
@@ -121,9 +101,6 @@ public class ConvertingIteratorTests {
 
 	}
 
-	/**
-	 * Try to remove a value before call to {@link Iterator#next()}.
-	 */
 	@Test(expected = IllegalStateException.class)
 	public void remove_beforeNext() {
 

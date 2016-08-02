@@ -27,16 +27,9 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link OptionalIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class OptionalIteratorTests {
 
-	/**
-	 * Iterate over a payload object.
-	 */
 	@Test
 	public void iterate_nonNull() {
 
@@ -49,9 +42,6 @@ public class OptionalIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over a {@code null} object.
-	 */
 	@Test
 	public void iterate_null() {
 
@@ -61,9 +51,6 @@ public class OptionalIteratorTests {
 
 	}
 
-	/**
-	 * Try to iterate with no next element.
-	 */
 	@Test(expected = NoSuchElementException.class)
 	public void iterate_noNext() {
 
@@ -74,9 +61,6 @@ public class OptionalIteratorTests {
 
 	}
 
-	/**
-	 * Try to remove a value before call to {@link Iterator#next()}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
 	public void remove() {
 

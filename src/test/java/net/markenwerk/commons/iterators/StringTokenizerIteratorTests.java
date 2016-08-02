@@ -28,16 +28,9 @@ import java.util.StringTokenizer;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link StringTokenizerIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class StringTokenizerIteratorTests {
 
-	/**
-	 * Create with a {@code null} {@link StringTokenizer}.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullTokenizer() {
 
@@ -45,9 +38,6 @@ public class StringTokenizerIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an empty {@link StringTokenizer}.
-	 */
 	@Test
 	public void iterate_emptyTokenizer() {
 
@@ -57,9 +47,6 @@ public class StringTokenizerIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an {@link StringTokenizer} with one element.
-	 */
 	@Test
 	public void iterate_nonEmptyTokenizer() {
 
@@ -71,9 +58,6 @@ public class StringTokenizerIteratorTests {
 
 	}
 
-	/**
-	 * Try to iterate with no next element.
-	 */
 	@Test(expected = NoSuchElementException.class)
 	public void iterate_noNext() {
 
@@ -83,9 +67,6 @@ public class StringTokenizerIteratorTests {
 
 	}
 
-	/**
-	 * Try to remove a value before call to {@link Iterator#next()}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
 	public void remove() {
 

@@ -27,16 +27,9 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link EmptyIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class EmptyIteratorTests {
 
-	/**
-	 * Iterate over an {@link EmptyIterator}.
-	 */
 	@Test
 	public void iterate() {
 
@@ -45,11 +38,7 @@ public class EmptyIteratorTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
-	/**
-	 * Try to iterate with no next element.
-	 */
+
 	@Test(expected = NoSuchElementException.class)
 	public void iterate_noNext() {
 
@@ -59,9 +48,6 @@ public class EmptyIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an {@link EmptyIterator}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
 	public void remove() {
 

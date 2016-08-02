@@ -29,16 +29,9 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link CombinedIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class CombinedIteratorTests {
 
-	/**
-	 * Create with a {@code null} iterator.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullArray() {
 
@@ -46,9 +39,6 @@ public class CombinedIteratorTests {
 
 	}
 
-	/**
-	 * Create with a {@code null} iterator.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullIterable() {
 
@@ -56,9 +46,6 @@ public class CombinedIteratorTests {
 
 	}
 
-	/**
-	 * Create with a {@code null} iterator.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullIterator() {
 
@@ -66,9 +53,6 @@ public class CombinedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over no iterators.
-	 */
 	@Test
 	@SuppressWarnings("unchecked")
 	public void iterate_noIterators() {
@@ -79,9 +63,6 @@ public class CombinedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over one iterator.
-	 */
 	@Test
 	@SuppressWarnings("unchecked")
 	public void iterate_oneIterator() {
@@ -97,9 +78,6 @@ public class CombinedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over multiple iterator.
-	 */
 	@Test
 	@SuppressWarnings("unchecked")
 	public void iterate_iteratorsArray() {
@@ -120,9 +98,6 @@ public class CombinedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over multiple iterator.
-	 */
 	@Test
 	public void iterate_iteratorsIterable() {
 
@@ -145,9 +120,6 @@ public class CombinedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over multiple iterator.
-	 */
 	@Test
 	public void iterate_iteratorsIterator() {
 
@@ -170,9 +142,6 @@ public class CombinedIteratorTests {
 
 	}
 
-	/**
-	 * Try to iterate with no next element.
-	 */
 	@Test(expected = NoSuchElementException.class)
 	@SuppressWarnings("unchecked")
 	public void iterate_noNext() {
@@ -183,9 +152,6 @@ public class CombinedIteratorTests {
 
 	}
 
-	/**
-	 * Remove an object from the underlying {@link Iterator}.
-	 */
 	@Test
 	@SuppressWarnings("unchecked")
 	public void remove() {
@@ -200,9 +166,6 @@ public class CombinedIteratorTests {
 
 	}
 
-	/**
-	 * Try to remove a value before call to {@link Iterator#next()}.
-	 */
 	@Test(expected = IllegalStateException.class)
 	@SuppressWarnings("unchecked")
 	public void remove_beforeNext() {

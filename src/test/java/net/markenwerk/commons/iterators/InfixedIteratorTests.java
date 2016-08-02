@@ -27,18 +27,11 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link InfixedIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class InfixedIteratorTests {
 
 	private static final Object INFIX = new Object();
 
-	/**
-	 * Iterate with a {@code null} iterator.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullIterator() {
 
@@ -46,9 +39,6 @@ public class InfixedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate with a {@code null} infixes.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullInfixes() {
 
@@ -56,9 +46,6 @@ public class InfixedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an empty iterator.
-	 */
 	@Test
 	public void iterate_noElements() {
 
@@ -68,9 +55,6 @@ public class InfixedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an {@link Iterator} with one element.
-	 */
 	@Test
 	public void iterate_oneElement() {
 
@@ -83,9 +67,6 @@ public class InfixedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an {@link Iterator} with two elements.
-	 */
 	@Test
 	public void iterate_twoElements() {
 
@@ -102,9 +83,6 @@ public class InfixedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an {@link Iterator} with no infixes.
-	 */
 	@Test
 	public void iterate_noInfixes() {
 
@@ -119,9 +97,6 @@ public class InfixedIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an {@link Iterator} with two infixes.
-	 */
 	@Test
 	public void iterate_twoInfixes() {
 
@@ -142,9 +117,6 @@ public class InfixedIteratorTests {
 
 	}
 
-	/**
-	 * Try to iterate with no next element.
-	 */
 	@Test(expected = NoSuchElementException.class)
 	public void iterate_noNext() {
 
@@ -154,9 +126,6 @@ public class InfixedIteratorTests {
 
 	}
 
-	/**
-	 * Remove an object from the underlying {@link Iterator}.
-	 */
 	@Test
 	public void remove() {
 
@@ -170,9 +139,6 @@ public class InfixedIteratorTests {
 
 	}
 
-	/**
-	 * Try to remove a value before call to {@link Iterator#next()}.
-	 */
 	@Test(expected = IllegalStateException.class)
 	public void remove_beforeNext() {
 

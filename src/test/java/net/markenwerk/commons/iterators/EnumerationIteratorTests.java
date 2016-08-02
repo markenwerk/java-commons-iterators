@@ -30,16 +30,9 @@ import java.util.Vector;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link EnumerationIterator}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class EnumerationIteratorTests {
 
-	/**
-	 * Create with a {@code null} {@link Enumeration}.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullEnumeration() {
 
@@ -47,9 +40,6 @@ public class EnumerationIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an empty {@link Enumeration}.
-	 */
 	@Test
 	public void iterate_emptyEnumeration() {
 
@@ -60,9 +50,6 @@ public class EnumerationIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an {@link Enumeration} with one element.
-	 */
 	@Test
 	public void iterate_nonEmptyEnumeration() {
 
@@ -76,9 +63,6 @@ public class EnumerationIteratorTests {
 
 	}
 
-	/**
-	 * Try to iterate with no next element.
-	 */
 	@Test(expected = NoSuchElementException.class)
 	public void iterate_noNext() {
 
@@ -89,9 +73,6 @@ public class EnumerationIteratorTests {
 
 	}
 
-	/**
-	 * Iterate over an {@link EnumerationIterator}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
 	public void remove() {
 
