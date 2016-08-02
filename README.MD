@@ -367,6 +367,7 @@ Iterator<Integer> countUpIterator = new CountUpIterator(0, 10);
 [PrefixedIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/PrefixedIterator.html
 [ProtectedIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/ProtectedIterator.html
 [ProtectingIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/ProtectingIterator.html
+[NodeListIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/NodeListIterator.html
 [RemoveHandlerIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/RemoveHandlerIterator.html
 [ShortArrayIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/ShortArrayIterator.html
 [StringTokenizerIterator]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/StringTokenizerIterator.html
