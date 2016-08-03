@@ -93,7 +93,7 @@ public final class CombinedIterator<Payload> implements Iterator<Payload> {
 	 */
 	public CombinedIterator(Iterator<? extends Iterator<? extends Payload>> iterators) throws IllegalArgumentException {
 		if (null == iterators) {
-			throw new IllegalArgumentException("The given iterator iterators is null");
+			throw new IllegalArgumentException("The given iterator of iterators is null");
 		}
 		this.iterators = iterators;
 	}
