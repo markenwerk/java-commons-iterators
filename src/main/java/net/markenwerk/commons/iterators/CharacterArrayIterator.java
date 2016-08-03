@@ -24,21 +24,20 @@ package net.markenwerk.commons.iterators;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link CharacterArrayIterator} is an {@link ProtectedIterator} that
+ * A {@link CharacterArrayIterator} is an {@link AbstractProtectedIterator} that
  * iterates over a given {@code char[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class CharacterArrayIterator implements ProtectedIterator<Character> {
+public final class CharacterArrayIterator extends AbstractProtectedIterator<Character> {
 
 	private final char[] array;
 
-	private int index ;
+	private int index;
 
 	/**
-	 * Creates a new {@linkplain CharacterArrayIterator} that iterates over the
-	 * given {@code char[]}.
+	 * Creates a new {@linkplain CharacterArrayIterator}.
 	 * 
 	 * @param array
 	 *            The {@code char[]} to iterate over.
@@ -46,9 +45,9 @@ public final class CharacterArrayIterator implements ProtectedIterator<Character
 	 * @throws IllegalArgumentException
 	 *             If the given {@code char[]} is {@literal null}.
 	 */
-	public CharacterArrayIterator(char ... array) throws IllegalArgumentException {
+	public CharacterArrayIterator(char... array) throws IllegalArgumentException {
 		if (null == array) {
-			throw new IllegalArgumentException("array is null");
+			throw new IllegalArgumentException("The given array is null");
 		}
 		this.array = array;
 	}
@@ -61,15 +60,10 @@ public final class CharacterArrayIterator implements ProtectedIterator<Character
 	@Override
 	public Character next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("CharacterArrayIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			return array[index++];
 		}
-	}
-
-	@Override
-	public void remove() throws IllegalStateException, UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from a CharacterArrayIterator");
 	}
 
 }

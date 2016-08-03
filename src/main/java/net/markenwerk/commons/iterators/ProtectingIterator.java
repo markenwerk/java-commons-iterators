@@ -22,13 +22,12 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
-
-import net.markenwerk.commons.interfaces.Predicate;
+import java.util.NoSuchElementException;
 
 /**
- * An {@link ProtectingIterator} is an {@link ProtectedIterator} that can be
- * wrapped around a given {@link Iterator} and guarantees that every call to
- * {@linkplain ProtectedIterator#remove()} throws an
+ * A {@link ProtectingIterator} is an {@link AbstractProtectedIterator} that
+ * can be wrapped around a given {@link Iterator} and guarantees that every call
+ * to {@linkplain ProtectedIterator#remove()} throws an
  * {@link UnsupportedOperationException} and doesn't alter the underlying
  * {@link Iterator}.
  * 
@@ -37,24 +36,22 @@ import net.markenwerk.commons.interfaces.Predicate;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.2.0
  */
-public final class ProtectingIterator<Payload> implements ProtectedIterator<Payload> {
+public final class ProtectingIterator<Payload> extends AbstractProtectedIterator<Payload> {
 
 	private final Iterator<? extends Payload> iterator;
 
 	/**
-	 * Creates a new {@link ProtectingIterator} from the given {@link Iterator}
-	 * and the given {@link Predicate}.
+	 * Creates a new {@link ProtectingIterator}.
 	 * 
 	 * @param iterator
-	 *            The {@link Iterator}, around which the new
-	 *            {@link NullFreeIterator} will be wrapped.
+	 *            The {@link Iterator} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Iterator} is {@literal null}.
 	 */
 	public ProtectingIterator(Iterator<? extends Payload> iterator) throws IllegalArgumentException {
 		if (null == iterator) {
-			throw new IllegalArgumentException("iterator is null");
+			throw new IllegalArgumentException("The given iterator is null");
 		}
 		this.iterator = iterator;
 	}
@@ -65,14 +62,8 @@ public final class ProtectingIterator<Payload> implements ProtectedIterator<Payl
 	}
 
 	@Override
-	public Payload next() {
+	public Payload next() throws NoSuchElementException {
 		return iterator.next();
-	}
-
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from a ProtectingIterator");
-
 	}
 
 }

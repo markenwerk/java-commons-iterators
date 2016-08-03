@@ -41,21 +41,20 @@ public final class IndexedIterator<Payload> implements Iterator<Entry<Integer, P
 
 	private final Iterator<? extends Payload> iterator;
 
-	int index = -1;
+	private int index = -1;
 
 	/**
-	 * Creates a new {@link IndexedIterator} from the given {@link Iterator}.
+	 * Creates a new {@link IndexedIterator}.
 	 * 
 	 * @param iterator
-	 *            The {@link Iterator}, around which the new
-	 *            {@link NullFreeIterator} will be wrapped.
+	 *            The {@link Iterator} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Iterator} is {@literal null}.
 	 */
 	public IndexedIterator(Iterator<? extends Payload> iterator) throws IllegalArgumentException {
 		if (null == iterator) {
-			throw new IllegalArgumentException("iterator is null");
+			throw new IllegalArgumentException("The given iterator is null");
 		}
 		this.iterator = iterator;
 	}
@@ -68,19 +67,19 @@ public final class IndexedIterator<Payload> implements Iterator<Entry<Integer, P
 	@Override
 	public Entry<Integer, Payload> next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("InfixedIterator has no further element");
+			throw new NoSuchElementException("This terator has no next element");
 		} else {
 			return new Entry<Integer, Payload>(++index, iterator.next());
 		}
 	}
 
 	@Override
-	public void remove() throws IllegalStateException {
+	public void remove() throws IllegalStateException, UnsupportedOperationException {
 		if (-1 == index) {
-			throw new IllegalStateException("next() hasn't been called yet");
+			throw new IllegalStateException("Method next() hasn't been called yet");
 		} else {
 			iterator.remove();
 		}
 	}
-	
+
 }

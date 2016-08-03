@@ -26,22 +26,22 @@ import java.util.NoSuchElementException;
 import net.markenwerk.commons.datastructures.Pair;
 
 /**
- * An {@link PairIterator} is a {@link ProtectedIterator} that iterates over a
- * given {@link Pair}.
+ * A {@link PairIterator} is an {@link AbstractProtectedIterator} that iterates
+ * over a given {@link Pair}.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.0.0
  */
-public final class PairIterator<Payload> implements ProtectedIterator<Payload> {
+public final class PairIterator<Payload> extends AbstractProtectedIterator<Payload> {
 
 	private final Pair<? extends Payload> pair;
 
 	private int index;
 
 	/**
-	 * Creates a new {@link PairIterator} that iterates over the given {@link Pair}.
+	 * Creates a new {@link PairIterator}.
 	 * 
 	 * @param pair
 	 *            The {@link Pair} to iterate over.
@@ -51,7 +51,7 @@ public final class PairIterator<Payload> implements ProtectedIterator<Payload> {
 	 */
 	public PairIterator(Pair<? extends Payload> pair) throws IllegalArgumentException {
 		if (null == pair) {
-			throw new IllegalArgumentException("pair is null");
+			throw new IllegalArgumentException("The given pair is null");
 		}
 		this.pair = pair;
 	}
@@ -69,13 +69,8 @@ public final class PairIterator<Payload> implements ProtectedIterator<Payload> {
 		case 1:
 			return pair.getSecond();
 		default:
-			throw new NoSuchElementException("PairIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		}
 	}
 
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from a PairIterator");
-	}
-	
 }

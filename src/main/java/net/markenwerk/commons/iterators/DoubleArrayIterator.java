@@ -24,21 +24,20 @@ package net.markenwerk.commons.iterators;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link DoubleArrayIterator} is an {@link ProtectedIterator} that iterates
- * over a given {@code double[]}.
+ * A {@link DoubleArrayIterator} is an {@link AbstractProtectedIterator} that
+ * iterates over a given {@code double[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class DoubleArrayIterator implements ProtectedIterator<Double> {
+public final class DoubleArrayIterator extends AbstractProtectedIterator<Double> {
 
 	private final double[] array;
 
 	private int index;
 
 	/**
-	 * Creates a new {@linkplain DoubleArrayIterator} that iterates over the
-	 * given {@code double[]}.
+	 * Creates a new {@linkplain DoubleArrayIterator}.
 	 * 
 	 * @param array
 	 *            The {@code double[]} to iterate over.
@@ -46,9 +45,9 @@ public final class DoubleArrayIterator implements ProtectedIterator<Double> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code double[]} is {@literal null}.
 	 */
-	public DoubleArrayIterator(double ... array) throws IllegalArgumentException {
+	public DoubleArrayIterator(double... array) throws IllegalArgumentException {
 		if (null == array) {
-			throw new IllegalArgumentException("array is null");
+			throw new IllegalArgumentException("The given array is null");
 		}
 		this.array = array;
 	}
@@ -61,15 +60,10 @@ public final class DoubleArrayIterator implements ProtectedIterator<Double> {
 	@Override
 	public Double next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("DoubleArrayIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			return array[index++];
 		}
-	}
-
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from a DoubleArrayIterator");
 	}
 
 }

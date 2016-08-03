@@ -24,21 +24,20 @@ package net.markenwerk.commons.iterators;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link ByteArrayIterator} is an {@link ProtectedIterator} that iterates
- * over a given {@code byte[]}.
+ * A {@link ByteArrayIterator} is an {@link AbstractProtectedIterator} that
+ * iterates over a given {@code byte[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class ByteArrayIterator implements ProtectedIterator<Byte> {
+public final class ByteArrayIterator extends AbstractProtectedIterator<Byte> {
 
 	private final byte[] array;
 
 	private int index;
 
 	/**
-	 * Creates a new {@linkplain ByteArrayIterator} that iterates over the given
-	 * {@code byte[]}.
+	 * Creates a new {@linkplain ByteArrayIterator}.
 	 * 
 	 * @param array
 	 *            The {@code byte[]} to iterate over.
@@ -46,9 +45,9 @@ public final class ByteArrayIterator implements ProtectedIterator<Byte> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code byte[]} is {@literal null}.
 	 */
-	public ByteArrayIterator(byte ... array) throws IllegalArgumentException {
+	public ByteArrayIterator(byte... array) throws IllegalArgumentException {
 		if (null == array) {
-			throw new IllegalArgumentException("array is null");
+			throw new IllegalArgumentException("The given array is null");
 		}
 		this.array = array;
 	}
@@ -61,15 +60,10 @@ public final class ByteArrayIterator implements ProtectedIterator<Byte> {
 	@Override
 	public Byte next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("ByteArrayIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			return array[index++];
 		}
-	}
-
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from a ByteArrayIterator");
 	}
 
 }

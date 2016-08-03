@@ -22,12 +22,12 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import net.markenwerk.commons.interfaces.Handler;
-import net.markenwerk.commons.interfaces.Predicate;
 
 /**
- * An {@link RemoveHandlerIterator} is an {@link Iterator} that can be wrapped
+ * A {@link RemoveHandlerIterator} is an {@link Iterator} that can be wrapped
  * around a given {@link Iterator} and intercepts every call to
  * {@linkplain RemoveHandlerIterator#remove()} and calls a given {@link Handler}
  * for the current value.
@@ -50,12 +50,10 @@ public final class RemoveHandlerIterator<Payload> implements Iterator<Payload> {
 	private boolean currentRemoved;
 
 	/**
-	 * Creates a new {@link RemoveHandlerIterator} from the given
-	 * {@link Iterator} and the given {@link Predicate}.
+	 * Creates a new {@link RemoveHandlerIterator}.
 	 * 
 	 * @param iterator
-	 *            The {@link Iterator}, around which the new
-	 *            {@link NullFreeIterator} will be wrapped.
+	 *            The {@link Iterator} to iterate over.
 	 * @param removeHandler
 	 *            The {@link Handler} to be used.
 	 * 
@@ -66,10 +64,9 @@ public final class RemoveHandlerIterator<Payload> implements Iterator<Payload> {
 	public RemoveHandlerIterator(Iterator<? extends Payload> iterator, Handler<? super Payload> removeHandler)
 			throws IllegalArgumentException {
 		if (null == iterator) {
-			throw new IllegalArgumentException("iterator is null");
-		}
-		if (null == removeHandler) {
-			throw new IllegalArgumentException("removeHandler is null");
+			throw new IllegalArgumentException("The given iterator is null");
+		} else if (null == removeHandler) {
+			throw new IllegalArgumentException("The given handler is null");
 		}
 		this.iterator = iterator;
 		this.removeHandler = removeHandler;
@@ -77,14 +74,13 @@ public final class RemoveHandlerIterator<Payload> implements Iterator<Payload> {
 
 	@Override
 	public boolean hasNext() {
-		nextCalled = true;
 		return iterator.hasNext();
 	}
 
 	@Override
-	public Payload next() {
-		nextCalled = true;
+	public Payload next() throws NoSuchElementException {
 		current = iterator.next();
+		nextCalled = true;
 		currentRemoved = false;
 		return current;
 	}
@@ -92,9 +88,9 @@ public final class RemoveHandlerIterator<Payload> implements Iterator<Payload> {
 	@Override
 	public void remove() throws IllegalStateException {
 		if (!nextCalled) {
-			throw new IllegalStateException("next() hasn't been called yet");
+			throw new IllegalStateException("Method next() hasn't been called yet");
 		} else if (currentRemoved) {
-			throw new IllegalStateException("remove() has alreade been called");
+			throw new IllegalStateException("Method remove() has already been called");
 		} else {
 			currentRemoved = true;
 			removeHandler.handle(current);

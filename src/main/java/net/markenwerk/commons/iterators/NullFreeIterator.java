@@ -47,18 +47,17 @@ public final class NullFreeIterator<Payload> implements Iterator<Payload> {
 	private Payload next;
 
 	/**
-	 * Creates a new {@link NullFreeIterator} from the given {@link Iterator}.
+	 * Creates a new {@link NullFreeIterator}.
 	 * 
 	 * @param iterator
-	 *            The {@link Iterator}, around which the new
-	 *            {@link NullFreeIterator} will be wrapped.
+	 *            The {@link Iterator} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Iterator} is {@literal null}.
 	 */
 	public NullFreeIterator(Iterator<? extends Payload> iterator) throws IllegalArgumentException {
 		if (null == iterator) {
-			throw new IllegalArgumentException("iterator is null");
+			throw new IllegalArgumentException("The given iterator is null");
 		}
 		this.iterator = iterator;
 	}
@@ -72,7 +71,7 @@ public final class NullFreeIterator<Payload> implements Iterator<Payload> {
 	@Override
 	public Payload next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("NullFreeIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			nextPrepared = false;
 			return next;
@@ -80,7 +79,7 @@ public final class NullFreeIterator<Payload> implements Iterator<Payload> {
 	}
 
 	@Override
-	public void remove() {
+	public void remove() throws IllegalStateException, UnsupportedOperationException {
 		iterator.remove();
 	}
 

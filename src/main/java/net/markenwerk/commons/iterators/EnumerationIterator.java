@@ -25,34 +25,31 @@ import java.util.Enumeration;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link EnumerationIterator} is an {@link ProtectedIterator} that can be wrapped
- * around a given {@link Enumeration} and yields all values yielded by the given
- * {@link Enumeration}.
+ * An {@link EnumerationIterator} is an {@link AbstractProtectedIterator} that
+ * can be wrapped around a given {@link Enumeration} and yields all values
+ * yielded by the given {@link Enumeration}.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.2.0
  */
-public final class EnumerationIterator<Payload> implements ProtectedIterator<Payload> {
+public final class EnumerationIterator<Payload> extends AbstractProtectedIterator<Payload> {
 
 	private final Enumeration<? extends Payload> enumeration;
 
 	/**
-	 * Creates a new {@link EnumerationIterator} from the given
-	 * {@link Enumeration}.
+	 * Creates a new {@link EnumerationIterator}.
 	 * 
 	 * @param enumeration
-	 *            The {@link Enumeration}, around which the new
-	 *            {@link EnumerationIterator} will be wrapped, or
-	 *            {@literal null}.
+	 *            The {@link Enumeration} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Enumeration} is {@literal null}.
 	 */
 	public EnumerationIterator(Enumeration<? extends Payload> enumeration) throws IllegalArgumentException {
 		if (null == enumeration) {
-			throw new IllegalArgumentException("enumeration is null");
+			throw new IllegalArgumentException("The given enumeration is null");
 		}
 		this.enumeration = enumeration;
 	}
@@ -63,17 +60,12 @@ public final class EnumerationIterator<Payload> implements ProtectedIterator<Pay
 	}
 
 	@Override
-	public Payload next() {
+	public Payload next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("EnumerationIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			return enumeration.nextElement();
 		}
 	}
 
-	@Override
-	public void remove() {
-		throw new UnsupportedOperationException("Cannot remove from an EnumerationIterator");
-	}
-	
 }

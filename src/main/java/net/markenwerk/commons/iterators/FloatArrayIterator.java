@@ -24,21 +24,20 @@ package net.markenwerk.commons.iterators;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link FloatArrayIterator} is an {@link ProtectedIterator} that iterates
- * over a given {@code float[]}.
+ * A {@link FloatArrayIterator} is an {@link AbstractProtectedIterator} that
+ * iterates over a given {@code float[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class FloatArrayIterator implements ProtectedIterator<Float> {
+public final class FloatArrayIterator extends AbstractProtectedIterator<Float> {
 
 	private final float[] array;
 
 	private int index;
 
 	/**
-	 * Creates a new {@linkplain FloatArrayIterator} that iterates over the
-	 * given {@code float[]}.
+	 * Creates a new {@linkplain FloatArrayIterator}.
 	 * 
 	 * @param array
 	 *            The {@code float[]} to iterate over.
@@ -46,9 +45,9 @@ public final class FloatArrayIterator implements ProtectedIterator<Float> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code float[]} is {@literal null}.
 	 */
-	public FloatArrayIterator(float ... array) throws IllegalArgumentException {
+	public FloatArrayIterator(float... array) throws IllegalArgumentException {
 		if (null == array) {
-			throw new IllegalArgumentException("array is null");
+			throw new IllegalArgumentException("The given array is null");
 		}
 		this.array = array;
 	}
@@ -61,15 +60,10 @@ public final class FloatArrayIterator implements ProtectedIterator<Float> {
 	@Override
 	public Float next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("FloatArrayIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			return array[index++];
 		}
-	}
-
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from a FloatArrayIterator");
 	}
 
 }

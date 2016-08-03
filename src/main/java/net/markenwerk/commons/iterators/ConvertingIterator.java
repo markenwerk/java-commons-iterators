@@ -53,16 +53,12 @@ public final class ConvertingIterator<From, To> implements Iterator<To> {
 	private boolean nextCalled;
 
 	/**
-	 * Creates a new {@link ConvertingIterator} from the given {@link Iterator}
-	 * and the given {@link Converter}.
+	 * Creates a new {@link ConvertingIterator}.
 	 * 
 	 * @param iterator
-	 *            The {@link Iterator}, around which the new
-	 *            {@link NullFreeIterator} will be wrapped.
+	 *            The {@link Iterator} to be used.
 	 * @param converter
-	 *            The {@link Converter} to {@link Converter#convert(Object)
-	 *            convert} every value yielded by the given {@link Iterator}
-	 *            with.
+	 *            The {@link Converter} to be used.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Iterator} is {@literal null} or the given
@@ -71,17 +67,16 @@ public final class ConvertingIterator<From, To> implements Iterator<To> {
 	public ConvertingIterator(Iterator<? extends From> iterator, Converter<? super From, ? extends To> converter)
 			throws IllegalArgumentException {
 		if (null == iterator) {
-			throw new IllegalArgumentException("iterator is null");
-		}
-		if (null == converter) {
-			throw new IllegalArgumentException("converter is null");
+			throw new IllegalArgumentException("The given iterator is null");
+		} else if (null == converter) {
+			throw new IllegalArgumentException("The given converter is null");
 		}
 		this.iterator = iterator;
 		this.converter = converter;
 	}
 
 	@Override
-	public boolean hasNext() {
+	public boolean hasNext() throws NoSuchElementException {
 		prepareNext();
 		return nextDetected;
 	}
@@ -89,7 +84,7 @@ public final class ConvertingIterator<From, To> implements Iterator<To> {
 	@Override
 	public To next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("ConvertingIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			nextCalled = true;
 			nextPrepared = false;
@@ -98,9 +93,9 @@ public final class ConvertingIterator<From, To> implements Iterator<To> {
 	}
 
 	@Override
-	public void remove() {
+	public void remove() throws IllegalStateException, UnsupportedOperationException{
 		if (!nextCalled) {
-			throw new IllegalStateException("next() hasn't been called yet");
+			throw new IllegalStateException("Method next() hasn't been called yet");
 		} else {
 			iterator.remove();
 		}
@@ -118,5 +113,5 @@ public final class ConvertingIterator<From, To> implements Iterator<To> {
 			nextPrepared = true;
 		}
 	}
-	
+
 }

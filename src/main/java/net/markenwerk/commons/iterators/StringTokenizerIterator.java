@@ -25,32 +25,29 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 /**
- * A {@link StringTokenizerIterator} is an {@link ProtectedIterator} that can be wrapped
+ * A {@link StringTokenizerIterator} is an {@link AbstractProtectedIterator} that can be wrapped
  * around a given {@link StringTokenizer} and yields all tokens yielded by the
  * given {@link StringTokenizer}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.2.0
  */
-public final class StringTokenizerIterator implements ProtectedIterator<String> {
+public final class StringTokenizerIterator extends AbstractProtectedIterator<String> {
 
 	private final StringTokenizer tokenizer;
 
 	/**
-	 * Creates a new {@link StringTokenizerIterator} from the given
-	 * {@link StringTokenizer}.
+	 * Creates a new {@link StringTokenizerIterator}.
 	 * 
 	 * @param tokenizer
-	 *            The {@link StringTokenizer}, around which the new
-	 *            {@link StringTokenizerIterator} will be wrapped, or
-	 *            {@literal null}.
+	 *            The {@link StringTokenizer} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link StringTokenizer} is {@literal null}.
 	 */
 	public StringTokenizerIterator(StringTokenizer tokenizer) throws IllegalArgumentException {
 		if (null == tokenizer) {
-			throw new IllegalArgumentException("tokenizer is null");
+			throw new IllegalArgumentException("The given string tokenizer is null");
 		}
 		this.tokenizer = tokenizer;
 	}
@@ -63,15 +60,12 @@ public final class StringTokenizerIterator implements ProtectedIterator<String> 
 	@Override
 	public String next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("StringTokenizerIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			return tokenizer.nextToken();
 		}
 	}
 
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from a StringTokenizerIterator");
-	}
+
 
 }

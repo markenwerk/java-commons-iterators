@@ -24,21 +24,20 @@ package net.markenwerk.commons.iterators;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import net.markenwerk.commons.interfaces.Predicate;
-
 /**
- * A {@link LookAheadIterator} is an {@link ProtectedIterator} that can be wrapped around
- * a given {@link Iterator} and yields a {@link LookAhead} container that holds
- * the current and the next payload value of the given {@link Iterator}.
+ * A {@link LookAheadIterator} is an {@link ProtectedIterator} that can be
+ * wrapped around a given {@link Iterator} and yields a {@link LookAhead}
+ * container that holds the current and the next payload value of the given
+ * {@link Iterator}.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.6
  */
-public final class LookAheadIterator<Payload> implements ProtectedIterator<LookAhead<Payload>> {
+public final class LookAheadIterator<Payload> extends AbstractProtectedIterator<LookAhead<Payload>> {
 
-	private static class Ahead<Payload> implements LookAhead<Payload> {
+	private static class Entry<Payload> implements LookAhead<Payload> {
 
 		private final Payload current;
 
@@ -46,18 +45,18 @@ public final class LookAheadIterator<Payload> implements ProtectedIterator<LookA
 
 		private final boolean nextExists;
 
-		Ahead() {
+		private Entry() {
 			this(null, null, false);
 		}
 
-		private Ahead(Payload current, Payload next, boolean nextExists) {
+		private Entry(Payload current, Payload next, boolean nextExists) {
 			this.current = current;
 			this.next = next;
 			this.nextExists = nextExists;
 		}
 
-		protected Ahead<Payload> shift(Payload next, boolean nextExists) {
-			return new Ahead<Payload>(this.next, next, nextExists);
+		protected Entry<Payload> shift(Payload next, boolean nextExists) {
+			return new Entry<Payload>(this.next, next, nextExists);
 		}
 
 		@Override
@@ -93,26 +92,24 @@ public final class LookAheadIterator<Payload> implements ProtectedIterator<LookA
 
 	private final Iterator<? extends Payload> iterator;
 
-	private Ahead<Payload> lookAhead = new Ahead<Payload>();
+	private Entry<Payload> lookAhead = new Entry<Payload>();
 
 	private boolean nextPrepared;
 
 	private boolean hasNext;
 
 	/**
-	 * Creates a new {@link LookAheadIterator} from the given {@link Iterator}
-	 * and the given {@link Predicate}.
+	 * Creates a new {@link LookAheadIterator}.
 	 * 
 	 * @param iterator
-	 *           The {@link Iterator}, around which the new
-	 *           {@link LookAheadIterator} will be wrapped.
+	 *            The {@link Iterator} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@link Iterator} is {@literal null}.
+	 *             If the given {@link Iterator} is {@literal null}.
 	 */
 	public LookAheadIterator(Iterator<? extends Payload> iterator) throws IllegalArgumentException {
 		if (null == iterator) {
-			throw new IllegalArgumentException("iterator is null");
+			throw new IllegalArgumentException("The given iterator is null");
 		}
 		this.iterator = iterator;
 		if (iterator.hasNext()) {
@@ -129,16 +126,11 @@ public final class LookAheadIterator<Payload> implements ProtectedIterator<LookA
 	@Override
 	public LookAhead<Payload> next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("LookAheadIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			nextPrepared = false;
 			return lookAhead;
 		}
-	}
-
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from a LookAheadIterator");
 	}
 
 	private void prepareNext() {

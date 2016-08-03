@@ -54,12 +54,10 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 	private boolean currentRemovable;
 
 	/**
-	 * Creates a new {@link InfixedIterator} from the given {@link Iterator} and
-	 * the given infix values.
+	 * Creates a new {@link InfixedIterator}.
 	 * 
 	 * @param iterator
-	 *            The {@link Iterator}, around which the new
-	 *            {@link NullFreeIterator} will be wrapped.
+	 *            The {@link Iterator} to iterate over.
 	 * @param infixes
 	 *            The infixes to be yielded.
 	 * 
@@ -68,10 +66,9 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 	 */
 	public InfixedIterator(Iterator<? extends Payload> iterator, Payload... infixes) throws IllegalArgumentException {
 		if (null == iterator) {
-			throw new IllegalArgumentException("iterator is null");
-		}
-		if (null == infixes) {
-			throw new IllegalArgumentException("infixes is null");
+			throw new IllegalArgumentException("The given iterator is null");
+		} else if (null == infixes) {
+			throw new IllegalArgumentException("The given array of infixes is null");
 		}
 		this.iterator = iterator;
 		this.infixes = infixes;
@@ -85,7 +82,7 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 	@Override
 	public Payload next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("InfixedIterator has no further element");
+			throw new NoSuchElementException("This iterator has no further element");
 		} else {
 			nextCalled = true;
 			if (infixing) {
@@ -105,9 +102,9 @@ public final class InfixedIterator<Payload> implements Iterator<Payload> {
 	}
 
 	@Override
-	public void remove() throws IllegalStateException {
+	public void remove() throws IllegalStateException, UnsupportedOperationException {
 		if (!nextCalled) {
-			throw new IllegalStateException("next() hasn't been called yet");
+			throw new IllegalStateException("Method next() hasn't been called yet");
 		} else if (currentRemovable) {
 			iterator.remove();
 		}

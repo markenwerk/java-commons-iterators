@@ -21,34 +21,34 @@
  */
 package net.markenwerk.commons.iterators;
 
+import net.markenwerk.commons.exceptions.ProvisioningException;
 import net.markenwerk.commons.interfaces.Provider;
 
 /**
- * An {@link InfiniteIterator} is a {@link ProtectedIterator} that infinitely
- * iterates, using a {@link Provider}, tom provide further elements.
+ * An {@link InfiniteIterator} is an {@link AbstractProtectedIterator} that
+ * infinitely iterates, using a {@link Provider}, tom provide further elements.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.0.0
  */
-public final class InfiniteIterator<Payload> implements ProtectedIterator<Payload> {
+public final class InfiniteIterator<Payload> extends AbstractProtectedIterator<Payload> {
 
 	private final Provider<? extends Payload> provider;
 
 	/**
-	 * Creates a new {@link InfiniteIterator} that iterates over the given
-	 * {@link Provider}.
+	 * Creates a new {@link InfiniteIterator}.
 	 * 
 	 * @param provider
-	 *           The {@link Provider} to be used.
+	 *            The {@link Provider} to be used.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@link Provider} is {@literal null}.
+	 *             If the given {@link Provider} is {@literal null}.
 	 */
 	public InfiniteIterator(Provider<? extends Payload> provider) throws IllegalArgumentException {
 		if (null == provider) {
-			throw new IllegalArgumentException("provider is null");
+			throw new IllegalArgumentException("The given provider is null");
 		}
 		this.provider = provider;
 	}
@@ -58,14 +58,15 @@ public final class InfiniteIterator<Payload> implements ProtectedIterator<Payloa
 		return true;
 	}
 
+	/**
+	 * Returns an element provided by the {@link Provider}.
+	 * 
+	 * @throws ProvisioningException
+	 *             If the {@link Provider} failed to provide an element.
+	 */
 	@Override
-	public Payload next() {
+	public Payload next() throws ProvisioningException {
 		return provider.provide();
-	}
-
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from an InfiniteIterator");
 	}
 
 }

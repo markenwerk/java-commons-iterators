@@ -25,27 +25,26 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * An {@link OptionalIterator} is a {@link ProtectedIterator} that behaves like an
- * {@link ObjectIterator} for a given payload object, or like an empty
- * {@link Iterator}, if the given payload object is {@literal null}.
+ * An {@link OptionalIterator} is an {@link AbstractProtectedIterator} that
+ * behaves like an {@link ObjectIterator} for a given payload object, or like an
+ * empty {@link Iterator}, if the given payload object is {@literal null}.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.5
  */
-public final class OptionalIterator<Payload> implements ProtectedIterator<Payload> {
+public final class OptionalIterator<Payload> extends AbstractProtectedIterator<Payload> {
 
 	private final Payload value;
 
 	private boolean visited;
 
 	/**
-	 * Creates a new {@link OptionalIterator} that iterates over the given
-	 * payload object.
+	 * Creates a new {@link OptionalIterator}.
 	 * 
 	 * @param value
-	 *            The payload object to iterate over.
+	 *            The object to iterate over.
 	 */
 	public OptionalIterator(Payload value) {
 		this.value = value;
@@ -57,15 +56,11 @@ public final class OptionalIterator<Payload> implements ProtectedIterator<Payloa
 
 	public Payload next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("OptionalIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			visited = true;
 			return value;
 		}
-	}
-
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from an OptionalIterator");
 	}
 
 }

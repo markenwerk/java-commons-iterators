@@ -24,25 +24,24 @@ package net.markenwerk.commons.iterators;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link CountDownIterator} is an {@link ProtectedIterator} that yields all integer
- * value between a given upper value and a given lower bound.
+ * A {@link CountDownIterator} is an {@link AbstractProtectedIterator} that yields all integer
+ * value between a given upper bound and a given lower bound.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class CountDownIterator implements ProtectedIterator<Integer> {
+public final class CountDownIterator extends AbstractProtectedIterator<Integer> {
 
 	private final int target;
 
 	private int next;
 
 	/**
-	 * Creates a new {@link CountDownIterator} from the given upper and lower
-	 * bound.
+	 * Creates a new {@link CountDownIterator}.
 	 * 
 	 * <p>
-	 * If {@code upper == lower}, only one value will be yielded. If
-	 * {@code uper < lower}, no value will be yielded.
+	 * If {@code fromUpper == toLower}, only one value will be yielded. If
+	 * {@code fromUpper < toLower}, no value will be yielded.
 	 * 
 	 * @param fromUpper
 	 *            The upper bound and first value to be yielded.
@@ -62,15 +61,11 @@ public final class CountDownIterator implements ProtectedIterator<Integer> {
 	@Override
 	public Integer next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("CountDownIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			return next--;
 		}
 	}
 
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from a CountDownIterator");
-	}
 
 }

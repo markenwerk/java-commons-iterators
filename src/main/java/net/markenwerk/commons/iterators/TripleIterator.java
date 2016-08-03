@@ -26,22 +26,22 @@ import java.util.NoSuchElementException;
 import net.markenwerk.commons.datastructures.Triple;
 
 /**
- * An {@link TripleIterator} is a {@link ProtectedIterator} that iterates over a
- * given {@link Triple}.
+ * A {@link TripleIterator} is an {@link AbstractProtectedIterator} that
+ * iterates over a given {@link Triple}.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.0.0
  */
-public final class TripleIterator<Payload> implements ProtectedIterator<Payload> {
+public final class TripleIterator<Payload> extends AbstractProtectedIterator<Payload> {
 
 	private final Triple<? extends Payload, ? extends Payload, ? extends Payload> triple;
 
 	private int index;
 
 	/**
-	 * Creates a new {@link TripleIterator} that iterates over the given {@link Triple}.
+	 * Creates a new {@link TripleIterator}.
 	 * 
 	 * @param triple
 	 *            The {@link Triple} to iterate over.
@@ -52,7 +52,7 @@ public final class TripleIterator<Payload> implements ProtectedIterator<Payload>
 	public TripleIterator(Triple<? extends Payload, ? extends Payload, ? extends Payload> triple)
 			throws IllegalArgumentException {
 		if (null == triple) {
-			throw new IllegalArgumentException("triple is null");
+			throw new IllegalArgumentException("The given triple is null");
 		}
 		this.triple = triple;
 	}
@@ -72,13 +72,8 @@ public final class TripleIterator<Payload> implements ProtectedIterator<Payload>
 		case 2:
 			return triple.getThird();
 		default:
-			throw new NoSuchElementException("TripleIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		}
-	}
-
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from a TripleIterator");
 	}
 
 }

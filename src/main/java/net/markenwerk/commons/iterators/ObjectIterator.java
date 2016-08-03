@@ -24,26 +24,25 @@ package net.markenwerk.commons.iterators;
 import java.util.NoSuchElementException;
 
 /**
- * An {@link ObjectIterator} is a {@link ProtectedIterator} that iterates over a single
- * payload object.
+ * An {@link ObjectIterator} is an {@link AbstractProtectedIterator} that
+ * iterates over a single payload object.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.5
  */
-public final class ObjectIterator<Payload> implements ProtectedIterator<Payload> {
+public final class ObjectIterator<Payload> extends AbstractProtectedIterator<Payload> {
 
 	private final Payload value;
 
 	private boolean visited;
 
 	/**
-	 * Creates a new {@link ObjectIterator} that iterates over the given payload
-	 * object.
+	 * Creates a new {@link ObjectIterator}.
 	 * 
 	 * @param value
-	 *            The payload object to iterate over.
+	 *            The object to iterate over.
 	 */
 	public ObjectIterator(Payload value) {
 		this.value = value;
@@ -57,16 +56,11 @@ public final class ObjectIterator<Payload> implements ProtectedIterator<Payload>
 	@Override
 	public Payload next() throws NoSuchElementException {
 		if (visited) {
-			throw new NoSuchElementException("ObjectIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			visited = true;
 			return value;
 		}
-	}
-
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from an ObjectIterator");
 	}
 
 }

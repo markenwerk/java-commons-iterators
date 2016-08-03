@@ -25,7 +25,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * An {@link PrefixedIterator} is an {@link Iterator} that can be wrapped around
+ * A {@link PrefixedIterator} is an {@link Iterator} that can be wrapped around
  * a given {@link Iterator} and yields some given prefix values before yielding
  * all values yielded by the given {@link Iterator}.
  * 
@@ -54,12 +54,10 @@ public final class PrefixedIterator<Payload> implements Iterator<Payload> {
 	private boolean currentRemovable;
 
 	/**
-	 * Creates a new {@link PrefixedIterator} from the given {@link Iterator}
-	 * and the given prefix values.
+	 * Creates a new {@link PrefixedIterator}.
 	 * 
 	 * @param iterator
-	 *            The {@link Iterator}, around which the new
-	 *            {@link NullFreeIterator} will be wrapped.
+	 *            The {@link Iterator} to iterate over.
 	 * @param prefixes
 	 *            The prefixes to be yielded.
 	 * 
@@ -68,10 +66,9 @@ public final class PrefixedIterator<Payload> implements Iterator<Payload> {
 	 */
 	public PrefixedIterator(Iterator<? extends Payload> iterator, Payload... prefixes) throws IllegalArgumentException {
 		if (null == iterator) {
-			throw new IllegalArgumentException("iterator is null");
-		}
-		if (null == prefixes) {
-			throw new IllegalArgumentException("prefixes is null");
+			throw new IllegalArgumentException("The given iterator is null");
+		} else if (null == prefixes) {
+			throw new IllegalArgumentException("The given array of prefixes is null");
 		}
 		this.iterator = iterator;
 		this.prefixes = prefixes;
@@ -86,7 +83,7 @@ public final class PrefixedIterator<Payload> implements Iterator<Payload> {
 	@Override
 	public Payload next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("PrefixedIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			nextCalled = true;
 			if (prefixing) {
@@ -102,9 +99,9 @@ public final class PrefixedIterator<Payload> implements Iterator<Payload> {
 	}
 
 	@Override
-	public void remove() throws IllegalStateException {
+	public void remove() throws IllegalStateException, UnsupportedOperationException {
 		if (!nextCalled) {
-			throw new IllegalStateException("next() hasn't been called yet");
+			throw new IllegalStateException("Methiod next() hasn't been called yet");
 		} else if (currentRemovable) {
 			iterator.remove();
 		}

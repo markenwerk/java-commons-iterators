@@ -27,21 +27,20 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * An {@link NodeListIterator} is a {@link ProtectedIterator} that iterates over
- * a given {@link NodeList}.
+ * A {@link NodeListIterator} is a {@link AbstractProtectedIterator} that
+ * iterates over a given {@link NodeList}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class NodeListIterator implements ProtectedIterator<Node> {
+public final class NodeListIterator extends AbstractProtectedIterator<Node> {
 
 	private final NodeList nodeList;
 
 	private int index;
 
 	/**
-	 * Creates a new {@link NodeListIterator} that iterates over the given
-	 * {@link NodeList}.
+	 * Creates a new {@link NodeListIterator}.
 	 * 
 	 * @param nodeList
 	 *            The {@link NodeList} to iterate over.
@@ -64,15 +63,10 @@ public final class NodeListIterator implements ProtectedIterator<Node> {
 	@Override
 	public Node next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("NodeListIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			return nodeList.item(index++);
 		}
-	}
-
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from an NodeListIterator");
 	}
 
 }

@@ -22,6 +22,7 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * A {@link NullSaveIterator} is an {@link Iterator} that can be wrapped around
@@ -34,7 +35,7 @@ import java.util.Iterator;
  * the given {@link Iterator}, if present.
  * 
  * <p>
- * For convenience, it is possible to constuct a {@link NullSaveIterator} from
+ * For convenience, it is possible to construct a {@link NullSaveIterator} from
  * an {@link Iterable} even if the given {@link Iterable} is {@literal null}.
  * 
  * @param <Payload>
@@ -47,23 +48,20 @@ public final class NullSaveIterator<Payload> implements Iterator<Payload> {
 	private final Iterator<? extends Payload> iterator;
 
 	/**
-	 * Creates a new {@link NullSaveIterator} from the given {@link Iterable}.
+	 * Creates a new {@link NullSaveIterator}.
 	 * 
 	 * @param iterable
-	 *            The {@link Iterable} to obtain an {@link Iterator} from,
-	 *            around which the new {@link NullSaveIterator} will be wrapped,
-	 *            or {@literal null}.
+	 *            The {@link Iterable} to obtain an {@link Iterator} from.
 	 */
 	public NullSaveIterator(Iterable<? extends Payload> iterable) {
 		this.iterator = null == iterable ? new EmptyIterator<Payload>() : iterable.iterator();
 	}
 
 	/**
-	 * Creates a new {@link NullSaveIterator} from the given {@link Iterator}.
+	 * Creates a new {@link NullSaveIterator}.
 	 * 
 	 * @param iterator
-	 *            The {@link Iterator}, around which the new
-	 *            {@link NullSaveIterator} will be wrapped, or {@literal null}.
+	 *            The {@link Iterator} to iterate over.
 	 */
 	public NullSaveIterator(Iterator<? extends Payload> iterator) {
 		this.iterator = null == iterator ? new EmptyIterator<Payload>() : iterator;
@@ -75,12 +73,12 @@ public final class NullSaveIterator<Payload> implements Iterator<Payload> {
 	}
 
 	@Override
-	public Payload next() {
+	public Payload next() throws NoSuchElementException {
 		return iterator.next();
 	}
 
 	@Override
-	public void remove() {
+	public void remove() throws IllegalStateException, UnsupportedOperationException {
 		iterator.remove();
 	}
 

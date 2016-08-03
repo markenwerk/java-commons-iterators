@@ -24,7 +24,7 @@ package net.markenwerk.commons.iterators;
 import java.util.NoSuchElementException;
 
 /**
- * An {@link ArrayIterator} is a {@link ProtectedIterator} that iterates over a
+ * An {@link ArrayIterator} is an {@link AbstractProtectedIterator} that iterates over a
  * given payload array.
  * 
  * @param <Payload>
@@ -32,15 +32,14 @@ import java.util.NoSuchElementException;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class ArrayIterator<Payload> implements ProtectedIterator<Payload> {
+public final class ArrayIterator<Payload> extends AbstractProtectedIterator<Payload> {
 
 	private final Payload[] array;
 
 	private int index;
 
 	/**
-	 * Creates a new {@link ArrayIterator} that iterates over the given payload
-	 * array.
+	 * Creates a new {@link ArrayIterator}.
 	 * 
 	 * @param array
 	 *            The payload array to iterate over.
@@ -50,7 +49,7 @@ public final class ArrayIterator<Payload> implements ProtectedIterator<Payload> 
 	 */
 	public ArrayIterator(Payload ... array) throws IllegalArgumentException {
 		if (null == array) {
-			throw new IllegalArgumentException("array is null");
+			throw new IllegalArgumentException("The given array is null");
 		}
 		this.array = array;
 	}
@@ -63,15 +62,11 @@ public final class ArrayIterator<Payload> implements ProtectedIterator<Payload> 
 	@Override
 	public Payload next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("ArrayIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			return array[index++];
 		}
 	}
 
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from an ArrayIterator");
-	}
 
 }

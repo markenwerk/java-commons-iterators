@@ -25,8 +25,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link CombinedIterator} is an {@link Iterator} that wraps arround some
- * given {@link Iterator Iterators} and combines them into a single
+ * A {@link CombinedIterator} is an {@link Iterator} that wraps around a
+ * sequence of given {@link Iterator Iterators} and combines them into a single
  * {@link Iterator} by iterating over all given {@link Iterator Iterators} in
  * the order they were given.
  * 
@@ -48,12 +48,10 @@ public final class CombinedIterator<Payload> implements Iterator<Payload> {
 	private boolean nextCalled;
 
 	/**
-	 * Creates a new {@link CombinedIterator} from the given sequence
-	 * {@link Iterator Iterators}.
+	 * Creates a new {@link CombinedIterator}.
 	 * 
 	 * @param iterators
-	 *            The {@link Iterator Iterators} to combine into a single
-	 *            {@link Iterator}.
+	 *            The {@link Iterator Iterators} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given sequence of {@link Iterator Iterators} is
@@ -61,18 +59,16 @@ public final class CombinedIterator<Payload> implements Iterator<Payload> {
 	 */
 	public CombinedIterator(Iterator<? extends Payload>... iterators) throws IllegalArgumentException {
 		if (null == iterators) {
-			throw new IllegalArgumentException("iterators is null");
+			throw new IllegalArgumentException("The given array of iterators is null");
 		}
 		this.iterators = new ArrayIterator<Iterator<? extends Payload>>(iterators);
 	}
 
 	/**
-	 * Creates a new {@link CombinedIterator} from the given {@link Iterable} of
-	 * link Iterator Iterators}.
+	 * Creates a new {@link CombinedIterator}.
 	 * 
 	 * @param iterators
-	 *            The {@link Iterator Iterators} to combine into a single
-	 *            {@link Iterator}.
+	 *            The {@link Iterator Iterators} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Iterable} of {@link Iterator Iterators}
@@ -80,18 +76,16 @@ public final class CombinedIterator<Payload> implements Iterator<Payload> {
 	 */
 	public CombinedIterator(Iterable<? extends Iterator<? extends Payload>> iterators) throws IllegalArgumentException {
 		if (null == iterators) {
-			throw new IllegalArgumentException("iterators is null");
+			throw new IllegalArgumentException("The given iterable of iterators is null");
 		}
 		this.iterators = iterators.iterator();
 	}
 
 	/**
-	 * Creates a new {@link CombinedIterator} from the given {@link Iterator
-	 * Iterators}of link Iterator Iterators}.
+	 * Creates a new {@link CombinedIterator}.
 	 * 
 	 * @param iterators
-	 *            The {@link Iterator Iterators} to combine into a single
-	 *            {@link Iterator}.
+	 *            The {@link Iterator Iterators} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Iterator} of {@link Iterator Iterators}
@@ -99,7 +93,7 @@ public final class CombinedIterator<Payload> implements Iterator<Payload> {
 	 */
 	public CombinedIterator(Iterator<? extends Iterator<? extends Payload>> iterators) throws IllegalArgumentException {
 		if (null == iterators) {
-			throw new IllegalArgumentException("iterators is null");
+			throw new IllegalArgumentException("The given iterator iterators is null");
 		}
 		this.iterators = iterators;
 	}
@@ -113,7 +107,7 @@ public final class CombinedIterator<Payload> implements Iterator<Payload> {
 	@Override
 	public Payload next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("CombinedIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			nextCalled = true;
 			nextPrepared = false;
@@ -122,9 +116,9 @@ public final class CombinedIterator<Payload> implements Iterator<Payload> {
 	}
 
 	@Override
-	public void remove() throws IllegalStateException {
+	public void remove() throws IllegalStateException, UnsupportedOperationException {
 		if (!nextCalled) {
-			throw new IllegalStateException("next() hasn't been called yet");
+			throw new IllegalStateException("Method next() hasn't been called yet");
 		} else {
 			currentIterator.remove();
 		}

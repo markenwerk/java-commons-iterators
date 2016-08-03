@@ -24,8 +24,8 @@ package net.markenwerk.commons.iterators;
 import java.util.NoSuchElementException;
 
 /**
- * An {@link EmptyIterator} is an {@link ProtectedIterator} that doesn't yield any
- * values.
+ * An {@link EmptyIterator} is an {@link AbstractProtectedIterator} that doesn't
+ * yield any values.
  * 
  * <p>
  * Calling {@link EmptyIterator#hasNext()} always returns {@literal false} and
@@ -36,7 +36,13 @@ import java.util.NoSuchElementException;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class EmptyIterator<Payload> implements ProtectedIterator<Payload> {
+public final class EmptyIterator<Payload> extends AbstractProtectedIterator<Payload> {
+
+	/**
+	 * Creates a new {@link EmptyIterator}.
+	 */
+	public EmptyIterator() {
+	}
 
 	@Override
 	public boolean hasNext() {
@@ -45,12 +51,7 @@ public final class EmptyIterator<Payload> implements ProtectedIterator<Payload> 
 
 	@Override
 	public Payload next() throws NoSuchElementException {
-		throw new NoSuchElementException("EmptyIterator has no further element");
-	}
-
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from an EmptyIterator");
+		throw new NoSuchElementException("This iterator has no next element");
 	}
 
 }

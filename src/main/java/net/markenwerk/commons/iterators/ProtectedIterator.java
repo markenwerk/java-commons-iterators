@@ -38,4 +38,14 @@ import java.util.Iterator;
  */
 public interface ProtectedIterator<Payload> extends Iterator<Payload> {
 
+	/**
+	 * Always throws an {@link UnsupportedOperationException}.
+	 * 
+	 * @throws UnsupportedOperationException
+	 *             When trying to remove an element from an
+	 *             {@link ProtectedIterator}.
+	 */
+	@Override
+	public void remove() throws UnsupportedOperationException;
+
 }

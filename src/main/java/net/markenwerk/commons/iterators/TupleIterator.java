@@ -26,22 +26,22 @@ import java.util.NoSuchElementException;
 import net.markenwerk.commons.datastructures.Tuple;
 
 /**
- * An {@link TupleIterator} is a {@link ProtectedIterator} that iterates over a
- * given {@link Tuple}.
+ * A {@link TupleIterator} is an {@link AbstractProtectedIterator} that iterates
+ * over a given {@link Tuple}.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.0.0
  */
-public final class TupleIterator<Payload> implements ProtectedIterator<Payload> {
+public final class TupleIterator<Payload> extends AbstractProtectedIterator<Payload> {
 
 	private final Tuple<? extends Payload, ? extends Payload> tuple;
 
 	private int index;
 
 	/**
-	 * Creates a new {@link TupleIterator} that iterates over the given {@link Tuple}.
+	 * Creates a new {@link TupleIterator}.
 	 * 
 	 * @param tuple
 	 *            The {@link Tuple} to iterate over.
@@ -51,7 +51,7 @@ public final class TupleIterator<Payload> implements ProtectedIterator<Payload> 
 	 */
 	public TupleIterator(Tuple<? extends Payload, ? extends Payload> tuple) throws IllegalArgumentException {
 		if (null == tuple) {
-			throw new IllegalArgumentException("tuple is null");
+			throw new IllegalArgumentException("The given tuple is null");
 		}
 		this.tuple = tuple;
 	}
@@ -69,13 +69,8 @@ public final class TupleIterator<Payload> implements ProtectedIterator<Payload> 
 		case 1:
 			return tuple.getSecond();
 		default:
-			throw new NoSuchElementException("TupleIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		}
 	}
 
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from a TupleIterator");
-	}
-	
 }

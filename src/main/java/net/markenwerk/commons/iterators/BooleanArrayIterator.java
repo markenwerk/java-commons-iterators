@@ -24,21 +24,20 @@ package net.markenwerk.commons.iterators;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link BooleanArrayIterator} is a {@link ProtectedIterator} that iterates
+ * A {@link BooleanArrayIterator} is an {@link AbstractProtectedIterator} that iterates
  * over a given {@code boolean[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class BooleanArrayIterator implements ProtectedIterator<Boolean> {
+public final class BooleanArrayIterator extends AbstractProtectedIterator<Boolean> {
 
 	private final boolean[] array;
 
 	private int index;
 
 	/**
-	 * Creates a new {@linkplain BooleanArrayIterator} that iterates over the
-	 * given {@code boolean[]}.
+	 * Creates a new {@linkplain BooleanArrayIterator}.
 	 * 
 	 * @param array
 	 *            The {@code boolean[]} to iterate over.
@@ -48,7 +47,7 @@ public final class BooleanArrayIterator implements ProtectedIterator<Boolean> {
 	 */
 	public BooleanArrayIterator(boolean ... array) throws IllegalArgumentException {
 		if (null == array) {
-			throw new IllegalArgumentException("array is null");
+			throw new IllegalArgumentException("The given array is null");
 		}
 		this.array = array;
 	}
@@ -61,15 +60,11 @@ public final class BooleanArrayIterator implements ProtectedIterator<Boolean> {
 	@Override
 	public Boolean next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("BooleanArrayIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			return array[index++];
 		}
 	}
 
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from a BooleanArrayIterator");
-	}
 
 }

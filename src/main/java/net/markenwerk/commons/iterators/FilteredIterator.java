@@ -48,7 +48,7 @@ public final class FilteredIterator<Payload> implements Iterator<Payload> {
 
 	private final Predicate<? super Payload> predicate;
 
-	private final boolean satisfyingTestResult;
+	private final boolean satisfying;
 
 	private boolean nextPrepared;
 
@@ -59,15 +59,12 @@ public final class FilteredIterator<Payload> implements Iterator<Payload> {
 	private boolean nextCalled;
 
 	/**
-	 * Creates a new {@link FilteredIterator} from the given {@link Iterator}
-	 * and the given {@link Predicate}.
+	 * Creates a new {@link FilteredIterator}.
 	 * 
 	 * @param iterator
-	 *            The {@link Iterator}, around which the new
-	 *            {@link NullFreeIterator} will be wrapped.
+	 *            The {@link Iterator} to iterate over.
 	 * @param predicate
-	 *            The {@link Predicate} to {@link Predicate#test(Object) test}
-	 *            every value yielded by the given {@link Iterator} with.
+	 *            The {@link Predicate} to be used.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Iterator} is {@literal null} or if the
@@ -79,15 +76,12 @@ public final class FilteredIterator<Payload> implements Iterator<Payload> {
 	}
 
 	/**
-	 * Creates a new {@link FilteredIterator} from the given {@link Iterator}
-	 * and the given {@link Predicate}.
+	 * Creates a new {@link FilteredIterator}.
 	 * 
 	 * @param iterator
-	 *            The {@link Iterator}, around which the new
-	 *            {@link NullFreeIterator} will be wrapped.
+	 *            The {@link Iterator} to iterate over.
 	 * @param predicate
-	 *            The {@link Predicate} to {@link Predicate#test(Object) test}
-	 *            every value yielded by the given {@link Iterator} with.
+	 *            The {@link Predicate} to be used.
 	 * @param invertPredicate
 	 *            Whether to invert the test result and yield values that don't
 	 *            satisfy the given {@link Predicate}.
@@ -96,17 +90,16 @@ public final class FilteredIterator<Payload> implements Iterator<Payload> {
 	 *             If the given {@link Iterator} is {@literal null} or if the
 	 *             given {@link Predicate} is {@literal null}.
 	 */
-	public FilteredIterator(Iterator<? extends Payload> iterator, Predicate<? super Payload> predicate, boolean invertPredicate)
-			throws IllegalArgumentException {
+	public FilteredIterator(Iterator<? extends Payload> iterator, Predicate<? super Payload> predicate,
+			boolean invertPredicate) throws IllegalArgumentException {
 		if (null == iterator) {
-			throw new IllegalArgumentException("iterator is null");
+			throw new IllegalArgumentException("The given iterator is null");
+		} else if (null == predicate) {
+			throw new IllegalArgumentException("The given predicate is null");
 		}
 		this.iterator = iterator;
-		if (null == predicate) {
-			throw new IllegalArgumentException("predicate is null");
-		}
 		this.predicate = predicate;
-		satisfyingTestResult = !invertPredicate;
+		this.satisfying = !invertPredicate;
 	}
 
 	@Override
@@ -118,7 +111,7 @@ public final class FilteredIterator<Payload> implements Iterator<Payload> {
 	@Override
 	public Payload next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("FilterungIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			nextCalled = true;
 			nextPrepared = false;
@@ -127,9 +120,9 @@ public final class FilteredIterator<Payload> implements Iterator<Payload> {
 	}
 
 	@Override
-	public void remove() {
+	public void remove() throws IllegalStateException, UnsupportedOperationException{
 		if (!nextCalled) {
-			throw new IllegalStateException("next() hasn't been called yet");
+			throw new IllegalStateException("Method next() hasn't been called yet");
 		} else {
 			iterator.remove();
 		}
@@ -141,7 +134,7 @@ public final class FilteredIterator<Payload> implements Iterator<Payload> {
 			nextDetected = false;
 			while (!nextDetected && iterator.hasNext()) {
 				Payload nextPayload = iterator.next();
-				if (satisfyingTestResult == predicate.test(nextPayload)) {
+				if (satisfying == predicate.test(nextPayload)) {
 					next = nextPayload;
 					nextDetected = true;
 				}

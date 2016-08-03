@@ -24,21 +24,20 @@ package net.markenwerk.commons.iterators;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link LongArrayIterator} is an {@link ProtectedIterator} that iterates
- * over a given {@code long[]}.
+ * A {@link LongArrayIterator} is an {@link AbstractProtectedIterator} that
+ * iterates over a given {@code long[]}.
  *
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class LongArrayIterator implements ProtectedIterator<Long> {
+public final class LongArrayIterator extends AbstractProtectedIterator<Long> {
 
 	private final long[] array;
 
 	private int index;
 
 	/**
-	 * Creates a new {@linkplain LongArrayIterator} that iterates over the given
-	 * {@code long[]}.
+	 * Creates a new {@linkplain LongArrayIterator}.
 	 * 
 	 * @param array
 	 *            The {@code long[]} to iterate over.
@@ -46,9 +45,9 @@ public final class LongArrayIterator implements ProtectedIterator<Long> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code long[]} is {@literal null}.
 	 */
-	public LongArrayIterator(long ... array) throws IllegalArgumentException {
+	public LongArrayIterator(long... array) throws IllegalArgumentException {
 		if (null == array) {
-			throw new IllegalArgumentException("array is null");
+			throw new IllegalArgumentException("The given array is null");
 		}
 		this.array = array;
 	}
@@ -61,14 +60,10 @@ public final class LongArrayIterator implements ProtectedIterator<Long> {
 	@Override
 	public Long next() throws NoSuchElementException {
 		if (!hasNext()) {
-			throw new NoSuchElementException("LongArrayIterator has no further element");
+			throw new NoSuchElementException("This iterator has no next element");
 		} else {
 			return array[index++];
 		}
 	}
 
-	@Override
-	public void remove() throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("Cannot remove from a LongArrayIterator");
-	}
 }
