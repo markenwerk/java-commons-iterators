@@ -31,7 +31,7 @@ import org.w3c.dom.NodeList;
  * iterates over a given {@link NodeList}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
+ * @since 3.0.0
  */
 public final class NodeListIterator extends AbstractProtectedIterator<Node> {
 
