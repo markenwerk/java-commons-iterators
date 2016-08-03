@@ -319,7 +319,7 @@ Iterator<String> tokenizerIterator = new StringTokenizerIterator(tokenizer);
 
 ### Iterating infinitely
 
-This library provides the [`InfiniteIterator`][InfiniteIterator] that takes a [`Provider`][Provider] and infinitely yields provided values.
+This library provides the generic [`InfiniteIterator`][InfiniteIterator] that takes a [`Provider`][Provider] and infinitely yields provided values.
 
 ```java
 Provider<Foo> provider = ...
@@ -406,4 +406,3 @@ Iterator<Integer> countUpIterator = new CountUpIterator(0, 10);
 [NodeList]: https://docs.oracle.com/javase/8/docs/api/index.html?org/w3c/dom/NodeList.html
 [StringTokenizer]: https://docs.oracle.com/javase/8/docs/api/index.html?java/util/StringTokenizer.html
 [UnsupportedOperationException]: https://docs.oracle.com/javase/8/docs/api/index.html?java/lang/UnsupportedOperationException.html
-
