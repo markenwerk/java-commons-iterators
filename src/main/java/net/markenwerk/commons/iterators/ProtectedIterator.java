@@ -26,7 +26,8 @@ import java.util.Iterator;
 /**
  * A {@link ProtectedIterator} is an {@link Iterator} that guarantees that every
  * call to {@linkplain ProtectedIterator#remove()} throws an
- * {@link UnsupportedOperationException} and doesn't alter the underlying data.
+ * {@link UnsupportedOperationException} and doesn't alter the underlying data
+ * structure.
  * 
  * <p>
  * {@link ProtectedIterator} is a marker interface.

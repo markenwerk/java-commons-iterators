@@ -21,49 +21,30 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
 /**
- * A {@link ProtectingIterator} is an {@link AbstractProtectedIterator} that can
- * be wrapped around a given {@link Iterator} and guarantees that every call to
- * {@linkplain ProtectingIterator#remove()} throws an
- * {@link UnsupportedOperationException} and doesn't alter the underlying
- * {@link Iterator}.
+ * A {@link ProtectedReiterator} is a {@link Reiterator} that guarantees that
+ * every call to {@linkplain ProtectedReiterator#remove()} throws an
+ * {@link UnsupportedOperationException} and doesn't alter the underlying data
+ * structure.
+ * 
+ * <p>
+ * {@link ProtectedReiterator} is a marker interface.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.2.0
+ * @since 3.1.1
  */
-public final class ProtectingIterator<Payload> extends AbstractProtectedIterator<Payload> {
-
-	private final Iterator<? extends Payload> iterator;
+public interface ProtectedReiterator<Payload> extends ProtectedIterator<Payload>, Reiterator<Payload> {
 
 	/**
-	 * Creates a new {@link ProtectingIterator}.
+	 * Always throws an {@link UnsupportedOperationException}.
 	 * 
-	 * @param iterator
-	 *            The {@link Iterator} to iterate over.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@link Iterator} is {@literal null}.
+	 * @throws UnsupportedOperationException
+	 *             When trying to remove an element from an
+	 *             {@link ProtectedReiterator}.
 	 */
-	public ProtectingIterator(Iterator<? extends Payload> iterator) throws IllegalArgumentException {
-		if (null == iterator) {
-			throw new IllegalArgumentException("The given iterator is null");
-		}
-		this.iterator = iterator;
-	}
-
 	@Override
-	public boolean hasNext() {
-		return iterator.hasNext();
-	}
-
-	@Override
-	public Payload next() throws NoSuchElementException {
-		return iterator.next();
-	}
+	public void remove() throws UnsupportedOperationException;
 
 }

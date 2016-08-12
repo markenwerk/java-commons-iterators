@@ -25,31 +25,31 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link ProtectingIterator} is an {@link AbstractProtectedIterator} that can
- * be wrapped around a given {@link Iterator} and guarantees that every call to
- * {@linkplain ProtectingIterator#remove()} throws an
+ * A {@link ProtectingReiterator} is an {@link AbstractProtectedIterator} that
+ * can be wrapped around a given {@link Reiterator} and guarantees that every
+ * call to {@linkplain ProtectingReiterator#remove()} throws an
  * {@link UnsupportedOperationException} and doesn't alter the underlying
  * {@link Iterator}.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.2.0
+ * @since 3.1.1
  */
-public final class ProtectingIterator<Payload> extends AbstractProtectedIterator<Payload> {
+public final class ProtectingReiterator<Payload> extends AbstractProtectedReiterator<Payload> {
 
-	private final Iterator<? extends Payload> iterator;
+	private final Reiterator<? extends Payload> iterator;
 
 	/**
-	 * Creates a new {@link ProtectingIterator}.
+	 * Creates a new {@link ProtectingReiterator}.
 	 * 
 	 * @param iterator
-	 *            The {@link Iterator} to iterate over.
+	 *            The {@link Reiterator} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@link Iterator} is {@literal null}.
+	 *             If the given {@link Reiterator} is {@literal null}.
 	 */
-	public ProtectingIterator(Iterator<? extends Payload> iterator) throws IllegalArgumentException {
+	public ProtectingReiterator(Reiterator<? extends Payload> iterator) throws IllegalArgumentException {
 		if (null == iterator) {
 			throw new IllegalArgumentException("The given iterator is null");
 		}
@@ -64,6 +64,16 @@ public final class ProtectingIterator<Payload> extends AbstractProtectedIterator
 	@Override
 	public Payload next() throws NoSuchElementException {
 		return iterator.next();
+	}
+
+	@Override
+	public boolean hasPrevious() {
+		return iterator.hasPrevious();
+	}
+
+	@Override
+	public Payload previous() throws NoSuchElementException {
+		return iterator.previous();
 	}
 
 }

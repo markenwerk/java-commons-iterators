@@ -24,46 +24,40 @@ package net.markenwerk.commons.iterators;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-/**
- * A {@link ProtectingIterator} is an {@link AbstractProtectedIterator} that can
- * be wrapped around a given {@link Iterator} and guarantees that every call to
- * {@linkplain ProtectingIterator#remove()} throws an
- * {@link UnsupportedOperationException} and doesn't alter the underlying
- * {@link Iterator}.
- * 
- * @param <Payload>
- *            The payload type.
- * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.2.0
- */
-public final class ProtectingIterator<Payload> extends AbstractProtectedIterator<Payload> {
-
-	private final Iterator<? extends Payload> iterator;
+public interface Reiterator<Payload> extends Iterator<Payload> {
 
 	/**
-	 * Creates a new {@link ProtectingIterator}.
-	 * 
-	 * @param iterator
-	 *            The {@link Iterator} to iterate over.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@link Iterator} is {@literal null}.
+	 * Returns whether this {@link Reiterator} has a previous element.
+	 *
+	 * @return Whether this {@link Reiterator} has a previous element.
 	 */
-	public ProtectingIterator(Iterator<? extends Payload> iterator) throws IllegalArgumentException {
-		if (null == iterator) {
-			throw new IllegalArgumentException("The given iterator is null");
-		}
-		this.iterator = iterator;
-	}
+	boolean hasPrevious();
 
-	@Override
-	public boolean hasNext() {
-		return iterator.hasNext();
-	}
+	/**
+	 * Returns the previous element.
+	 *
+	 * @return The previous element in the iteration.
+	 * @exception NoSuchElementException
+	 *                If this {@link Reiterator} has no previous element.
+	 */
+	Payload previous() throws NoSuchElementException;
 
+	/**
+	 * Removes the last returned (either by {@link Reiterator#next()} or by
+	 * {@link Reiterator#previous()}) payload value from the underlying data
+	 * structure.
+	 *
+	 * @exception UnsupportedOperationException
+	 *                If this {@link Reiterator} doesn't support element
+	 *                removal.
+	 * @exception IllegalStateException
+	 *                If neither {@link Reiterator#next()} nor
+	 *                {@link Reiterator#previous()} has been called or if
+	 *                {@link Reiterator#remove()} has already been called after
+	 *                the last call to {@link Reiterator#next()} or
+	 *                {@link Reiterator#previous()}.
+	 */
 	@Override
-	public Payload next() throws NoSuchElementException {
-		return iterator.next();
-	}
+	void remove() throws UnsupportedOperationException, IllegalStateException;
 
 }
