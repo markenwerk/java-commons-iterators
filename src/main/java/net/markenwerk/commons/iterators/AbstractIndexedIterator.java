@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, 2016 Torsten Krause, Markenwerk GmbH
+ * Copyright (c) 2016 Torsten Krause, Markenwerk GmbH
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,41 +21,61 @@
  */
 package net.markenwerk.commons.iterators;
 
-/**
- * A {@link LongArrayIterator} is an {@link AbstractIndexedIterator} that
- * iterates over a given {@code long[]}.
- *
- * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
- */
-public final class LongArrayIterator extends AbstractIndexedIterator<Long> {
+import java.util.NoSuchElementException;
 
-	private final long[] array;
+/**
+ * An {@link AbstractIndexedIterator} is a base implementation for
+ * {@link ProtectedReiterator} for indexed data structures.
+ * 
+ * @param <Payload>
+ *           The payload type.
+ * @author Torsten Krause (tk at markenwerk dot net)
+ * @since 3.1.1
+ */
+public abstract class AbstractIndexedIterator<Payload> extends AbstractProtectedReiterator<Payload>
+		implements IndexedIterator<Payload> {
+
+	private int index;
 
 	/**
-	 * Creates a new {@linkplain LongArrayIterator}.
-	 * 
-	 * @param array
-	 *           The {@code long[]} to iterate over.
-	 * 
-	 * @throws IllegalArgumentException
-	 *            If the given {@code long[]} is {@literal null}.
+	 * Creates a new {@link AbstractIndexedIterator}.
 	 */
-	public LongArrayIterator(long... array) throws IllegalArgumentException {
-		if (null == array) {
-			throw new IllegalArgumentException("The given array is null");
+	protected AbstractIndexedIterator() {
+	}
+
+	@Override
+	public final int index() {
+		return index;
+	}
+
+	@Override
+	public final boolean hasNext() {
+		return index < maxIndex();
+	}
+
+	@Override
+	public final Payload next() throws NoSuchElementException {
+		if (!hasNext()) {
+			throw new NoSuchElementException("This iterator has no next element");
+		} else {
+			return get(index++);
 		}
-		this.array = array;
 	}
 
 	@Override
-	public int maxIndex() {
-		return array.length;
+	public final boolean hasPrevious() {
+		return index > 0;
 	}
 
 	@Override
-	public Long get(int index) {
-		return array[index];
+	public final Payload previous() throws NoSuchElementException {
+		if (!hasPrevious()) {
+			throw new NoSuchElementException("This iterator has no previous element");
+		} else {
+			return get(--index);
+		}
 	}
+
+
 
 }

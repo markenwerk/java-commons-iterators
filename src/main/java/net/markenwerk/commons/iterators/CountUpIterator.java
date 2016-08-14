@@ -21,20 +21,18 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.NoSuchElementException;
-
 /**
- * A {@link CountUpIterator} is an {@link AbstractProtectedIterator} that yields
+ * A {@link CountUpIterator} is an {@link AbstractIndexedIterator} that yields
  * all integer value between a given lower bound and a given upper bound.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class CountUpIterator extends AbstractProtectedIterator<Integer> {
+public final class CountUpIterator extends AbstractIndexedIterator<Integer> {
 
-	private final int target;
+	private final int offset;
 
-	private int next;
+	private final int size;
 
 	/**
 	 * Creates a new {@link CountUpIterator}.
@@ -44,27 +42,25 @@ public final class CountUpIterator extends AbstractProtectedIterator<Integer> {
 	 * {@code fromLower > toUpper}, no value will be yielded.
 	 * 
 	 * @param fromLower
-	 *            The lower bound and first value to be yielded.
+	 *           The lower bound and first value to be yielded.
 	 * @param toUpper
-	 *            The upper bound and last value to be yielded.
+	 *           The upper bound and last value to be yielded.
 	 */
 	public CountUpIterator(int fromLower, int toUpper) {
-		next = fromLower;
-		target = toUpper;
+
+		offset = fromLower;
+		size = Math.max(0, toUpper - fromLower + 1);
+
 	}
 
 	@Override
-	public boolean hasNext() {
-		return next <= target;
+	public int maxIndex() {
+		return size;
 	}
 
 	@Override
-	public Integer next() throws NoSuchElementException {
-		if (!hasNext()) {
-			throw new NoSuchElementException("This terator has no next element");
-		} else {
-			return next++;
-		}
+	public Integer get(int index) {
+		return offset + index;
 	}
 
 }

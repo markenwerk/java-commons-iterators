@@ -22,45 +22,39 @@
 package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 /**
- * An {@link OptionalIterator} is an {@link AbstractProtectedIterator} that
+ * An {@link OptionalIterator} is an {@link AbstractIndexedIterator} that
  * behaves like an {@link ObjectIterator} for a given payload object, or like an
  * empty {@link Iterator}, if the given payload object is {@literal null}.
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.5
  */
-public final class OptionalIterator<Payload> extends AbstractProtectedIterator<Payload> {
+public final class OptionalIterator<Payload> extends AbstractIndexedIterator<Payload> {
 
 	private final Payload value;
-
-	private boolean visited;
 
 	/**
 	 * Creates a new {@link OptionalIterator}.
 	 * 
 	 * @param value
-	 *            The object to iterate over.
+	 *           The object to iterate over.
 	 */
 	public OptionalIterator(Payload value) {
 		this.value = value;
 	}
 
-	public boolean hasNext() {
-		return null != value && !visited;
+	@Override
+	public int maxIndex() {
+		return null == value ? 0 : 1;
 	}
 
-	public Payload next() throws NoSuchElementException {
-		if (!hasNext()) {
-			throw new NoSuchElementException("This iterator has no next element");
-		} else {
-			visited = true;
-			return value;
-		}
+	@Override
+	public Payload get(int index) {
+		return value;
 	}
 
 }

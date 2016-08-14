@@ -21,29 +21,25 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.NoSuchElementException;
-
 /**
- * A {@link CharacterArrayIterator} is an {@link AbstractProtectedIterator} that
+ * A {@link CharacterArrayIterator} is an {@link AbstractIndexedIterator} that
  * iterates over a given {@code char[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class CharacterArrayIterator extends AbstractProtectedIterator<Character> {
+public final class CharacterArrayIterator extends AbstractIndexedIterator<Character> {
 
 	private final char[] array;
-
-	private int index;
 
 	/**
 	 * Creates a new {@linkplain CharacterArrayIterator}.
 	 * 
 	 * @param array
-	 *            The {@code char[]} to iterate over.
+	 *           The {@code char[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@code char[]} is {@literal null}.
+	 *            If the given {@code char[]} is {@literal null}.
 	 */
 	public CharacterArrayIterator(char... array) throws IllegalArgumentException {
 		if (null == array) {
@@ -53,17 +49,12 @@ public final class CharacterArrayIterator extends AbstractProtectedIterator<Char
 	}
 
 	@Override
-	public boolean hasNext() {
-		return index < array.length;
+	public int maxIndex() {
+		return array.length;
 	}
 
 	@Override
-	public Character next() throws NoSuchElementException {
-		if (!hasNext()) {
-			throw new NoSuchElementException("This iterator has no next element");
-		} else {
-			return array[index++];
-		}
+	public Character get(int index) {
+		return array[index];
 	}
-
 }

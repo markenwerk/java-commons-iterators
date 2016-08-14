@@ -21,46 +21,37 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.NoSuchElementException;
-
 /**
- * An {@link ObjectIterator} is an {@link AbstractProtectedIterator} that
- * iterates over a single payload object.
+ * An {@link ObjectIterator} is an {@link AbstractIndexedIterator} that iterates
+ * over a single payload object.
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.5
  */
-public final class ObjectIterator<Payload> extends AbstractProtectedIterator<Payload> {
+public final class ObjectIterator<Payload> extends AbstractIndexedIterator<Payload> {
 
 	private final Payload value;
-
-	private boolean visited;
 
 	/**
 	 * Creates a new {@link ObjectIterator}.
 	 * 
 	 * @param value
-	 *            The object to iterate over.
+	 *           The object to iterate over.
 	 */
 	public ObjectIterator(Payload value) {
 		this.value = value;
 	}
 
 	@Override
-	public boolean hasNext() {
-		return !visited;
+	public int maxIndex() {
+		return 1;
 	}
 
 	@Override
-	public Payload next() throws NoSuchElementException {
-		if (visited) {
-			throw new NoSuchElementException("This iterator has no next element");
-		} else {
-			visited = true;
-			return value;
-		}
+	public Payload get(int index) {
+		return value;
 	}
 
 }

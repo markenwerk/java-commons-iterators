@@ -21,33 +21,29 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.NoSuchElementException;
-
 import net.markenwerk.commons.datastructures.Pair;
 
 /**
- * A {@link PairIterator} is an {@link AbstractProtectedIterator} that iterates
+ * A {@link PairIterator} is an {@link AbstractIndexedIterator} that iterates
  * over a given {@link Pair}.
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.0.0
  */
-public final class PairIterator<Payload> extends AbstractProtectedIterator<Payload> {
+public final class PairIterator<Payload> extends AbstractIndexedIterator<Payload> {
 
 	private final Pair<? extends Payload> pair;
-
-	private int index;
 
 	/**
 	 * Creates a new {@link PairIterator}.
 	 * 
 	 * @param pair
-	 *            The {@link Pair} to iterate over.
+	 *           The {@link Pair} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@link Pair} is {@literal null}.
+	 *            If the given {@link Pair} is {@literal null}.
 	 */
 	public PairIterator(Pair<? extends Payload> pair) throws IllegalArgumentException {
 		if (null == pair) {
@@ -57,19 +53,19 @@ public final class PairIterator<Payload> extends AbstractProtectedIterator<Paylo
 	}
 
 	@Override
-	public boolean hasNext() {
-		return index < 2;
+	public int maxIndex() {
+		return 2;
 	}
 
 	@Override
-	public Payload next() throws NoSuchElementException {
-		switch (index++) {
+	public Payload get(int index) {
+		switch (index) {
 		case 0:
 			return pair.getFirst();
 		case 1:
 			return pair.getSecond();
 		default:
-			throw new NoSuchElementException("This iterator has no next element");
+			throw new AssertionError("Encountered unexpected index: " + index);
 		}
 	}
 

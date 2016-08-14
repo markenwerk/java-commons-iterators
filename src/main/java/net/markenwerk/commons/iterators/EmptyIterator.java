@@ -21,10 +21,8 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.NoSuchElementException;
-
 /**
- * An {@link EmptyIterator} is an {@link AbstractProtectedIterator} that doesn't
+ * An {@link EmptyIterator} is an {@link AbstractIndexedIterator} that doesn't
  * yield any values.
  * 
  * <p>
@@ -32,11 +30,11 @@ import java.util.NoSuchElementException;
  * calling {@link EmptyIterator#next()} always returns {@literal null}.
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class EmptyIterator<Payload> extends AbstractProtectedIterator<Payload> {
+public final class EmptyIterator<Payload> extends AbstractIndexedIterator<Payload> {
 
 	/**
 	 * Creates a new {@link EmptyIterator}.
@@ -45,13 +43,13 @@ public final class EmptyIterator<Payload> extends AbstractProtectedIterator<Payl
 	}
 
 	@Override
-	public boolean hasNext() {
-		return false;
+	public int maxIndex() {
+		return 0;
 	}
 
 	@Override
-	public Payload next() throws NoSuchElementException {
-		throw new NoSuchElementException("This iterator has no next element");
+	public Payload get(int index) {
+		throw new AssertionError("Encountered unexpected index: " + 0);
 	}
 
 }
