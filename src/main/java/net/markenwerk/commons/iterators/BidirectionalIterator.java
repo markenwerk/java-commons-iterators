@@ -24,12 +24,23 @@ package net.markenwerk.commons.iterators;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public interface Reiterator<Payload> extends Iterator<Payload> {
+/**
+ * A {@link BidirectionalIterator} is an {@link Iterator} that can move in two
+ * directions.
+ * 
+ * @param <Payload>
+ *            The payload type.
+ * @author Torsten Krause (tk at markenwerk dot net)
+ * @since 3.1.1
+ */
+public interface BidirectionalIterator<Payload> extends Iterator<Payload> {
 
 	/**
-	 * Returns whether this {@link Reiterator} has a previous element.
+	 * Returns whether this {@link BidirectionalIterator} has a previous
+	 * element.
 	 *
-	 * @return Whether this {@link Reiterator} has a previous element.
+	 * @return Whether this {@link BidirectionalIterator} has a previous
+	 *         element.
 	 */
 	boolean hasPrevious();
 
@@ -38,24 +49,26 @@ public interface Reiterator<Payload> extends Iterator<Payload> {
 	 *
 	 * @return The previous element in the iteration.
 	 * @exception NoSuchElementException
-	 *                If this {@link Reiterator} has no previous element.
+	 *                If this {@link BidirectionalIterator} has no previous
+	 *                element.
 	 */
 	Payload previous() throws NoSuchElementException;
 
 	/**
-	 * Removes the last returned (either by {@link Reiterator#next()} or by
-	 * {@link Reiterator#previous()}) payload value from the underlying data
-	 * structure.
+	 * Removes the last returned (either by {@link BidirectionalIterator#next()}
+	 * or by {@link BidirectionalIterator#previous()}) payload value from the
+	 * underlying data structure.
 	 *
 	 * @exception UnsupportedOperationException
-	 *                If this {@link Reiterator} doesn't support element
-	 *                removal.
+	 *                If this {@link BidirectionalIterator} doesn't support
+	 *                element removal.
 	 * @exception IllegalStateException
-	 *                If neither {@link Reiterator#next()} nor
-	 *                {@link Reiterator#previous()} has been called or if
-	 *                {@link Reiterator#remove()} has already been called after
-	 *                the last call to {@link Reiterator#next()} or
-	 *                {@link Reiterator#previous()}.
+	 *                If neither {@link BidirectionalIterator#next()} nor
+	 *                {@link BidirectionalIterator#previous()} has been called
+	 *                or if {@link BidirectionalIterator#remove()} has already
+	 *                been called after the last call to
+	 *                {@link BidirectionalIterator#next()} or
+	 *                {@link BidirectionalIterator#previous()}.
 	 */
 	@Override
 	void remove() throws UnsupportedOperationException, IllegalStateException;

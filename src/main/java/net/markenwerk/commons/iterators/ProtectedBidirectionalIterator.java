@@ -22,23 +22,31 @@
 package net.markenwerk.commons.iterators;
 
 /**
- * An {@link AbstractProtectedReiterator} is a base implementation for
- * {@link ProtectedReiterator} that guarantees that every call to
- * {@linkplain AbstractProtectedReiterator#remove()} throws an
- * {@link UnsupportedOperationException}.
+ * A {@link ProtectedBidirectionalIterator} is a {@link BidirectionalIterator}
+ * that guarantees that every call to
+ * {@linkplain ProtectedBidirectionalIterator#remove()} throws an
+ * {@link UnsupportedOperationException} and doesn't alter the underlying data
+ * structure.
+ * 
+ * <p>
+ * {@link ProtectedBidirectionalIterator} is a marker interface.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.1.1
  */
-public abstract class AbstractProtectedReiterator<Payload> extends AbstractProtectedIterator<Payload> implements
-		ProtectedReiterator<Payload> {
+public interface ProtectedBidirectionalIterator<Payload> extends ProtectedIterator<Payload>,
+		BidirectionalIterator<Payload> {
 
 	/**
-	 * Creates a new {@link AbstractProtectedReiterator}.
+	 * Always throws an {@link UnsupportedOperationException}.
+	 * 
+	 * @throws UnsupportedOperationException
+	 *             When trying to remove an element from an
+	 *             {@link ProtectedBidirectionalIterator}.
 	 */
-	protected AbstractProtectedReiterator() {
-	}
+	@Override
+	public void remove() throws UnsupportedOperationException;
 
 }

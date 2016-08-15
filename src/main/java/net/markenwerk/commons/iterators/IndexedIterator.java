@@ -21,7 +21,17 @@
  */
 package net.markenwerk.commons.iterators;
 
-public interface IndexedIterator<Payload> extends ProtectedReiterator<Payload> {
+/**
+ * An {@link IndexedIterator} is a {@link ProtectedBidirectionalIterator} for
+ * indexed random access data structures with a fixed structure like arrays or
+ * tuples.
+ * 
+ * @param <Payload>
+ *            The payload type.
+ * @author Torsten Krause (tk at markenwerk dot net)
+ * @since 3.1.1
+ */
+public interface IndexedIterator<Payload> extends ProtectedBidirectionalIterator<Payload> {
 
 	/**
 	 * Returns the maximum index of this {@link IndexedIterator}.
@@ -36,16 +46,5 @@ public interface IndexedIterator<Payload> extends ProtectedReiterator<Payload> {
 	 * @return The current index of this {@link IndexedIterator}.
 	 */
 	public int index();
-
-	/**
-	 * Returns the payload value at the given index.
-	 * 
-	 * @param index
-	 *           The index to be used, which is guaranteed to be non-negative and
-	 *           smaller then the {@link IndexedIterator#maxIndex() maximum
-	 *           index}.
-	 * @return The payload value at the given index.
-	 */
-	public Payload get(int index);
 
 }

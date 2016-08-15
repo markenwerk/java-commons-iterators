@@ -25,9 +25,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A {@link ProtectingReiterator} is an {@link AbstractProtectedIterator} that
- * can be wrapped around a given {@link Reiterator} and guarantees that every
- * call to {@linkplain ProtectingReiterator#remove()} throws an
+ * A {@link ProtectingBidirectionalIterator} is an
+ * {@link AbstractProtectedIterator} that can be wrapped around a given
+ * {@link BidirectionalIterator} and guarantees that every call to
+ * {@linkplain ProtectingBidirectionalIterator#remove()} throws an
  * {@link UnsupportedOperationException} and doesn't alter the underlying
  * {@link Iterator}.
  * 
@@ -36,20 +37,22 @@ import java.util.NoSuchElementException;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.1.1
  */
-public final class ProtectingReiterator<Payload> extends AbstractProtectedReiterator<Payload> {
+public final class ProtectingBidirectionalIterator<Payload> extends AbstractProtectedBidirectionalIterator<Payload> {
 
-	private final Reiterator<? extends Payload> iterator;
+	private final BidirectionalIterator<? extends Payload> iterator;
 
 	/**
-	 * Creates a new {@link ProtectingReiterator}.
+	 * Creates a new {@link ProtectingBidirectionalIterator}.
 	 * 
 	 * @param iterator
-	 *            The {@link Reiterator} to iterate over.
+	 *            The {@link BidirectionalIterator} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@link Reiterator} is {@literal null}.
+	 *             If the given {@link BidirectionalIterator} is {@literal null}
+	 *             .
 	 */
-	public ProtectingReiterator(Reiterator<? extends Payload> iterator) throws IllegalArgumentException {
+	public ProtectingBidirectionalIterator(BidirectionalIterator<? extends Payload> iterator)
+			throws IllegalArgumentException {
 		if (null == iterator) {
 			throw new IllegalArgumentException("The given iterator is null");
 		}

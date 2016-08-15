@@ -21,34 +21,24 @@
  */
 package net.markenwerk.commons.iterators;
 
-public final class ReversingIterator<Payload> extends AbstractIndexedIterator<Payload> {
-
-	private final IndexedIterator<? extends Payload> iterator;
+/**
+ * An {@link AbstractProtectedBidirectionalIterator} is an abstract base implementation for
+ * {@link ProtectedBidirectionalIterator} implementations that guarantees that every call
+ * to {@linkplain AbstractProtectedBidirectionalIterator#remove()} throws an
+ * {@link UnsupportedOperationException}.
+ * 
+ * @param <Payload>
+ *            The payload type.
+ * @author Torsten Krause (tk at markenwerk dot net)
+ * @since 3.1.1
+ */
+public abstract class AbstractProtectedBidirectionalIterator<Payload> extends AbstractProtectedIterator<Payload> implements
+		ProtectedBidirectionalIterator<Payload> {
 
 	/**
-	 * Creates a new {@link ReversingIterator}.
-	 * 
-	 * @param iterator
-	 *           The {@link Reiterator} to iterate over.
-	 * 
-	 * @throws IllegalArgumentException
-	 *            If the given {@link Reiterator} is {@literal null}.
+	 * Creates a new {@link AbstractProtectedBidirectionalIterator}.
 	 */
-	public ReversingIterator(IndexedIterator<? extends Payload> iterator) throws IllegalArgumentException {
-		if (null == iterator) {
-			throw new IllegalArgumentException("The given iterator is null");
-		}
-		this.iterator = iterator;
-	}
-
-	@Override
-	public int maxIndex() {
-		return iterator.maxIndex();
-	}
-
-	@Override
-	public Payload get(int index) {
-		return iterator.get(maxIndex() - index);
+	protected AbstractProtectedBidirectionalIterator() {
 	}
 
 }

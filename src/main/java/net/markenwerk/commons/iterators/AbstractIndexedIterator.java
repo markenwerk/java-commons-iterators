@@ -24,15 +24,16 @@ package net.markenwerk.commons.iterators;
 import java.util.NoSuchElementException;
 
 /**
- * An {@link AbstractIndexedIterator} is a base implementation for
- * {@link ProtectedReiterator} for indexed data structures.
+ * An {@link AbstractIndexedIterator} is an abstract base implementation for
+ * {@link ProtectedBidirectionalIterator} implementations that holds the current
+ * index and implements the index-related methods.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.1.1
  */
-public abstract class AbstractIndexedIterator<Payload> extends AbstractProtectedReiterator<Payload>
+public abstract class AbstractIndexedIterator<Payload> extends AbstractProtectedBidirectionalIterator<Payload>
 		implements IndexedIterator<Payload> {
 
 	private int index;
@@ -76,6 +77,15 @@ public abstract class AbstractIndexedIterator<Payload> extends AbstractProtected
 		}
 	}
 
-
+	/**
+	 * Returns the payload value at the given index.
+	 * 
+	 * @param index
+	 *            The index to be used, which is guaranteed to be non-negative
+	 *            and smaller then the {@link IndexedIterator#maxIndex() maximum
+	 *            index}.
+	 * @return The payload value at the given index.
+	 */
+	protected abstract Payload get(int index);
 
 }

@@ -21,30 +21,62 @@
  */
 package net.markenwerk.commons.iterators;
 
+import java.util.NoSuchElementException;
+
 /**
- * A {@link ProtectedReiterator} is a {@link Reiterator} that guarantees that
- * every call to {@linkplain ProtectedReiterator#remove()} throws an
- * {@link UnsupportedOperationException} and doesn't alter the underlying data
- * structure.
- * 
- * <p>
- * {@link ProtectedReiterator} is a marker interface.
+ * A {@link ReversedIterator} is a {@link BidirectionalIterator} that can be
+ * wrapped around a given {@link BidirectionalIterator} and reverses the
+ * directions of every directional method.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.1.1
  */
-public interface ProtectedReiterator<Payload> extends ProtectedIterator<Payload>, Reiterator<Payload> {
+public final class ReversedIterator<Payload> implements BidirectionalIterator<Payload> {
+
+	private final BidirectionalIterator<? extends Payload> iterator;
 
 	/**
-	 * Always throws an {@link UnsupportedOperationException}.
+	 * Creates a new {@link ReversedIterator}.
 	 * 
-	 * @throws UnsupportedOperationException
-	 *             When trying to remove an element from an
-	 *             {@link ProtectedReiterator}.
+	 * @param iterator
+	 *            The {@link BidirectionalIterator} to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@link BidirectionalIterator} is {@literal null}
+	 *             .
 	 */
+	public ReversedIterator(BidirectionalIterator<? extends Payload> iterator) throws IllegalArgumentException {
+		if (null == iterator) {
+			throw new IllegalArgumentException("The given iterator is null");
+		}
+		this.iterator = iterator;
+	}
+
 	@Override
-	public void remove() throws UnsupportedOperationException;
+	public boolean hasNext() {
+		return iterator.hasPrevious();
+	}
+
+	@Override
+	public Payload next() {
+		return iterator.previous();
+	}
+
+	@Override
+	public boolean hasPrevious() {
+		return iterator.hasNext();
+	}
+
+	@Override
+	public Payload previous() throws NoSuchElementException {
+		return iterator.next();
+	}
+
+	@Override
+	public void remove() throws UnsupportedOperationException, IllegalStateException {
+		iterator.remove();
+	}
 
 }

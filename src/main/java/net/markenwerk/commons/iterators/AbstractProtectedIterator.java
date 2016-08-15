@@ -22,8 +22,8 @@
 package net.markenwerk.commons.iterators;
 
 /**
- * An {@link AbstractProtectedIterator} is a base implementation for
- * {@link ProtectedIterator} that guarantees that every call to
+ * An {@link AbstractProtectedIterator} is an abstract base implementation for
+ * {@link ProtectedIterator} implementations that guarantees that every call to
  * {@linkplain AbstractProtectedIterator#remove()} throws an
  * {@link UnsupportedOperationException}.
  * 
