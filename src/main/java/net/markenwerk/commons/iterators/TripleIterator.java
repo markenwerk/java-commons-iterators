@@ -21,33 +21,29 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.NoSuchElementException;
-
 import net.markenwerk.commons.datastructures.Triple;
 
 /**
- * A {@link TripleIterator} is an {@link AbstractProtectedIterator} that
- * iterates over a given {@link Triple}.
+ * A {@link TripleIterator} is an {@link AbstractIndexedIterator} that iterates
+ * over a given {@link Triple}.
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.0.0
  */
-public final class TripleIterator<Payload> extends AbstractProtectedIterator<Payload> {
+public final class TripleIterator<Payload> extends AbstractIndexedIterator<Payload> {
 
 	private final Triple<? extends Payload, ? extends Payload, ? extends Payload> triple;
-
-	private int index;
 
 	/**
 	 * Creates a new {@link TripleIterator}.
 	 * 
 	 * @param triple
-	 *            The {@link Triple} to iterate over.
+	 *           The {@link Triple} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@link Triple} is {@literal null}.
+	 *            If the given {@link Triple} is {@literal null}.
 	 */
 	public TripleIterator(Triple<? extends Payload, ? extends Payload, ? extends Payload> triple)
 			throws IllegalArgumentException {
@@ -58,13 +54,13 @@ public final class TripleIterator<Payload> extends AbstractProtectedIterator<Pay
 	}
 
 	@Override
-	public boolean hasNext() {
-		return index < 3;
+	public int maxIndex() {
+		return 3;
 	}
 
 	@Override
-	public Payload next() throws NoSuchElementException {
-		switch (index++) {
+	public Payload get(int index) {
+		switch (index) {
 		case 0:
 			return triple.getFirst();
 		case 1:
@@ -72,7 +68,7 @@ public final class TripleIterator<Payload> extends AbstractProtectedIterator<Pay
 		case 2:
 			return triple.getThird();
 		default:
-			throw new NoSuchElementException("This iterator has no next element");
+			throw new AssertionError("Encountered unexpected index: " + index);
 		}
 	}
 

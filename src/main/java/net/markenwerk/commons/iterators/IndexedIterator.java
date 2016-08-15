@@ -21,65 +21,31 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
-import net.markenwerk.commons.datastructures.Entry;
-
-/**
- * An {@link IndexedIterator} is an {@link Iterator} that can be wrapped around
- * a given {@link Iterator} and every value yielded by the given
- * {@link Iterator} as an {@link Entry} whose key is the index of the yielded
- * element.
- * 
- * @param <Payload>
- *            The payload type.
- * @author Torsten Krause (tk at markenwerk dot net)
- * @since 2.2.0
- */
-public final class IndexedIterator<Payload> implements Iterator<Entry<Integer, Payload>> {
-
-	private final Iterator<? extends Payload> iterator;
-
-	private int index = -1;
+public interface IndexedIterator<Payload> extends ProtectedReiterator<Payload> {
 
 	/**
-	 * Creates a new {@link IndexedIterator}.
+	 * Returns the maximum index of this {@link IndexedIterator}.
 	 * 
-	 * @param iterator
-	 *            The {@link Iterator} to iterate over.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@link Iterator} is {@literal null}.
+	 * @return The maximum index of this {@link IndexedIterator}.
 	 */
-	public IndexedIterator(Iterator<? extends Payload> iterator) throws IllegalArgumentException {
-		if (null == iterator) {
-			throw new IllegalArgumentException("The given iterator is null");
-		}
-		this.iterator = iterator;
-	}
+	public int maxIndex();
 
-	@Override
-	public boolean hasNext() {
-		return iterator.hasNext();
-	}
+	/**
+	 * Returns the current index of this {@link IndexedIterator}.
+	 * 
+	 * @return The current index of this {@link IndexedIterator}.
+	 */
+	public int index();
 
-	@Override
-	public Entry<Integer, Payload> next() throws NoSuchElementException {
-		if (!hasNext()) {
-			throw new NoSuchElementException("This terator has no next element");
-		} else {
-			return new Entry<Integer, Payload>(++index, iterator.next());
-		}
-	}
-
-	@Override
-	public void remove() throws IllegalStateException, UnsupportedOperationException {
-		if (-1 == index) {
-			throw new IllegalStateException("Method next() hasn't been called yet");
-		} else {
-			iterator.remove();
-		}
-	}
+	/**
+	 * Returns the payload value at the given index.
+	 * 
+	 * @param index
+	 *           The index to be used, which is guaranteed to be non-negative and
+	 *           smaller then the {@link IndexedIterator#maxIndex() maximum
+	 *           index}.
+	 * @return The payload value at the given index.
+	 */
+	public Payload get(int index);
 
 }

@@ -21,33 +21,29 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.NoSuchElementException;
-
 /**
- * An {@link ArrayIterator} is an {@link AbstractProtectedIterator} that iterates over a
- * given payload array.
+ * An {@link ArrayIterator} is an {@link AbstractIndexedIterator} that iterates
+ * over a given payload array.
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class ArrayIterator<Payload> extends AbstractProtectedIterator<Payload> {
+public final class ArrayIterator<Payload> extends AbstractIndexedIterator<Payload> {
 
 	private final Payload[] array;
-
-	private int index;
 
 	/**
 	 * Creates a new {@link ArrayIterator}.
 	 * 
 	 * @param array
-	 *            The payload array to iterate over.
+	 *           The payload array to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given payload array is {@literal null}.
+	 *            If the given payload array is {@literal null}.
 	 */
-	public ArrayIterator(Payload ... array) throws IllegalArgumentException {
+	public ArrayIterator(Payload... array) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("The given array is null");
 		}
@@ -55,18 +51,13 @@ public final class ArrayIterator<Payload> extends AbstractProtectedIterator<Payl
 	}
 
 	@Override
-	public boolean hasNext() {
-		return index < array.length;
+	public int maxIndex() {
+		return array.length;
 	}
 
 	@Override
-	public Payload next() throws NoSuchElementException {
-		if (!hasNext()) {
-			throw new NoSuchElementException("This iterator has no next element");
-		} else {
-			return array[index++];
-		}
+	public Payload get(int index) {
+		return array[index];
 	}
-
 
 }

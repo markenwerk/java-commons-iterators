@@ -21,32 +21,28 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.NoSuchElementException;
-
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * A {@link NodeListIterator} is a {@link AbstractProtectedIterator} that
- * iterates over a given {@link NodeList}.
+ * A {@link NodeListIterator} is a {@link AbstractIndexedIterator} that iterates
+ * over a given {@link NodeList}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.0.0
  */
-public final class NodeListIterator extends AbstractProtectedIterator<Node> {
+public final class NodeListIterator extends AbstractIndexedIterator<Node> {
 
 	private final NodeList nodeList;
-
-	private int index;
 
 	/**
 	 * Creates a new {@link NodeListIterator}.
 	 * 
 	 * @param nodeList
-	 *            The {@link NodeList} to iterate over.
+	 *           The {@link NodeList} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@link NodeList} is {@literal null}.
+	 *            If the given {@link NodeList} is {@literal null}.
 	 */
 	public NodeListIterator(NodeList nodeList) throws IllegalArgumentException {
 		if (null == nodeList) {
@@ -56,17 +52,13 @@ public final class NodeListIterator extends AbstractProtectedIterator<Node> {
 	}
 
 	@Override
-	public boolean hasNext() {
-		return index < nodeList.getLength();
+	public int maxIndex() {
+		return nodeList.getLength();
 	}
 
 	@Override
-	public Node next() throws NoSuchElementException {
-		if (!hasNext()) {
-			throw new NoSuchElementException("This iterator has no next element");
-		} else {
-			return nodeList.item(index++);
-		}
+	public Node get(int index) {
+		return nodeList.item(index);
 	}
 
 }

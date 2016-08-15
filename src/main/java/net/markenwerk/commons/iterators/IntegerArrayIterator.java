@@ -21,29 +21,25 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.NoSuchElementException;
-
 /**
- * An {@link IntegerArrayIterator} is an {@link AbstractProtectedIterator} that
+ * An {@link IntegerArrayIterator} is an {@link AbstractIndexedIterator} that
  * iterates over a given {@code int[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class IntegerArrayIterator extends AbstractProtectedIterator<Integer> {
+public final class IntegerArrayIterator extends AbstractIndexedIterator<Integer> {
 
 	private final int[] array;
-
-	private int index;
 
 	/**
 	 * Creates a new {@linkplain IntegerArrayIterator}.
 	 * 
 	 * @param array
-	 *            The {@code int[]} to iterate over.
+	 *           The {@code int[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@code int[]} is {@literal null}.
+	 *            If the given {@code int[]} is {@literal null}.
 	 */
 	public IntegerArrayIterator(int... array) throws IllegalArgumentException {
 		if (null == array) {
@@ -53,17 +49,13 @@ public final class IntegerArrayIterator extends AbstractProtectedIterator<Intege
 	}
 
 	@Override
-	public boolean hasNext() {
-		return index < array.length;
+	public int maxIndex() {
+		return array.length;
 	}
 
 	@Override
-	public Integer next() throws NoSuchElementException {
-		if (!hasNext()) {
-			throw new NoSuchElementException("This iterator has no next element");
-		} else {
-			return array[index++];
-		}
+	public Integer get(int index) {
+		return array[index];
 	}
 
 }

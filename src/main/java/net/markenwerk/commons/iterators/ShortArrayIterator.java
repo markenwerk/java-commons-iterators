@@ -21,29 +21,25 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.NoSuchElementException;
-
 /**
- * A {@link ShortArrayIterator} is an {@link AbstractProtectedIterator} that
+ * A {@link ShortArrayIterator} is an {@link AbstractIndexedIterator} that
  * iterates over a given {@code short[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class ShortArrayIterator extends AbstractProtectedIterator<Short> {
+public final class ShortArrayIterator extends AbstractIndexedIterator<Short> {
 
 	private final short[] array;
-
-	private int index;
 
 	/**
 	 * Creates a new {@linkplain ShortArrayIterator}.
 	 * 
 	 * @param array
-	 *            The {@code short[]} to iterate over.
+	 *           The {@code short[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@code short[]} is {@literal null}.
+	 *            If the given {@code short[]} is {@literal null}.
 	 */
 	public ShortArrayIterator(short... array) throws IllegalArgumentException {
 		if (null == array) {
@@ -53,17 +49,13 @@ public final class ShortArrayIterator extends AbstractProtectedIterator<Short> {
 	}
 
 	@Override
-	public boolean hasNext() {
-		return index < array.length;
+	public int maxIndex() {
+		return array.length;
 	}
 
 	@Override
-	public Short next() throws NoSuchElementException {
-		if (!hasNext()) {
-			throw new NoSuchElementException("This iterator has no next element");
-		} else {
-			return array[index++];
-		}
+	public Short get(int index) {
+		return array[index];
 	}
 
 }

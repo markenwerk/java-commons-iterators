@@ -21,33 +21,29 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.NoSuchElementException;
-
 import net.markenwerk.commons.datastructures.Tuple;
 
 /**
- * A {@link TupleIterator} is an {@link AbstractProtectedIterator} that iterates
+ * A {@link TupleIterator} is an {@link AbstractIndexedIterator} that iterates
  * over a given {@link Tuple}.
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.0.0
  */
-public final class TupleIterator<Payload> extends AbstractProtectedIterator<Payload> {
+public final class TupleIterator<Payload> extends AbstractIndexedIterator<Payload> {
 
 	private final Tuple<? extends Payload, ? extends Payload> tuple;
-
-	private int index;
 
 	/**
 	 * Creates a new {@link TupleIterator}.
 	 * 
 	 * @param tuple
-	 *            The {@link Tuple} to iterate over.
+	 *           The {@link Tuple} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@link Tuple} is {@literal null}.
+	 *            If the given {@link Tuple} is {@literal null}.
 	 */
 	public TupleIterator(Tuple<? extends Payload, ? extends Payload> tuple) throws IllegalArgumentException {
 		if (null == tuple) {
@@ -57,19 +53,19 @@ public final class TupleIterator<Payload> extends AbstractProtectedIterator<Payl
 	}
 
 	@Override
-	public boolean hasNext() {
-		return index < 2;
+	public int maxIndex() {
+		return 2;
 	}
 
 	@Override
-	public Payload next() throws NoSuchElementException {
-		switch (index++) {
+	public Payload get(int index) {
+		switch (index) {
 		case 0:
 			return tuple.getFirst();
 		case 1:
 			return tuple.getSecond();
 		default:
-			throw new NoSuchElementException("This iterator has no next element");
+			throw new AssertionError("Encountered unexpected index: " + index);
 		}
 	}
 

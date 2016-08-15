@@ -21,31 +21,27 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.NoSuchElementException;
-
 /**
- * A {@link BooleanArrayIterator} is an {@link AbstractProtectedIterator} that iterates
- * over a given {@code boolean[]}.
+ * A {@link BooleanArrayIterator} is an {@link AbstractIndexedIterator} that
+ * iterates over a given {@code boolean[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class BooleanArrayIterator extends AbstractProtectedIterator<Boolean> {
+public final class BooleanArrayIterator extends AbstractIndexedIterator<Boolean> {
 
 	private final boolean[] array;
-
-	private int index;
 
 	/**
 	 * Creates a new {@linkplain BooleanArrayIterator}.
 	 * 
 	 * @param array
-	 *            The {@code boolean[]} to iterate over.
+	 *           The {@code boolean[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@code boolean[]} is {@literal null}.
+	 *            If the given {@code boolean[]} is {@literal null}.
 	 */
-	public BooleanArrayIterator(boolean ... array) throws IllegalArgumentException {
+	public BooleanArrayIterator(boolean... array) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("The given array is null");
 		}
@@ -53,18 +49,13 @@ public final class BooleanArrayIterator extends AbstractProtectedIterator<Boolea
 	}
 
 	@Override
-	public boolean hasNext() {
-		return index < array.length;
+	public int maxIndex() {
+		return array.length;
 	}
 
 	@Override
-	public Boolean next() throws NoSuchElementException {
-		if (!hasNext()) {
-			throw new NoSuchElementException("This iterator has no next element");
-		} else {
-			return array[index++];
-		}
+	public Boolean get(int index) {
+		return array[index];
 	}
-
 
 }

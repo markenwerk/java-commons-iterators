@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, 2016 Torsten Krause, Markenwerk GmbH
+ * Copyright (c) 2016 Torsten Krause, Markenwerk GmbH
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,41 +21,34 @@
  */
 package net.markenwerk.commons.iterators;
 
-/**
- * A {@link LongArrayIterator} is an {@link AbstractIndexedIterator} that
- * iterates over a given {@code long[]}.
- *
- * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
- */
-public final class LongArrayIterator extends AbstractIndexedIterator<Long> {
+public final class ReversingIterator<Payload> extends AbstractIndexedIterator<Payload> {
 
-	private final long[] array;
+	private final IndexedIterator<? extends Payload> iterator;
 
 	/**
-	 * Creates a new {@linkplain LongArrayIterator}.
+	 * Creates a new {@link ReversingIterator}.
 	 * 
-	 * @param array
-	 *           The {@code long[]} to iterate over.
+	 * @param iterator
+	 *           The {@link Reiterator} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code long[]} is {@literal null}.
+	 *            If the given {@link Reiterator} is {@literal null}.
 	 */
-	public LongArrayIterator(long... array) throws IllegalArgumentException {
-		if (null == array) {
-			throw new IllegalArgumentException("The given array is null");
+	public ReversingIterator(IndexedIterator<? extends Payload> iterator) throws IllegalArgumentException {
+		if (null == iterator) {
+			throw new IllegalArgumentException("The given iterator is null");
 		}
-		this.array = array;
+		this.iterator = iterator;
 	}
 
 	@Override
 	public int maxIndex() {
-		return array.length;
+		return iterator.maxIndex();
 	}
 
 	@Override
-	public Long get(int index) {
-		return array[index];
+	public Payload get(int index) {
+		return iterator.get(maxIndex() - index);
 	}
 
 }

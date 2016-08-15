@@ -21,29 +21,25 @@
  */
 package net.markenwerk.commons.iterators;
 
-import java.util.NoSuchElementException;
-
 /**
- * A {@link FloatArrayIterator} is an {@link AbstractProtectedIterator} that
+ * A {@link FloatArrayIterator} is an {@link AbstractIndexedIterator} that
  * iterates over a given {@code float[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class FloatArrayIterator extends AbstractProtectedIterator<Float> {
+public final class FloatArrayIterator extends AbstractIndexedIterator<Float> {
 
 	private final float[] array;
-
-	private int index;
 
 	/**
 	 * Creates a new {@linkplain FloatArrayIterator}.
 	 * 
 	 * @param array
-	 *            The {@code float[]} to iterate over.
+	 *           The {@code float[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@code float[]} is {@literal null}.
+	 *            If the given {@code float[]} is {@literal null}.
 	 */
 	public FloatArrayIterator(float... array) throws IllegalArgumentException {
 		if (null == array) {
@@ -53,17 +49,12 @@ public final class FloatArrayIterator extends AbstractProtectedIterator<Float> {
 	}
 
 	@Override
-	public boolean hasNext() {
-		return index < array.length;
+	public int maxIndex() {
+		return array.length;
 	}
 
 	@Override
-	public Float next() throws NoSuchElementException {
-		if (!hasNext()) {
-			throw new NoSuchElementException("This iterator has no next element");
-		} else {
-			return array[index++];
-		}
+	public Float get(int index) {
+		return array[index];
 	}
-
 }
