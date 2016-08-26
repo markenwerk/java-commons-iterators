@@ -28,7 +28,7 @@ import net.markenwerk.commons.datastructures.Tuple;
  * over a given {@link Tuple}.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.0.0
  */
@@ -40,21 +40,17 @@ public final class TupleIterator<Payload> extends AbstractIndexedIterator<Payloa
 	 * Creates a new {@link TupleIterator}.
 	 * 
 	 * @param tuple
-	 *           The {@link Tuple} to iterate over.
+	 *            The {@link Tuple} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@link Tuple} is {@literal null}.
+	 *             If the given {@link Tuple} is {@literal null}.
 	 */
 	public TupleIterator(Tuple<? extends Payload, ? extends Payload> tuple) throws IllegalArgumentException {
+		super(0, 2);
 		if (null == tuple) {
 			throw new IllegalArgumentException("The given tuple is null");
 		}
 		this.tuple = tuple;
-	}
-
-	@Override
-	public int maxIndex() {
-		return 2;
 	}
 
 	@Override

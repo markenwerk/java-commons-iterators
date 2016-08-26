@@ -33,25 +33,37 @@ import java.util.NoSuchElementException;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.1.1
  */
-public abstract class AbstractIndexedIterator<Payload> extends AbstractProtectedBidirectionalIterator<Payload>
-		implements IndexedIterator<Payload> {
+public abstract class AbstractIndexedIterator<Payload> extends AbstractProtectedBidirectionalIterator<Payload> {
+
+	private final int maxIndex;
 
 	private int index;
 
 	/**
 	 * Creates a new {@link AbstractIndexedIterator}.
+	 * 
+	 * @param startIndex
+	 *            The start index to be used.
+	 * @param maxIndex
+	 *            The maximum index.
+	 * @throws IllegalArgumentException
+	 *             If the given start index is negative or if the given maximum
+	 *             index is smaller than the start index.
 	 */
-	protected AbstractIndexedIterator() {
-	}
-
-	@Override
-	public final int index() {
-		return index;
+	protected AbstractIndexedIterator(int startIndex, int maxIndex) throws IllegalArgumentException {
+		if (startIndex < 0) {
+			throw new IllegalArgumentException("The given start index is negative: " + startIndex);
+		} else if (maxIndex < startIndex) {
+			throw new IllegalArgumentException("The given maximum index is smaller than the given start index '"
+					+ startIndex + "': " + maxIndex);
+		}
+		this.index = startIndex;
+		this.maxIndex = maxIndex;
 	}
 
 	@Override
 	public final boolean hasNext() {
-		return index < maxIndex();
+		return index < maxIndex;
 	}
 
 	@Override
@@ -82,8 +94,7 @@ public abstract class AbstractIndexedIterator<Payload> extends AbstractProtected
 	 * 
 	 * @param index
 	 *            The index to be used, which is guaranteed to be non-negative
-	 *            and smaller then the {@link IndexedIterator#maxIndex() maximum
-	 *            index}.
+	 *            and smaller then the maximum index.
 	 * @return The payload value at the given index.
 	 */
 	protected abstract Payload get(int index);

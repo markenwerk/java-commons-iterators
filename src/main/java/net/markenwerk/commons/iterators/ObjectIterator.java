@@ -26,7 +26,7 @@ package net.markenwerk.commons.iterators;
  * over a single payload object.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.5
  */
@@ -38,15 +38,23 @@ public final class ObjectIterator<Payload> extends AbstractIndexedIterator<Paylo
 	 * Creates a new {@link ObjectIterator}.
 	 * 
 	 * @param value
-	 *           The object to iterate over.
+	 *            The object to iterate over.
 	 */
 	public ObjectIterator(Payload value) {
-		this.value = value;
+		this(value, false);
 	}
 
-	@Override
-	public int maxIndex() {
-		return 1;
+	/**
+	 * Creates a new {@link ObjectIterator}.
+	 * 
+	 * @param value
+	 *            The object to iterate over.
+	 * @param ignoreNull
+	 *            Whether to ignore {@literal null} values.
+	 */
+	public ObjectIterator(Payload value, boolean ignoreNull) {
+		super(0, ignoreNull && null == value ? 0 : 1);
+		this.value = value;
 	}
 
 	@Override

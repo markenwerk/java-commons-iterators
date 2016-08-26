@@ -36,20 +36,20 @@ public final class BooleanArrayIterator extends AbstractIndexedIterator<Boolean>
 	 * Creates a new {@linkplain BooleanArrayIterator}.
 	 * 
 	 * @param array
-	 *           The {@code boolean[]} to iterate over.
+	 *            The {@code boolean[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code boolean[]} is {@literal null}.
+	 *             If the given {@code boolean[]} is {@literal null}.
 	 */
 	public BooleanArrayIterator(boolean... array) throws IllegalArgumentException {
-		if (null == array) {
-			throw new IllegalArgumentException("The given array is null");
-		}
+		super(0, length(array));
 		this.array = array;
 	}
 
-	@Override
-	public int maxIndex() {
+	private static int length(boolean[] array) {
+		if (null == array) {
+			throw new IllegalArgumentException("The given array is null");
+		}
 		return array.length;
 	}
 

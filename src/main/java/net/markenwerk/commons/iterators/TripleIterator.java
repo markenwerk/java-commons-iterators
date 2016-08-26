@@ -28,7 +28,7 @@ import net.markenwerk.commons.datastructures.Triple;
  * over a given {@link Triple}.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.0.0
  */
@@ -40,22 +40,18 @@ public final class TripleIterator<Payload> extends AbstractIndexedIterator<Paylo
 	 * Creates a new {@link TripleIterator}.
 	 * 
 	 * @param triple
-	 *           The {@link Triple} to iterate over.
+	 *            The {@link Triple} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@link Triple} is {@literal null}.
+	 *             If the given {@link Triple} is {@literal null}.
 	 */
 	public TripleIterator(Triple<? extends Payload, ? extends Payload, ? extends Payload> triple)
 			throws IllegalArgumentException {
+		super(0, 3);
 		if (null == triple) {
 			throw new IllegalArgumentException("The given triple is null");
 		}
 		this.triple = triple;
-	}
-
-	@Override
-	public int maxIndex() {
-		return 3;
 	}
 
 	@Override

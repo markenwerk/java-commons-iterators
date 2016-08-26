@@ -36,20 +36,20 @@ public final class LongArrayIterator extends AbstractIndexedIterator<Long> {
 	 * Creates a new {@linkplain LongArrayIterator}.
 	 * 
 	 * @param array
-	 *           The {@code long[]} to iterate over.
+	 *            The {@code long[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code long[]} is {@literal null}.
+	 *             If the given {@code long[]} is {@literal null}.
 	 */
 	public LongArrayIterator(long... array) throws IllegalArgumentException {
-		if (null == array) {
-			throw new IllegalArgumentException("The given array is null");
-		}
+		super(0, length(array));
 		this.array = array;
 	}
 
-	@Override
-	public int maxIndex() {
+	private static int length(long[] array) {
+		if (null == array) {
+			throw new IllegalArgumentException("The given array is null");
+		}
 		return array.length;
 	}
 

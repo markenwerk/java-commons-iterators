@@ -36,20 +36,20 @@ public final class ByteArrayIterator extends AbstractIndexedIterator<Byte> {
 	 * Creates a new {@linkplain ByteArrayIterator}.
 	 * 
 	 * @param array
-	 *           The {@code byte[]} to iterate over.
+	 *            The {@code byte[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code byte[]} is {@literal null}.
+	 *             If the given {@code byte[]} is {@literal null}.
 	 */
 	public ByteArrayIterator(byte... array) throws IllegalArgumentException {
-		if (null == array) {
-			throw new IllegalArgumentException("The given array is null");
-		}
+		super(0, maxIndex(array));
 		this.array = array;
 	}
 
-	@Override
-	public int maxIndex() {
+	private static int maxIndex(byte[] array) {
+		if (null == array) {
+			throw new IllegalArgumentException("The given array is null");
+		}
 		return array.length;
 	}
 

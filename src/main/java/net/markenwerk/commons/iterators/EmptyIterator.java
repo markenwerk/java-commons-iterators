@@ -30,7 +30,7 @@ package net.markenwerk.commons.iterators;
  * calling {@link EmptyIterator#next()} always returns {@literal null}.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -40,11 +40,7 @@ public final class EmptyIterator<Payload> extends AbstractIndexedIterator<Payloa
 	 * Creates a new {@link EmptyIterator}.
 	 */
 	public EmptyIterator() {
-	}
-
-	@Override
-	public int maxIndex() {
-		return 0;
+		super(0, 0);
 	}
 
 	@Override

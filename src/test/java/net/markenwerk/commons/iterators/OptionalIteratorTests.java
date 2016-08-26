@@ -27,14 +27,32 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Test;
 
+import net.markenwerk.commons.datastructures.Optional;
+
 @SuppressWarnings("javadoc")
 public class OptionalIteratorTests {
 
+	@Test(expected = IllegalArgumentException.class)
+	public void create_nullOptional() {
+
+		new OptionalIterator<Object>(null);
+
+	}
+
+	@Test
+	public void iterate_none() {
+
+		Iterator<Object> iterator = new OptionalIterator<Object>(new Optional<Object>());
+
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
 	@Test
 	public void iterate_nonNull() {
 
 		Object value = new Object();
-		Iterator<Object> iterator = new OptionalIterator<Object>(value);
+		Iterator<Object> iterator = new OptionalIterator<Object>(new Optional<Object>(value));
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(value, iterator.next());
@@ -45,8 +63,10 @@ public class OptionalIteratorTests {
 	@Test
 	public void iterate_null() {
 
-		Iterator<Object> iterator = new OptionalIterator<Object>(null);
+		Iterator<Object> iterator = new OptionalIterator<Object>(new Optional<Object>(null));
 
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertNull(iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}
@@ -54,7 +74,7 @@ public class OptionalIteratorTests {
 	@Test(expected = NoSuchElementException.class)
 	public void iterate_noNext() {
 
-		Iterator<Object> iterator = new OptionalIterator<Object>(new Object());
+		Iterator<Object> iterator = new OptionalIterator<Object>(new Optional<Object>(null));
 
 		iterator.next();
 		iterator.next();
@@ -64,7 +84,7 @@ public class OptionalIteratorTests {
 	@Test(expected = UnsupportedOperationException.class)
 	public void remove() {
 
-		Iterator<Object> iterator = new OptionalIterator<Object>(new Object());
+		Iterator<Object> iterator = new OptionalIterator<Object>(new Optional<Object>(null));
 
 		iterator.remove();
 

@@ -36,20 +36,20 @@ public final class IntegerArrayIterator extends AbstractIndexedIterator<Integer>
 	 * Creates a new {@linkplain IntegerArrayIterator}.
 	 * 
 	 * @param array
-	 *           The {@code int[]} to iterate over.
+	 *            The {@code int[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code int[]} is {@literal null}.
+	 *             If the given {@code int[]} is {@literal null}.
 	 */
 	public IntegerArrayIterator(int... array) throws IllegalArgumentException {
-		if (null == array) {
-			throw new IllegalArgumentException("The given array is null");
-		}
+		super(0, length(array));
 		this.array = array;
 	}
 
-	@Override
-	public int maxIndex() {
+	private static int length(int[] array) {
+		if (null == array) {
+			throw new IllegalArgumentException("The given array is null");
+		}
 		return array.length;
 	}
 

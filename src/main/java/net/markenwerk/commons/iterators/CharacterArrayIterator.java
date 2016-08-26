@@ -42,14 +42,14 @@ public final class CharacterArrayIterator extends AbstractIndexedIterator<Charac
 	 *            If the given {@code char[]} is {@literal null}.
 	 */
 	public CharacterArrayIterator(char... array) throws IllegalArgumentException {
-		if (null == array) {
-			throw new IllegalArgumentException("The given array is null");
-		}
+		super(0, length(array));
 		this.array = array;
 	}
 
-	@Override
-	public int maxIndex() {
+	private static int length(char[] array) {
+		if (null == array) {
+			throw new IllegalArgumentException("The given array is null");
+		}
 		return array.length;
 	}
 

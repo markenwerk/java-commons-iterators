@@ -32,8 +32,6 @@ public final class CountUpIterator extends AbstractIndexedIterator<Integer> {
 
 	private final int offset;
 
-	private final int size;
-
 	/**
 	 * Creates a new {@link CountUpIterator}.
 	 * 
@@ -42,20 +40,13 @@ public final class CountUpIterator extends AbstractIndexedIterator<Integer> {
 	 * {@code fromLower > toUpper}, no value will be yielded.
 	 * 
 	 * @param fromLower
-	 *           The lower bound and first value to be yielded.
+	 *            The lower bound and first value to be yielded.
 	 * @param toUpper
-	 *           The upper bound and last value to be yielded.
+	 *            The upper bound and last value to be yielded.
 	 */
 	public CountUpIterator(int fromLower, int toUpper) {
-
+		super(0, Math.max(0, toUpper - fromLower + 1));
 		offset = fromLower;
-		size = Math.max(0, toUpper - fromLower + 1);
-
-	}
-
-	@Override
-	public int maxIndex() {
-		return size;
 	}
 
 	@Override

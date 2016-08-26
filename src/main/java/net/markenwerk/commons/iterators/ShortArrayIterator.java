@@ -42,14 +42,14 @@ public final class ShortArrayIterator extends AbstractIndexedIterator<Short> {
 	 *            If the given {@code short[]} is {@literal null}.
 	 */
 	public ShortArrayIterator(short... array) throws IllegalArgumentException {
-		if (null == array) {
-			throw new IllegalArgumentException("The given array is null");
-		}
+		super(0, length(array));
 		this.array = array;
 	}
 
-	@Override
-	public int maxIndex() {
+	private static int length(short[] array) {
+		if (null == array) {
+			throw new IllegalArgumentException("The given array is null");
+		}
 		return array.length;
 	}
 

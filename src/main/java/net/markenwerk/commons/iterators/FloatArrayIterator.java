@@ -36,20 +36,20 @@ public final class FloatArrayIterator extends AbstractIndexedIterator<Float> {
 	 * Creates a new {@linkplain FloatArrayIterator}.
 	 * 
 	 * @param array
-	 *           The {@code float[]} to iterate over.
+	 *            The {@code float[]} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@code float[]} is {@literal null}.
+	 *             If the given {@code float[]} is {@literal null}.
 	 */
 	public FloatArrayIterator(float... array) throws IllegalArgumentException {
-		if (null == array) {
-			throw new IllegalArgumentException("The given array is null");
-		}
+		super(0, length(array));
 		this.array = array;
 	}
 
-	@Override
-	public int maxIndex() {
+	private static int length(float[] array) {
+		if (null == array) {
+			throw new IllegalArgumentException("The given array is null");
+		}
 		return array.length;
 	}
 

@@ -63,6 +63,27 @@ public class ObjectIteratorTests {
 
 	}
 
+	@Test
+	public void iterate_ignoreNull() {
+
+		Iterator<Object> iterator = new ObjectIterator<Object>(null, true);
+
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+
+	@Test
+	public void iterate_ignoreNonNull() {
+
+		Object value = new Object();
+		Iterator<Object> iterator = new ObjectIterator<Object>(value, true);
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(value, iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+
 	@Test(expected = UnsupportedOperationException.class)
 	public void remove() {
 

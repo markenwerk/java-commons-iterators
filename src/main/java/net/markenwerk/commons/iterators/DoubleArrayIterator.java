@@ -42,14 +42,14 @@ public final class DoubleArrayIterator extends AbstractIndexedIterator<Double> {
 	 *            If the given {@code double[]} is {@literal null}.
 	 */
 	public DoubleArrayIterator(double... array) throws IllegalArgumentException {
-		if (null == array) {
-			throw new IllegalArgumentException("The given array is null");
-		}
+		super(0, length(array));
 		this.array = array;
 	}
 
-	@Override
-	public int maxIndex() {
+	private static int length(double[] array) {
+		if (null == array) {
+			throw new IllegalArgumentException("The given array is null");
+		}
 		return array.length;
 	}
 

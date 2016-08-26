@@ -32,8 +32,6 @@ public final class CountDownIterator extends AbstractIndexedIterator<Integer> {
 
 	private final int offset;
 
-	private final int size;
-
 	/**
 	 * Creates a new {@link CountDownIterator}.
 	 * 
@@ -42,18 +40,13 @@ public final class CountDownIterator extends AbstractIndexedIterator<Integer> {
 	 * {@code fromUpper < toLower}, no value will be yielded.
 	 * 
 	 * @param fromUpper
-	 *           The upper bound and first value to be yielded.
+	 *            The upper bound and first value to be yielded.
 	 * @param toLower
-	 *           The lower bound and last value to be yielded.
+	 *            The lower bound and last value to be yielded.
 	 */
 	public CountDownIterator(int fromUpper, int toLower) {
+		super(0, Math.max(0, fromUpper - toLower + 1));
 		offset = fromUpper;
-		size = Math.max(0, fromUpper - toLower + 1);
-	}
-
-	@Override
-	public int maxIndex() {
-		return size;
 	}
 
 	@Override

@@ -28,7 +28,7 @@ import net.markenwerk.commons.datastructures.Pair;
  * over a given {@link Pair}.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.0.0
  */
@@ -40,21 +40,17 @@ public final class PairIterator<Payload> extends AbstractIndexedIterator<Payload
 	 * Creates a new {@link PairIterator}.
 	 * 
 	 * @param pair
-	 *           The {@link Pair} to iterate over.
+	 *            The {@link Pair} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@link Pair} is {@literal null}.
+	 *             If the given {@link Pair} is {@literal null}.
 	 */
 	public PairIterator(Pair<? extends Payload> pair) throws IllegalArgumentException {
+		super(0, 2);
 		if (null == pair) {
 			throw new IllegalArgumentException("The given pair is null");
 		}
 		this.pair = pair;
-	}
-
-	@Override
-	public int maxIndex() {
-		return 2;
 	}
 
 	@Override

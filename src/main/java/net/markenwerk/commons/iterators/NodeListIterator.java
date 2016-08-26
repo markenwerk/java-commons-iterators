@@ -39,20 +39,20 @@ public final class NodeListIterator extends AbstractIndexedIterator<Node> {
 	 * Creates a new {@link NodeListIterator}.
 	 * 
 	 * @param nodeList
-	 *           The {@link NodeList} to iterate over.
+	 *            The {@link NodeList} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@link NodeList} is {@literal null}.
+	 *             If the given {@link NodeList} is {@literal null}.
 	 */
 	public NodeListIterator(NodeList nodeList) throws IllegalArgumentException {
-		if (null == nodeList) {
-			throw new IllegalArgumentException("The given node list is null");
-		}
+		super(0, length(nodeList));
 		this.nodeList = nodeList;
 	}
 
-	@Override
-	public int maxIndex() {
+	private static int length(NodeList nodeList) {
+		if (null == nodeList) {
+			throw new IllegalArgumentException("The given node list is null");
+		}
 		return nodeList.getLength();
 	}
 

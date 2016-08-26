@@ -23,38 +23,43 @@ package net.markenwerk.commons.iterators;
 
 import java.util.Iterator;
 
+import net.markenwerk.commons.datastructures.Optional;
+
 /**
  * An {@link OptionalIterator} is an {@link AbstractIndexedIterator} that
  * behaves like an {@link ObjectIterator} for a given payload object, or like an
  * empty {@link Iterator}, if the given payload object is {@literal null}.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.5
  */
 public final class OptionalIterator<Payload> extends AbstractIndexedIterator<Payload> {
 
-	private final Payload value;
+	private final Optional<Payload> value;
 
 	/**
 	 * Creates a new {@link OptionalIterator}.
 	 * 
 	 * @param value
-	 *           The object to iterate over.
+	 *            The object to iterate over.
 	 */
-	public OptionalIterator(Payload value) {
+	public OptionalIterator(Optional<Payload> value) {
+		super(0, length(value));
 		this.value = value;
 	}
 
-	@Override
-	public int maxIndex() {
-		return null == value ? 0 : 1;
+	private static <Payload> int length(Optional<Payload> value) {
+		if (null == value) {
+			throw new IllegalArgumentException("The given optional is null");
+		}
+		return value.hasValue() ? 1 : 0;
 	}
 
 	@Override
 	public Payload get(int index) {
-		return value;
+		return value.getValue();
 	}
 
 }

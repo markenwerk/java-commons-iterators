@@ -26,7 +26,7 @@ package net.markenwerk.commons.iterators;
  * over a given payload array.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -38,20 +38,20 @@ public final class ArrayIterator<Payload> extends AbstractIndexedIterator<Payloa
 	 * Creates a new {@link ArrayIterator}.
 	 * 
 	 * @param array
-	 *           The payload array to iterate over.
+	 *            The array of payload values to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given payload array is {@literal null}.
+	 *             If the given array of payload values is {@literal null}.
 	 */
 	public ArrayIterator(Payload... array) throws IllegalArgumentException {
-		if (null == array) {
-			throw new IllegalArgumentException("The given array is null");
-		}
+		super(0, length(array));
 		this.array = array;
 	}
 
-	@Override
-	public int maxIndex() {
+	private static <Payload> int length(Payload[] array) {
+		if (null == array) {
+			throw new IllegalArgumentException("The given array is null");
+		}
 		return array.length;
 	}
 

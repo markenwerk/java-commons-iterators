@@ -33,7 +33,7 @@ import org.junit.Test;
 public class PairIteratorTests {
 
 	@Test(expected = IllegalArgumentException.class)
-	public void create_nullArray() {
+	public void create_nullPair() {
 
 		new PairIterator<Object>(null);
 
